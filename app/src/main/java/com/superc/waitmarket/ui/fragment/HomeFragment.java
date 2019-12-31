@@ -132,10 +132,12 @@ public class HomeFragment extends BaseFragment {
                 String msg = result.getString("message");
                 if (code) {
                     setData(result.getJSONObject("data"));
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
-                }
+
             }
 
             @Override

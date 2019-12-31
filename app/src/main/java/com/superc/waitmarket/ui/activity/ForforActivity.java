@@ -57,7 +57,7 @@ public class ForforActivity extends BaseActivity {
             Bundle data = intent.getBundleExtra("data");
             mMes = data.getString("mes");
             mAcd = data.getString("acd");
-            mTv_top.setText(mMes);
+            mForgetForPhone.setText(mMes);
         }
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         mVcivCode.setOnInputListener(new VerificationCodeInputView.OnInputListener() {

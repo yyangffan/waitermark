@@ -303,6 +303,7 @@ public class BusnesFragment extends BaseFragment {
 
     //    获取上方数量
     public void getCount() {
+        mUser_id = (String) ShareUtil.getInstance(this.getActivity()).get("user_id", "");
         Map<String, Object> map = new HashMap<>();
         map.put("userId", mUser_id);
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).getCount(EncryPtionUtil.getInstance(getActivity()).toEncryption(map));

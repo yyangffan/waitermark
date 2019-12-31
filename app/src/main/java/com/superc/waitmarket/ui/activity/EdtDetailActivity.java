@@ -159,7 +159,7 @@ public class EdtDetailActivity extends BaseActivity {
                 } else {
                     String data = result.getString("data");
                     if (!TextUtils.isEmpty(data)) {
-                        new MiddleDialog.Builder(EdtDetailActivity.this).img_id(R.drawable.con_shibai).title("提交失败").content(data).build().show();
+                        new MiddleDialog.Builder(EdtDetailActivity.this).img_id(R.drawable.con_shibai).title("提交失败").content("请输入"+data).build().show();
                     }
                 }
 

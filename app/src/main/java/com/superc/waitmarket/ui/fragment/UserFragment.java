@@ -41,6 +41,7 @@ import com.superc.waitmarket.ui.activity.MsgActivity;
 import com.superc.waitmarket.ui.activity.SafeCenterActivity;
 import com.superc.waitmarket.ui.activity.WalletActivity;
 import com.superc.waitmarket.utils.BigDecimalUtils;
+import com.superc.waitmarket.utils.dialog.MiddleDialog;
 import com.superc.waitmarket.utils.dialog.WorkCardDialog;
 import com.superc.yyfflibrary.base.BaseFragment;
 import com.superc.yyfflibrary.utils.ShareUtil;
@@ -304,8 +305,12 @@ public class UserFragment extends BaseFragment {
             public void onSuccessResult(JSONObject result) {
                 boolean code = result.getBoolean("code");
                 String msg = result.getString("message");
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+                if (code) {
+                    new MiddleDialog.Builder(UserFragment.this.getActivity()).title("头像修改成功").img_id(R.drawable.icon_chenggong).build().show();
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
             }
 

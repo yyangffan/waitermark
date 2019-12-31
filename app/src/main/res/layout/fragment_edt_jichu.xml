@@ -549,7 +549,7 @@
             <com.superc.waitmarket.views.MapContainer
                 android:id="@+id/linear"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/dp_115"
+                android:layout_height="@dimen/dp_260"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_corner_kuang"
                 app:layout_constraintEnd_toEndOf="@+id/edtjichu_dizhi"

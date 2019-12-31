@@ -18,6 +18,7 @@ import com.superc.waitmarket.base.ApiService;
 import com.superc.waitmarket.httputil.EncryPtionHttp;
 import com.superc.waitmarket.httputil.EncryPtionUtil;
 import com.superc.waitmarket.utils.BigDecimalUtils;
+import com.superc.waitmarket.utils.dialog.MiddleDialog;
 import com.superc.yyfflibrary.base.BaseActivity;
 import com.superc.yyfflibrary.utils.ShareUtil;
 
@@ -99,16 +100,19 @@ public class ForgetForActivity extends BaseActivity {
                     JSONObject data = result.getJSONObject("data");
                     String userid = BigDecimalUtils.bigUtil(data.getString("userId"));
                     ShareUtil.getInstance(ForgetForActivity.this).put("user_id", userid);
-                    String mes = data.getString("mes");
+                    String mes = data.getString("phone");
                     Intent intent = new Intent(ForgetForActivity.this, ForforActivity.class);
                     bundle.putString("mes", mes);
                     bundle.putString("acd", acd);
                     intent.putExtra("data", bundle);
                     startActivity(intent);
 //                    finish();
-                }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+                    if(!TextUtils.isEmpty(msg))
+                    new MiddleDialog.Builder(ForgetForActivity.this).content(msg).build().show();
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
             }
 

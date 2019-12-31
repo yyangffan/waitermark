@@ -511,51 +511,51 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
         String lianxiren = mEdtjichuLianxiren.getText().toString();
         String lianxiphone = mEdtjichuLianxiphone.getText().toString();
         if (TextUtils.isEmpty(name)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请输入门店名称").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请输入门店名称").build().show();
             return false;
         }
         if (TextUtils.isEmpty(mPicSmallPath)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择店铺头像").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请选择店铺头像").build().show();
             return false;
         }
         if (TextUtils.isEmpty(onehang)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择一级行业").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请选择一级行业").build().show();
             return false;
         }
         if (TextUtils.isEmpty(twohang)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择二级行业").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请选择二级行业").build().show();
             return false;
         }
         if (TextUtils.isEmpty(city)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择城市").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请选择城市").build().show();
             return false;
         }
         if (TextUtils.isEmpty(quyu)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择区域").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请选择区域").build().show();
             return false;
         }
         if (TextUtils.isEmpty(shangquan)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择商圈").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请选择商圈").build().show();
             return false;
         }
         if (click_lat == 0 || click_lon == 0) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择门店地址").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请选择门店地址").build().show();
             return false;
         }
         if (TextUtils.isEmpty(dizhi)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请输入门店地址").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请输入门店地址").build().show();
             return false;
         }
         if (TextUtils.isEmpty(yingyephone)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请输入营业电话").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请输入营业电话").build().show();
             return false;
         }
         if (TextUtils.isEmpty(lianxiren)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请输入店铺联系人").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请输入店铺联系人").build().show();
             return false;
         }
         if (TextUtils.isEmpty(lianxiphone)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请输入联系人手机号").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请输入联系人手机号").build().show();
             return false;
         }
 

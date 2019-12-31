@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activity.LoginActivity">
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/title_constra"
         android:layout_width="0dp"
@@ -20,9 +21,10 @@
             android:id="@+id/imgv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_13"
-            android:layout_marginTop="@dimen/dp_8"
-            android:layout_marginBottom="@dimen/dp_8"
+            android:paddingLeft="@dimen/dp_14"
+            android:paddingTop="@dimen/dp_8"
+            android:paddingRight="@dimen/dp_14"
+            android:paddingBottom="@dimen/dp_8"
             android:src="@drawable/icon_fanhui"
             app:layout_constraintBottom_toTopOf="@+id/textView7"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,9 +35,9 @@
         <View
             android:id="@+id/textView7"
             android:layout_width="0dp"
-            android:visibility="invisible"
             android:layout_height="@dimen/dp_1"
             android:background="@color/line_color"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
