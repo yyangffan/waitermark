@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/dp_12"
+    android:layout_marginRight="@dimen/dp_12"
+    android:layout_marginBottom="@dimen/dp_5"
+    android:background="@drawable/bg_corner_white">
+
+    <ImageView
+        android:id="@+id/item_merchpool_imgv"
+        android:layout_width="@dimen/dp_62"
+        android:layout_height="@dimen/dp_62"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars"/>
+
+    <TextView
+        android:id="@+id/item_merchpool_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="- -"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/item_merchpool_receive"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/item_merchpool_imgv"
+        app:layout_constraintTop_toTopOf="@+id/item_merchpool_imgv"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:text="鱼酷(万达店)"/>
+
+    <TextView
+        android:id="@+id/item_merchpool_pos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:drawableLeft="@drawable/icon_dizhi"
+        android:drawablePadding="@dimen/dp_3"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="- -"
+        android:textColor="@color/txt_granine"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/item_merchpool_state"
+        app:layout_constraintEnd_toStartOf="@+id/item_merchpool_receive"
+        app:layout_constraintStart_toStartOf="@+id/item_merchpool_name"
+        app:layout_constraintTop_toBottomOf="@+id/item_merchpool_name"
+        tools:text="上线时间2019.11.25"/>
+
+    <TextView
+        android:id="@+id/item_merchpool_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="- -"
+        android:textColor="@color/main_color"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/item_merchpool_imgv"
+        app:layout_constraintStart_toStartOf="@+id/item_merchpool_pos"
+        tools:text="可领取"/>
+
+    <TextView
+        android:id="@+id/item_merchpool_receive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/bg_corner_solred"
+        android:paddingLeft="@dimen/dp_18"
+        android:paddingTop="@dimen/dp_6"
+        android:paddingRight="@dimen/dp_18"
+        android:paddingBottom="@dimen/dp_6"
+        android:text="领取"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+</android.support.constraint.ConstraintLayout>

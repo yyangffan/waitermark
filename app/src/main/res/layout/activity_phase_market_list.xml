@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+  >
+
+    <RelativeLayout
+        android:id="@+id/title_rela"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_heigth"
+        android:background="@color/white"
+        android:paddingTop="@dimen/title_padd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- 标题栏左侧功能区 -->
+
+        <ImageView
+            android:id="@+id/left_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:minWidth="56dp"
+            android:padding="@dimen/dp_10"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_fanhui"
+            />
+
+        <!-- 添加一个文本，让标题栏居中 -->
+
+        <TextView
+            android:id="@+id/user_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxEms="8"
+            android:paddingBottom="@dimen/dp_11"
+            android:singleLine="true"
+            android:text="支付营销券设置"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_txtsize"/>
+
+
+        <View
+            android:id="@+id/view15"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_2"
+            android:layout_alignParentBottom="true"
+            android:background="@color/xml_bg"
+            />
+    </RelativeLayout>
+
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/phase_marketlist_smart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_rela">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"/>
+
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            >
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:elevation="0dp">
+
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraintLayout17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:layout_scrollFlags="scroll|enterAlways">
+
+                    <LinearLayout
+                        android:id="@+id/phase_marketli_linear"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_27"
+                        android:layout_marginTop="@dimen/dp_24"
+                        android:layout_marginRight="@dimen/dp_27"
+                        android:layout_marginBottom="@dimen/dp_24"
+                        android:background="@drawable/phase_lin_bg"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/icon_phase_tianjia"
+                            android:drawablePadding="@dimen/dp_10"
+                            android:paddingTop="@dimen/dp_10"
+                            android:paddingBottom="@dimen/dp_10"
+                            android:text="点击添加营销券"
+                            android:textColor="@color/main_color"/>
+
+                    </LinearLayout>
+
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/phase_marketlist_topcon"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="14dp"
+                        android:layout_marginBottom="14dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.constraint.ConstraintLayout
+                            android:id="@+id/phase_marketlist_contop"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/b_yijieshuquan_up"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/phase_marketlist_content"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_12"
+                                android:text="- -"
+                                android:textColor="#ff9e1e"
+                                android:textSize="17sp"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"/>
+
+                            <TextView
+                                android:id="@+id/phase_marketlist_what"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/beijing_zhekouquan"
+                                android:gravity="center"
+                                android:paddingLeft="@dimen/dp_10"
+                                android:paddingTop="@dimen/dp_5"
+                                android:paddingRight="@dimen/dp_10"
+                                android:paddingBottom="@dimen/dp_5"
+                                android:text="- -"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"/>
+
+                            <LinearLayout
+                                android:id="@+id/phase_mm"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="7dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginBottom="4dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/phase_marketlist_content">
+
+                                <TextView
+                                    android:id="@+id/phase_marketlist_state"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="right"
+                                    android:text="当前状态："
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp"
+                                    />
+
+                                <TextView
+                                    android:id="@+id/phase_marketlist_statemiaoshu"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="right"
+                                    android:paddingLeft="@dimen/dp_3"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp"
+                                    />
+
+                                <TextView
+                                    android:id="@+id/phase_marketlist_toptvStop"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:background="@drawable/phase_main_cor"
+                                    android:paddingLeft="@dimen/dp_4"
+                                    android:paddingTop="@dimen/dp_2"
+                                    android:paddingRight="@dimen/dp_4"
+                                    android:paddingBottom="@dimen/dp_2"
+                                    android:text="停止发放"
+                                    android:textColor="@color/main_color"
+                                    android:textSize="12sp"
+                                    android:visibility="gone"
+                                    />
+
+                                <TextView
+                                    android:id="@+id/phase_marketlist_statenote"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:text="次日下架"
+                                    android:textColor="@color/main_color"
+                                    android:textSize="12sp"
+                                    android:visibility="gone"
+                                    />
+
+                                <LinearLayout
+                                    android:id="@+id/phase_marketlist_llshangh"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="@dimen/dp_4"
+                                    android:paddingTop="@dimen/dp_2"
+                                    android:paddingRight="@dimen/dp_4"
+                                    android:paddingBottom="@dimen/dp_2"
+                                    android:visibility="gone"
+                                    >
+
+                                    <TextView
+                                        android:id="@+id/phase_marketlist_bohui"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="@dimen/dp_10"
+                                        android:background="@drawable/phase_black_cor"
+                                        android:paddingLeft="@dimen/dp_8"
+                                        android:paddingTop="@dimen/dp_2"
+                                        android:paddingRight="@dimen/dp_8"
+                                        android:paddingBottom="@dimen/dp_2"
+                                        android:text="驳回"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp"/>
+
+                                    <TextView
+                                        android:id="@+id/phase_marketlist_tongyi"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/phase_main_cor"
+                                        android:paddingLeft="@dimen/dp_8"
+                                        android:paddingTop="@dimen/dp_2"
+                                        android:paddingRight="@dimen/dp_8"
+                                        android:paddingBottom="@dimen/dp_2"
+                                        android:text="同意"
+                                        android:textColor="@color/main_color"
+                                        android:textSize="12sp"/>
+
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+
+                        </android.support.constraint.ConstraintLayout>
+
+                        <TextView
+                            android:id="@+id/phase_marketlist_conbw"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/b_yijieshuquan_between"
+                            app:layout_constraintEnd_toEndOf="@+id/phase_marketlist_contop"
+                            app:layout_constraintStart_toStartOf="@+id/phase_marketlist_contop"
+                            app:layout_constraintTop_toBottomOf="@+id/phase_marketlist_contop"/>
+
+                        <android.support.constraint.ConstraintLayout
+                            android:id="@+id/phase_marketlist_conbot"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/b_yijieshuquan_down"
+                            app:layout_constraintEnd_toEndOf="@+id/phase_marketlist_conbw"
+                            app:layout_constraintStart_toStartOf="@+id/phase_marketlist_conbw"
+                            app:layout_constraintTop_toBottomOf="@+id/phase_marketlist_conbw">
+
+                            <TextView
+                                android:id="@+id/phase_marketlist_time"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="13dp"
+                                android:layout_marginEnd="8dp"
+                                android:ellipsize="end"
+                                android:gravity="center_vertical"
+                                android:lines="2"
+                                android:text="可用时间段："
+                                android:textColor="@color/black"
+                                android:textSize="12sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="可用时间段：10:00-22:00 周一-周日；10:00-22:00 周一-周日"/>
+
+                            <TextView
+                                android:id="@+id/phase_marketlist_lqnum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="领取数：- -张 "
+                                android:textColor="@color/black"
+                                android:textSize="13sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/phase_marketlist_time"
+                                app:layout_constraintTop_toBottomOf="@+id/phase_marketlist_time"/>
+
+                            <TextView
+                                android:id="@+id/phase_marketlist_synum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="13dp"
+                                android:text="使用数：- -张"
+                                android:textColor="@color/black"
+                                android:textSize="13sp"
+                                app:layout_constraintBaseline_toBaselineOf="@+id/phase_marketlist_lqnum"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.65"
+                                app:layout_constraintStart_toEndOf="@+id/phase_marketlist_lqnum"
+                                />
+                        </android.support.constraint.ConstraintLayout>
+
+                    </android.support.constraint.ConstraintLayout>
+
+                </android.support.constraint.ConstraintLayout>
+
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/xml_bg"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+            >
+
+
+                <TextView
+                    android:id="@+id/textView123"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="19dp"
+                    android:text="历史发券记录"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/phase_marketlist_recy"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginEnd="14dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView123"/>
+
+                <TextView
+                    android:id="@+id/textView81"
+                    android:layout_width="@dimen/dp_45"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginEnd="8dp"
+                    android:background="#909090"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView123"
+                    app:layout_constraintEnd_toStartOf="@+id/textView123"
+                    app:layout_constraintTop_toTopOf="@+id/textView123"/>
+
+                <TextView
+                    android:id="@+id/textView84"
+                    android:layout_width="@dimen/dp_45"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginStart="8dp"
+                    android:background="#909090"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView123"
+                    app:layout_constraintStart_toEndOf="@+id/textView123"
+                    app:layout_constraintTop_toTopOf="@+id/textView123"/>
+            </android.support.constraint.ConstraintLayout>
+
+
+        </android.support.design.widget.CoordinatorLayout>
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"/>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</android.support.constraint.ConstraintLayout>

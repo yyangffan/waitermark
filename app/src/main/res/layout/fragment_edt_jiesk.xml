@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/jichu_look_smart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    tools:context=".ui.fragment.JiChuFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_corner_white"
+        android:scrollbars="none"
+        tools:context=".ui.fragment.JiChuFragment">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/dp_5"
+            android:paddingLeft="@dimen/dp_16"
+            android:paddingRight="@dimen/dp_16"
+            android:paddingBottom="@dimen/dp_10"
+            >
+
+            <View
+                android:id="@+id/textView76"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_2"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_dotted"
+                android:layerType="software"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/item_lookjies_hanghao"/>
+
+            <View
+                android:id="@+id/textView64"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_2"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_dotted"
+                android:layerType="software"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/item_lookjies_ynfaren"/>
+
+
+            <TextView
+                android:id="@+id/textView53"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:text="账户类型"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_lookjies_leixing"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/item_lookjies_leixing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:drawableRight="@drawable/icon_xiala"
+                android:ellipsize="end"
+                android:hint="请选择账户类型"
+                android:lines="1"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_5"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView53"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/linear_banka"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_lookjies_leixing">
+
+                <TextView
+                    android:id="@+id/textView59"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="办卡方式"
+                    android:textColor="@color/black"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/item_lookjies_banka"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/item_lookjies_banka"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_corner_kuang"
+                    android:drawableRight="@drawable/icon_xiala"
+                    android:ellipsize="end"
+                    android:hint="请选择办卡方式"
+                    android:lines="1"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView59"
+                    />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/item_lookjies_jiesuanstate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:drawableRight="@drawable/icon_xiala"
+                android:ellipsize="end"
+                android:hint="请选择结算方式"
+                android:lines="1"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_5"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjies_leixing"
+                app:layout_constraintStart_toStartOf="@+id/item_lookjies_leixing"
+                app:layout_constraintTop_toBottomOf="@+id/linear_banka"/>
+
+            <TextView
+                android:id="@+id/item_lookjies_ynfaren"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:drawableRight="@drawable/icon_xiala"
+                android:ellipsize="end"
+                android:hint="请选择是否是法人收款"
+                android:lines="1"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_5"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjies_jiesuanstate"
+                app:layout_constraintStart_toStartOf="@+id/item_lookjies_jiesuanstate"
+                app:layout_constraintTop_toBottomOf="@+id/item_lookjies_jiesuanstate"/>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/linear_gps"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView64">
+
+                <TextView
+                    android:id="@+id/textView65"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GPS定位截图"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/frame_gps"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/frame_gps"/>
+
+                <FrameLayout
+                    android:id="@+id/frame_gps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:id="@+id/item_lookjies_linegps"
+                        android:layout_width="@dimen/dp_79"
+                        android:layout_height="@dimen/dp_79"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_corner_kuang"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/item_lookjies_imgvgps"
+                            android:layout_width="@dimen/dp_79"
+                            android:layout_height="@dimen/dp_79"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="@+id/textView61"
+                            app:layout_constraintTop_toBottomOf="@+id/textView61"
+                            tools:src="@tools:sample/avatars"/>
+
+
+                        <TextView
+                            android:id="@+id/item_lookjies_gsptianjia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableTop="@drawable/icon_tianjia"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:gravity="center"
+                            android:text="上传照片"
+                            android:textColor="@color/txt_granine"
+                            android:textSize="10sp"
+                            app:layout_constraintEnd_toEndOf="@+id/textView61"
+                            app:layout_constraintTop_toBottomOf="@+id/textView61"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/gpsdelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="@dimen/dp_3"
+                        android:src="@drawable/icon_shanchutupian"
+                        android:visibility="gone"
+                        />
+
+                </FrameLayout>
+
+                <View
+                    android:id="@+id/textView97"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_2"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@drawable/bg_dotted"
+                    android:layerType="software"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/frame_gps"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <FrameLayout
+                android:id="@+id/frame_yihang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjies_ynfaren"
+                app:layout_constraintTop_toBottomOf="@+id/linear_gps">
+
+                <LinearLayout
+                    android:id="@+id/item_lookjies_lineayinhang"
+                    android:layout_width="@dimen/dp_79"
+                    android:layout_height="@dimen/dp_79"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@drawable/bg_corner_kuang"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@+id/item_lookjies_ynfaren"
+                    app:layout_constraintTop_toBottomOf="@+id/linear_gps">
+
+                    <ImageView
+                        android:id="@+id/item_lookjies_imgvyinh"
+                        android:layout_width="@dimen/dp_79"
+                        android:layout_height="@dimen/dp_79"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="@+id/textView61"
+                        app:layout_constraintTop_toBottomOf="@+id/textView61"
+                        tools:src="@tools:sample/avatars"/>
+
+                    <TextView
+                        android:id="@+id/item_lookjies_yinhangtianjia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/icon_tianjia"
+                        android:drawablePadding="@dimen/dp_5"
+                        android:gravity="center"
+                        android:text="上传照片"
+                        android:textColor="@color/txt_granine"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="@+id/textView61"
+                        app:layout_constraintTop_toBottomOf="@+id/textView61"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/yinhang_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="@dimen/dp_3"
+                    android:src="@drawable/icon_shanchutupian"
+                    android:visibility="gone"
+                    />
+            </FrameLayout>
+
+            <EditText
+                android:id="@+id/item_lookjies_jiesuannum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:ellipsize="end"
+                android:hint="请输入营业执照编号"
+                android:inputType="number"
+                android:lines="1"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_5"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView64"
+                app:layout_constraintStart_toStartOf="@+id/item_lookjies_ynfaren"
+                app:layout_constraintTop_toBottomOf="@+id/frame_yihang"/>
+
+            <EditText
+                android:id="@+id/item_lookjies_kaihuren"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:ellipsize="end"
+                android:hint="请输入开户人名称"
+                android:lines="1"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_5"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjies_jiesuannum"
+                app:layout_constraintStart_toStartOf="@+id/item_lookjies_jiesuannum"
+                app:layout_constraintTop_toBottomOf="@+id/item_lookjies_jiesuannum"/>
+
+            <EditText
+                android:id="@+id/item_lookjies_yuliuphone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:ellipsize="end"
+                android:hint="请输入预留手机号"
+                android:inputType="number"
+                android:lines="1"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_5"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjies_kaihuren"
+                app:layout_constraintStart_toStartOf="@+id/item_lookjies_kaihuren"
+                app:layout_constraintTop_toBottomOf="@+id/item_lookjies_kaihuren"/>
+
+            <TextView
+                android:id="@+id/item_lookjies_kaihuhang"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:drawableRight="@drawable/icon_xiala"
+                android:ellipsize="end"
+                android:hint="请选择开户行"
+                android:lines="1"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_5"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjies_yuliuphone"
+                app:layout_constraintStart_toStartOf="@+id/item_lookjies_yuliuphone"
+                app:layout_constraintTop_toBottomOf="@+id/item_lookjies_yuliuphone"/>
+
+            <EditText
+                android:id="@+id/item_lookjies_zhihang"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:ellipsize="end"
+                android:hint="请输入支行"
+                android:lines="1"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_5"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjies_kaihuhang"
+                app:layout_constraintStart_toStartOf="@+id/item_lookjies_kaihuhang"
+                app:layout_constraintTop_toBottomOf="@+id/item_lookjies_kaihuhang"/>
+
+            <TextView
+                android:id="@+id/item_lookjies_tianjin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:drawableRight="@drawable/icon_xiala"
+                android:ellipsize="end"
+                android:hint="请选择支行"
+                android:lines="1"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_5"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjies_kaihuhang"
+                app:layout_constraintStart_toStartOf="@+id/item_lookjies_kaihuhang"
+                app:layout_constraintTop_toBottomOf="@+id/item_lookjies_kaihuhang"/>
+
+            <EditText
+                android:id="@+id/item_lookjies_hanghao"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:ellipsize="end"
+                android:hint="请输入行号"
+                android:inputType="number"
+                android:lines="1"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_5"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjies_yuliuphone"
+                app:layout_constraintStart_toStartOf="@+id/item_lookjies_yuliuphone"
+                app:layout_constraintTop_toBottomOf="@+id/item_lookjies_zhihang"/>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/linear_chengnuo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView76">
+
+                <TextView
+                    android:id="@+id/textView77"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="承诺书"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/frame_chengnuo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/frame_chengnuo"/>
+
+                <FrameLayout
+                    android:id="@+id/frame_chengnuo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:id="@+id/item_lookjies_linarchengnuo"
+                        android:layout_width="@dimen/dp_79"
+                        android:layout_height="@dimen/dp_79"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_corner_kuang"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/item_lookjies_imgvchengnuo"
+                            android:layout_width="@dimen/dp_79"
+                            android:layout_height="@dimen/dp_79"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="@+id/textView61"
+                            app:layout_constraintTop_toBottomOf="@+id/textView61"
+                            tools:src="@tools:sample/avatars"/>
+
+
+                        <TextView
+                            android:id="@+id/item_lookjies_tianjiachengnuo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableTop="@drawable/icon_tianjia"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:gravity="center"
+                            android:text="上传照片"
+                            android:textColor="@color/txt_granine"
+                            android:textSize="10sp"
+                            app:layout_constraintEnd_toEndOf="@+id/textView61"
+                            app:layout_constraintTop_toBottomOf="@+id/textView61"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/chengnuodelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="@dimen/dp_3"
+                        android:src="@drawable/icon_shanchutupian"
+                        android:visibility="gone"
+                        />
+
+                </FrameLayout>
+
+                <View
+                    android:id="@+id/textView102"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_2"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_dotted"
+                    android:layerType="software"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/frame_chengnuo"/>
+            </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/textView62"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="结算方式"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_lookjies_jiesuanstate"
+                app:layout_constraintStart_toStartOf="@+id/textView53"/>
+
+            <TextView
+                android:id="@+id/textView92"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="是否是法人收款"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_lookjies_ynfaren"
+                app:layout_constraintStart_toStartOf="@+id/textView62"/>
+
+
+            <TextView
+                android:id="@+id/textView68"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="银行卡正面照"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/frame_yihang"
+                app:layout_constraintStart_toStartOf="@+id/textView92"
+                app:layout_constraintTop_toTopOf="@+id/frame_yihang"/>
+
+            <TextView
+                android:id="@+id/textView71"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="收款结算账号"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/textView98"
+                app:layout_constraintStart_toStartOf="@+id/textView68"
+                app:layout_constraintTop_toTopOf="@+id/item_lookjies_jiesuannum"/>
+
+            <TextView
+                android:id="@+id/textView74"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开户人名称"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/item_lookjies_kaihuren"
+                app:layout_constraintStart_toStartOf="@+id/textView71"
+                app:layout_constraintTop_toTopOf="@+id/item_lookjies_kaihuren"/>
+
+            <TextView
+                android:id="@+id/textView90"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="预留手机号"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/item_lookjies_yuliuphone"
+                app:layout_constraintStart_toStartOf="@+id/textView74"
+                app:layout_constraintTop_toTopOf="@+id/item_lookjies_yuliuphone"/>
+
+            <TextView
+                android:id="@+id/textView96"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开户行"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/item_lookjies_kaihuhang"
+                app:layout_constraintStart_toStartOf="@+id/textView90"
+                app:layout_constraintTop_toTopOf="@+id/item_lookjies_kaihuhang"/>
+
+            <TextView
+                android:id="@+id/textView100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="支行"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_lookjies_zhihang"
+                app:layout_constraintStart_toStartOf="@+id/textView96"/>
+
+            <TextView
+                android:id="@+id/textView101"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="行号"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_lookjies_hanghao"
+                app:layout_constraintStart_toStartOf="@+id/textView100"/>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/linear_shenfenzheng"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linear_chengnuo">
+
+                <TextView
+                    android:id="@+id/textView105"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="收款人身份证"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+
+                <ImageView
+                    android:id="@+id/item_edtzizhi_imgone"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_90"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_corner_kuang"
+                    android:padding="@dimen/dp_2"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/t_shenfenzhengzhengmian"
+                    app:layout_constraintEnd_toStartOf="@+id/item_edtzizhi_imgtwo"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="@+id/textView105"
+                    app:layout_constraintTop_toBottomOf="@+id/textView105"
+                    />
+
+                <ImageView
+                    android:id="@+id/item_edtzizhi_imgonexiangji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_xiangjicai"
+                    app:layout_constraintBottom_toBottomOf="@+id/item_edtzizhi_imgone"
+                    app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_imgone"
+                    app:layout_constraintStart_toStartOf="@+id/item_edtzizhi_imgone"
+                    app:layout_constraintTop_toTopOf="@+id/item_edtzizhi_imgone"
+                    />
+
+                <ImageView
+                    android:id="@+id/item_edtzizhi_imgtwo"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_90"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_corner_kuang"
+                    android:padding="@dimen/dp_2"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/t_shenfenzhengfanmian"
+                    app:layout_constraintBottom_toBottomOf="@+id/item_edtzizhi_imgone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/item_edtzizhi_imgone"
+                    app:layout_constraintTop_toTopOf="@+id/item_edtzizhi_imgone"/>
+
+                <ImageView
+                    android:id="@+id/item_edtzizhi_imgtwoxiangji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_xiangjicai"
+                    app:layout_constraintBottom_toBottomOf="@+id/item_edtzizhi_imgtwo"
+                    app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_imgtwo"
+                    app:layout_constraintStart_toStartOf="@+id/item_edtzizhi_imgtwo"
+                    app:layout_constraintTop_toTopOf="@+id/item_edtzizhi_imgtwo"
+                    />
+
+                <TextView
+                    android:id="@+id/textView84"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="点击扫描身份证正面"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_imgone"
+                    app:layout_constraintStart_toStartOf="@+id/item_edtzizhi_imgone"
+                    app:layout_constraintTop_toBottomOf="@+id/item_edtzizhi_imgone"/>
+
+                <TextView
+                    android:id="@+id/textView87"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="点击扫描身份证背面"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_imgtwo"
+                    app:layout_constraintStart_toStartOf="@+id/item_edtzizhi_imgtwo"
+                    app:layout_constraintTop_toBottomOf="@+id/item_edtzizhi_imgtwo"/>
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:src="@drawable/icon_genghuan"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_imgone"
+                    app:layout_constraintTop_toTopOf="@+id/item_edtzizhi_imgone"
+                    />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:src="@drawable/icon_genghuan"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_imgtwo"
+                    app:layout_constraintTop_toTopOf="@+id/item_edtzizhi_imgtwo"
+                    />
+
+                <View
+                    android:id="@+id/textView108"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_2"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_dotted"
+                    android:layerType="software"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView87"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/linear_chouchi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linear_shenfenzheng">
+
+                <TextView
+                    android:id="@+id/textView106"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_54"
+                    android:text="法人手持商户资金清算授权书与法人身份证正面照片"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/frame_chouchi"
+                    app:layout_constraintEnd_toStartOf="@+id/frame_chouchi"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/frame_chouchi"/>
+
+                <FrameLayout
+                    android:id="@+id/frame_chouchi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:id="@+id/item_lookjies_linearfarenpic"
+                        android:layout_width="@dimen/dp_79"
+                        android:layout_height="@dimen/dp_79"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_corner_kuang"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/item_lookjies_imgvfarenshou"
+                            android:layout_width="@dimen/dp_79"
+                            android:layout_height="@dimen/dp_79"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="@+id/textView61"
+                            app:layout_constraintTop_toBottomOf="@+id/textView61"
+                            tools:src="@tools:sample/avatars"/>
+
+
+                        <TextView
+                            android:id="@+id/item_lookjies_tianjiafaren"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableTop="@drawable/icon_tianjia"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:gravity="center"
+                            android:text="上传照片"
+                            android:textColor="@color/txt_granine"
+                            android:textSize="10sp"
+                            app:layout_constraintEnd_toEndOf="@+id/textView61"
+                            app:layout_constraintTop_toBottomOf="@+id/textView61"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/shouchidelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="@dimen/dp_3"
+                        android:src="@drawable/icon_shanchutupian"
+                        android:visibility="gone"
+                        />
+
+                </FrameLayout>
+
+                <View
+                    android:id="@+id/textView109"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_2"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_dotted"
+                    android:layerType="software"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/frame_chouchi"/>
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/linear_zijin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linear_chouchi">
+
+                <TextView
+                    android:id="@+id/textView103"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="商户资金清算授权书"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/frame_shanghu"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/frame_shanghu"/>
+
+                <FrameLayout
+                    android:id="@+id/frame_shanghu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:id="@+id/item_lookjies_linearshanghu"
+                        android:layout_width="@dimen/dp_79"
+                        android:layout_height="@dimen/dp_79"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_corner_kuang"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        >
+
+                        <ImageView
+                            android:id="@+id/item_lookjies_imgvshanghu"
+                            android:layout_width="@dimen/dp_79"
+                            android:layout_height="@dimen/dp_79"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="@+id/textView61"
+                            app:layout_constraintTop_toBottomOf="@+id/textView61"
+                            tools:src="@tools:sample/avatars"/>
+
+
+                        <TextView
+                            android:id="@+id/item_lookjies_tianjiashanghu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableTop="@drawable/icon_tianjia"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:gravity="center"
+                            android:text="上传照片"
+                            android:textColor="@color/txt_granine"
+                            android:textSize="10sp"
+                            app:layout_constraintEnd_toEndOf="@+id/textView61"
+                            app:layout_constraintTop_toBottomOf="@+id/textView61"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/shanghudelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="@dimen/dp_3"
+                        android:src="@drawable/icon_shanchutupian"
+                        android:visibility="gone"
+                        />
+
+                </FrameLayout>
+
+
+            </android.support.constraint.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/textView98"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(银行卡号)"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/item_lookjies_jiesuannum"
+                app:layout_constraintStart_toStartOf="@+id/textView71"
+                app:layout_constraintTop_toBottomOf="@+id/textView71"/>
+
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

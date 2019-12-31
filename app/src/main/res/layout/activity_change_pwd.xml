@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.activity.ChangePwdActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/title_constra"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingTop="@dimen/title_padtop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:paddingLeft="@dimen/dp_13"
+            android:src="@drawable/icon_fanhui"
+            app:layout_constraintBottom_toBottomOf="@+id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:padding="@dimen/dp_2"
+            android:text="修改密码"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_txtsize"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textView7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <View
+            android:id="@+id/textView7"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/line_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/xml_bg"
+        android:padding="@dimen/dp_10"
+        android:text="账号验证信息将发送至您的账号绑定手机号"
+        app:layout_constraintTop_toBottomOf="@+id/title_constra"/>
+
+    <TextView
+        android:id="@+id/changepwd_num"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_25"
+        android:layout_marginEnd="@dimen/dp_31"
+        android:layout_marginRight="@dimen/dp_10"
+        android:background="@null"
+        android:ellipsize="end"
+        android:textColor="@color/txt_granine"
+        android:text="- -"
+        android:lines="1"
+        android:paddingTop="@dimen/dp_12"
+        android:paddingRight="@dimen/dp_12"
+        android:paddingBottom="@dimen/dp_12"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text1"/>
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_1"
+        android:background="#dddddd"
+        app:layout_constraintEnd_toEndOf="@+id/changepwd_num"
+        app:layout_constraintStart_toStartOf="@+id/changepwd_num"
+        app:layout_constraintTop_toBottomOf="@+id/changepwd_num"/>
+
+    <Button
+        android:id="@+id/changepwd_next"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_21"
+        android:layout_marginBottom="@dimen/dp_16"
+        android:background="@drawable/bg_circle_main"
+        android:text="下一步"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/changepwd_num"
+        app:layout_constraintStart_toStartOf="@+id/changepwd_num"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"/>
+
+
+</android.support.constraint.ConstraintLayout>

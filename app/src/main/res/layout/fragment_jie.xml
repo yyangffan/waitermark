@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/jichu_look_smart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    tools:context=".ui.fragment.JiChuFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_corner_white"
+        android:scrollbars="none"
+        tools:context=".ui.fragment.JiChuFragment">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/dp_3"
+            android:paddingLeft="@dimen/dp_16"
+            android:paddingRight="@dimen/dp_16"
+            android:paddingBottom="@dimen/dp_10"
+            >
+
+            <TextView
+                android:id="@+id/item_lookjiesu_leixing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- -"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView53"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="对公"/>
+
+
+            <View
+                android:id="@+id/textView88"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjiesu_shifou"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/textView86"/>
+
+            <View
+                android:id="@+id/textView85"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjiesu_shifou"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/textView83"/>
+
+            <View
+                android:id="@+id/textView82"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjiesu_shifou"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/textView81"/>
+
+            <View
+                android:id="@+id/textView79"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjiesu_shifou"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/textView77"/>
+
+            <View
+                android:id="@+id/textView76"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjiesu_shifou"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/textView74"/>
+
+            <View
+                android:id="@+id/textView73"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjiesu_shifou"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/textView66"/>
+
+            <View
+                android:id="@+id/textView70"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjiesu_shifou"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/item_lookjiesu_kaihuhang"/>
+
+
+            <View
+                android:id="@+id/textView64"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjiesu_shifou"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/textView62"/>
+
+            <View
+                android:id="@+id/textView61"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjiesu_jiesuanstate"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/textView59"/>
+
+            <TextView
+                android:id="@+id/textView53"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="账户类型"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <View
+                android:id="@+id/textView58"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/textView53"/>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/linear_banka"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView58">
+
+                <TextView
+                    android:id="@+id/textView591"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="办卡方式"
+                    android:textColor="@color/txt_sixsev"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/item_lookjies_banka"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/item_lookjies_banka"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:lines="1"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:text="- -"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView591"
+                    tools:text="办卡方式"
+                    />
+
+                <View
+                    android:id="@+id/textView611"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/line_color"
+                    app:layout_constraintEnd_toEndOf="@+id/item_lookjies_banka"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textView591"
+                    app:layout_constraintTop_toBottomOf="@+id/textView591"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/textView59"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="结算方式"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/linear_banka"/>
+
+            <TextView
+                android:id="@+id/item_lookjiesu_jiesuanstate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- -"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView59"
+                app:layout_constraintEnd_toEndOf="@+id/textView58"
+                tools:text="统一结算账号"/>
+
+            <TextView
+                android:id="@+id/textView62"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="是否是法人收款"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintStart_toStartOf="@+id/textView61"
+                app:layout_constraintTop_toBottomOf="@+id/textView61"/>
+
+            <TextView
+                android:id="@+id/item_lookjiesu_shifou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- -"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView62"
+                app:layout_constraintEnd_toEndOf="@+id/textView61"
+                tools:text="否"/>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/linear_gps"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView64">
+
+                <TextView
+                    android:id="@+id/textView65"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GPS定位截图"
+                    android:textColor="@color/txt_sixsev"
+                    app:layout_constraintBottom_toBottomOf="@+id/item_lookjiesu_imgpos"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/item_lookjiesu_imgpos"/>
+
+                <ImageView
+                    android:id="@+id/item_lookjiesu_imgpos"
+                    android:layout_width="@dimen/dp_63"
+                    android:layout_height="@dimen/dp_63"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/avatars"/>
+
+                <View
+                    android:id="@+id/textView67"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/line_color"
+                    app:layout_constraintEnd_toEndOf="@+id/item_lookjiesu_imgpos"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/textView65"
+                    app:layout_constraintTop_toBottomOf="@+id/item_lookjiesu_imgpos"/>
+            </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/textView68"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开户行许可证照片"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintBottom_toBottomOf="@+id/item_lookjiesu_kaihuhang"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toTopOf="@+id/item_lookjiesu_kaihuhang"/>
+
+            <TextView
+                android:id="@+id/textView71"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="收款结算账号"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintStart_toStartOf="@+id/textView70"
+                app:layout_constraintTop_toBottomOf="@+id/textView70"/>
+
+            <TextView
+                android:id="@+id/textView66"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(许可证上的账户）"
+                android:textColor="@color/home_txt_no"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/textView71"
+                app:layout_constraintTop_toBottomOf="@+id/textView71"/>
+
+            <TextView
+                android:id="@+id/item_lookjiesu_jiesuanzhangh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- -"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/textView66"
+                app:layout_constraintEnd_toEndOf="@+id/textView70"
+                app:layout_constraintTop_toTopOf="@+id/textView71"
+                tools:text="1234567898765432133"/>
+
+            <TextView
+                android:id="@+id/textView74"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="开户单位名称"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintStart_toStartOf="@+id/textView73"
+                app:layout_constraintTop_toBottomOf="@+id/textView73"/>
+
+            <TextView
+                android:id="@+id/item_lookjiesu_kaihuiname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ellipsize="end"
+                android:gravity="right"
+                android:lines="1"
+                android:text="- -"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView74"
+                app:layout_constraintEnd_toEndOf="@+id/textView73"
+                app:layout_constraintStart_toEndOf="@+id/textView74"
+                tools:text="张三公司"/>
+
+            <TextView
+                android:id="@+id/textView77"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="预留手机号"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintStart_toStartOf="@+id/textView76"
+                app:layout_constraintTop_toBottomOf="@+id/textView76"/>
+
+            <TextView
+                android:id="@+id/item_lookjiesu_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- -"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView77"
+                app:layout_constraintEnd_toEndOf="@+id/textView76"
+                tools:text="022-0000000"/>
+
+            <TextView
+                android:id="@+id/item_lookjiesu_kaihuihang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- -"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView81"
+                app:layout_constraintEnd_toEndOf="@+id/textView79"
+                tools:text="天津银行"/>
+
+            <TextView
+                android:id="@+id/textView81"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="开户行"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintStart_toStartOf="@+id/textView79"
+                app:layout_constraintTop_toBottomOf="@+id/textView79"/>
+
+            <TextView
+                android:id="@+id/textView83"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="支行"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintStart_toStartOf="@+id/textView82"
+                app:layout_constraintTop_toBottomOf="@+id/textView82"/>
+
+            <TextView
+                android:id="@+id/item_lookjiesu_zhihang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- -"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView83"
+                app:layout_constraintEnd_toEndOf="@+id/textView82"
+                tools:text="天津分行"/>
+
+            <TextView
+                android:id="@+id/textView86"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="行号"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintStart_toStartOf="@+id/textView85"
+                app:layout_constraintTop_toBottomOf="@+id/textView85"/>
+
+            <TextView
+                android:id="@+id/item_lookjiesu_hanghao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- -"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView86"
+                app:layout_constraintEnd_toEndOf="@+id/textView85"
+                tools:text="00000000000"/>
+
+
+            <ImageView
+                android:id="@+id/item_lookjiesu_kaihuhang"
+                android:layout_width="@dimen/dp_63"
+                android:layout_height="@dimen/dp_63"
+                android:layout_marginTop="@dimen/dp_10"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjiesu_shifou"
+                app:layout_constraintTop_toBottomOf="@+id/linear_gps"
+                tools:src="@tools:sample/avatars"/>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/linear_chengnuo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView88">
+
+                <TextView
+                    android:id="@+id/textView89"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="承诺书"
+                    android:textColor="@color/txt_sixsev"
+                    app:layout_constraintBottom_toBottomOf="@+id/item_lookjiesu_imgchengnuo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/item_lookjiesu_imgchengnuo"/>
+
+                <ImageView
+                    android:id="@+id/item_lookjiesu_imgchengnuo"
+                    android:layout_width="@dimen/dp_63"
+                    android:layout_height="@dimen/dp_63"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView93"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/avatars"/>
+
+                <View
+                    android:id="@+id/textView93"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/line_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/item_lookjiesu_imgchengnuo"/>
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/linear_chouchi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linear_shenfenzheng">
+
+                <TextView
+                    android:id="@+id/textView72"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_70"
+                    android:text="法人手持商户资金清算授权书 与法人身份证正面照片"
+                    android:textColor="@color/txt_sixsev"
+                    app:layout_constraintBottom_toBottomOf="@+id/item_lookjiesu_farenshouchiimgv"
+                    app:layout_constraintEnd_toStartOf="@+id/item_lookjiesu_farenshouchiimgv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/item_lookjiesu_farenshouchiimgv"/>
+
+
+                <ImageView
+                    android:id="@+id/item_lookjiesu_farenshouchiimgv"
+                    android:layout_width="@dimen/dp_63"
+                    android:layout_height="@dimen/dp_63"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView75"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/avatars"/>
+
+                <View
+                    android:id="@+id/textView75"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/line_color"
+                    app:layout_constraintEnd_toEndOf="@+id/item_lookjiesu_farenshouchiimgv"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textView72"
+                    app:layout_constraintTop_toBottomOf="@+id/item_lookjiesu_farenshouchiimgv"/>
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/linear_shenfenzheng"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linear_chengnuo">
+
+                <View
+                    android:id="@+id/textView69"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/line_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/item_lookjiesu_shenfzone"/>
+
+                <TextView
+                    android:id="@+id/textView91"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="法人身份证"
+                    android:textColor="@color/txt_sixsev"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/item_lookjiesu_shenfzone"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_90"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toStartOf="@+id/item_lookjiesu_shenfztwo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView91"
+                    tools:src="@tools:sample/avatars"/>
+
+                <ImageView
+                    android:id="@+id/item_lookjiesu_shenfztwo"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_90"
+                    android:layout_marginStart="8dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="@+id/item_lookjiesu_shenfzone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/item_lookjiesu_shenfzone"
+                    app:layout_constraintTop_toTopOf="@+id/item_lookjiesu_shenfzone"
+                    tools:src="@tools:sample/avatars"/>
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/linear_zijin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linear_chouchi">
+
+                <ImageView
+                    android:id="@+id/item_lookjiesu_lastimgv"
+                    android:layout_width="@dimen/dp_63"
+                    android:layout_height="@dimen/dp_63"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/avatars"/>
+
+                <TextView
+                    android:id="@+id/textView95"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="商户资金清算授权书"
+                    android:textColor="@color/txt_sixsev"
+                    app:layout_constraintBottom_toBottomOf="@+id/item_lookjiesu_lastimgv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/item_lookjiesu_lastimgv"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

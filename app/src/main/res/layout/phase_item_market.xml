@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp_9">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/phase_marketlist_contop"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/b_yijieshuquan_up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/phase_itemmarket_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="水煮鱼一份"
+            android:textColor="#565656"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/phase_itemmarket_what"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/beijing_huise"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_5"
+            android:text="赠品券"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/phase_itemmarket_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:text="当前状态：已下架"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phase_itemmarket_content"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/phase_itemmarket_conbw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/b_yijieshuquan_between"
+        app:layout_constraintEnd_toEndOf="@+id/phase_marketlist_contop"
+        app:layout_constraintStart_toStartOf="@+id/phase_marketlist_contop"
+        app:layout_constraintTop_toBottomOf="@+id/phase_marketlist_contop"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/b_yijieshuquan_down"
+        app:layout_constraintEnd_toEndOf="@+id/phase_itemmarket_conbw"
+        app:layout_constraintStart_toStartOf="@+id/phase_itemmarket_conbw"
+        app:layout_constraintTop_toBottomOf="@+id/phase_itemmarket_conbw">
+
+        <TextView
+            android:id="@+id/phase_itemmarket_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:lines="2"
+            android:text="可用时间段：10:00-22:00 周一-周日；10:00-22:00 周一-周日"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/phase_itemmarket_lqnum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/phase_itemmarket_time"
+            app:layout_constraintTop_toBottomOf="@+id/phase_itemmarket_time"/>
+
+        <TextView
+            android:id="@+id/phase_itemmarket_synum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="13dp"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/phase_itemmarket_lqnum"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.65"
+            app:layout_constraintStart_toEndOf="@+id/phase_itemmarket_lqnum"/>
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

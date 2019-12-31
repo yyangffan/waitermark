@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/phase_dialog_white"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_15"
+        android:text="当前营销券详情"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_200"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp_13"
+            android:paddingRight="@dimen/dp_13">
+
+            <TextView
+                android:id="@+id/dialog_detail_heghmonywenzi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_13"
+                android:text="最高优惠金额"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/dialog_detail_heghmony"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_3"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                tools:text="110元"/>
+
+            <TextView
+                android:id="@+id/dialog_detail_djqstmony_wenzi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_13"
+                android:text="优惠券使用起点"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/dialog_detail_djqstmony"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_3"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                tools:text="112元"/>
+
+            <TextView
+                android:id="@+id/dialog_detail_djqnum_wenzi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_13"
+                android:text="最多使用张数"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/dialog_detail_djqnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_3"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                tools:text="3张"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_13"
+                android:text="可用时间"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/dialog_detail_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_3"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                tools:text="周一、周二、周四、周五"/>
+
+            <TextView
+                android:id="@+id/dialog_detail_tm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_3"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                tools:text="11:00-14:30  17:00-21:00"/>
+<!--暂时隐藏掉节假日可用时间-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_13"
+                android:text="节假日"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/dialog_detail_canorcant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_3"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:visibility="gone"
+                tools:text="可用/不可用"/>
+
+            <TextView
+                android:id="@+id/dialog_detail_date_wenzi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_13"
+                android:text="节假日不可用时间"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/dialog_detail_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_3"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:visibility="gone"
+                tools:text="10.1-10.7   12.25"/>
+<!---->
+            <TextView
+                android:id="@+id/dialog_detail_guize_wenzi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_13"
+                android:text="使用规则"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/dialog_detail_guize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_3"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                tools:text="需要预约，消费高峰期可能需要位、商家提供免费WIFI、不可自带酒水、商家提供免费车位"/>
+
+            <TextView
+                android:id="@+id/dialog_detail_free_wenzi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_13"
+                android:text="商家自定义规则"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/dialog_detail_free"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_3"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                tools:text="自定义规则自定义规则自定义规则自定义规则自定义规则自定义规则自定义规则"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_13"
+                android:text="有效期："
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/dialog_detail_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_3"
+                android:textColor="@color/black"
+                android:paddingBottom="@dimen/dp_13"
+                android:textSize="12sp"
+                tools:text="90"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/line_color"/>
+
+    <TextView
+        android:id="@+id/dialog_detail_sure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/dp_10"
+        android:text="确定"
+        android:textColor="@color/main_color"
+        android:textSize="16sp"/>
+</LinearLayout>

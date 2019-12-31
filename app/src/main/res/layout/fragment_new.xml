@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/jichu_look_smart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    tools:context=".ui.fragment.JiChuFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_corner_white"
+        android:scrollbars="none"
+        tools:context=".ui.fragment.JiChuFragment">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/dp_3"
+            android:paddingLeft="@dimen/dp_16"
+            android:paddingRight="@dimen/dp_16"
+            android:paddingBottom="@dimen/dp_10"
+
+            >
+
+            <View
+                android:id="@+id/textView76"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="@+id/item_looknew_time"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/item_looknew_guize"/>
+
+            <View
+                android:id="@+id/textView73"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="@+id/item_looknew_time"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/textView71"/>
+
+            <View
+                android:id="@+id/textView70"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="@+id/item_looknew_time"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/textView68"/>
+
+            <View
+                android:id="@+id/textView67"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="@+id/item_looknew_time"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/item_looknew_timeduan"/>
+
+            <View
+                android:id="@+id/textView64"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="@+id/item_looknew_time"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/textView62"/>
+
+            <View
+                android:id="@+id/textView61"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="@+id/item_looknew_content"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/textView59"/>
+
+            <TextView
+                android:id="@+id/textView53"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="营销券类型"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <View
+                android:id="@+id/textView58"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/textView53"/>
+
+            <TextView
+                android:id="@+id/textView59"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="营销券内容"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintStart_toStartOf="@+id/textView58"
+                app:layout_constraintTop_toBottomOf="@+id/textView58"/>
+
+            <TextView
+                android:id="@+id/item_looknew_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- -"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView59"
+                app:layout_constraintEnd_toEndOf="@+id/textView58"
+                tools:text="100-5"/>
+
+            <TextView
+                android:id="@+id/item_looknew_leixing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- -"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView53"
+                app:layout_constraintEnd_toEndOf="@+id/textView58"
+                tools:text="满减券"/>
+
+            <TextView
+                android:id="@+id/textView62"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="使用时间"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintStart_toStartOf="@+id/textView61"
+                app:layout_constraintTop_toBottomOf="@+id/textView61"/>
+
+            <TextView
+                android:id="@+id/item_looknew_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- -"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView62"
+                app:layout_constraintEnd_toEndOf="@+id/textView61"
+                tools:text="周一至周日"/>
+
+            <TextView
+                android:id="@+id/textView65"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="可用时间段"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintStart_toStartOf="@+id/textView64"
+                app:layout_constraintTop_toBottomOf="@+id/textView64"/>
+
+            <TextView
+                android:id="@+id/item_looknew_timeduan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="- -"
+                android:gravity="right"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView65"
+                app:layout_constraintEnd_toEndOf="@+id/textView64"
+                app:layout_constraintStart_toEndOf="@+id/textView65"
+                tools:text="8:00-23:59:59"/>
+
+            <TextView
+                android:id="@+id/textView68"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="节假日"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintStart_toStartOf="@+id/textView67"
+                app:layout_constraintTop_toBottomOf="@+id/textView67"/>
+
+            <TextView
+                android:id="@+id/item_looknew_jiejiashifo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- -"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView68"
+                app:layout_constraintEnd_toEndOf="@+id/textView67"
+                tools:text="不可用"/>
+
+            <TextView
+                android:id="@+id/textView71"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="节假日"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintStart_toStartOf="@+id/textView70"
+                app:layout_constraintTop_toBottomOf="@+id/textView70"/>
+
+            <TextView
+                android:id="@+id/item_looknew_jiejiaduan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- -"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView71"
+                app:layout_constraintEnd_toEndOf="@+id/textView70"
+                tools:text="五一、十一"/>
+
+            <TextView
+                android:id="@+id/textView74"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="使用规则"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintStart_toStartOf="@+id/textView65"
+                app:layout_constraintTop_toBottomOf="@+id/textView73"/>
+
+            <TextView
+                android:id="@+id/item_looknew_guize"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_32"
+                android:ellipsize="end"
+                android:gravity="right"
+                android:text="- -"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView74"
+                app:layout_constraintEnd_toEndOf="@+id/item_looknew_timeduan"
+                app:layout_constraintStart_toEndOf="@+id/textView74"
+                tools:text="使用规则使用规则使用规则使用规则 使用规则使用规则使用规则使用规则"/>
+
+            <TextView
+                android:id="@+id/textView77"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="营销券有效期"
+                android:textColor="@color/txt_sixsev"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView76"
+                app:layout_constraintTop_toBottomOf="@+id/textView76"/>
+
+            <TextView
+                android:id="@+id/item_looknew_shijianduan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- -"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView77"
+                app:layout_constraintEnd_toEndOf="@+id/textView76"
+                tools:text="自生效日起30天有效"/>
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

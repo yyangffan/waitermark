@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="title_txtsize">@dimen/dp_18</dimen>
+    <dimen name="title_padtop">@dimen/dp_18</dimen>
+    <dimen name="tab_icon_width">@dimen/dp_22</dimen>
+    <dimen name="tab_icon_height">@dimen/dp_22</dimen>
+    <dimen name="title_heigth">@dimen/dp_70</dimen>
+    <dimen name="title_padd">@dimen/dp_35</dimen>
+</resources>

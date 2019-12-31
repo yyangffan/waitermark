@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/xml_bg"
+    tools:context=".ui.activity.MerchantDetailActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/title_constra"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingTop="@dimen/title_padtop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:paddingLeft="@dimen/dp_14"
+            android:paddingRight="@dimen/dp_14"
+            android:src="@drawable/icon_fanhui"
+            app:layout_constraintBottom_toTopOf="@+id/textView7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:padding="@dimen/dp_2"
+            android:text="编辑信息"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_txtsize"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textView7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/edtdetail_commit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提交"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:padding="@dimen/dp_14"
+            app:layout_constraintBaseline_toBaselineOf="@+id/title"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <View
+            android:id="@+id/textView7"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/line_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/merchant_detail_tabs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="@dimen/dp_3"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_constra">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/edtdetail_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  基础信息   » "
+                android:textColor="@color/main_color"/>
+
+            <TextView
+                android:id="@+id/edtdetail_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 场景照片   » "
+                android:textColor="@color/txt_granine"/>
+
+            <TextView
+                android:id="@+id/edtdetail_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 资质信息   » "
+                android:textColor="@color/txt_granine"/>
+
+            <TextView
+                android:id="@+id/edtdetail_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 结算信息   » "
+                android:textColor="@color/txt_granine"/>
+
+            <TextView
+                android:id="@+id/edtdetail_five"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 支付营销活动   "
+                android:textColor="@color/txt_granine"/>
+
+        </LinearLayout>
+
+
+    </HorizontalScrollView>
+
+    <com.superc.waitmarket.views.CustomScrollViewPager
+        android:id="@+id/edtdetail_vp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        app:layout_constraintBottom_toTopOf="@+id/edtdetail_linear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/merchant_detail_tabs"/>
+
+    <LinearLayout
+        android:id="@+id/edtdetail_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/edtdetail_top"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="上一步"
+            android:textColor="@color/white"
+            />
+
+        <View
+            android:id="@+id/edtdetail_vline"
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:background="@color/white"
+            />
+
+        <TextView
+            android:id="@+id/edtdetail_bot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="下一步"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

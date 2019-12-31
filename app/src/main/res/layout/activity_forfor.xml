@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.ForforActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/title_constra"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingTop="@dimen/title_padtop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_13"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:src="@drawable/icon_fanhui"
+            app:layout_constraintBottom_toTopOf="@+id/textView7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:padding="@dimen/dp_2"
+            android:text="忘记密码"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_txtsize"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textView7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <View
+            android:id="@+id/textView7"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/line_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/forget_for_two"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp_29"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_constra">
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_26"
+            android:text="获取验证码"
+            android:textColor="@color/txt_granine"
+            android:textSize="32sp"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_7"
+            android:text="验证码已经发送到您的手机"
+            android:textColor="@color/txt_granine"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView11"/>
+
+        <TextView
+            android:id="@+id/forget_for_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="16500206091"
+            android:textColor="@color/txt_granine"
+            android:textSize="15sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/textView22"
+            app:layout_constraintTop_toBottomOf="@+id/textView22"/>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_30"
+            android:text="6位数字验证码"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/forget_for_phone"
+            app:layout_constraintTop_toBottomOf="@+id/forget_for_phone"/>
+
+        <TextView
+            android:id="@+id/forget_for_get"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_26"
+
+            android:text="60s"
+            android:textColor="@color/main_color"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.superc.waitmarket.utils.vciv.VerificationCodeInputView
+            android:id="@+id/vciv_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_21"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="@+id/textView6"
+            app:layout_constraintRight_toRightOf="@+id/forget_for_get"
+            app:layout_constraintTop_toBottomOf="@+id/forget_for_get"
+            app:vciv_et_background="@drawable/bg_corner_gra"
+            app:vciv_et_cursor_color="@color/main_color"
+            app:vciv_et_cursor_height="@dimen/dp_25"
+            app:vciv_et_foucs_background="@drawable/bg_corner_main"
+            app:vciv_et_height="@dimen/dp_45"
+            app:vciv_et_inputType="number"
+            app:vciv_et_number="6"
+            app:vciv_et_spacing="@dimen/dp_10"
+            app:vciv_et_text_color="@android:color/black"
+            app:vciv_et_text_size="18sp"
+            app:vciv_et_width="@dimen/dp_45"
+            />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

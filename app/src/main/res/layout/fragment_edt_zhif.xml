@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/jichu_look_smart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    tools:context=".ui.fragment.JiChuFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_corner_white"
+        android:scrollbars="none"
+        tools:context=".ui.fragment.JiChuFragment">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/dp_5"
+            android:paddingLeft="@dimen/dp_16"
+            android:paddingRight="@dimen/dp_16"
+            android:paddingBottom="@dimen/dp_10"
+
+            >
+
+            <TextView
+                android:id="@+id/textView53"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:text="支付营销老客"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/item_lookzhif_old"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/item_lookzhif_old"/>
+
+            <TextView
+                android:id="@+id/item_lookzhif_old"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:drawableRight="@drawable/icon_gengduoshense"
+                android:drawablePadding="@dimen/dp_5"
+                android:ellipsize="end"
+                android:gravity="right"
+                android:lines="1"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_5"
+                android:text="去设置"
+                android:textColor="@color/main_color"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView53"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <View
+                android:id="@+id/textView643"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_2"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_dotted"
+                android:layerType="software"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/item_lookzhif_old"/>
+
+
+            <TextView
+                android:id="@+id/item_lookzhif_new"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:drawableRight="@drawable/icon_gengduoshense"
+                android:drawablePadding="@dimen/dp_5"
+                android:ellipsize="end"
+                android:gravity="right"
+                android:lines="1"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_5"
+                android:text="- -"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookzhif_old"
+                app:layout_constraintStart_toStartOf="@+id/item_lookzhif_old"
+                app:layout_constraintTop_toBottomOf="@+id/textView643"
+                tools:text="8.5折"/>
+
+            <TextView
+                android:id="@+id/textView59"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="支付营销新客"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/item_lookzhif_new"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toTopOf="@+id/item_lookzhif_new"/>
+
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

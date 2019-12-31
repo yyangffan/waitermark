@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dp_15"
+    android:paddingTop="@dimen/dp_10"
+    android:paddingRight="@dimen/dp_15"
+    android:paddingBottom="@dimen/dp_5"
+    >
+
+    <TextView
+        android:id="@+id/item_tab_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="- -"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        tools:text="已激活商家"/>
+
+    <TextView
+        android:id="@+id/item_tab_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="- -"
+        android:textColor="@color/txt_granine"
+        android:textSize="10sp"
+        tools:text="(200家)"/>
+
+    <View
+        android:id="@+id/item_tab_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_4"
+        android:layout_marginTop="@dimen/dp_4"
+        android:background="@drawable/bg_circle_red"
+        />
+
+</LinearLayout>

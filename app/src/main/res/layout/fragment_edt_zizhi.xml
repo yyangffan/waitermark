@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/jichu_look_smart"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none"
+    tools:context=".ui.fragment.JiChuFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_corner_white"
+        android:scrollbars="none"
+        tools:context=".ui.fragment.JiChuFragment">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/dp_3"
+            android:paddingLeft="@dimen/dp_16"
+            android:paddingRight="@dimen/dp_16"
+            android:paddingBottom="@dimen/dp_10"
+            >
+
+            <TextView
+                android:id="@+id/textView599"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="经营类型"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_edtzizhi_leixing"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/item_edtzizhi_leixing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:drawableRight="@drawable/icon_xiala"
+                android:drawablePadding="@dimen/dp_5"
+                android:ellipsize="end"
+                android:hint="请选择经营类型"
+                android:inputType="number"
+                android:lines="1"
+                android:padding="@dimen/dp_5"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView59"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/textView59"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="营业执照编号"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_edtzizhi_bianhao"
+                app:layout_constraintStart_toStartOf="@+id/textView599"/>
+
+            <EditText
+                android:id="@+id/item_edtzizhi_bianhao"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:ellipsize="end"
+                android:hint="请输入营业执照编号"
+                android:inputType="number"
+                android:lines="1"
+                android:padding="@dimen/dp_5"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView59"
+                app:layout_constraintTop_toBottomOf="@+id/item_edtzizhi_leixing"/>
+
+            <TextView
+                android:id="@+id/textView62"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注册单位"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_edtzizhi_danwei"
+                app:layout_constraintStart_toStartOf="@+id/textView59"/>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/linear_gps"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_edtzizhi_bianhao">
+
+                <TextView
+                    android:id="@+id/textView651"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="营业执照"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/frame_gps"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/frame_gps"/>
+
+                <FrameLayout
+                    android:id="@+id/frame_gps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:id="@+id/item_lookjies_lineyyzz"
+                        android:layout_width="@dimen/dp_79"
+                        android:layout_height="@dimen/dp_79"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_corner_kuang"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/item_lookjies_imgvyyzz"
+                            android:layout_width="@dimen/dp_79"
+                            android:layout_height="@dimen/dp_79"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="@+id/textView61"
+                            app:layout_constraintTop_toBottomOf="@+id/textView61"
+                            tools:src="@tools:sample/avatars"/>
+
+
+                        <TextView
+                            android:id="@+id/item_lookjies_yyzzadd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableTop="@drawable/icon_tianjia"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:gravity="center"
+                            android:text="上传照片"
+                            android:textColor="@color/txt_granine"
+                            android:textSize="10sp"
+                            app:layout_constraintEnd_toEndOf="@+id/textView61"
+                            app:layout_constraintTop_toBottomOf="@+id/textView61"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/yingyedelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="@dimen/dp_3"
+                        android:src="@drawable/icon_shanchutupian"
+                        android:visibility="gone"
+                        />
+
+                </FrameLayout>
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <EditText
+                android:id="@+id/item_edtzizhi_danwei"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:ellipsize="end"
+                android:hint="请输入注册单位"
+                android:lines="1"
+                android:padding="@dimen/dp_5"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_bianhao"
+                app:layout_constraintStart_toStartOf="@+id/item_edtzizhi_bianhao"
+                app:layout_constraintTop_toBottomOf="@+id/linear_gps"/>
+
+            <TextView
+                android:id="@+id/textView65"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="法定代表人"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_edtzizhi_faren"
+                app:layout_constraintStart_toStartOf="@+id/textView62"/>
+
+            <EditText
+                android:id="@+id/item_edtzizhi_faren"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:ellipsize="end"
+                android:hint="请输入法定代表人"
+                android:lines="1"
+                android:padding="@dimen/dp_5"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_danwei"
+                app:layout_constraintStart_toStartOf="@+id/item_edtzizhi_danwei"
+                app:layout_constraintTop_toBottomOf="@+id/item_edtzizhi_danwei"/>
+
+            <TextView
+                android:id="@+id/textView68"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="法人身份证号"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_edtzizhi_shenfenzh"
+                app:layout_constraintStart_toStartOf="@+id/textView65"/>
+
+            <EditText
+                android:id="@+id/item_edtzizhi_shenfenzh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:ellipsize="end"
+                android:hint="请输入法人身份证号"
+                android:inputType="number"
+                android:lines="1"
+                android:padding="@dimen/dp_5"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_faren"
+                app:layout_constraintStart_toStartOf="@+id/item_edtzizhi_faren"
+                app:layout_constraintTop_toBottomOf="@+id/item_edtzizhi_faren"/>
+
+            <TextView
+                android:id="@+id/textView71"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="法人身份证"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/textView68"
+                app:layout_constraintTop_toBottomOf="@+id/item_edtzizhi_shenfenzh"/>
+
+            <ImageView
+                android:id="@+id/item_edtzizhi_imgone"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_90"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:padding="@dimen/dp_2"
+                android:scaleType="fitXY"
+                android:src="@drawable/t_shenfenzhengzhengmian"
+                app:layout_constraintEnd_toStartOf="@+id/item_edtzizhi_imgtwo"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="@+id/textView71"
+                app:layout_constraintTop_toBottomOf="@+id/textView71"
+                />
+
+            <ImageView
+                android:id="@+id/item_edtzizhi_imgonexiangji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_xiangjicai"
+                app:layout_constraintBottom_toBottomOf="@+id/item_edtzizhi_imgone"
+                app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_imgone"
+                app:layout_constraintStart_toStartOf="@+id/item_edtzizhi_imgone"
+                app:layout_constraintTop_toTopOf="@+id/item_edtzizhi_imgone"
+                />
+
+            <ImageView
+                android:id="@+id/item_edtzizhi_imgtwo"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_90"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:padding="@dimen/dp_2"
+                android:scaleType="fitXY"
+                android:src="@drawable/t_shenfenzhengfanmian"
+                app:layout_constraintBottom_toBottomOf="@+id/item_edtzizhi_imgone"
+                app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_shenfenzh"
+                app:layout_constraintStart_toEndOf="@+id/item_edtzizhi_imgone"
+                app:layout_constraintTop_toTopOf="@+id/item_edtzizhi_imgone"/>
+
+            <ImageView
+                android:id="@+id/item_edtzizhi_imgtwoxiangji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_xiangjicai"
+                app:layout_constraintBottom_toBottomOf="@+id/item_edtzizhi_imgtwo"
+                app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_imgtwo"
+                app:layout_constraintStart_toStartOf="@+id/item_edtzizhi_imgtwo"
+                app:layout_constraintTop_toTopOf="@+id/item_edtzizhi_imgtwo"/>
+
+            <TextView
+                android:id="@+id/textView84"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="点击扫描身份证正面"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_imgone"
+                app:layout_constraintStart_toStartOf="@+id/item_edtzizhi_imgone"
+                app:layout_constraintTop_toBottomOf="@+id/item_edtzizhi_imgone"/>
+
+            <TextView
+                android:id="@+id/textView87"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="点击扫描身份证背面"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_imgtwo"
+                app:layout_constraintStart_toStartOf="@+id/item_edtzizhi_imgtwo"
+                app:layout_constraintTop_toBottomOf="@+id/item_edtzizhi_imgtwo"/>
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/icon_genghuan"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_imgone"
+                app:layout_constraintTop_toTopOf="@+id/item_edtzizhi_imgone"
+                />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/icon_genghuan"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_imgtwo"
+                app:layout_constraintTop_toTopOf="@+id/item_edtzizhi_imgtwo"
+                />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

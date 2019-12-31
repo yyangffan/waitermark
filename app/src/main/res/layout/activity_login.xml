@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.LoginActivity">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_26"
+        android:layout_marginTop="@dimen/dp_85"
+        android:text="你好，"
+        android:textColor="@color/txt_granine"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_7"
+        android:text="欢迎来到"
+        android:textColor="@color/txt_granine"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="小二全员营销"
+        android:textColor="@color/main_color"
+        android:textSize="15sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/textView2"/>
+
+    <EditText
+        android:id="@+id/login_accounts"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_58"
+        android:layout_marginEnd="31dp"
+        android:background="@null"
+        android:ellipsize="end"
+        android:hint="请输入您的账号"
+        android:lines="1"
+        android:paddingTop="@dimen/dp_12"
+        android:paddingRight="@dimen/dp_12"
+        android:paddingBottom="@dimen/dp_12"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"/>
+
+    <EditText
+        android:id="@+id/login_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_7"
+        android:background="@null"
+        android:inputType="textPassword"
+        android:ellipsize="end"
+        android:hint="请输入密码"
+        android:lines="1"
+        android:paddingTop="@dimen/dp_12"
+        android:paddingRight="@dimen/dp_12"
+        android:paddingBottom="@dimen/dp_12"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_1"
+        android:background="#dddddd"
+        app:layout_constraintEnd_toEndOf="@+id/login_accounts"
+        app:layout_constraintStart_toStartOf="@+id/login_accounts"
+        app:layout_constraintTop_toBottomOf="@+id/login_accounts"/>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_1"
+        android:background="#dddddd"
+        app:layout_constraintEnd_toEndOf="@+id/login_number"
+        app:layout_constraintStart_toStartOf="@+id/login_number"
+        app:layout_constraintTop_toBottomOf="@+id/login_number"/>
+
+    <Button
+        android:id="@+id/login_bt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:background="@drawable/bg_circle_gra"
+        android:text="登 录"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"/>
+
+    <TextView
+        android:id="@+id/login_forget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:text="忘记密码"
+        android:textColor="@color/txt_granine"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@+id/login_bt"
+        app:layout_constraintStart_toStartOf="@+id/login_bt"
+        app:layout_constraintTop_toBottomOf="@+id/login_bt"/>
+
+</android.support.constraint.ConstraintLayout>

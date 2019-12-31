@@ -1,0 +1,1330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <RelativeLayout
+        android:id="@+id/title_rela"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_heigth"
+        android:background="@color/white"
+        android:paddingTop="@dimen/title_padd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- 标题栏左侧功能区 -->
+
+        <ImageView
+            android:id="@+id/left_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:minWidth="56dp"
+            android:padding="@dimen/dp_10"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_fanhui"
+            />
+
+        <!-- 添加一个文本，让标题栏居中 -->
+
+        <TextView
+            android:id="@+id/user_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxEms="8"
+            android:paddingBottom="@dimen/dp_11"
+            android:singleLine="true"
+            android:text="创建支付营销券"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_txtsize"/>
+
+
+        <View
+            android:id="@+id/view15"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_2"
+            android:layout_alignParentBottom="true"
+            android:background="@color/xml_bg"
+            />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/phase_marketset_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/phase_marketset_save"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_rela">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true">
+
+            <TextView
+                android:id="@+id/textView92"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="17dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="营销券类型"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/phase_marketset_what"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/phase_his_bg"
+                android:drawableRight="@drawable/icon_xiala"
+                android:gravity="center"
+                android:padding="@dimen/dp_10"
+                android:text="满减券"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView92"
+                app:layout_constraintTop_toBottomOf="@+id/textView92"/>
+
+            <TextView
+                android:id="@+id/textView98"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="13dp"
+                android:background="@color/xml_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phase_marketset_what"/>
+
+            <TextView
+                android:id="@+id/textView101"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:text="营销券内容"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/phase_marketset_what"
+                app:layout_constraintTop_toBottomOf="@+id/textView98"/>
+
+            <LinearLayout
+                android:id="@+id/phase_marketset_llzhekou"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_10"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView101">
+
+                <EditText
+                    android:id="@+id/phase_marketset_zhekounum"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/phase_his_bg"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:hint="请输入"
+                    android:inputType="number|numberDecimal"
+                    android:lines="1"
+                    android:paddingLeft="@dimen/dp_8"
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingRight="@dimen/dp_8"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingRight="@dimen/dp_4"
+                    android:text="折"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/phase_marketset_lltizengpin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_10"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phase_marketset_llzhekou">
+
+                <EditText
+                    android:id="@+id/phase_marketset_zengyanall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:background="@drawable/phase_his_bg"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:hint="请输入"
+                    android:lines="1"
+                    android:maxLength="12"
+                    android:paddingLeft="@dimen/dp_8"
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingRight="@dimen/dp_8"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/phase_marketset_lldaijin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/dp_10"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingRight="@dimen/dp_10"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phase_marketset_lltizengpin">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView101">
+
+                    <EditText
+                        android:id="@+id/phase_marketset_djqnum"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:background="@drawable/phase_his_bg"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:hint="请输入"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:paddingLeft="@dimen/dp_8"
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingRight="@dimen/dp_8"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingRight="@dimen/dp_4"
+                        android:text="元代金券"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/phase_marketset_djqadd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:drawableLeft="@drawable/icon_jiahao"
+                    android:drawablePadding="@dimen/dp_4"
+                    android:paddingTop="@dimen/dp_8"
+                    android:text="优惠设置"
+                    android:textColor="@color/main_color"/>
+
+                <LinearLayout
+                    android:id="@+id/phase_marketset_djqllset"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_14"
+                    android:background="@drawable/phase_con_gr"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/dp_12"
+                    android:paddingBottom="@dimen/dp_12"
+                    android:visibility="gone"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/phase_marketset_djqstclear"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableLeft="@drawable/icon_qingkong"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:paddingLeft="@dimen/dp_10"
+                            android:text="清空"
+                            android:textColor="@color/main_color"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/dp_8"
+                            android:text="使用起点"
+                            android:textColor="@color/black"/>
+
+
+                        <EditText
+                            android:id="@+id/phase_marketset_djqedtst"
+                            android:layout_width="@dimen/dp_100"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/phase_his_bg"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:hint="请输入"
+                            android:inputType="number|numberDecimal"
+                            android:lines="1"
+                            android:paddingLeft="@dimen/dp_8"
+                            android:paddingTop="@dimen/dp_10"
+                            android:paddingRight="@dimen/dp_8"
+                            android:paddingBottom="@dimen/dp_10"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_8"
+                            android:layout_marginRight="@dimen/dp_8"
+                            android:text="元"
+                            android:textColor="@color/black"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_11"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/phase_marketset_djqnumclear"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableLeft="@drawable/icon_qingkong"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:paddingLeft="@dimen/dp_10"
+                            android:text="清空"
+                            android:textColor="@color/main_color"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/dp_8"
+                            android:text="最多使用张数"
+                            android:textColor="@color/black"/>
+
+
+                        <EditText
+                            android:id="@+id/phase_marketset_djqedtnum"
+                            android:layout_width="@dimen/dp_100"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/phase_his_bg"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:hint="请输入"
+                            android:inputType="number"
+                            android:lines="1"
+                            android:paddingLeft="@dimen/dp_8"
+                            android:paddingTop="@dimen/dp_10"
+                            android:paddingRight="@dimen/dp_8"
+                            android:paddingBottom="@dimen/dp_10"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_8"
+                            android:layout_marginRight="@dimen/dp_8"
+                            android:text="张"
+                            android:textColor="@color/black"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/phase_marketset_djqcancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:drawableLeft="@drawable/icon_shanchu"
+                    android:drawablePadding="@dimen/dp_4"
+                    android:paddingTop="@dimen/dp_8"
+                    android:text="取消优惠设置"
+                    android:textColor="@color/main_color"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/phase_marketset_llmanjian"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/dp_10"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingRight="@dimen/dp_10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phase_marketset_lldaijin">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="每满"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"/>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/dp_120"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:background="@drawable/phase_his_bg"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="¥"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"/>
+
+                        <EditText
+                            android:id="@+id/phase_marketset_manmoney"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:ellipsize="end"
+                            android:hint="请输入金额"
+                            android:inputType="number|numberDecimal"
+                            android:lines="1"
+                            android:paddingLeft="@dimen/dp_8"
+                            android:paddingTop="@dimen/dp_10"
+                            android:paddingRight="@dimen/dp_8"
+                            android:paddingBottom="@dimen/dp_10"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="减"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"/>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/dp_120"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:background="@drawable/phase_his_bg"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="¥"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"/>
+
+                        <EditText
+                            android:id="@+id/phase_marketset_jianmoney"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:ellipsize="end"
+                            android:hint="请输入金额"
+                            android:inputType="number|numberDecimal"
+                            android:lines="1"
+                            android:paddingLeft="@dimen/dp_8"
+                            android:paddingTop="@dimen/dp_10"
+                            android:paddingRight="@dimen/dp_8"
+                            android:paddingBottom="@dimen/dp_10"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/phase_marketset_llhegh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:animateLayoutChanges="true"
+                    android:background="@drawable/phase_con_gr"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/dp_12"
+                    android:paddingBottom="@dimen/dp_12"
+                    android:visibility="gone"
+                    >
+
+                    <TextView
+                        android:id="@+id/phase_marketset_heghdelete"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/icon_shanchu"
+                        android:drawablePadding="@dimen/dp_5"
+                        android:paddingLeft="@dimen/dp_10"
+                        android:text="删除"
+                        android:textColor="@color/main_color"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_13"
+                        android:text="最高优惠"
+                        android:textColor="@color/black"/>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/dp_120"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:background="@drawable/phase_his_bg"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="¥"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"/>
+
+                        <EditText
+                            android:id="@+id/phase_marketset_edthegh"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:ellipsize="end"
+                            android:hint="请输入金额"
+                            android:inputType="number|numberDecimal"
+                            android:lines="1"
+                            android:paddingLeft="@dimen/dp_8"
+                            android:paddingTop="@dimen/dp_10"
+                            android:paddingRight="@dimen/dp_8"
+                            android:paddingBottom="@dimen/dp_10"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/phase_marketset_heghadd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:drawableLeft="@drawable/icon_jiahao"
+                    android:drawablePadding="@dimen/dp_14"
+                    android:paddingTop="@dimen/dp_8"
+                    android:text="最高优惠"
+                    android:textColor="@color/main_color"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView99"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="13dp"
+                android:background="@color/xml_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phase_marketset_llmanjian"/>
+
+            <TextView
+                android:id="@+id/textView104"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:text="使用时间"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/textView101"
+                app:layout_constraintTop_toBottomOf="@+id/textView99"/>
+
+            <TextView
+                android:id="@+id/phase_marketset_help"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="点我查看帮助"
+                android:textColor="@color/main_color"
+                android:textSize="12sp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/textView104"
+                app:layout_constraintEnd_toEndOf="@+id/phase_marketset_what"/>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/phase_con_gr"
+                android:paddingBottom="@dimen/dp_8"
+                app:layout_constraintEnd_toEndOf="@+id/phase_marketset_help"
+                app:layout_constraintStart_toStartOf="@+id/textView104"
+                app:layout_constraintTop_toBottomOf="@+id/textView104">
+
+                <TextView
+                    android:id="@+id/textV2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="21dp"
+                    android:text="可用时间"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <RadioGroup
+                    android:id="@+id/phase_marketset_rgtop"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_30"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/textV2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textV2"
+                    app:layout_constraintTop_toTopOf="@+id/textV2">
+
+                    <RadioButton
+                        android:id="@+id/phase_marketset_rbtopone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/phase_rb_sel"
+                        android:checked="true"
+                        android:padding="@dimen/dp_5"
+                        android:text="周一至周日"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"/>
+
+                    <RadioButton
+                        android:id="@+id/phase_marketset_rbtoptwo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/phase_rb_sel"
+                        android:padding="@dimen/dp_5"
+                        android:text="自定义"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"/>
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/phase_marketset_week"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="10dp"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:lines="1"
+                    android:textColor="#ff9e1e"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textV2"
+                    app:layout_constraintTop_toBottomOf="@+id/phase_marketset_rgtop"
+                    tools:text="周一；周二；周三；周四；周五；周六；周日"/>
+
+                <TextView
+                    android:id="@+id/textView77"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="时间段"
+                    android:textColor="@color/black"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/phase_marketset_timeonest"
+                    app:layout_constraintLeft_toLeftOf="@+id/textV2"
+                    />
+
+                <TextView
+                    android:id="@+id/phase_marketset_timeonest"
+                    android:layout_width="@dimen/dp_80"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="@dimen/dp_19"
+                    android:background="@drawable/bg_ed_black"
+                    android:drawableRight="@drawable/icon_xiala"
+                    android:gravity="center"
+                    android:padding="@dimen/dp_10"
+                    android:text="00:00"
+                    android:textColor="@color/black"
+                    app:layout_constraintLeft_toLeftOf="@+id/phase_marketset_rgtop"
+                    app:layout_constraintTop_toBottomOf="@+id/phase_marketset_week"/>
+
+                <TextView
+                    android:id="@+id/textView79"
+                    android:layout_width="@dimen/dp_19"
+                    android:layout_height="@dimen/dp_2"
+                    android:layout_marginStart="8dp"
+                    android:background="#949494"
+                    app:layout_constraintBottom_toBottomOf="@+id/phase_marketset_timeonest"
+                    app:layout_constraintStart_toEndOf="@+id/phase_marketset_timeonest"
+                    app:layout_constraintTop_toTopOf="@+id/phase_marketset_timeonest"/>
+
+                <TextView
+                    android:id="@+id/phase_marketset_timeoneed"
+                    android:layout_width="@dimen/dp_80"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_ed_black"
+                    android:drawableRight="@drawable/icon_xiala"
+                    android:gravity="center"
+                    android:padding="@dimen/dp_10"
+                    android:text="23:59"
+                    android:textColor="@color/black"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/phase_marketset_timeonest"
+                    app:layout_constraintStart_toEndOf="@+id/textView79"/>
+
+                <LinearLayout
+                    android:id="@+id/phase_marketset_lltimetwo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/phase_marketset_timeonest"
+                    app:layout_constraintTop_toBottomOf="@+id/phase_marketset_timeonest">
+
+                    <TextView
+                        android:id="@+id/phase_marketset_timetwost"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_ed_black"
+                        android:drawableRight="@drawable/icon_xiala"
+                        android:gravity="center"
+                        android:padding="@dimen/dp_10"
+                        android:text="00:00"
+                        android:textColor="@color/black"
+                        />
+
+                    <TextView
+                        android:layout_width="@dimen/dp_19"
+                        android:layout_height="@dimen/dp_2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="8dp"
+                        android:background="#949494"
+                        />
+
+                    <TextView
+                        android:id="@+id/phase_marketset_timetwoed"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_ed_black"
+                        android:drawableRight="@drawable/icon_xiala"
+                        android:gravity="center"
+                        android:padding="@dimen/dp_10"
+                        android:text="23:59"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/phase_marketset_lltimetwode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_shanchu"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:text="删除"
+                    android:textColor="@color/main_color"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/phase_marketset_lltimetwo"
+                    app:layout_constraintEnd_toEndOf="@+id/textView77"
+                    app:layout_constraintStart_toStartOf="@+id/textView77"
+                    app:layout_constraintTop_toTopOf="@+id/phase_marketset_lltimetwo"/>
+
+                <LinearLayout
+                    android:id="@+id/phase_marketset_llthreetime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/phase_marketset_timeonest"
+                    app:layout_constraintTop_toBottomOf="@+id/phase_marketset_lltimetwo">
+
+                    <TextView
+                        android:id="@+id/phase_marketset_timethreest"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_ed_black"
+                        android:drawableRight="@drawable/icon_xiala"
+                        android:gravity="center"
+                        android:padding="@dimen/dp_10"
+                        android:text="00:00"
+                        android:textColor="@color/black"
+                        />
+
+                    <TextView
+                        android:layout_width="@dimen/dp_19"
+                        android:layout_height="@dimen/dp_2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="8dp"
+                        android:background="#949494"
+                        />
+
+                    <TextView
+                        android:id="@+id/phase_marketset_timethreeed"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_ed_black"
+                        android:drawableRight="@drawable/icon_xiala"
+                        android:gravity="center"
+                        android:padding="@dimen/dp_10"
+                        android:text="23:59"
+                        android:textColor="@color/black"
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/phase_marketset_llthreede"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_shanchu"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:text="删除"
+                    android:textColor="@color/main_color"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/phase_marketset_llthreetime"
+                    app:layout_constraintEnd_toEndOf="@+id/phase_marketset_lltimetwode"
+                    app:layout_constraintStart_toStartOf="@+id/phase_marketset_lltimetwode"
+                    app:layout_constraintTop_toTopOf="@+id/phase_marketset_llthreetime"/>
+
+
+                <TextView
+                    android:id="@+id/market_set_addtm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:drawableLeft="@drawable/icon_tianjiap"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:text="增加可用时间"
+                    android:textColor="@color/main_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/phase_marketset_timeoneed"
+                    app:layout_constraintTop_toBottomOf="@+id/phase_marketset_llthreetime"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/constraintLayout16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_13"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/phase_con_gr"
+                android:paddingBottom="@dimen/dp_8"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/phase_marketset_help"
+                app:layout_constraintStart_toStartOf="@+id/textView104"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+                <TextView
+                    android:id="@+id/textV22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="21dp"
+                    android:text="节假日"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <RadioGroup
+                    android:id="@+id/phase_marketset_rgt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_40"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/textV22"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textV22"
+                    app:layout_constraintTop_toTopOf="@+id/textV22">
+
+                    <RadioButton
+                        android:id="@+id/phase_marketset_canuse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/phase_rb_sel"
+                        android:checked="true"
+                        android:padding="@dimen/dp_5"
+                        android:text="可用     "
+                        android:textColor="@color/black"
+                        android:textSize="13sp"/>
+
+                    <RadioButton
+                        android:id="@+id/phase_marketset_cntuse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/phase_rb_sel"
+                        android:padding="@dimen/dp_5"
+                        android:text="不可用"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"/>
+                </RadioGroup>
+
+
+                <TextView
+                    android:id="@+id/textr3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="不可用时间段"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/textV22"
+                    app:layout_constraintTop_toBottomOf="@+id/phase_marketset_rgt"/>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/phase_marketset_lldateone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintRight_toLeftOf="@+id/textr3"
+                    app:layout_constraintStart_toStartOf="@+id/phase_marketset_rgt"
+                    app:layout_constraintTop_toBottomOf="@+id/textr3">
+
+                    <TextView
+                        android:id="@+id/phase_marketset_dateonest"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="@dimen/dp_19"
+                        android:background="@drawable/bg_ed_black"
+                        android:drawableRight="@drawable/icon_xiala"
+                        android:gravity="center"
+                        android:hint="请选择"
+                        android:padding="@dimen/dp_10"
+                        android:textColor="@color/black"
+                        />
+
+                    <TextView
+                        android:id="@+id/textVi55"
+                        android:layout_width="@dimen/dp_19"
+                        android:layout_height="@dimen/dp_2"
+                        android:layout_marginStart="8dp"
+                        android:background="#949494"
+                        app:layout_constraintBottom_toBottomOf="@+id/phase_marketset_dateonest"
+                        app:layout_constraintStart_toEndOf="@+id/phase_marketset_dateonest"
+                        app:layout_constraintTop_toTopOf="@+id/phase_marketset_dateonest"/>
+
+                    <TextView
+                        android:id="@+id/phase_marketset_dateoneed"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_ed_black"
+                        android:drawableRight="@drawable/icon_xiala"
+                        android:gravity="center"
+                        android:hint="请选择"
+                        android:padding="@dimen/dp_10"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/phase_marketset_dateonest"
+                        app:layout_constraintStart_toEndOf="@+id/textVi55"/>
+                </android.support.constraint.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/phase_marketset_dateonedelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_shanchu"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:text="删除"
+                    android:textColor="@color/main_color"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/phase_marketset_lldateone"
+                    app:layout_constraintEnd_toEndOf="@+id/textr3"
+                    app:layout_constraintStart_toStartOf="@+id/textr3"
+                    app:layout_constraintTop_toTopOf="@+id/phase_marketset_lldateone"/>
+
+                <LinearLayout
+                    android:id="@+id/phase_marketset_lldatetwo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/phase_marketset_rgt"
+                    app:layout_constraintTop_toBottomOf="@+id/phase_marketset_lldateone">
+
+                    <TextView
+                        android:id="@+id/phase_marketset_datetwost"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_ed_black"
+                        android:drawableRight="@drawable/icon_xiala"
+                        android:gravity="center"
+                        android:hint="请选择"
+                        android:padding="@dimen/dp_10"
+                        android:textColor="@color/black"
+                        />
+
+                    <TextView
+                        android:layout_width="@dimen/dp_19"
+                        android:layout_height="@dimen/dp_2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="8dp"
+                        android:background="#949494"
+                        />
+
+                    <TextView
+                        android:id="@+id/phase_marketset_datetwoed"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_ed_black"
+                        android:drawableRight="@drawable/icon_xiala"
+                        android:gravity="center"
+                        android:hint="请选择"
+                        android:padding="@dimen/dp_10"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/phase_marketset_datetwodelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_shanchu"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:text="删除"
+                    android:textColor="@color/main_color"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/phase_marketset_lldatetwo"
+                    app:layout_constraintEnd_toEndOf="@+id/textr3"
+                    app:layout_constraintStart_toStartOf="@+id/textr3"
+                    app:layout_constraintTop_toTopOf="@+id/phase_marketset_lldatetwo"/>
+
+                <LinearLayout
+                    android:id="@+id/phase_marketset_lldatethree"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/phase_marketset_rgt"
+                    app:layout_constraintTop_toBottomOf="@+id/phase_marketset_lldatetwo">
+
+                    <TextView
+                        android:id="@+id/phase_marketset_datethreest"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_ed_black"
+                        android:drawableRight="@drawable/icon_xiala"
+                        android:gravity="center"
+                        android:hint="请选择"
+                        android:padding="@dimen/dp_10"
+                        android:textColor="@color/black"
+                        />
+
+                    <TextView
+                        android:layout_width="@dimen/dp_19"
+                        android:layout_height="@dimen/dp_2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="8dp"
+                        android:background="#949494"
+                        />
+
+                    <TextView
+                        android:id="@+id/phase_marketset_datethreeed"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_ed_black"
+                        android:drawableRight="@drawable/icon_xiala"
+                        android:gravity="center"
+                        android:hint="请选择"
+                        android:padding="@dimen/dp_10"
+                        android:textColor="@color/black"
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/phase_marketset_datethreedelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_shanchu"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:text="删除"
+                    android:textColor="@color/main_color"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/phase_marketset_lldatethree"
+                    app:layout_constraintEnd_toEndOf="@+id/phase_marketset_datetwodelete"
+                    app:layout_constraintStart_toStartOf="@+id/phase_marketset_datetwodelete"
+                    app:layout_constraintTop_toTopOf="@+id/phase_marketset_lldatethree"/>
+
+
+                <TextView
+                    android:id="@+id/phase_marketset_adddate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:drawableLeft="@drawable/icon_tianjia"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:text="增加节假日不可用时间"
+                    android:textColor="@color/main_color"
+                    app:layout_constraintEnd_toEndOf="@+id/phase_marketset_rgt"
+                    app:layout_constraintTop_toBottomOf="@+id/phase_marketset_rgt"/>
+
+                <FrameLayout
+                    android:id="@+id/phase_market_set_nouse"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="#99f5f5f5"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/phase_marketset_rgt"/>
+            </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/textView143"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:text="使用规则"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout16"/>
+
+            <EditText
+                android:id="@+id/phase_marketset_guize"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:background="@drawable/phase_con_gr"
+                android:gravity="top"
+                android:hint="商户自定义输入，最多50个汉字..."
+                android:maxLength="50"
+                android:minHeight="@dimen/dp_50"
+                android:padding="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
+                app:layout_constraintStart_toStartOf="@+id/textView143"
+                app:layout_constraintTop_toBottomOf="@+id/textView143"/>
+
+            <TextView
+                android:id="@+id/textView145"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:text="预设规则"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/textView143"
+                app:layout_constraintTop_toBottomOf="@+id/phase_marketset_guize"/>
+
+            <TextView
+                android:id="@+id/phase_marketset_looktv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/dp_5"
+                android:text="点击查看"
+                android:textColor="#727272"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView145"
+                app:layout_constraintEnd_toStartOf="@+id/phase_marketset_lookimgv"/>
+
+            <ImageView
+                android:id="@+id/phase_marketset_lookimgv"
+                android:layout_width="13dp"
+                android:layout_height="18dp"
+                android:src="@drawable/icon_shanglajiantou"
+                app:layout_constraintBottom_toBottomOf="@+id/phase_marketset_looktv"
+                app:layout_constraintEnd_toEndOf="@+id/phase_marketset_guize"
+                app:layout_constraintTop_toTopOf="@+id/phase_marketset_looktv"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerphase_marketset_recy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:background="@drawable/phase_con_gr"
+                android:padding="@dimen/dp_5"
+                app:layout_constraintEnd_toEndOf="@+id/phase_marketset_lookimgv"
+                app:layout_constraintStart_toStartOf="@+id/textView145"
+                app:layout_constraintTop_toBottomOf="@+id/textView145"/>
+
+            <TextView
+                android:id="@+id/textView147"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="营销券有效期"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/textView145"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerphase_marketset_recy"/>
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:layout_marginBottom="30dp"
+                android:button="@drawable/icon_morenxuanzhong"
+                android:enabled="false"
+                android:paddingLeft="@dimen/dp_5"
+                android:text="次日生效"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView147"
+                app:layout_constraintTop_toBottomOf="@+id/textView147"/>
+
+            <TextView
+                android:id="@+id/textView148"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="13dp"
+                android:text="自生效日起"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/checkBox"
+                app:layout_constraintEnd_toStartOf="@+id/phase_marketset_edtday"/>
+
+            <EditText
+                android:id="@+id/phase_marketset_edtday"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="13dp"
+                android:background="@drawable/phase_his_bg"
+                android:gravity="center"
+                android:inputType="number"
+                android:padding="@dimen/dp_10"
+                android:text="90"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_14"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView148"
+                app:layout_constraintEnd_toStartOf="@+id/textView150"
+                />
+
+            <TextView
+                android:id="@+id/textView150"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="天有效"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView148"
+                app:layout_constraintEnd_toEndOf="@+id/phase_marketset_lookimgv"/>
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/phase_marketset_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_color"
+        android:gravity="center"
+        android:padding="@dimen/dp_15"
+        android:text="保存提交"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp_15"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

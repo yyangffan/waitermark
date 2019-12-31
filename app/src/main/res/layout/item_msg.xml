@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp_9"
+    android:background="@drawable/bg_corner_white">
+
+    <TextView
+        android:id="@+id/item_msg_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="- -"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="又有好友收了你的绿色能量又有"/>
+
+    <TextView
+        android:id="@+id/item_msg_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="- -"
+        android:textColor="@color/txt_granine"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/item_msg_title"
+        app:layout_constraintTop_toBottomOf="@+id/item_msg_title"
+        tools:text="2019.08.08  上午 7:21"/>
+
+    <TextView
+        android:id="@+id/texitem_msg_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="- -"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/item_msg_title"
+        app:layout_constraintStart_toStartOf="@+id/item_msg_time"
+        app:layout_constraintTop_toBottomOf="@+id/item_msg_time"
+        tools:text="为提高资金安全，您可以通过“中止授权”操作限制单个商户的快捷支付权限；"/>
+
+    <View
+        android:id="@+id/textView46"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginTop="8dp"
+        android:background="@color/line_color"
+        app:layout_constraintEnd_toEndOf="@+id/texitem_msg_content"
+        app:layout_constraintStart_toStartOf="@+id/texitem_msg_content"
+        app:layout_constraintTop_toBottomOf="@+id/texitem_msg_content"/>
+
+    <TextView
+        android:id="@+id/item_msg_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/icon_gengduoshense"
+        android:paddingTop="@dimen/dp_8"
+        android:paddingBottom="@dimen/dp_8"
+        android:text="查看详情"
+        android:textColor="@color/main_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView46"
+        app:layout_constraintStart_toStartOf="@+id/textView46"
+        app:layout_constraintTop_toBottomOf="@+id/textView46"/>
+</android.support.constraint.ConstraintLayout>

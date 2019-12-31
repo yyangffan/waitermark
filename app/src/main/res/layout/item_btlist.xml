@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dp_14"
+    android:paddingTop="@dimen/dp_7"
+    android:paddingRight="@dimen/dp_14"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/item_btlist_title"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:text="全部券类型"
+        android:textSize="15sp"
+        android:lines="1"
+        android:ellipsize="end"
+        android:textColor="@color/txt_granine"
+        android:padding="@dimen/dp_10"
+        android:layout_height="wrap_content"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_below="@+id/dialog_btlist_title"
+        android:background="#e1e1e1"/>
+</LinearLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_white">
+
+    <ImageView
+        android:id="@+id/dialog_btlist_imgv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/dialog_btlist_title"
+        android:layout_alignBottom="@+id/dialog_btlist_title"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:src="@drawable/icon_guanbi"/>
+
+    <TextView
+        android:id="@+id/dialog_btlist_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:text="请选择券类型"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
+
+    <View
+        android:id="@+id/bt_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_below="@+id/dialog_btlist_title"
+        android:background="#e1e1e1"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/dialog_btlist_recy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bt_line"
+       />
+
+</RelativeLayout>

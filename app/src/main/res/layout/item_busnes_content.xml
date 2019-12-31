@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/dp_14"
+    android:layout_marginRight="@dimen/dp_14"
+    android:layout_marginBottom="@dimen/dp_14"
+    android:background="@drawable/bg_corner_white"
+    android:elevation="@dimen/dp_8">
+
+    <ImageView
+        android:id="@+id/item_content_imgv"
+        android:layout_width="47dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars"/>
+
+    <TextView
+        android:id="@+id/item_content_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="- -"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/item_content_time"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/item_content_imgv"
+        app:layout_constraintTop_toTopOf="@+id/item_content_imgv"
+        tools:text="鱼酷(万达店)"/>
+
+    <TextView
+        android:id="@+id/item_content_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="- -"
+        android:textColor="@color/txt_granine"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/item_content_imgv"
+        app:layout_constraintStart_toStartOf="@+id/item_content_name"
+        app:layout_constraintTop_toBottomOf="@+id/item_content_name"
+        tools:text="上线时间2019.11.25"/>
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_dotted"
+        android:layerType="software"
+        app:layout_constraintEnd_toEndOf="@+id/imageView5"
+        app:layout_constraintStart_toStartOf="@+id/item_content_imgv"
+        app:layout_constraintTop_toBottomOf="@+id/item_content_imgv"/>
+
+    <TextView
+        android:id="@+id/textView52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:text="本月交易流水"
+        android:textColor="@color/txt_granine"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView49"
+        app:layout_constraintTop_toBottomOf="@+id/textView49"/>
+
+    <TextView
+        android:id="@+id/item_content_themoth"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="48dp"
+        android:text="- -"
+        android:textColor="@color/black"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView52"
+        app:layout_constraintEnd_toStartOf="@+id/textView54"
+        app:layout_constraintStart_toEndOf="@+id/textView52"
+        tools:text="¥267"/>
+
+    <TextView
+        android:id="@+id/textView54"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="流量贡献数"
+        android:textColor="@color/txt_granine"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/item_content_themoth"
+        app:layout_constraintEnd_toStartOf="@+id/item_content_liulinag"
+        app:layout_constraintStart_toEndOf="@+id/item_content_themoth"/>
+
+    <TextView
+        android:id="@+id/item_content_liulinag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        android:text="- -"
+        android:textColor="@color/black"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView54"
+        app:layout_constraintEnd_toEndOf="@+id/textView49"
+        app:layout_constraintStart_toEndOf="@+id/textView54"
+        tools:text="3567"/>
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/icon_gengduo"
+        app:layout_constraintBottom_toBottomOf="@+id/item_content_imgv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_content_imgv"
+        />
+</android.support.constraint.ConstraintLayout>
