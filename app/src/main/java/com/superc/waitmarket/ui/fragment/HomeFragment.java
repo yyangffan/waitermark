@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.ljy.devring.DevRing;
 import com.ljy.devring.http.support.throwable.HttpThrowable;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.base.ApiService;
 import com.superc.waitmarket.base.WaitApplication;
@@ -83,6 +84,8 @@ public class HomeFragment extends BaseFragment {
     TextView mHomeThirdMonthwhatxiajiang;
     @BindView(R.id.home_third_todaywhatshangsheng)
     TextView mHomeThirdTodaywhatshangsheng;
+    @BindView(R.id.smartlayout)
+    SmartRefreshLayout mSmartRefreshLayout;
     Unbinder unbinder;
     private String mUser_id = "";
 
@@ -112,7 +115,8 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void init() {
-//        mUser_id = (String) ShareUtil.getInstance(this.getActivity()).get("user_id", "");
+        mSmartRefreshLayout.setEnableOverScrollDrag(true);
+        mSmartRefreshLayout.setEnablePureScrollMode(true);
         getData();
 
 

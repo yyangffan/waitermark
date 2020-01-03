@@ -23,6 +23,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.ljy.devring.DevRing;
 import com.ljy.devring.http.support.observer.CommonObserver;
 import com.ljy.devring.http.support.throwable.HttpThrowable;
+import com.luck.picture.lib.PictureSelectionModel;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -105,7 +106,8 @@ public class EdtZizhiFragment extends BaseFragment {
 
     Unbinder unbinder;
     private String url_fore, url_back, url_yingye, mZhewngPath, mFanPath, mYingyePath;
-    private String mEdtdetail_id, mIs_creat, leixing_id;
+    private String mEdtdetail_id, mIs_creat;
+    private String leixing_id = "0";
     private EdtDetailActivity mEdtDetailActivity;
     private DialogBotList mDialogBotList_leixing;
     private List<BotListBean> mBotListBeans_leixing;
@@ -211,8 +213,10 @@ public class EdtZizhiFragment extends BaseFragment {
     }
 
     private void toCHushihuaDig() {
+        mBotListBeans_leixing.clear();
+        String leixing = mtvLeixing.getText().toString();
         for (int i = 0; i < mStrings_zizhi.length; i++) {
-            BotListBean botListBean = new BotListBean(mStrings_zizhi[i][0], false, mStrings_zizhi[i][1]);
+            BotListBean botListBean = new BotListBean(mStrings_zizhi[i][0], TextUtils.isEmpty(leixing) ? false : (mStrings_zizhi[i][0].equals(leixing) ? true : false), mStrings_zizhi[i][1]);
             mBotListBeans_leixing.add(botListBean);
         }
         mDialogBotList_leixing = new DialogBotList.Builder().title("请选择").botListBeanMap(mBotListBeans_leixing).builder(EdtZizhiFragment.this.getActivity());
@@ -349,10 +353,14 @@ public class EdtZizhiFragment extends BaseFragment {
                 boolean code = result.getBoolean("code");
                 String msg = result.getString("message");
                 if (code) {
+                    if (mEdtDetailActivity.is_tijiao) {
+                        toJudge();
+                    }
                     mEdtDetailActivity.toScroll();
-                }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
             }
 
@@ -368,14 +376,20 @@ public class EdtZizhiFragment extends BaseFragment {
 
     private void selectPic(int reque_code) {
         // 进入相册 以下是例子：用不到的api可以不写
-        PictureSelector.create(this).openGallery(PictureMimeType.ofImage())
+        PictureSelectionModel pictureSelectionModel = PictureSelector.create(this).openGallery(PictureMimeType.ofImage());
+        if (reque_code == 111) {
+            pictureSelectionModel.enableCrop(false);
+        } else {
+            pictureSelectionModel.enableCrop(true);
+
+        }
+        pictureSelectionModel
                 .maxSelectNum(10)// 最大图片选择数量 int
 //                .minSelectNum(1)// 最小选择数量 int
                 .imageSpanCount(4)// 每行显示个数 int
                 .previewImage(false)// 是否可预览图片 true or false
                 .selectionMode(PictureConfig.SINGLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
                 .isCamera(true)// 是否显示拍照按钮 true or false
-                .enableCrop(true)// 是否裁剪 true or false
                 .compress(true)// 是否压缩 true or false
                 .compressSavePath(getPath())//压缩图片保存地址
                 .withAspectRatio((reque_code == 111 ? 9 : 16), 9)// int 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
@@ -458,9 +472,10 @@ public class EdtZizhiFragment extends BaseFragment {
                 String msg = result.getString("message");
                 if (code) {
                     mYingyePath = result.getJSONObject("data").getString("picSmallPath");
-                }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
             }
 
@@ -487,9 +502,10 @@ public class EdtZizhiFragment extends BaseFragment {
                     } else {
                         mFanPath = result.getJSONObject("data").getString("picSmallPath");
                     }
-                }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
             }
 

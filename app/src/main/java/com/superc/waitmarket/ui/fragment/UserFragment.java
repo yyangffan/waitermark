@@ -28,6 +28,7 @@ import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.base.ApiService;
 import com.superc.waitmarket.base.Constant;
@@ -95,12 +96,17 @@ public class UserFragment extends BaseFragment {
     TextView mUserTwoMsg;
     @BindView(R.id.user_three)
     TextView mUserYingXiao;
+    @BindView(R.id.user_smart)
+    SmartRefreshLayout mSmartRefreshLayout;
+
+
     Unbinder unbinder;
     private String head_url;
     private String mUser_id;
     private String mHead_url;
     private WorkCardDialog mWorkCardDialog;
     private String mType;
+    private String num="- -";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -115,6 +121,8 @@ public class UserFragment extends BaseFragment {
         mUser_id = (String) ShareUtil.getInstance(this.getActivity()).get("user_id", "");
         mHead_url = (String) ShareUtil.getInstance(getActivity()).get("head_url", "");
         mType = (String) ShareUtil.getInstance(getActivity()).get("type", "");
+        mSmartRefreshLayout.setEnableOverScrollDrag(true);
+        mSmartRefreshLayout.setEnablePureScrollMode(true);
         RequestOptions requestOptions = new RequestOptions().error(R.drawable.icon_mourentouxiang).placeholder(R.drawable.icon_mourentouxiang);
         Glide.with(this).load(mHead_url).apply(requestOptions).into(mUserHead);
         switch (mType) {
@@ -149,7 +157,9 @@ public class UserFragment extends BaseFragment {
                 break;
             case R.id.user_one:
             case R.id.user_one_money:
-                statActivity(WalletActivity.class);
+                Intent wa_int=new Intent(getActivity(),WalletActivity.class);
+                wa_int.putExtra("num",num);
+                startActivity(wa_int);
                 break;
             case R.id.user_two:
             case R.id.user_two_msg:
@@ -185,7 +195,8 @@ public class UserFragment extends BaseFragment {
                 String msg = result.getString("message");
                 if (code) {
                     JSONObject data = result.getJSONObject("data");
-                    mUserOneMoney.setText("¥" + BigDecimalUtils.bigUtil(data.getString("amount")));
+                    num=BigDecimalUtils.bigUtil(data.getString("amount"));
+                    mUserOneMoney.setText("¥" + num);
                     mUserTwoMsg.setText(BigDecimalUtils.bigUtil(data.getString("messagecount")));
 
                 }

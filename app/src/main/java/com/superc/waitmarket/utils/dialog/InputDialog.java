@@ -131,6 +131,7 @@ public class InputDialog extends AlertDialog {
                 if (mOnTextClickListener != null) {
                     mOnTextClickListener.onLeftClickListener();
                 }
+                mtv_content.setText("");
                 mPhaseRemindDialog.dismiss();
             }
         });
@@ -142,6 +143,7 @@ public class InputDialog extends AlertDialog {
                     mOnTextClickListener.onRightClickListenerContent(mtv_content.getText().toString());
                     KeyboardUtil.hideKeyboard(mtv_content);
                 }
+                mtv_content.setText("");
                 mPhaseRemindDialog.dismiss();
             }
         });

@@ -96,6 +96,8 @@ public class JieSFragment extends BaseFragment {
     TextView mTvShoukuanGai;
     @BindView(R.id.item_lookjies_banka)
     TextView mItemLookjiesBanka;
+    @BindView(R.id.textView74)
+    TextView mtvkaiHuren_danwei;
     @BindView(R.id.textView88)
     View mLineOne;
 
@@ -134,9 +136,9 @@ public class JieSFragment extends BaseFragment {
                 boolean code = result.getBoolean("code");
                 String msg = result.getString("message");
                 if (code) {
-                    if(result.getJSONObject("data").getJSONObject("merchantDetails")!=null) {
+                    if (result.getJSONObject("data").getJSONObject("merchantDetails") != null) {
                         setData(result.getJSONObject("data").getJSONObject("merchantDetails"));
-                    }else{
+                    } else {
                         ToastShow("数据获取失败");
                     }
                 }
@@ -186,7 +188,7 @@ public class JieSFragment extends BaseFragment {
             }
             /*————————————————————————————————————银行卡——————————————————————————————————————————*/
             if (accounttype.equals("对公")) {
-    //            is_kaihuPic = true;
+                //            is_kaihuPic = true;
                 String mKaihuiPath = merchant.getString("bankpermission");
                 if (!TextUtils.isEmpty(mKaihuiPath)) {
                     if (mKaihuiPath.startsWith("http") || mKaihuiPath.startsWith("https")) {
@@ -196,7 +198,7 @@ public class JieSFragment extends BaseFragment {
                     }
                 }
             } else {
-    //            is_kaihuPic = false;
+                //            is_kaihuPic = false;
                 String mYinhang_path = merchant.getString("bankcardimg");
                 if (!TextUtils.isEmpty(mYinhang_path)) {
                     if (mYinhang_path.startsWith("http") || mYinhang_path.startsWith("https")) {
@@ -275,6 +277,7 @@ public class JieSFragment extends BaseFragment {
         String shifoufren = mItemLookjiesuShifou.getText().toString();
         if (leixing.equals("对公")) {
             mLinearBanka.setVisibility(View.GONE);
+            mtvkaiHuren_danwei.setText("开户单位名称");
             if (jisuanstate.equals("统一结算账户") && shifoufren.equals("否")) {
                 mTvXiugai.setText("开户行许可证照片");
 //                is_kaihuPic = true;
@@ -304,6 +307,7 @@ public class JieSFragment extends BaseFragment {
                 mTvShoukuanGai.setText("(许可证上面的账户)");
             }
         } else {//对私
+            mtvkaiHuren_danwei.setText("开户人名称");
             if (jisuanstate.equals("统一结算账户") && shifoufren.equals("否")) {
 
             } else if (jisuanstate.equals("统一结算账户") && shifoufren.equals("是")) {

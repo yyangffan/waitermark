@@ -105,7 +105,8 @@
                   android:windowSoftInputMode="adjustPan|stateHidden">
         </activity>
         <activity android:name=".ui.activity.PhaseMarketListActivity"/>
-        <activity android:name=".ui.activity.PhaseMarketSetActivity"/>
+        <activity android:name=".ui.activity.PhaseMarketSetActivity"
+                  android:windowSoftInputMode="adjustPan|stateHidden"/>
     </application>
 
 </manifest>

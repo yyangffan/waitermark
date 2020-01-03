@@ -1,5 +1,6 @@
 package com.superc.waitmarket.adapter;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -76,7 +77,13 @@ public class ManaWhAdapter extends RecyclerView.Adapter<ManaWhAdapter.ViewHolder
         }
         vh.mItemMagapbTitle.setText(bean.getShopName());
         vh.mItemMagapbPosi.setText(bean.getShopAddress());
-        vh.mItemMagapbTime.setText(bean.getAddTime());
+        String addTime = bean.getAddTime();
+        if (!TextUtils.isEmpty(addTime)) {
+            vh.mItemMagapbTime.setText(bean.getAddTime().replaceAll("-", "."));
+        } else {
+            vh.mItemMagapbTime.setText("- -");
+        }
+
         vh.mTextVieitemMagapbReason.setText(bean.getRejectreason());
         vh.mItemMagapbState.setText(bean.getAuditmessage());
         String rejectreason = bean.getRejectreason();
@@ -84,11 +91,28 @@ public class ManaWhAdapter extends RecyclerView.Adapter<ManaWhAdapter.ViewHolder
         vh.mItemMagapbReasonwenzi.setVisibility(TextUtils.isEmpty(rejectreason) ? View.INVISIBLE : View.VISIBLE);
 
         vh.mItemMagapbCheck.setVisibility(isshifang() ? View.VISIBLE : View.GONE);
-        boolean check = bean.isCheck();
+
+        final ObjectAnimator animator1_con = ObjectAnimator.ofFloat(vh.mConstraintLayout, "translationX", 0f, 120f);
+        final ObjectAnimator animator1 = ObjectAnimator.ofFloat(vh.mItemMagapbEdt, "translationX", 0f, 60f);
+
+        final ObjectAnimator animator2_con = ObjectAnimator.ofFloat(vh.mConstraintLayout, "translationX", 0f, 0f);
+        final ObjectAnimator animator2 = ObjectAnimator.ofFloat(vh.mItemMagapbEdt, "translationX", 0f, 0f);
+        animator1_con.start();
+        animator1.start();
+        if (isshifang()) {
+            animator1_con.start();
+            animator1.start();
+        } else {
+            animator2_con.start();
+            animator2.start();
+        }
+        final boolean check = bean.isCheck();
         vh.mItemMagapbCheck.setImageResource(check ? R.drawable.icon_gouxuan : R.drawable.icon_weigouxuan);
         vh.mItemMagapbCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                bean.setCheck(!bean.isCheck());
+                vh.mItemMagapbCheck.setImageResource(bean.isCheck() ? R.drawable.icon_gouxuan : R.drawable.icon_weigouxuan);
                 if (mOnItemClickListener != null)
                     mOnItemClickListener.onItemClickListener(position);
             }
@@ -97,6 +121,8 @@ public class ManaWhAdapter extends RecyclerView.Adapter<ManaWhAdapter.ViewHolder
         vh.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                bean.setCheck(!bean.isCheck());
+                vh.mItemMagapbCheck.setImageResource(bean.isCheck() ? R.drawable.icon_gouxuan : R.drawable.icon_weigouxuan);
                 if (mOnItemClickListener != null)
                     mOnItemClickListener.onItemClickListener(position);
             }
@@ -109,6 +135,10 @@ public class ManaWhAdapter extends RecyclerView.Adapter<ManaWhAdapter.ViewHolder
             }
         });
 
+    }
+
+    public List<MainTainBean.DataBean.ListBean> getLists() {
+        return mLists;
     }
 
     @Override

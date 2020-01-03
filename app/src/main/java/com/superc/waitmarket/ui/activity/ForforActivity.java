@@ -15,12 +15,17 @@ import com.ljy.devring.DevRing;
 import com.ljy.devring.http.support.throwable.HttpThrowable;
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.base.ApiService;
+import com.superc.waitmarket.bean.AppMessage;
 import com.superc.waitmarket.httputil.EncryPtionHttp;
 import com.superc.waitmarket.httputil.EncryPtionUtil;
 import com.superc.waitmarket.utils.dialog.MiddleDialog;
 import com.superc.waitmarket.utils.vciv.VerificationCodeInputView;
 import com.superc.yyfflibrary.base.BaseActivity;
 import com.superc.yyfflibrary.utils.ShareUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,6 +55,7 @@ public class ForforActivity extends BaseActivity {
 
     @Override
     public void init() {
+        EventBus.getDefault().register(this);
         ButterKnife.bind(this);
         mUser_id = (String) ShareUtil.getInstance(this).get("user_id", "");
         Intent intent = this.getIntent();
@@ -100,7 +106,7 @@ public class ForforActivity extends BaseActivity {
                 String msg = result.getString("message");
                 if (code) {
                     statActivity(ForgetActivity.class);
-                    ForforActivity.this.finish();
+//                    ForforActivity.this.finish();
                     if (!TextUtils.isEmpty(msg)) {
                         ToastShow(msg);
                     }
@@ -162,5 +168,19 @@ public class ForforActivity extends BaseActivity {
             }
         }.start();
     }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onReceiverMessage(AppMessage message) {
+        String what = message.getWhat();
+        if (!TextUtils.isEmpty(what)) {
+            if (what.equals("finish_forget")) {
+                this.finish();
+            }
 
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

@@ -60,10 +60,10 @@
         <ImageView
             android:id="@+id/manapb_imgv"
             android:layout_width="wrap_content"
-            android:visibility="gone"
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_14"
             android:src="@drawable/icon_gengduodian"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/textView7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/title"/>
@@ -121,6 +121,7 @@
         android:id="@+id/manapb_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="horizontal"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -129,6 +130,7 @@
             android:id="@+id/manapb_cancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_0_5"
             android:layout_weight="1"
             android:background="@color/red"
             android:gravity="center"

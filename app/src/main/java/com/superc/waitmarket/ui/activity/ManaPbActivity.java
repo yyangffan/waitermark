@@ -200,11 +200,12 @@ public class ManaPbActivity extends BaseActivity {
             public void onItemClickListener(int pos) {
                 boolean isshifang = mManaWhAdapter.isshifang();
                 if (isshifang) {
-                    MainTainBean.DataBean.ListBean map = mMapWhList.get(pos);
-                    boolean check = map.isCheck();
-                    check = !check;
-                    map.setCheck(check);
-                    mManaWhAdapter.notifyDataSetChanged();
+                    mMapWhList=mManaWhAdapter.getLists();
+//                    MainTainBean.DataBean.ListBean map = mMapWhList.get(pos);
+//                    boolean check = map.isCheck();
+//                    check = !check;
+//                    map.setCheck(check);
+//                    mManaWhAdapter.notifyDataSetChanged();
                 }
                 isCanShifang();
             }

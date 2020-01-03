@@ -227,13 +227,15 @@
                 android:ellipsize="end"
                 android:hint="请输入门店地址"
                 android:lines="1"
+                android:maxLines="1"
                 android:paddingLeft="@dimen/dp_5"
                 android:paddingTop="@dimen/dp_5"
                 android:paddingRight="@dimen/dp_5"
                 android:paddingBottom="@dimen/dp_5"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@+id/edtjichu_shangquan"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/edtjichu_shangquan"
                 app:layout_constraintTop_toBottomOf="@+id/edtjichu_shangquan"/>
 

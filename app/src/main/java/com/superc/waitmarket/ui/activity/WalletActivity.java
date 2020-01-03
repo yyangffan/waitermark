@@ -1,5 +1,6 @@
 package com.superc.waitmarket.ui.activity;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -59,6 +60,11 @@ public class WalletActivity extends BaseActivity {
     public void init() {
         TitleUtils.setStatusTextColor(true, this);
         ButterKnife.bind(this);
+        Intent intent = getIntent();
+        if (intent != null) {
+            String num = intent.getStringExtra("num");
+            mWalletMoney.setText(TextUtils.isEmpty(num) ? "- -" : num);
+        }
         mUser_id = (String) ShareUtil.getInstance(this).get("user_id", "");
         mMapList = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -110,7 +116,6 @@ public class WalletActivity extends BaseActivity {
                         mMapList.clear();
                     }
                     mMapList.addAll(profitBean.getData());
-                    mWalletMoney.setText("取哪个值");
                     mWalletAdapter.notifyDataSetChanged();
                 } else {
                     if (page == 1) {

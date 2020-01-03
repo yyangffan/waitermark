@@ -1,36 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:id="@+id/content"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp_5"
+    android:animateLayoutChanges="true"
+    android:background="@color/bluee">
 
-    <EditText
-        android:id="@+id/test_edt"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/item_magapb_check"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/dp_14"
+        android:src="@drawable/icon_weigouxuan"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout11"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout11"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_8"
-        android:background="@drawable/bg_circle_kuang"
-        android:hint="请输入要搜索内容"
-        android:padding="@dimen/dp_5"
-        android:textSize="14sp"/>
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:background="@drawable/bg_corner_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_95"
-        android:layout_marginLeft="@dimen/dp_5"
-        android:layout_marginRight="@dimen/dp_5"
-        android:background="@drawable/bg_corner_kuang">
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:background="@drawable/bg_corner_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <com.amap.api.maps.MapView
-            android:id="@+id/map"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_95"
-            android:padding="@dimen/dp_1"
-            />
+            <ImageView
+                android:id="@+id/item_magapb_head"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/icon_head"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/item_magapb_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="- -"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toStartOf="@+id/item_magapb_edt"
+                app:layout_constraintStart_toEndOf="@+id/item_magapb_head"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="鱼酷(万达店)"/>
+
+            <TextView
+                android:id="@+id/textView48"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="地址："
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/item_magapb_title"
+                app:layout_constraintTop_toBottomOf="@+id/item_magapb_title"/>
+
+            <TextView
+                android:id="@+id/item_magapb_posi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="王串场***王串场***王串场***王串场***王串场***王串场***"
+                android:textSize="12sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView48"
+                app:layout_constraintEnd_toStartOf="@+id/item_magapb_edt"
+                app:layout_constraintStart_toEndOf="@+id/textView48"/>
+
+            <TextView
+                android:id="@+id/textView57"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="创建时间："
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/textView48"
+                app:layout_constraintTop_toBottomOf="@+id/item_magapb_posi"/>
+
+            <TextView
+                android:id="@+id/item_magapb_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="2019.12.2 12:00:002019.12.2 12:00:002019.12.2 12:00:00"
+                android:textSize="12sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView57"
+                app:layout_constraintEnd_toStartOf="@+id/item_magapb_edt"
+                app:layout_constraintStart_toEndOf="@+id/textView57"/>
+
+            <TextView
+                android:id="@+id/item_magapb_reasonwenzi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="驳回原因："
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView57"
+                app:layout_constraintTop_toBottomOf="@+id/item_magapb_time"/>
+
+            <TextView
+                android:id="@+id/textVieitem_magapb_reason"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="- -"
+                android:textSize="12sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_magapb_reasonwenzi"
+                app:layout_constraintEnd_toStartOf="@+id/item_magapb_edt"
+                app:layout_constraintStart_toEndOf="@+id/item_magapb_reasonwenzi"
+                tools:text="基础信息有误"/>
+
+            <TextView
+                android:id="@+id/item_magapb_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_corner_tran"
+                android:ellipsize="end"
+                android:lines="1"
+                android:paddingLeft="@dimen/dp_3"
+                android:paddingTop="@dimen/dp_2"
+                android:paddingRight="@dimen/dp_3"
+                android:paddingBottom="@dimen/dp_2"
+                android:text="- -"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/item_magapb_head"
+                app:layout_constraintEnd_toEndOf="@+id/item_magapb_head"
+                tools:text="入网驳回"/>
+
+            <ImageView
+                android:id="@+id/item_imgv_go"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp_18"
+                android:paddingTop="@dimen/dp_6"
+                android:paddingRight="@dimen/dp_18"
+                android:paddingBottom="@dimen/dp_6"
+                android:src="@drawable/icon_gengduoshense"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/item_magapb_edt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/bg_corner_solred"
+                android:paddingLeft="@dimen/dp_18"
+                android:paddingTop="@dimen/dp_6"
+                android:paddingRight="@dimen/dp_18"
+                android:paddingBottom="@dimen/dp_6"
+                android:text="编辑"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

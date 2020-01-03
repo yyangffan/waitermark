@@ -33,6 +33,7 @@
             android:layout_width="@dimen/dp_63"
             android:layout_height="@dimen/dp_63"
             android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/icon_head"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -54,6 +55,7 @@
             android:layout_marginTop="10dp"
             android:background="@color/line_color"
             app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="invisible"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/textView53"
             app:layout_constraintTop_toBottomOf="@+id/item_hangjpiclook_recy"/>

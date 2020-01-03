@@ -29,12 +29,16 @@ import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
-import com.amap.api.maps.model.LatLngBounds;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.Poi;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
+import com.amap.api.services.core.SuggestionCity;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeQuery;
+import com.amap.api.services.geocoder.RegeocodeResult;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.bumptech.glide.Glide;
@@ -58,6 +62,7 @@ import com.superc.waitmarket.httputil.EncryPtionUtil;
 import com.superc.waitmarket.ui.activity.EdtDetailActivity;
 import com.superc.waitmarket.utils.BigDecimalUtils;
 import com.superc.waitmarket.utils.CheckDateRule;
+import com.superc.waitmarket.utils.PoiOverlay;
 import com.superc.waitmarket.utils.dialog.DialogBotList;
 import com.superc.waitmarket.utils.dialog.MiddleDialog;
 import com.superc.yyfflibrary.base.BaseFragment;
@@ -90,7 +95,7 @@ import okhttp3.RequestBody;
 
 import static android.app.Activity.RESULT_OK;
 
-public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSearchListener, AMap.OnPOIClickListener {
+public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSearchListener, AMap.OnPOIClickListener, GeocodeSearch.OnGeocodeSearchListener {
     private static final String TAG = "EdtJichuFragment";
     @BindView(R.id.edtjichu_mendname)
     EditText mEdtjichuMendname;
@@ -159,7 +164,7 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
     private AMap mMap;
     private PoiSearch poiSearch;
     private PoiSearch.Query mQuery;
-    private boolean is_click = false;
+    /*private boolean is_click = false;*/
     private String mUser_id;
     private String head_url;
     private DialogBotList mDialogBotList_yiji;
@@ -180,6 +185,9 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
     private boolean is_succ = false;
     private EdtDetailActivity mEdtDetailActivity;
     private String channel;
+    private GeocodeSearch geocoderSearch;
+    private boolean is_xuanze = false;
+    private String mRealname;
 
 
     @Override
@@ -215,6 +223,7 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
         mIs_creat = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("is_creat", "0");
         mUser_id = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("user_id", "");
         channel = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("channel", "");
+        mRealname = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("realname", "");
         if (mIs_creat.equals("1")) {
             toGetEdtData();
         }
@@ -252,6 +261,7 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
     }
 
     private void setData(JSONObject merchant) {
+        /* is_click=true;*/
         mtvRe.requestFocus();
         mEdtjichuMendname.setText(merchant.getString("ShopName"));
         try {
@@ -341,28 +351,35 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
         uiSettings.setZoomControlsEnabled(false);
         CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(new LatLng(39.091592, 117.195332), 8, 0, 0));
         mMap.moveCamera(mCameraUpdate);
-        mMap.setOnPOIClickListener(this);
+        /*mMap.setOnPOIClickListener(this);*/
         mMap.setOnMarkerClickListener(new AMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                is_click = true;
-                mEdtjichuDizhi.setText(marker.getTitle());
+                Log.e(TAG, "onMarkerClick: " + marker.getSnippet() + "   \n" + marker.toString() + "    \n" + marker.getOptions().getTitle());
+                /*marker.showInfoWindow();*/
+                /*  is_click = true;*/
+                is_xuanze = true;
+                marker.getOptions().getTitle();
+                mEdtjichuDizhi.setText(marker.getSnippet() + marker.getTitle());
                 mEdtjichuDizhi.setSelection(marker.getTitle().toString().length());
                 click_lat = marker.getPosition().latitude;
                 click_lon = marker.getPosition().longitude;
+                LatLonPoint latLonPoint = new LatLonPoint(click_lat, click_lon);
+                RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200, GeocodeSearch.AMAP);
+                geocoderSearch.getFromLocationAsyn(query);
                 return true;
             }
         });
         mEdtjichuDizhi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                is_click = false;
+                is_xuanze = false;
             }
         });
         mEdtjichuDizhi.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if (!is_click)
+                if (!is_xuanze)
                     mMap.clear();
             }
 
@@ -371,7 +388,7 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
 
                 if (TextUtils.isEmpty(s)) {
                     mMap.clear();
-                } else if (!is_click) {
+                } else if (!is_xuanze) {
                     mQuery = new PoiSearch.Query(s.toString(), "", "天津");
                     mQuery.setPageSize(100);// 设置每页最多返回多少条poiitem
                     poiSearch = new PoiSearch(EdtJichuFragment.this.getActivity(), mQuery);
@@ -386,6 +403,19 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
 
             }
         });
+        geocoderSearch = new GeocodeSearch(getActivity());
+        geocoderSearch.setOnGeocodeSearchListener(this);
+    }
+
+    @Override
+    public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
+//        mEdtjichuDizhi.setText(regeocodeResult.getRegeocodeAddress().getFormatAddress());
+//        mEdtjichuDizhi.setSelection(regeocodeResult.getRegeocodeAddress().getFormatAddress().length());
+//        Log.e(TAG, "onRegeocodeSearched: "+regeocodeResult.toString()+regeocodeResult.getRegeocodeAddress().getFormatAddress());
+    }
+
+    @Override
+    public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
 
     }
 
@@ -511,51 +541,51 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
         String lianxiren = mEdtjichuLianxiren.getText().toString();
         String lianxiphone = mEdtjichuLianxiphone.getText().toString();
         if (TextUtils.isEmpty(name)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请输入门店名称").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请输入[基础信息-门店名称]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(mPicSmallPath)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请选择店铺头像").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择[基础信息-店铺头像]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(onehang)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请选择一级行业").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择[基础信息-一级行业]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(twohang)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请选择二级行业").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择[基础信息-二级行业]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(city)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请选择城市").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择[基础信息-城市]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(quyu)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请选择区域").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择[基础信息-区域]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(shangquan)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请选择商圈").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择[基础信息-商圈]").build().show();
             return false;
         }
         if (click_lat == 0 || click_lon == 0) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请选择门店地址").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择[基础信息-门店地址]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(dizhi)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请输入门店地址").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请输入[基础信息-门店地址]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(yingyephone)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请输入营业电话").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请输入[基础信息-营业电话]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(lianxiren)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请输入店铺联系人").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请输入[基础信息-店铺联系人]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(lianxiphone)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("请输入联系人手机号").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请输入[基础信息-联系人手机号]").build().show();
             return false;
         }
 
@@ -571,8 +601,8 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
         map.put("shopAddress", dizhi);
         map.put("IOSLongitude", click_lon);
         map.put("IOSLatitude", click_lat);
-        map.put("AndroidLongitude", click_lat);
-        map.put("AndroidLatitude", click_lon);
+        map.put("AndroidLongitude", click_lon);
+        map.put("AndroidLatitude", click_lat);
         map.put("shopTel", yingyephone);
         map.put("shopHead", lianxiren);
         map.put("headTel", lianxiphone);
@@ -580,6 +610,7 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
         map.put("type", mIs_creat);//0新建1修改
         map.put("shopId", mEdtdetail_id);//修改传参
         map.put("userId", mUser_id);
+        map.put("userName", mRealname);
 
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).newMerchantResources(EncryPtionUtil.getInstance(getActivity()).toEncryption(map));
         EncryPtionHttp.getInstance(getActivity()).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
@@ -589,15 +620,22 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
                 boolean code = result.getBoolean("code");
                 String msg = result.getString("message");
                 if (code) {
+                    if (mEdtDetailActivity.is_tijiao) {
+                        ShareUtil.getInstance(EdtJichuFragment.this.getActivity()).put("is_creat","1");
+                        mIs_creat="1";
+                        mEdtdetail_id=result.getJSONObject("data").getString("shopId");
+//                        toJudge();
+                    }
                     ShareUtil.getInstance(getActivity()).put("edtdetail_id", result.getJSONObject("data").getString("shopId"));
                     is_succ = true;
                     mEdtDetailActivity.toScroll();
                 } else {
                     is_succ = false;
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
-                }
+
             }
 
             @Override
@@ -629,7 +667,7 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
             map_three.put("endTime", mEdtjichuEdthree.getText().toString());
             mList_time.add(map_three);
         }
-        if (mList_time.size() == 1&& CheckDateRule.compare_date(map_one.get("startTime"),map_one.get("endTime"))==-1) {
+        if (mList_time.size() == 1 && CheckDateRule.compare_date(map_one.get("startTime"), map_one.get("endTime")) == -1) {
             ToastShow("开始时间不能大于结束时间");
             return false;
         } else if (mList_time.size() != 1 && !CheckDateRule.toCompare(mList_time)) {
@@ -1032,7 +1070,7 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
 
     @Override
     public void onPoiSearched(PoiResult poiResult, int i) {
-        Log.e(TAG, "onPoiSearched: " + poiResult.getPois().size());
+       /* Log.e(TAG, "onPoiSearched: " + poiResult.getPois().size());
         LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();//存放所有点的经纬度
         for (int j = 0; j < poiResult.getPois().size(); j++) {
             PoiItem poiItem = poiResult.getPois().get(j);
@@ -1045,13 +1083,26 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
 
             boundsBuilder.include(marker.getPosition());//把所有点都include进去（LatLng类型）
         }
-        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(boundsBuilder.build(), 15));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(boundsBuilder.build(), 15));*/
+
+
+        List<PoiItem> poiItems = poiResult.getPois();// 取得第一页的poiitem数据，页数从数字0开始
+        List<SuggestionCity> suggestionCities = poiResult
+                .getSearchSuggestionCitys();// 当搜索不到poiitem数据时，会返回含有搜索关键字的城市信息
+
+        if (poiItems != null && poiItems.size() > 0) {
+            mMap.clear();// 清理之前的图标
+            PoiOverlay poiOverlay = new PoiOverlay(mMap, poiItems);
+            poiOverlay.removeFromMap();
+            poiOverlay.addToMap();
+            poiOverlay.zoomToSpan();
+        }
 
     }
 
     @Override
     public void onPOIClick(Poi poi) {
-        is_click = true;
+        /*   is_click = true;*/
         mMap.clear();
         LatLng coordinate = poi.getCoordinate();
         mMap.addMarker(new MarkerOptions().position(coordinate).title(poi.getName()).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory
@@ -1112,5 +1163,4 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
         super.onDestroyView();
         unbinder.unbind();
     }
-
 }

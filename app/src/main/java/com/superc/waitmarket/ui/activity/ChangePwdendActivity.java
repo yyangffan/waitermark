@@ -24,7 +24,6 @@ import com.superc.waitmarket.httputil.EncryPtionUtil;
 import com.superc.waitmarket.utils.dialog.MiddleDialog;
 import com.superc.waitmarket.utils.vciv.VerificationCodeInputView;
 import com.superc.yyfflibrary.base.BaseActivity;
-import com.superc.yyfflibrary.dialog.YfsRemindDialog;
 import com.superc.yyfflibrary.utils.ShareUtil;
 import com.superc.yyfflibrary.utils.titlebar.TitleUtils;
 
@@ -227,7 +226,7 @@ public class ChangePwdendActivity extends BaseActivity {
         String pwd_agin = mChangepwwdedEdtonetwice.getText().toString();
 
         if (!pwd.equals(pwd_agin)) {
-            new YfsRemindDialog.Builder(this).title("提示").content("两次输入密码不一致，请重新输入").left("确认").left_color(R.color.main_color).build().show();
+            new MiddleDialog.Builder(ChangePwdendActivity.this).content("两次输入密码不一致，请重新输入").build().show();
         }
 //        else if (!PwdCheckUtil.isContainAll(pwd)) {
 //            new YfsRemindDialog.Builder(this).title("提示").content("⼤⼩写数字混合（每种⾄少1位）").left("确认").left_color(R.color.main_color).build().show();
@@ -255,7 +254,7 @@ public class ChangePwdendActivity extends BaseActivity {
                     finish();
                 }
                 if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+                    new MiddleDialog.Builder(ChangePwdendActivity.this).content(msg).build().show();
                 }
             }
 

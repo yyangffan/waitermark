@@ -13,11 +13,14 @@ import com.ljy.devring.DevRing;
 import com.ljy.devring.http.support.throwable.HttpThrowable;
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.base.ApiService;
+import com.superc.waitmarket.bean.AppMessage;
 import com.superc.waitmarket.httputil.EncryPtionHttp;
 import com.superc.waitmarket.httputil.EncryPtionUtil;
+import com.superc.waitmarket.utils.dialog.MiddleDialog;
 import com.superc.yyfflibrary.base.BaseActivity;
-import com.superc.yyfflibrary.dialog.YfsRemindDialog;
 import com.superc.yyfflibrary.utils.ShareUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +41,7 @@ public class ForgetActivity extends BaseActivity {
     private String mUser_id;
     private boolean theFirst, theTwice = false;
     private int theFirstLength, theTwiceLength = 0;
+
     @Override
     public int getContentLayoutId() {
         return R.layout.activity_forget;
@@ -129,7 +133,7 @@ public class ForgetActivity extends BaseActivity {
         String pwd_agin = mForgetTwice.getText().toString();
 
         if (!pwd.equals(pwd_agin)) {
-            new YfsRemindDialog.Builder(this).title("提示").content("两次输入密码不一致，请重新输入").left("确认").left_color(R.color.main_color).build().show();
+            new MiddleDialog.Builder(ForgetActivity.this).content("两次输入密码不一致，请重新输入").build().show();
         }
 //        else if (!PwdCheckUtil.isContainAll(pwd)) {
 //            new YfsRemindDialog.Builder(this).title("提示").content("⼤⼩写数字混合（每种⾄少1位）").left("确认").left_color(R.color.main_color).build().show();
@@ -151,10 +155,13 @@ public class ForgetActivity extends BaseActivity {
                 boolean code = result.getBoolean("code");
                 String msg = result.getString("message");
                 if (code) {
+                    EventBus.getDefault().post(new AppMessage(0, "finish_forget"));
+                    new MiddleDialog.Builder(ForgetActivity.this).content("设置成功\n请重新登录").build().show();
                     finish();
-                }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        new MiddleDialog.Builder(ForgetActivity.this).content(msg).build().show();
+                    }
                 }
             }
 

@@ -15,12 +15,17 @@ import com.ljy.devring.DevRing;
 import com.ljy.devring.http.support.throwable.HttpThrowable;
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.base.ApiService;
+import com.superc.waitmarket.bean.AppMessage;
 import com.superc.waitmarket.httputil.EncryPtionHttp;
 import com.superc.waitmarket.httputil.EncryPtionUtil;
 import com.superc.waitmarket.utils.BigDecimalUtils;
 import com.superc.waitmarket.utils.dialog.MiddleDialog;
 import com.superc.yyfflibrary.base.BaseActivity;
 import com.superc.yyfflibrary.utils.ShareUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +49,7 @@ public class ForgetForActivity extends BaseActivity {
 
     @Override
     public void init() {
+        EventBus.getDefault().register(this);
         ButterKnife.bind(this);
         mButton.setEnabled(false);
         mForgetforNum.addTextChangedListener(new TextWatcher() {
@@ -123,5 +129,20 @@ public class ForgetForActivity extends BaseActivity {
             }
         });
     }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onReceiverMessage(AppMessage message) {
+        String what = message.getWhat();
+        if (!TextUtils.isEmpty(what)) {
+            if (what.equals("finish_forget")) {
+                this.finish();
+            }
 
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">小二全员营销</string>
-
+    <string name="digits_edit">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

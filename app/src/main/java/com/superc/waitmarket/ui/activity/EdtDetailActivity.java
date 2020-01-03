@@ -75,6 +75,7 @@ public class EdtDetailActivity extends BaseActivity {
     private int mWidth;
     private int mScreenWidth;
     private boolean is_back = false;
+    public boolean is_tijiao = false;
 
     @Override
     public int getContentLayoutId() {
@@ -117,15 +118,13 @@ public class EdtDetailActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.edtdetail_commit:
-//                boolean can_commit = (boolean) ShareUtil.getInstance(this).get("can_commit", false);
-//                if (can_commit) {
-                toSubmit();
-//                } else {
-//                    ToastShow("需填写完结算信息后才能提交");
-//                }
+                is_tijiao = true;
+                toCommit();
+                /*toSubmit();*/
                 break;
             case R.id.edtdetail_top:
                 is_back = true;
+                is_tijiao = false;
 //                initWhat();
                 ShareUtil.getInstance(this).put("is_creat", "1");
                 if (what == 0) {
@@ -134,6 +133,7 @@ public class EdtDetailActivity extends BaseActivity {
                 toCommit();
                 break;
             case R.id.edtdetail_bot:
+                is_tijiao = false;
                 is_back = false;
                 toCommit();
                 break;
@@ -159,7 +159,7 @@ public class EdtDetailActivity extends BaseActivity {
                 } else {
                     String data = result.getString("data");
                     if (!TextUtils.isEmpty(data)) {
-                        new MiddleDialog.Builder(EdtDetailActivity.this).img_id(R.drawable.con_shibai).title("提交失败").content("请输入"+data).build().show();
+                        new MiddleDialog.Builder(EdtDetailActivity.this).img_id(R.drawable.con_shibai).title("提交失败").content(data).build().show();
                     }
                 }
 
@@ -194,15 +194,23 @@ public class EdtDetailActivity extends BaseActivity {
                     mJieSFragment.toCommit();
                 break;
             case 4:
-                if (mEdtZhifFragment != null)
+                if (mEdtZhifFragment != null) {
                     if (is_back) {
                         mEdtZhifFragment.toCommit();
+                    }else{
+                        toSubmit();
                     }
+                }
                 break;
         }
     }
 
     public void toScroll() {
+        if (is_tijiao) {
+            toSubmit();
+            is_tijiao = false;
+            return;
+        }
         if (is_back) {
             --what;
         } else {
@@ -259,7 +267,7 @@ public class EdtDetailActivity extends BaseActivity {
         for (int i = 0; i < mTextViews.size(); i++) {
             TextView textView = mTextViews.get(i);
             TextPaint paint = textView.getPaint();
-            if (i <= what) {
+            if (i == what) {
                 textView.setTextColor(this.getResources().getColor(R.color.red));
                 paint.setFakeBoldText(true);
             } else {

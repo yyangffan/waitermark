@@ -169,12 +169,16 @@ public class EdtJieskFragment extends BaseFragment {
     ImageView mShouchidelete;
     @BindView(R.id.shanghudelete)
     ImageView mShanghudelete;
+    @BindView(R.id.textView74)
+    TextView mtvKaihuRen_danwei;
+
+
     private String mGPS_path, mKaihuiPath, mYinhang_path, mChengnuo_path, mZhewngPath, mFanPath, mShouChi_path, mShanghu_path;
     private String url_gps, url_kaihu, url_yinhang, url_chengnuo, url_fore, url_back, url_shouchi, url_shanghu;
     private EdtDetailActivity mEdtDetailActivity;
     private String[] mStrings_zhanghu = new String[]{"对公", "对私"};
     private String[][] mStrings_banka = new String[][]{{"商家自办", "1"}, {"时时开卡", "3"}};
-    private String[] mStrings_jiesuan = new String[]{"统一结算账户", "非统一结算方式"};
+    private String[] mStrings_jiesuan = new String[]{"统一结算账户", "非统一结算账户"};
     private String[][] mStrings_shiffaren = new String[][]{{"是", "1"}, {"否", "0"}};
     private String[] mStrings_shiftianjin = new String[]{"天津银行", "非天津银行"};
     private InputDialog mInputDialog;
@@ -332,36 +336,34 @@ public class EdtJieskFragment extends BaseFragment {
         String shifoufren = mItemLookjiesYnfaren.getText().toString();
         if (leixing.equals("对公")) {
             mLinearBanka.setVisibility(View.GONE);
+            mTvShoukuanGai.setText("(许可证上面的账户)");
+            mTvXiugai.setText("开户行许可证照片");
+            mtvKaihuRen_danwei.setText("开户单位名称");
+            mItemLookjiesKaihuren.setHint("请输入开户单位名称");
             if (jisuanstate.equals("统一结算账户") && shifoufren.equals("否")) {
-                mTvXiugai.setText("开户行许可证照片");
                 is_kaihuPic = true;
-                mTvShoukuanGai.setText("(许可证上面的账户)");
             } else if (jisuanstate.equals("统一结算账户") && shifoufren.equals("是")) {
                 mLinearShenfenzheng.setVisibility(View.GONE);
                 mLinearShouchi.setVisibility(View.GONE);
                 mLinearZijin.setVisibility(View.GONE);
                 mLineTwo.setVisibility(View.INVISIBLE);
-                mTvXiugai.setText("开户行许可证照片");
                 is_kaihuPic = true;
-                mTvShoukuanGai.setText("(许可证上面的账户)");
-            } else if (jisuanstate.equals("非统一结算方式") && shifoufren.equals("否")) {
+            } else if (jisuanstate.equals("非统一结算账户") && shifoufren.equals("否")) {
                 mLinearGps.setVisibility(View.GONE);
                 mLinearChengnuo.setVisibility(View.GONE);
-                mTvXiugai.setText("开户行许可证照片");
                 is_kaihuPic = true;
-                mTvShoukuanGai.setText("(许可证上面的账户)");
-            } else if (jisuanstate.equals("非统一结算方式") && shifoufren.equals("是")) {
+            } else if (jisuanstate.equals("非统一结算账户") && shifoufren.equals("是")) {
                 mLineOne.setVisibility(View.GONE);
                 mLinearGps.setVisibility(View.GONE);
                 mLinearChengnuo.setVisibility(View.GONE);
                 mLinearShenfenzheng.setVisibility(View.GONE);
                 mLinearShouchi.setVisibility(View.GONE);
                 mLinearZijin.setVisibility(View.GONE);
-                mTvXiugai.setText("开户行许可证照片");
                 is_kaihuPic = true;
-                mTvShoukuanGai.setText("(许可证上面的账户)");
             }
         } else {//对私
+            mtvKaihuRen_danwei.setText("开户人名称");
+            mItemLookjiesKaihuren.setHint("请输入开户人名称");
             if (jisuanstate.equals("统一结算账户") && shifoufren.equals("否")) {
 
             } else if (jisuanstate.equals("统一结算账户") && shifoufren.equals("是")) {
@@ -369,10 +371,10 @@ public class EdtJieskFragment extends BaseFragment {
                 mLinearShenfenzheng.setVisibility(View.GONE);
                 mLinearShouchi.setVisibility(View.GONE);
                 mLinearZijin.setVisibility(View.GONE);
-            } else if (jisuanstate.equals("非统一结算方式") && shifoufren.equals("否")) {
+            } else if (jisuanstate.equals("非统一结算账户") && shifoufren.equals("否")) {
                 mLinearChengnuo.setVisibility(View.GONE);
                 mLinearGps.setVisibility(View.GONE);
-            } else if (jisuanstate.equals("非统一结算方式") && shifoufren.equals("是")) {
+            } else if (jisuanstate.equals("非统一结算账户") && shifoufren.equals("是")) {
                 mLinearChengnuo.setVisibility(View.GONE);
                 mLinearGps.setVisibility(View.GONE);
                 mLineOne.setVisibility(View.GONE);
@@ -450,11 +452,11 @@ public class EdtJieskFragment extends BaseFragment {
         mItemLookjiesKaihuren.setText(merchant.getString("bankacctname"));
         String bankname = merchant.getString("bankname");
         if (bankname.equals("天津银行")) {
-            is_Tianjin=true;
+            is_Tianjin = true;
             mItemLookTianjin.setVisibility(View.VISIBLE);
             mItemLookjiesZhihang.setVisibility(View.INVISIBLE);
         } else {
-            is_Tianjin=false;
+            is_Tianjin = false;
             mItemLookTianjin.setVisibility(View.INVISIBLE);
             mItemLookjiesZhihang.setVisibility(View.VISIBLE);
         }
@@ -708,11 +710,15 @@ public class EdtJieskFragment extends BaseFragment {
                 boolean code = result.getBoolean("code");
                 String msg = result.getString("message");
                 if (code) {
+                    if (mEdtDetailActivity.is_tijiao) {
+                        toJudge();
+                    }
                     mEdtDetailActivity.toScroll();
                     ShareUtil.getInstance(getActivity()).put("can_commit", true);
-                }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
             }
 
@@ -856,9 +862,10 @@ public class EdtJieskFragment extends BaseFragment {
                 String msg = result.getString("message");
                 if (code) {
                     mGPS_path = result.getJSONObject("data").getString("GPSpicSmallPath");
-                }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
             }
 
@@ -882,9 +889,10 @@ public class EdtJieskFragment extends BaseFragment {
                 String msg = result.getString("message");
                 if (code) {
                     mYinhang_path = result.getJSONObject("data").getString("cardFrontPicSmallPath");
-                }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
             }
 
@@ -907,9 +915,10 @@ public class EdtJieskFragment extends BaseFragment {
                 String msg = result.getString("message");
                 if (code) {
                     mKaihuiPath = result.getJSONObject("data").getString("picSmallPath");
-                }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
             }
 
@@ -933,9 +942,10 @@ public class EdtJieskFragment extends BaseFragment {
                 String msg = result.getString("message");
                 if (code) {
                     mChengnuo_path = result.getJSONObject("data").getString("promisePicSmallPath");
-                }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
             }
 
@@ -985,9 +995,10 @@ public class EdtJieskFragment extends BaseFragment {
                             mShanghu_path = result.getJSONObject("data").getString("picSmallPath");
                             break;
                     }
-                }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
             }
 
@@ -1092,10 +1103,12 @@ public class EdtJieskFragment extends BaseFragment {
                     is_Tianjin = true;
                     mItemLookTianjin.setVisibility(View.VISIBLE);
                     mItemLookjiesZhihang.setVisibility(View.INVISIBLE);
+                    mItemLookjiesHanghao.setEnabled(false);
                 } else {
                     is_Tianjin = false;
                     mItemLookTianjin.setVisibility(View.INVISIBLE);
                     mItemLookjiesZhihang.setVisibility(View.VISIBLE);
+                    mItemLookjiesHanghao.setEnabled(true);
                     mInputDialog.show();
                     mInputDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
                 }
@@ -1117,7 +1130,7 @@ public class EdtJieskFragment extends BaseFragment {
                     JSONArray data = result.getJSONArray("data");
                     for (int i = 0; i < data.size(); i++) {
                         JSONObject jsonObject = data.getJSONObject(i);
-                        BotListBean botListBean = new BotListBean(jsonObject.getString("bankname"), false);
+                        BotListBean botListBean = new BotListBean(jsonObject.getString("bankname"), false,jsonObject.getString("settlementcode"));
                         mBotListBeans_zhihang.add(botListBean);
                     }
                     mDialogBotList_zhihang = new DialogBotList.Builder().title("请选择").botListBeanMap(mBotListBeans_zhihang).builder(EdtJieskFragment.this.getActivity());
@@ -1126,11 +1139,13 @@ public class EdtJieskFragment extends BaseFragment {
                         public void onTextClickListenerHis(String name, String what) {
                             super.onTextClickListenerHis(name, what);
                             mItemLookTianjin.setText(name);
+                            mItemLookjiesHanghao.setText(what);
                         }
                     });
-                }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
             }
 

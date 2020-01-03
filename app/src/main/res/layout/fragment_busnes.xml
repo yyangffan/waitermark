@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/xml_bg"
     tools:context=".ui.fragment.BusnesFragment">
 
     <android.support.constraint.ConstraintLayout
@@ -59,7 +59,6 @@
         android:id="@+id/user_check_smart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,13 +66,13 @@
 
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_60"/>
+            android:layout_height="@dimen/dp_60"
+            android:background="@color/white"/>
 
         <android.support.design.widget.CoordinatorLayout
             android:id="@+id/main_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
             >
 
             <android.support.design.widget.AppBarLayout
@@ -86,6 +85,7 @@
                     android:id="@+id/con"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/white"
                     app:layout_scrollFlags="scroll|enterAlways"
                     >
 
@@ -309,7 +309,8 @@
 
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_60"/>
+            android:layout_height="@dimen/dp_60"
+            android:background="@color/white"/>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </android.support.constraint.ConstraintLayout>

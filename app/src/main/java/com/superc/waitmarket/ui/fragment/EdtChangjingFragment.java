@@ -23,6 +23,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.ljy.devring.DevRing;
 import com.ljy.devring.http.support.observer.CommonObserver;
 import com.ljy.devring.http.support.throwable.HttpThrowable;
+import com.luck.picture.lib.PictureSelectionModel;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -103,7 +104,7 @@ public class EdtChangjingFragment extends BaseFragment {
         adapter.setOnItemClickListener(new MyGridImageAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                LocalMedia media = selectList.get(position);
+               /* LocalMedia media = selectList.get(position);
                 String pictureType = media.getPictureType();
                 int mediaType = PictureMimeType.pictureToVideo(pictureType);
                 switch (mediaType) {
@@ -119,7 +120,7 @@ public class EdtChangjingFragment extends BaseFragment {
                         // 预览音频
                         PictureSelector.create(EdtChangjingFragment.this).externalPictureAudio(media.getPath());
                         break;
-                }
+                }*/
             }
         });
         adapter.setOnDeletClickListener(new MyGridImageAdapter.OnDeletClickListener() {
@@ -136,8 +137,6 @@ public class EdtChangjingFragment extends BaseFragment {
 
     /* mIs_creat  0新建1修改*/
     public void toJudge() {
-        selectList.clear();
-        selectList.add(new LocalMedia());
         mEdtdetail_id = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("edtdetail_id", "");
         channel = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("channel", "");
         toGetEdtData();
@@ -182,6 +181,8 @@ public class EdtChangjingFragment extends BaseFragment {
 
     private void setData(JSONObject merchant) {
         mPicSmallPath = merchant.getString("mpicPath");
+        selectList.clear();
+        selectList.add(new LocalMedia());
         RoundedCorners roundedCorners = new RoundedCorners(10);
         RequestOptions override = RequestOptions.bitmapTransform(roundedCorners).error(R.drawable.icon_error).placeholder(R.drawable.icon_error).override(300, 300);
         RequestOptions requestOptions = new RequestOptions().error(R.drawable.icon_error).apply(override).placeholder(R.drawable.icon_error);
@@ -219,7 +220,7 @@ public class EdtChangjingFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.edtjichu_head, R.id.edtjichu_tianjia, R.id.edtjichu_linear, R.id.mine_shangp_red,R.id.edtjichu_linear_huanjing})
+    @OnClick({R.id.edtjichu_head, R.id.edtjichu_tianjia, R.id.edtjichu_linear, R.id.mine_shangp_red, R.id.edtjichu_linear_huanjing})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.edtjichu_head:
@@ -255,19 +256,19 @@ public class EdtChangjingFragment extends BaseFragment {
         }*/
 //        mEdtdetail_id = (String) ShareUtil.getInstance(getActivity()).get("edtdetail_id", "");
 //        mIs_creat = (String) ShareUtil.getInstance(getActivity()).get("is_creat", "0");
-        String result_event="";
+        String result_event = "";
         for (int i = 1; i < selectList.size(); i++) {
             LocalMedia localMedia = selectList.get(i);
             String compressPath = localMedia.getCompressPath();
             if (compressPath.startsWith("http") || compressPath.startsWith("https")) {
-                if(compressPath.split("m/life").length>1)
-                result_event+=compressPath.split("m/life")[1]+",";
+                if (compressPath.split(Constant.IMAGE_SPLIT).length > 1)
+                    result_event += compressPath.split(Constant.IMAGE_SPLIT)[1] + ",";
             }
         }
         Map<String, Object> map = new HashMap<>();
         map.put("shopId", mEdtdetail_id);
         map.put("picSmallPath", mPicSmallPath);
-        map.put("envirPicSmallPath",TextUtils.isEmpty(mEventPath)? (result_event.length()>1?result_event.substring(0,result_event.length()-1):""): result_event+mEventPath);
+        map.put("envirPicSmallPath", TextUtils.isEmpty(mEventPath) ? (selectList.size() > 1 ? result_event.substring(0, result_event.length() - 1) : "") : result_event + mEventPath);
         map.put("type", mIs_creat);
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).scenePhotos(EncryPtionUtil.getInstance(getActivity()).toEncryption(map));
         EncryPtionHttp.getInstance(getActivity()).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
@@ -277,11 +278,18 @@ public class EdtChangjingFragment extends BaseFragment {
                 boolean code = result.getBoolean("code");
                 String msg = result.getString("message");
                 if (code) {
+                    if (!mEdtDetailActivity.is_tijiao) {
+                        mEventPath = "";
+                    }else{
+                        mEventPath = "";
+                        toJudge();
+                    }
                     mEdtDetailActivity.toScroll();
-                    mEventPath="";
-                }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
             }
 
@@ -304,15 +312,23 @@ public class EdtChangjingFragment extends BaseFragment {
     };
 
     private void selectPic(int reque_code) {
+        PictureSelectionModel pictureSelectionModel = PictureSelector.create(this).openGallery(PictureMimeType.ofImage());
+        if (reque_code != 110) {
+            int size = 0;
+            if (selectList != null) {
+                size = selectList.size();
+            }
+            pictureSelectionModel.maxSelectNum(10 - size);
+        }
+
         // 进入相册 以下是例子：用不到的api可以不写
-        PictureSelector.create(this).openGallery(PictureMimeType.ofImage())
-                .maxSelectNum(10)// 最大图片选择数量 int
+        pictureSelectionModel
 //                .minSelectNum(1)// 最小选择数量 int
                 .imageSpanCount(4)// 每行显示个数 int
                 .previewImage(false)// 是否可预览图片 true or false
                 .selectionMode(reque_code == 110 ? PictureConfig.SINGLE : PictureConfig.MULTIPLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
                 .isCamera(true)// 是否显示拍照按钮 true or false
-                .enableCrop(true)// 是否裁剪 true or false
+                .enableCrop(false)// 是否裁剪 true or false
                 .compress(true)// 是否压缩 true or false
                 .compressSavePath(getPath())//压缩图片保存地址
                 .withAspectRatio(1, 1)// int 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
@@ -367,11 +383,11 @@ public class EdtChangjingFragment extends BaseFragment {
         }
     }
 
-    private void toPanduan(){
-        if(selectList.size()>1){
+    private void toPanduan() {
+        if (selectList.size() > 1) {
             mLinearHuanjing.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             mLinearHuanjing.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         }
@@ -390,9 +406,10 @@ public class EdtChangjingFragment extends BaseFragment {
                 String msg = result.getString("message");
                 if (code) {
                     mPicSmallPath = result.getJSONObject("data").getString("picSmallPath");
-                }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
             }
 
@@ -408,7 +425,7 @@ public class EdtChangjingFragment extends BaseFragment {
             LocalMedia localMedia = selectList.get(i);
             String compressPath = localMedia.getCompressPath();
             if (compressPath.startsWith("http") || compressPath.startsWith("https")) {
-                Log.e(TAG, "toUpDEnviro: "+compressPath);
+                Log.e(TAG, "toUpDEnviro: " + compressPath);
             } else {
                 File file = new File(compressPath);
                 // create RequestBody instance from file
@@ -436,9 +453,10 @@ public class EdtChangjingFragment extends BaseFragment {
                     }
                     mEventPath = stringBuilder.toString().substring(0, stringBuilder.toString().length() - 1);
 
-                }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
             }
 

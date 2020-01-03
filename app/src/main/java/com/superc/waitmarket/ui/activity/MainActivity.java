@@ -182,6 +182,11 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
             mUserFragment.getMsg();
             mUserFragment.getData();
         }
+        if(mBusnesFragment!=null&&mBusnesFragment.isVisible()){
+            mBusnesFragment.getCount();
+            mBusnesFragment.getOnceTab();
+            mBusnesFragment.getData();
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
