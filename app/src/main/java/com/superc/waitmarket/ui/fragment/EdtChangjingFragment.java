@@ -36,7 +36,9 @@ import com.superc.waitmarket.base.WaitApplication;
 import com.superc.waitmarket.httputil.EncryPtionHttp;
 import com.superc.waitmarket.httputil.EncryPtionUtil;
 import com.superc.waitmarket.ui.activity.EdtDetailActivity;
+import com.superc.waitmarket.utils.dialog.LoadingDialog;
 import com.superc.waitmarket.utils.picselector.FullyGridLayoutManager;
+import com.superc.waitmarket.views.InConstranLayout;
 import com.superc.yyfflibrary.base.BaseFragment;
 import com.superc.yyfflibrary.utils.ShareUtil;
 import com.trello.rxlifecycle2.LifecycleTransformer;
@@ -70,6 +72,8 @@ public class EdtChangjingFragment extends BaseFragment {
     ImageView mImg_de;
     @BindView(R.id.edtjichu_linear_huanjing)
     LinearLayout mLinearHuanjing;
+    @BindView(R.id.incon_con)
+    InConstranLayout mIncon;
     Unbinder unbinder;
     private MyGridImageAdapter adapter;
     private List<LocalMedia> selectList = new ArrayList<>();
@@ -80,6 +84,9 @@ public class EdtChangjingFragment extends BaseFragment {
     private String mIs_creat;
     private EdtDetailActivity mEdtDetailActivity;
     private String channel;
+    private boolean is_evenCommit=false;
+    private LoadingDialog mLoadingDialog;
+    private String mStatus;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,6 +100,7 @@ public class EdtChangjingFragment extends BaseFragment {
     @Override
     public void init() {
         themeId = R.style.picture_default_style;
+        mLoadingDialog = LoadingDialog.getInstance(EdtChangjingFragment.this.getActivity());
         mEdtDetailActivity = (EdtDetailActivity) getActivity();
         FullyGridLayoutManager manager = new FullyGridLayoutManager(getActivity(), 3, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
@@ -133,12 +141,20 @@ public class EdtChangjingFragment extends BaseFragment {
 
             }
         });
+        mStatus = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("status", "");
+        if(mStatus.equals("1")){//1 不可编辑  0可编辑
+            mIncon.setmIsIntercept(true);
+        }
     }
 
     /* mIs_creat  0新建1修改*/
     public void toJudge() {
         mEdtdetail_id = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("edtdetail_id", "");
         channel = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("channel", "");
+        mStatus = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("status", "");
+        if(mStatus.equals("1")&&mIncon!=null){//1 不可编辑  0可编辑
+            mIncon.setmIsIntercept(true);
+        }
         toGetEdtData();
     }
 
@@ -151,6 +167,7 @@ public class EdtChangjingFragment extends BaseFragment {
         map.put("shopId", mEdtdetail_id);
         map.put("type", 2);
         map.put("channel", channel);
+        map.put("staus", mStatus);
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).merchantDetails(EncryPtionUtil.getInstance(getActivity()).toEncryption(map));
         EncryPtionHttp.getInstance(getActivity()).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
             @Override
@@ -240,22 +257,10 @@ public class EdtChangjingFragment extends BaseFragment {
     }
 
     public void toCommit() {
-        /*if(TextUtils.isEmpty(mPicSmallPath)){
-            ToastShow("请选择店铺门头照");
+        if(is_evenCommit){
+            ToastShow("正在上传环境照，请稍候重试");
             return;
         }
-        if(TextUtils.isEmpty(mEventPath)){
-            ToastShow("请选择环境图");
-            return;
-        }else{
-            String[] split = mEventPath.split(",");
-            if (split.length<3){
-                ToastShow("环境图至少为三张");
-                return;
-            }
-        }*/
-//        mEdtdetail_id = (String) ShareUtil.getInstance(getActivity()).get("edtdetail_id", "");
-//        mIs_creat = (String) ShareUtil.getInstance(getActivity()).get("is_creat", "0");
         String result_event = "";
         for (int i = 1; i < selectList.size(); i++) {
             LocalMedia localMedia = selectList.get(i);
@@ -435,11 +440,14 @@ public class EdtChangjingFragment extends BaseFragment {
                 map.put("file\"; filename=\"" + file.getName(), requestFile);
             }
         }
-
+        mLoadingDialog.show();
+        is_evenCommit=true;
         Observable<JSONObject> observable = DevRing.httpManager().getService(ApiService.class).uploadEnvir(map);
         DevRing.httpManager().commonRequest(observable, new CommonObserver<JSONObject>() {
             @Override
             public void onResult(JSONObject result) {
+                mLoadingDialog.dismiss();
+                is_evenCommit=false;
                 boolean code = result.getBoolean("code");
                 String msg = result.getString("message");
                 if (code) {
@@ -462,6 +470,8 @@ public class EdtChangjingFragment extends BaseFragment {
 
             @Override
             public void onError(HttpThrowable httpThrowable) {
+                mLoadingDialog.dismiss();
+                is_evenCommit=false;
             }
         }, (LifecycleTransformer) null);
     }

@@ -42,6 +42,7 @@ import com.superc.waitmarket.ui.activity.EdtDetailActivity;
 import com.superc.waitmarket.utils.BigDecimalUtils;
 import com.superc.waitmarket.utils.dialog.DialogBotList;
 import com.superc.waitmarket.utils.dialog.InputDialog;
+import com.superc.waitmarket.views.InConstranLayout;
 import com.superc.yyfflibrary.base.BaseFragment;
 import com.superc.yyfflibrary.utils.ShareUtil;
 import com.trello.rxlifecycle2.LifecycleTransformer;
@@ -171,7 +172,8 @@ public class EdtJieskFragment extends BaseFragment {
     ImageView mShanghudelete;
     @BindView(R.id.textView74)
     TextView mtvKaihuRen_danwei;
-
+    @BindView(R.id.incon_con)
+    InConstranLayout mIncon;
 
     private String mGPS_path, mKaihuiPath, mYinhang_path, mChengnuo_path, mZhewngPath, mFanPath, mShouChi_path, mShanghu_path;
     private String url_gps, url_kaihu, url_yinhang, url_chengnuo, url_fore, url_back, url_shouchi, url_shanghu;
@@ -200,6 +202,7 @@ public class EdtJieskFragment extends BaseFragment {
     private String channel;
     private boolean is_Tianjin = false;
     private boolean is_kaihuPic = false;
+    private String mStatus;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -223,7 +226,17 @@ public class EdtJieskFragment extends BaseFragment {
                 super.onRightClickListenerContent(resu);
                 mItemLookjiesKaihuhang.setText(resu);
             }
+
+            @Override
+            public void onLeftClickListener() {
+                super.onLeftClickListener();
+                mItemLookjiesKaihuhang.setText("");
+            }
         });
+        mStatus = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("status", "");
+        if(mStatus.equals("1")){//1 不可编辑  0可编辑
+            mIncon.setmIsIntercept(true);
+        }
     }
 
     @OnClick({R.id.item_lookjies_leixing, R.id.item_lookjies_banka, R.id.item_lookjies_jiesuanstate, R.id.item_lookjies_ynfaren, R.id.item_lookjies_imgvgps, R.id.item_lookjies_gsptianjia,
@@ -389,6 +402,10 @@ public class EdtJieskFragment extends BaseFragment {
     public void toJudge() {
         mEdtdetail_id = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("edtdetail_id", "");
         channel = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("channel", "");
+        mStatus = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("status", "");
+        if(mStatus.equals("1")&&mIncon!=null){//1 不可编辑  0可编辑
+            mIncon.setmIsIntercept(true);
+        }
         toGetEdtData();
         getZhi();
     }
@@ -402,6 +419,7 @@ public class EdtJieskFragment extends BaseFragment {
         map.put("shopId", mEdtdetail_id);
         map.put("type", 4);
         map.put("channel", channel);
+        map.put("staus", mStatus);
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).merchantDetails(EncryPtionUtil.getInstance(getActivity()).toEncryption(map));
         EncryPtionHttp.getInstance(getActivity()).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
             @Override
@@ -1099,8 +1117,8 @@ public class EdtJieskFragment extends BaseFragment {
             public void onTextClickListenerHis(String name, String what) {
                 super.onTextClickListenerHis(name, what);
                 if (name.equals("天津银行")) {
-                    mItemLookjiesKaihuhang.setText(name);
                     is_Tianjin = true;
+                    mItemLookjiesKaihuhang.setText(name);
                     mItemLookTianjin.setVisibility(View.VISIBLE);
                     mItemLookjiesZhihang.setVisibility(View.INVISIBLE);
                     mItemLookjiesHanghao.setEnabled(false);
@@ -1108,6 +1126,9 @@ public class EdtJieskFragment extends BaseFragment {
                     is_Tianjin = false;
                     mItemLookTianjin.setVisibility(View.INVISIBLE);
                     mItemLookjiesZhihang.setVisibility(View.VISIBLE);
+                    mItemLookTianjin.setText("");
+                    mItemLookjiesHanghao.setText("");
+                    mItemLookjiesZhihang.setText("");
                     mItemLookjiesHanghao.setEnabled(true);
                     mInputDialog.show();
                     mInputDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);

@@ -39,6 +39,8 @@ import com.superc.waitmarket.httputil.EncryPtionUtil;
 import com.superc.waitmarket.ui.activity.EdtDetailActivity;
 import com.superc.waitmarket.utils.BigDecimalUtils;
 import com.superc.waitmarket.utils.dialog.DialogBotList;
+import com.superc.waitmarket.utils.dialog.MiddleDialog;
+import com.superc.waitmarket.views.InConstranLayout;
 import com.superc.yyfflibrary.base.BaseFragment;
 import com.superc.yyfflibrary.utils.ShareUtil;
 import com.trello.rxlifecycle2.LifecycleTransformer;
@@ -94,7 +96,8 @@ public class EdtZizhiFragment extends BaseFragment {
     TextView mtvLeixing;
     @BindView(R.id.textView599)
     TextView mtvFocus;
-
+    @BindView(R.id.incon_con)
+    InConstranLayout mIncon;
     @BindView(R.id.item_lookjies_imgvyyzz)
     ImageView mItemLookjiesImgvyyzz;
     @BindView(R.id.item_lookjies_yyzzadd)
@@ -113,6 +116,7 @@ public class EdtZizhiFragment extends BaseFragment {
     private List<BotListBean> mBotListBeans_leixing;
     private String[][] mStrings_zizhi = new String[][]{{"企业", "0"}, {"个体户", "1"}, {"个人", "2"}};
     private String channel;
+    private String mStatus;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -131,7 +135,10 @@ public class EdtZizhiFragment extends BaseFragment {
         mEdtDetailActivity = (EdtDetailActivity) getActivity();
         mBotListBeans_leixing = new ArrayList<>();
         mtvFocus.requestFocus();
-
+        mStatus = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("status", "");
+        if(mStatus.equals("1")){//1 不可编辑  0可编辑
+            mIncon.setmIsIntercept(true);
+        }
     }
 
     @OnClick({R.id.item_edtzizhi_imgone, R.id.item_edtzizhi_imgonexiangji, R.id.item_edtzizhi_imgtwo, R.id.item_edtzizhi_imgtwoxiangji, R.id.imageView7, R.id.imageView8, R.id.item_edtzizhi_leixing,
@@ -169,6 +176,10 @@ public class EdtZizhiFragment extends BaseFragment {
     public void toJudge() {
         mEdtdetail_id = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("edtdetail_id", "");
         channel = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("channel", "");
+        mStatus = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("status", "");
+        if(mStatus.equals("1")&&mIncon!=null){//1 不可编辑  0可编辑
+            mIncon.setmIsIntercept(true);
+        }
         toGetEdtData();
     }
 
@@ -181,6 +192,7 @@ public class EdtZizhiFragment extends BaseFragment {
         map.put("shopId", mEdtdetail_id);
         map.put("type", 3);
         map.put("channel", channel);
+        map.put("staus", mStatus);
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).merchantDetails(EncryPtionUtil.getInstance(getActivity()).toEncryption(map));
         EncryPtionHttp.getInstance(getActivity()).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
             @Override
@@ -359,7 +371,7 @@ public class EdtZizhiFragment extends BaseFragment {
                     mEdtDetailActivity.toScroll();
                 } else {
                     if (!TextUtils.isEmpty(msg)) {
-                        ToastShow(msg);
+                        new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content(msg).build().show();
                     }
                 }
             }

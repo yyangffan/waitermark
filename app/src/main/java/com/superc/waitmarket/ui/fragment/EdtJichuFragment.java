@@ -65,6 +65,7 @@ import com.superc.waitmarket.utils.CheckDateRule;
 import com.superc.waitmarket.utils.PoiOverlay;
 import com.superc.waitmarket.utils.dialog.DialogBotList;
 import com.superc.waitmarket.utils.dialog.MiddleDialog;
+import com.superc.waitmarket.views.InConstranLayout;
 import com.superc.yyfflibrary.base.BaseFragment;
 import com.superc.yyfflibrary.dialog.YfsRemindDialog;
 import com.superc.yyfflibrary.utils.ShareUtil;
@@ -155,6 +156,8 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
     LinearLayout mEdtjichuLinear;
     @BindView(R.id.jichu_look_smart)
     SmartRefreshLayout mJichuLookSmart;
+    @BindView(R.id.incon_con)
+    InConstranLayout mIncon;
     Unbinder unbinder;
     private CustomDatePicker customTimePickerSt;
     private boolean ll_twiceTimeShow, ll_thirdTimeShow = false;
@@ -188,6 +191,7 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
     private GeocodeSearch geocoderSearch;
     private boolean is_xuanze = false;
     private String mRealname;
+    private String mStatus;
 
 
     @Override
@@ -212,6 +216,7 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
         mBotListBeans_city = new ArrayList<>();
         mBotListBeans_quyu = new ArrayList<>();
         mBotListBeans_shagnquan = new ArrayList<>();
+        mStatus = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("status", "");
         initMapView();
         initDialog();
         toJudge();
@@ -224,6 +229,10 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
         mUser_id = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("user_id", "");
         channel = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("channel", "");
         mRealname = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("realname", "");
+        mStatus = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("status", "");
+        if (mStatus.equals("1") && mIncon != null) {//1 不可编辑  0可编辑
+            mIncon.setmIsIntercept(true);
+        }
         if (mIs_creat.equals("1")) {
             toGetEdtData();
         }
@@ -238,6 +247,7 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
         map.put("shopId", mEdtdetail_id);
         map.put("type", 1);
         map.put("channel", channel);
+        map.put("staus", mStatus);
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).merchantDetails(EncryPtionUtil.getInstance(getActivity()).toEncryption(map));
         EncryPtionHttp.getInstance(getActivity()).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
             @Override
@@ -541,51 +551,51 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
         String lianxiren = mEdtjichuLianxiren.getText().toString();
         String lianxiphone = mEdtjichuLianxiphone.getText().toString();
         if (TextUtils.isEmpty(name)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请输入[基础信息-门店名称]").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title(mEdtDetailActivity.is_tijiao ? "提交失败" : "").content("请输入[基础信息-门店名称]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(mPicSmallPath)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择[基础信息-店铺头像]").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title(mEdtDetailActivity.is_tijiao ? "提交失败" : "").content("请选择[基础信息-店铺头像]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(onehang)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择[基础信息-一级行业]").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title(mEdtDetailActivity.is_tijiao ? "提交失败" : "").content("请选择[基础信息-一级行业]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(twohang)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择[基础信息-二级行业]").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title(mEdtDetailActivity.is_tijiao ? "提交失败" : "").content("请选择[基础信息-二级行业]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(city)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择[基础信息-城市]").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title(mEdtDetailActivity.is_tijiao ? "提交失败" : "").content("请选择[基础信息-城市]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(quyu)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择[基础信息-区域]").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title(mEdtDetailActivity.is_tijiao ? "提交失败" : "").content("请选择[基础信息-区域]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(shangquan)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择[基础信息-商圈]").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title(mEdtDetailActivity.is_tijiao ? "提交失败" : "").content("请选择[基础信息-商圈]").build().show();
             return false;
         }
         if (click_lat == 0 || click_lon == 0) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请选择[基础信息-门店地址]").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title(mEdtDetailActivity.is_tijiao ? "提交失败" : "").content("请选择[基础信息-门店地址]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(dizhi)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请输入[基础信息-门店地址]").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title(mEdtDetailActivity.is_tijiao ? "提交失败" : "").content("请输入[基础信息-门店地址]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(yingyephone)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请输入[基础信息-营业电话]").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title(mEdtDetailActivity.is_tijiao ? "提交失败" : "").content("请输入[基础信息-营业电话]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(lianxiren)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请输入[基础信息-店铺联系人]").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title(mEdtDetailActivity.is_tijiao ? "提交失败" : "").content("请输入[基础信息-店铺联系人]").build().show();
             return false;
         }
         if (TextUtils.isEmpty(lianxiphone)) {
-            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title("提交失败").content("请输入[基础信息-联系人手机号]").build().show();
+            new MiddleDialog.Builder(getActivity()).img_id(R.drawable.con_shibai).title(mEdtDetailActivity.is_tijiao ? "提交失败" : "").content("请输入[基础信息-联系人手机号]").build().show();
             return false;
         }
 
@@ -621,9 +631,9 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
                 String msg = result.getString("message");
                 if (code) {
                     if (mEdtDetailActivity.is_tijiao) {
-                        ShareUtil.getInstance(EdtJichuFragment.this.getActivity()).put("is_creat","1");
-                        mIs_creat="1";
-                        mEdtdetail_id=result.getJSONObject("data").getString("shopId");
+                        ShareUtil.getInstance(EdtJichuFragment.this.getActivity()).put("is_creat", "1");
+                        mIs_creat = "1";
+                        mEdtdetail_id = result.getJSONObject("data").getString("shopId");
 //                        toJudge();
                     }
                     ShareUtil.getInstance(getActivity()).put("edtdetail_id", result.getJSONObject("data").getString("shopId"));

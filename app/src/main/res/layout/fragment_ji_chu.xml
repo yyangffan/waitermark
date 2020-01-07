@@ -31,8 +31,8 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_1"
                 android:layout_marginTop="10dp"
-                android:visibility="gone"
                 android:background="@color/line_color"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/item_lookjichu_mingcheng"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/textView53"
@@ -303,10 +303,8 @@
                 android:id="@+id/item_lookjichu_posi"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:ellipsize="end"
+                android:layout_marginStart="@dimen/dp_14"
                 android:gravity="right"
-                android:lines="1"
                 android:text="- -"
                 android:textColor="@color/black"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView74"
@@ -314,16 +312,16 @@
                 app:layout_constraintStart_toEndOf="@+id/textView74"
                 tools:text="小白楼地铁站"/>
 
-    <!--        <ImageView
-                android:id="@+id/item_lookjichu_ditu"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/dp_95"
-                android:layout_marginTop="10dp"
-                android:scaleType="fitXY"
-                app:layout_constraintEnd_toEndOf="@+id/item_lookjichu_posi"
-                app:layout_constraintStart_toStartOf="@+id/textView74"
-                app:layout_constraintTop_toBottomOf="@+id/textView74"
-                tools:src="@tools:sample/backgrounds/scenic"/>-->
+            <!--        <ImageView
+                        android:id="@+id/item_lookjichu_ditu"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_95"
+                        android:layout_marginTop="10dp"
+                        android:scaleType="fitXY"
+                        app:layout_constraintEnd_toEndOf="@+id/item_lookjichu_posi"
+                        app:layout_constraintStart_toStartOf="@+id/textView74"
+                        app:layout_constraintTop_toBottomOf="@+id/textView74"
+                        tools:src="@tools:sample/backgrounds/scenic"/>-->
 
             <com.superc.waitmarket.views.MapContainer
                 android:id="@+id/linear"
@@ -333,7 +331,7 @@
                 android:background="@drawable/bg_corner_kuang"
                 app:layout_constraintEnd_toEndOf="@+id/item_lookjichu_posi"
                 app:layout_constraintStart_toStartOf="@+id/textView74"
-                app:layout_constraintTop_toBottomOf="@+id/textView74"
+                app:layout_constraintTop_toBottomOf="@+id/item_lookjichu_posi"
                 tools:src="@tools:sample/backgrounds/scenic">
 
                 <com.amap.api.maps.TextureMapView
@@ -475,8 +473,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="合作类型"
-                android:visibility="gone"
                 android:textColor="@color/txt_sixsev"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView94"
                 app:layout_constraintTop_toBottomOf="@+id/textView94"/>
@@ -487,6 +485,7 @@
                 android:layout_height="wrap_content"
                 android:text="- -"
                 android:textColor="@color/black"
+                android:visibility="gone"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView95"
                 app:layout_constraintEnd_toEndOf="@+id/textView94"
                 tools:text="生活"/>

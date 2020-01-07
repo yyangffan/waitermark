@@ -36,8 +36,7 @@ import io.reactivex.Observable;
  * A simple {@link Fragment} subclass.
  */
 public class OldFragment extends BaseFragment {
-
-
+    private static final String TAG = "OldFragment";
     @BindView(R.id.item_lookold_content)
     TextView mItemLookoldContent;
     @BindView(R.id.item_lookold_leixing)
@@ -94,7 +93,7 @@ public class OldFragment extends BaseFragment {
                     if(result.getJSONObject("data").getJSONObject("merchantDetails")!=null) {
                         setData(result.getJSONObject("data").getJSONObject("merchantDetails"));
                     }else{
-                        ToastShow("数据获取失败");
+                        Log.e(TAG, "onSuccessResult: 数据获取失败");
                     }
                 }
                 if (!TextUtils.isEmpty(msg)) {
@@ -167,10 +166,19 @@ public class OldFragment extends BaseFragment {
                 }
                 mItemLookoldTimeduan.setText(stb_time.toString());
 
+                String customusagerules = temActMap.getString("customusagerules");
                 String usagerules = temActMap.getString("usagerules");
-                if (!TextUtils.isEmpty(usagerules)) {
-                    mItemLookoldGuize.setText(usagerules.replace("#", "、"));
+                StringBuilder stringBuilder=new StringBuilder();
+                if(!TextUtils.isEmpty(customusagerules)){
+                    stringBuilder.append(customusagerules);
+                    if (!TextUtils.isEmpty(usagerules)) {
+                        stringBuilder.append("\n");
+                    }
                 }
+                if (!TextUtils.isEmpty(usagerules)) {
+                    stringBuilder.append(usagerules.replace("#", "、"));
+                }
+                mItemLookoldGuize.setText(stringBuilder.toString());
                 mItemLookoldShijianduan.setText("自生效日起" + BigDecimalUtils.bigUtil(temActMap.getString("limitvalidity")) + "天有效");
 
             }

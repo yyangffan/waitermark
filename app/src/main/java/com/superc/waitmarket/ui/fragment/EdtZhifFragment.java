@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.ljy.devring.DevRing;
@@ -21,6 +20,7 @@ import com.superc.waitmarket.R;
 import com.superc.waitmarket.base.ApiService;
 import com.superc.waitmarket.base.WaitApplication;
 import com.superc.waitmarket.bean.MarketDeatilBean;
+import com.superc.waitmarket.bean.NewOldBean;
 import com.superc.waitmarket.httputil.EncryPtionHttp;
 import com.superc.waitmarket.httputil.EncryPtionUtil;
 import com.superc.waitmarket.ui.activity.EdtDetailActivity;
@@ -30,6 +30,7 @@ import com.superc.yyfflibrary.base.BaseFragment;
 import com.superc.yyfflibrary.utils.ShareUtil;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -130,8 +131,9 @@ public class EdtZhifFragment extends BaseFragment {
                 boolean code = result.getBoolean("code");
                 String msg = result.getString("message");
                 if (code) {
-                    JSONArray data = result.getJSONArray("data");
-                    setData(data);
+                    NewOldBean bean=new Gson().fromJson(result.toString(),NewOldBean.class);
+//                    JSONArray data = result.getJSONArray("data");
+                    setData(bean);
                 }
                 if (!TextUtils.isEmpty(msg)) {
                     ToastShow(msg);
@@ -146,8 +148,35 @@ public class EdtZhifFragment extends BaseFragment {
         });
     }
 
-    private void setData(JSONArray data) {
-        if (data != null) {
+    private void setData(NewOldBean bean) {
+        List<NewOldBean.DataBean> data = bean.getData();
+        if(data!=null){
+            if (data.size() == 0) {
+                is_creatNew = true;
+                is_creatOld = true;
+                mItemLookzhifOld.setText("去设置");
+                mItemLookzhifOld.setTextColor(getResources().getColor(R.color.main_color));
+                mItemLookzhifNew.setText("去设置");
+                mItemLookzhifNew.setTextColor(getResources().getColor(R.color.main_color));
+            }else {
+                for (int i = 0; i < data.size(); i++) {
+                    NewOldBean.DataBean dataBean = data.get(i);
+                    toPanDuan(dataBean);
+
+                }
+
+            }
+        }else{
+            is_creatNew = true;
+            is_creatOld = true;
+            mItemLookzhifNew.setText("去设置");
+            mItemLookzhifOld.setText("去设置");
+            mItemLookzhifNew.setTextColor(getResources().getColor(R.color.main_color));
+            mItemLookzhifOld.setTextColor(getResources().getColor(R.color.main_color));
+        }
+
+
+      /*  if (data != null) {
             if (data.size() == 0) {
                 is_creatNew = true;
                 is_creatOld = true;
@@ -167,36 +196,32 @@ public class EdtZhifFragment extends BaseFragment {
                 }
             }
         } else {
-            is_creatNew = true;
-            is_creatOld = true;
-            mItemLookzhifNew.setText("去设置");
-            mItemLookzhifOld.setText("去设置");
-            mItemLookzhifNew.setTextColor(getResources().getColor(R.color.main_color));
-            mItemLookzhifOld.setTextColor(getResources().getColor(R.color.main_color));
-        }
+
+        }*/
     }
 
-    private void toPanDuan(JSONObject jsonObject,int what){
-        String isnewcu=BigDecimalUtils.bigUtil(jsonObject.getString("isnewcustomer"));
+    private void toPanDuan(NewOldBean.DataBean bean){
+
+        String isnewcu=BigDecimalUtils.bigUtil(bean.getIsnewcustomer());
         if(isnewcu.equals("0")){//老客
             is_creatOld = false;
-            old_id=jsonObject.getString("id");
-            mItemLookzhifOld.setText(jsonObject.getString("actName"));
+            old_id=bean.getId();
+            mItemLookzhifOld.setText(bean.getActName());
             mItemLookzhifOld.setTextColor(getResources().getColor(R.color.black));
-            if(what==1) {
-                mItemLookzhifNew.setText("去设置");
-                mItemLookzhifNew.setTextColor(getResources().getColor(R.color.main_color));
-            }
+//            if(what==1) {
+//                mItemLookzhifNew.setText("去设置");
+//                mItemLookzhifNew.setTextColor(getResources().getColor(R.color.main_color));
+//            }
             getDetailMsg(old_id,true);
         }else{//新客
             is_creatNew = false;
-            new_id=jsonObject.getString("id");
-            mItemLookzhifNew.setText(jsonObject.getString("actName"));
+            new_id=bean.getId();
+            mItemLookzhifNew.setText(bean.getActName());
             mItemLookzhifNew.setTextColor(getResources().getColor(R.color.black));
-            if(what==1) {
-                mItemLookzhifOld.setText("去设置");
-                mItemLookzhifOld.setTextColor(getResources().getColor(R.color.main_color));
-            }
+//            if(what==1) {
+//                mItemLookzhifOld.setText("去设置");
+//                mItemLookzhifOld.setTextColor(getResources().getColor(R.color.main_color));
+//            }
             getDetailMsg(new_id,false);
         }
 

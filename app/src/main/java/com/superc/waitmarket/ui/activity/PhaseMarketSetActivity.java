@@ -186,6 +186,8 @@ public class PhaseMarketSetActivity extends BaseActivity {
     LinearLayout mPhaseMarketsetDjqllSet;
     @BindView(R.id.checkBox)
     CheckBox mCheckBox;
+    @BindView(R.id.phase_marketset_save)
+    TextView mtv_commit;
 
 
     private ArrayList<BotListBean> mMbot_leftList;
@@ -903,11 +905,12 @@ public class PhaseMarketSetActivity extends BaseActivity {
         map.put("customusagerules", mPhaseMarketsetGuize.getText().toString());
         map.put("type", mIs_creat ? "1" : "2");//1创建2修改
         map.put("id", mIs_creat ? "" : mId);//创建传""
-
+        mtv_commit.setEnabled(false);
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).campaignSettings(EncryPtionUtil.getInstance(this).toEncryption(map));
         EncryPtionHttp.getInstance(this).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
             @Override
             public void onSuccessResult(JSONObject result) {
+                mtv_commit.setEnabled(true);
                 boolean code = result.getBoolean("code");
                 if (code) {
                     mPhaseRemindDialogTishi = new PhaseRemindDialog.Builder(PhaseMarketSetActivity.this).title((String) result.get("message"))
@@ -925,6 +928,7 @@ public class PhaseMarketSetActivity extends BaseActivity {
 
             @Override
             public void onErrorResult(HttpThrowable httpThrowable) {
+                mtv_commit.setEnabled(true);
             }
         });
 

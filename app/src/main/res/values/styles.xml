@@ -44,4 +44,7 @@
         <item name="android:backgroundDimAmount">0.7</item>
         <item name="android:windowSoftInputMode">stateAlwaysVisible</item>
     </style>
+    <style name="TransparentDialog" parent="@android:style/Theme.Holo.Light.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>

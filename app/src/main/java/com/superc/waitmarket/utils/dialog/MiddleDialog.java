@@ -27,6 +27,7 @@ public class MiddleDialog extends AlertDialog {
     private MiddleDialog mPhaseRemindDialog;
     private final Window mWindow;
     private Display mDisplay;
+    private OnMiddleDigFinishListener mOnMiddleDigFinishListener;
 
 
     public MiddleDialog(Context context, Builder builder) {
@@ -42,6 +43,10 @@ public class MiddleDialog extends AlertDialog {
         content = builder.content;
         title = builder.title;
         img_id = builder.img_id;
+    }
+
+    public void setOnMiddleDigFinishListener(OnMiddleDigFinishListener onMiddleDigFinishListener) {
+        mOnMiddleDigFinishListener = onMiddleDigFinishListener;
     }
 
     @Override
@@ -78,9 +83,16 @@ public class MiddleDialog extends AlertDialog {
 
             @Override
             public void onFinish() {
+                if(mOnMiddleDigFinishListener!=null){
+                    mOnMiddleDigFinishListener.onMiddleDigfinishListener();
+                }
                 mPhaseRemindDialog.dismiss();
             }
         }.start();
+    }
+
+    public interface OnMiddleDigFinishListener{
+        void onMiddleDigfinishListener();
     }
 
     private void setCon(TextView tv, String con) {

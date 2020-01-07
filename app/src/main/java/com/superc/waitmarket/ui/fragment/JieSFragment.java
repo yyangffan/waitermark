@@ -289,13 +289,13 @@ public class JieSFragment extends BaseFragment {
                 mTvXiugai.setText("开户行许可证照片");
 //                is_kaihuPic = true;
                 mTvShoukuanGai.setText("(许可证上面的账户)");
-            } else if (jisuanstate.equals("非统一结算方式") && shifoufren.equals("否")) {
+            } else if (jisuanstate.equals("非统一结算账户") && shifoufren.equals("否")) {
                 mLinearGps.setVisibility(View.GONE);
                 mLinearChengnuo.setVisibility(View.GONE);
                 mTvXiugai.setText("开户行许可证照片");
 //                is_kaihuPic = true;
                 mTvShoukuanGai.setText("(许可证上面的账户)");
-            } else if (jisuanstate.equals("非统一结算方式") && shifoufren.equals("是")) {
+            } else if (jisuanstate.equals("非统一结算账户") && shifoufren.equals("是")) {
                 mLineOne.setVisibility(View.GONE);
                 mLinearGps.setVisibility(View.GONE);
                 mLinearChengnuo.setVisibility(View.GONE);
@@ -314,10 +314,10 @@ public class JieSFragment extends BaseFragment {
                 mLinearShenfenzheng.setVisibility(View.GONE);
                 mLinearShouchi.setVisibility(View.GONE);
                 mLinearZijin.setVisibility(View.GONE);
-            } else if (jisuanstate.equals("非统一结算方式") && shifoufren.equals("否")) {
+            } else if (jisuanstate.equals("非统一结算账户") && shifoufren.equals("否")) {
                 mLinearChengnuo.setVisibility(View.GONE);
                 mLinearGps.setVisibility(View.GONE);
-            } else if (jisuanstate.equals("非统一结算方式") && shifoufren.equals("是")) {
+            } else if (jisuanstate.equals("非统一结算账户") && shifoufren.equals("是")) {
                 mLinearChengnuo.setVisibility(View.GONE);
                 mLinearGps.setVisibility(View.GONE);
                 mLineOne.setVisibility(View.GONE);

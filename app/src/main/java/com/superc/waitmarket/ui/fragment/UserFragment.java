@@ -106,7 +106,7 @@ public class UserFragment extends BaseFragment {
     private String mHead_url;
     private WorkCardDialog mWorkCardDialog;
     private String mType;
-    private String num="- -";
+    private String num = "- -";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -157,8 +157,8 @@ public class UserFragment extends BaseFragment {
                 break;
             case R.id.user_one:
             case R.id.user_one_money:
-                Intent wa_int=new Intent(getActivity(),WalletActivity.class);
-                wa_int.putExtra("num",num);
+                Intent wa_int = new Intent(getActivity(), WalletActivity.class);
+                wa_int.putExtra("num", num);
                 startActivity(wa_int);
                 break;
             case R.id.user_two:
@@ -195,10 +195,12 @@ public class UserFragment extends BaseFragment {
                 String msg = result.getString("message");
                 if (code) {
                     JSONObject data = result.getJSONObject("data");
-                    num=BigDecimalUtils.bigUtil(data.getString("amount"));
+                    num = BigDecimalUtils.bigUtil(data.getString("amount"));
                     mUserOneMoney.setText("¥" + num);
+                    mUserTwoMsg.setVisibility(TextUtils.isEmpty(BigDecimalUtils.bigUtil(data.getString("messagecount")))?View.GONE:(BigDecimalUtils.bigUtil(data.getString("messagecount")).equals("0")?View.GONE:View.VISIBLE));
                     mUserTwoMsg.setText(BigDecimalUtils.bigUtil(data.getString("messagecount")));
-
+                }else{
+                    mUserTwoMsg.setVisibility(View.GONE);
                 }
                 if (!TextUtils.isEmpty(msg)) {
                     ToastShow(msg);
@@ -224,7 +226,6 @@ public class UserFragment extends BaseFragment {
         EncryPtionHttp.getInstance(getActivity()).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
             @Override
             public void onSuccessResult(JSONObject result) {
-                Log.d("qqq", result.toJSONString());
                 boolean code = result.getBoolean("code");
                 String msg = result.getString("message");
                 if (code) {
@@ -292,9 +293,10 @@ public class UserFragment extends BaseFragment {
 
                     String picSmallPath = result.getJSONObject("data").getString("picSmallPath");
                     toEndUpHead(picSmallPath);
-                }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
+                } else {
+                    if (!TextUtils.isEmpty(msg)) {
+                        ToastShow(msg);
+                    }
                 }
             }
 
@@ -318,6 +320,7 @@ public class UserFragment extends BaseFragment {
                 String msg = result.getString("message");
                 if (code) {
                     new MiddleDialog.Builder(UserFragment.this.getActivity()).title("头像修改成功").img_id(R.drawable.icon_chenggong).build().show();
+                    getData();
                 } else {
                     if (!TextUtils.isEmpty(msg)) {
                         ToastShow(msg);
@@ -336,7 +339,7 @@ public class UserFragment extends BaseFragment {
     private void selectPic() {
         // 进入相册 以下是例子：用不到的api可以不写
         PictureSelector.create(this).openGallery(PictureMimeType.ofImage())
-                .maxSelectNum(1)// 最大图片选择数量 int
+                .maxSelectNum(10)// 最大图片选择数量 int
 //                .minSelectNum(1)// 最小选择数量 int
                 .imageSpanCount(4)// 每行显示个数 int
                 .previewImage(false)// 是否可预览图片 true or false

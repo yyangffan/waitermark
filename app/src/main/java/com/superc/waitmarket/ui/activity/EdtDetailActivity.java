@@ -17,6 +17,7 @@ import com.ljy.devring.http.support.throwable.HttpThrowable;
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.adapter.ViewPaperAdapter;
 import com.superc.waitmarket.base.ApiService;
+import com.superc.waitmarket.base.WaitApplication;
 import com.superc.waitmarket.httputil.EncryPtionHttp;
 import com.superc.waitmarket.httputil.EncryPtionUtil;
 import com.superc.waitmarket.ui.fragment.EdtChangjingFragment;
@@ -27,6 +28,7 @@ import com.superc.waitmarket.ui.fragment.EdtZizhiFragment;
 import com.superc.waitmarket.utils.dialog.MiddleDialog;
 import com.superc.waitmarket.views.CustomScrollViewPager;
 import com.superc.yyfflibrary.base.BaseActivity;
+import com.superc.yyfflibrary.dialog.YfsRemindDialog;
 import com.superc.yyfflibrary.utils.ShareUtil;
 import com.superc.yyfflibrary.utils.titlebar.TitleUtils;
 
@@ -76,6 +78,7 @@ public class EdtDetailActivity extends BaseActivity {
     private int mScreenWidth;
     private boolean is_back = false;
     public boolean is_tijiao = false;
+    private String mStatus;
 
     @Override
     public int getContentLayoutId() {
@@ -106,7 +109,10 @@ public class EdtDetailActivity extends BaseActivity {
         mTextViews.add(mEdtdetailThree);
         mTextViews.add(mEdtdetailFour);
         mTextViews.add(mEdtdetailFive);
-
+        mStatus = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("status", "");
+        if (mStatus.equals("1")) {//1 不可编辑  0可编辑
+            new YfsRemindDialog.Builder(this).title("当前状态仅可编辑支付营销活动").left("确认").left_color(R.color.main_color).build().show();
+        }
         initWhat();
     }
 
@@ -119,6 +125,10 @@ public class EdtDetailActivity extends BaseActivity {
                 break;
             case R.id.edtdetail_commit:
                 is_tijiao = true;
+                if(mStatus.equals("1")){//1 不可编辑  0可编辑
+                    toSubmit();
+                    return;
+                }
                 toCommit();
                 /*toSubmit();*/
                 break;
@@ -127,6 +137,10 @@ public class EdtDetailActivity extends BaseActivity {
                 is_tijiao = false;
 //                initWhat();
                 ShareUtil.getInstance(this).put("is_creat", "1");
+                if(mStatus.equals("1")){//1 不可编辑  0可编辑
+                    toScroll();
+                    return;
+                }
                 if (what == 0) {
                     mJiChuFragment.getJichu();
                 }
@@ -135,6 +149,10 @@ public class EdtDetailActivity extends BaseActivity {
             case R.id.edtdetail_bot:
                 is_tijiao = false;
                 is_back = false;
+                if(mStatus.equals("1")){//1 不可编辑  0可编辑
+                    toScroll();
+                    return;
+                }
                 toCommit();
                 break;
         }
@@ -152,10 +170,17 @@ public class EdtDetailActivity extends BaseActivity {
                 boolean code = result.getBoolean("code");
                 String msg = result.getString("message");
                 if (code) {
-                    EdtDetailActivity.this.finish();
                     if (!TextUtils.isEmpty(msg)) {
-                        ToastShow(msg);
+                        MiddleDialog dig_middle = new MiddleDialog.Builder(EdtDetailActivity.this).img_id(R.drawable.icon_chenggong).title(msg).build();
+                        dig_middle.setOnMiddleDigFinishListener(new MiddleDialog.OnMiddleDigFinishListener() {
+                            @Override
+                            public void onMiddleDigfinishListener() {
+                                EdtDetailActivity.this.finish();
+                            }
+                        });
+                        dig_middle.show();
                     }
+
                 } else {
                     String data = result.getString("data");
                     if (!TextUtils.isEmpty(data)) {

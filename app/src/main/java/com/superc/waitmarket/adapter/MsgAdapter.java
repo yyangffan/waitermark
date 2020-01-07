@@ -41,13 +41,23 @@ public class MsgAdapter extends RecyclerView.Adapter<MsgAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder vh, final int position) {
         MsgBean.DataBean bean = mLists.get(position);
+        int status = bean.getStatus();
+        if (status == 0) {//0未读 其他数字为已读
+            vh.mItemMsgTitle.setTextColor(mContext.getResources().getColor(R.color.black));
+            vh.mTexitemMsgContent.setTextColor(mContext.getResources().getColor(R.color.black));
+            vh.mItemMsgDetail.setTextColor(mContext.getResources().getColor(R.color.main_color));
+        } else {
+            vh.mItemMsgTitle.setTextColor(mContext.getResources().getColor(R.color.txt_granine));
+            vh.mTexitemMsgContent.setTextColor(mContext.getResources().getColor(R.color.txt_granine));
+            vh.mItemMsgDetail.setTextColor(mContext.getResources().getColor(R.color.txt_granine));
+        }
         vh.mItemMsgTitle.setText(bean.getTitle());
         vh.mItemMsgTime.setText(bean.getAddtime());
         vh.mTexitemMsgContent.setText(bean.getContent());
         vh.mItemMsgDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mOnItemClickListener!=null)
+                if (mOnItemClickListener != null)
                     mOnItemClickListener.onItemClickListener(position);
             }
         });
@@ -62,7 +72,7 @@ public class MsgAdapter extends RecyclerView.Adapter<MsgAdapter.ViewHolder> {
         void onItemClickListener(int pos);
     }
 
-    static class ViewHolder   extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.item_msg_title)
         TextView mItemMsgTitle;
         @BindView(R.id.item_msg_time)

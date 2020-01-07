@@ -146,6 +146,10 @@ public class ManaPbActivity extends BaseActivity {
                 mManapbImgv.setVisibility(View.VISIBLE);
                 mManapbShifang.setVisibility(View.GONE);
                 mManapbLinear.setVisibility(View.GONE);
+                for (int i = 0; i < mMapWhList.size(); i++) {
+                    MainTainBean.DataBean.ListBean listBean = mMapWhList.get(i);
+                    listBean.setCheck(false);
+                }
                 mManaWhAdapter.setIs_shifang(false);
                 mManaWhAdapter.notifyDataSetChanged();
                 break;
@@ -216,6 +220,7 @@ public class ManaPbActivity extends BaseActivity {
                 MainTainBean.DataBean.ListBean map = mMapWhList.get(pos);
                 Intent intent = new Intent(ManaPbActivity.this, EdtDetailActivity.class);
                 ShareUtil.getInstance(ManaPbActivity.this).put("edtdetail_id", BigDecimalUtils.bigUtil(map.getShopId()));
+                ShareUtil.getInstance(ManaPbActivity.this).put("status", BigDecimalUtils.bigUtil(map.getStaus()));
                 ShareUtil.getInstance(ManaPbActivity.this).put("is_creat", "1");
                 ShareUtil.getInstance(ManaPbActivity.this).put("channel", "3");
 
@@ -346,7 +351,7 @@ public class ManaPbActivity extends BaseActivity {
             @Override
             public void onItemClickListener(int pos) {
                 ShenheBean.DataBean.ListBean map = mMapShList.get(pos);
-                ShareUtil.getInstance(WaitApplication.getInstance()).put("edtdetail_id", map.getShopId());
+                ShareUtil.getInstance(WaitApplication.getInstance()).put("edtdetail_id", BigDecimalUtils.bigUtil(map.getShopid()));
                 ShareUtil.getInstance(WaitApplication.getInstance()).put("channel", "1");
                 statActivity(MerchantDetailActivity.class);
             }

@@ -250,6 +250,7 @@
                 android:lines="1"
                 android:text="3"
                 android:textColor="@color/white"
+                android:visibility="gone"
                 android:textSize="8sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/user_two"
                 app:layout_constraintEnd_toStartOf="@+id/textView47"
@@ -258,11 +259,11 @@
             <ImageView
                 android:id="@+id/textView47"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="12dp"
                 android:src="@drawable/icon_gengduo"
-                app:layout_constraintBottom_toBottomOf="@+id/user_two_msg"
+                app:layout_constraintBottom_toBottomOf="@+id/user_two"
                 app:layout_constraintEnd_toEndOf="@+id/user_one_money"
-                app:layout_constraintTop_toTopOf="@+id/user_two_msg"/>
+                />
 
             <TextView
                 android:id="@+id/user_three"

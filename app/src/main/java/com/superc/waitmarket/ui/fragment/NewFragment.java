@@ -36,8 +36,7 @@ import io.reactivex.Observable;
  * A simple {@link Fragment} subclass.
  */
 public class NewFragment extends BaseFragment {
-
-
+    private static final String TAG = "NewFragment";
     @BindView(R.id.item_looknew_content)
     TextView mItemLooknewContent;
     @BindView(R.id.item_looknew_leixing)
@@ -91,10 +90,10 @@ public class NewFragment extends BaseFragment {
                 boolean code = result.getBoolean("code");
                 String msg = result.getString("message");
                 if (code) {
-                    if(result.getJSONObject("data").getJSONObject("merchantDetails")!=null) {
+                    if (result.getJSONObject("data").getJSONObject("merchantDetails") != null) {
                         setData(result.getJSONObject("data").getJSONObject("merchantDetails"));
-                    }else{
-                        ToastShow("数据获取失败");
+                    } else {
+                        Log.e(TAG, "onSuccessResult: 数据获取失败");
                     }
                 }
                 if (!TextUtils.isEmpty(msg)) {
@@ -114,7 +113,7 @@ public class NewFragment extends BaseFragment {
     private void setData(JSONObject merchant) {
         try {
             JSONObject temActMap = merchant.getJSONObject("temActMap");
-            if(temActMap!=null){
+            if (temActMap != null) {
                 String coupontype = temActMap.getString("coupontype");
                 switch (coupontype) {
                     case "1"://满减券
@@ -166,12 +165,20 @@ public class NewFragment extends BaseFragment {
                     }
                 }
                 mItemLooknewTimeduan.setText(stb_time.toString());
-
+                String customusagerules = temActMap.getString("customusagerules");
                 String usagerules = temActMap.getString("usagerules");
-                if (!TextUtils.isEmpty(usagerules)) {
-                    mItemLooknewGuize.setText(usagerules.replace("#", "、"));
+                StringBuilder stringBuilder=new StringBuilder();
+                if(!TextUtils.isEmpty(customusagerules)){
+                    stringBuilder.append(customusagerules);
+                    if (!TextUtils.isEmpty(usagerules)) {
+                        stringBuilder.append("\n");
+                    }
                 }
-                mItemLooknewShijianduan.setText("自生效日起"+BigDecimalUtils.bigUtil(temActMap.getString("limitvalidity")) +"天有效");
+                if (!TextUtils.isEmpty(usagerules)) {
+                    stringBuilder.append(usagerules.replace("#", "、"));
+                }
+                mItemLooknewGuize.setText(stringBuilder.toString());
+                mItemLooknewShijianduan.setText("自生效日起" + BigDecimalUtils.bigUtil(temActMap.getString("limitvalidity")) + "天有效");
 
             }
             mItemLooknewJiejiashifo.setText("- -");

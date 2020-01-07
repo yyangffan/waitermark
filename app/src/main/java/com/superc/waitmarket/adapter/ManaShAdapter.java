@@ -48,6 +48,8 @@ public class ManaShAdapter extends RecyclerView.Adapter<ManaShAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(final ViewHolder vh, final int position) {
+        vh.mPos_wenzi.setVisibility(View.GONE);
+        vh.mTime_wenzi.setVisibility(View.GONE);
         final ShenheBean.DataBean.ListBean bean = mLists.get(position);
         vh.mimgv.setVisibility(View.VISIBLE);
         vh.mItemMagapbEdt.setVisibility(View.GONE);
@@ -65,9 +67,14 @@ public class ManaShAdapter extends RecyclerView.Adapter<ManaShAdapter.ViewHolder
             Glide.with(mContext).load(Constant.IMG_URL + shoplogo).apply(requestOptions).into(vh.mItemMagapbHead);
         }
         vh.mItemMagapbTitle.setText(bean.getShopName());
-        vh.mItemMagapbPosi.setText(bean.getShopAddress());
-        vh.mItemMagapbTime.setText(bean.getAddTime());
-        vh.mItemMagapbState.setText(bean.getMessage());
+        vh.mItemMagapbPosi.setText("地址："+bean.getShopAddress());
+        String addTime = bean.getAddtime();
+        if (!TextUtils.isEmpty(addTime)) {
+            vh.mItemMagapbTime.setText("创建时间："+addTime.replaceAll("-", "."));
+        } else {
+            vh.mItemMagapbTime.setText("创建时间：- -");
+        }
+        vh.mItemMagapbState.setText(bean.getMes());
         vh.mTextVieitemMagapbReason.setText("基础信息有误");
         vh.mTextVieitemMagapbReason.setVisibility(View.GONE);
         vh.mItemMagapbReasonwenzi.setVisibility(View.GONE);
@@ -114,6 +121,10 @@ public class ManaShAdapter extends RecyclerView.Adapter<ManaShAdapter.ViewHolder
         ConstraintLayout mConstraintLayout;
         @BindView(R.id.item_imgv_go)
         ImageView mimgv;
+        @BindView(R.id.textView48)
+        TextView mPos_wenzi;
+        @BindView(R.id.textView57)
+        TextView mTime_wenzi;
 
         View mView;
 

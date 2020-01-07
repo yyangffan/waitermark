@@ -143,4 +143,9 @@ public class MsgActivity extends BaseActivity {
         });
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        mMsgSmart.autoRefresh();
+    }
 }

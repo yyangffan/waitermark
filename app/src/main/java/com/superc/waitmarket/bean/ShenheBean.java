@@ -6,9 +6,9 @@ public class ShenheBean {
 
     /**
      * code : true
-     * data : {"count":1,"list":[{"shopName":"安卓3","shopId":"238","addTime":"2019-12-26 19:47:44","shopAddress":"天津","message":"等待入网审核","shopLogo":"/Image/shoplogo/f0cf38d6-9386-4b1f-87cb-97a1b7ba085e.200.jpg"}]}
+     * data : {"count":1,"list":[{"shopid":258,"mes":"等待商家审核","ShopLogo":"/Image/shoplogo/19d2a1e8-cfcb-4076-8c51-e7a87a7002e0.200.jpg","ShopName":"老干妈海鲜a","ShopAddress":"浙江路17号(浙江路与曲阜道交口汉庭全季酒店旁边)土大力(小白楼店)","addtime":"2019-12-31 10:59:34"}]}
      * message :
-     * returnTime : 201912270915330358
+     * returnTime : 202001041430000917
      */
 
     private boolean code;
@@ -51,7 +51,7 @@ public class ShenheBean {
     public static class DataBean {
         /**
          * count : 1
-         * list : [{"shopName":"安卓3","shopId":"238","addTime":"2019-12-26 19:47:44","shopAddress":"天津","message":"等待入网审核","shopLogo":"/Image/shoplogo/f0cf38d6-9386-4b1f-87cb-97a1b7ba085e.200.jpg"}]
+         * list : [{"shopid":258,"mes":"等待商家审核","ShopLogo":"/Image/shoplogo/19d2a1e8-cfcb-4076-8c51-e7a87a7002e0.200.jpg","ShopName":"老干妈海鲜a","ShopAddress":"浙江路17号(浙江路与曲阜道交口汉庭全季酒店旁边)土大力(小白楼店)","addtime":"2019-12-31 10:59:34"}]
          */
 
         private String count;
@@ -75,67 +75,67 @@ public class ShenheBean {
 
         public static class ListBean {
             /**
-             * shopName : 安卓3
-             * shopId : 238
-             * addTime : 2019-12-26 19:47:44
-             * shopAddress : 天津
-             * message : 等待入网审核
-             * shopLogo : /Image/shoplogo/f0cf38d6-9386-4b1f-87cb-97a1b7ba085e.200.jpg
+             * shopid : 258
+             * mes : 等待商家审核
+             * ShopLogo : /Image/shoplogo/19d2a1e8-cfcb-4076-8c51-e7a87a7002e0.200.jpg
+             * ShopName : 老干妈海鲜a
+             * ShopAddress : 浙江路17号(浙江路与曲阜道交口汉庭全季酒店旁边)土大力(小白楼店)
+             * addtime : 2019-12-31 10:59:34
              */
 
-            private String shopName;
-            private String shopId;
-            private String addTime;
-            private String shopAddress;
-            private String message;
-            private String shopLogo;
+            private String shopid;
+            private String mes;
+            private String ShopLogo;
+            private String ShopName;
+            private String ShopAddress;
+            private String addtime;
 
-            public String getShopName() {
-                return shopName;
+            public String getShopid() {
+                return shopid;
             }
 
-            public void setShopName(String shopName) {
-                this.shopName = shopName;
+            public void setShopid(String shopid) {
+                this.shopid = shopid;
             }
 
-            public String getShopId() {
-                return shopId;
+            public String getMes() {
+                return mes;
             }
 
-            public void setShopId(String shopId) {
-                this.shopId = shopId;
-            }
-
-            public String getAddTime() {
-                return addTime;
-            }
-
-            public void setAddTime(String addTime) {
-                this.addTime = addTime;
-            }
-
-            public String getShopAddress() {
-                return shopAddress;
-            }
-
-            public void setShopAddress(String shopAddress) {
-                this.shopAddress = shopAddress;
-            }
-
-            public String getMessage() {
-                return message;
-            }
-
-            public void setMessage(String message) {
-                this.message = message;
+            public void setMes(String mes) {
+                this.mes = mes;
             }
 
             public String getShopLogo() {
-                return shopLogo;
+                return ShopLogo;
             }
 
-            public void setShopLogo(String shopLogo) {
-                this.shopLogo = shopLogo;
+            public void setShopLogo(String ShopLogo) {
+                this.ShopLogo = ShopLogo;
+            }
+
+            public String getShopName() {
+                return ShopName;
+            }
+
+            public void setShopName(String ShopName) {
+                this.ShopName = ShopName;
+            }
+
+            public String getShopAddress() {
+                return ShopAddress;
+            }
+
+            public void setShopAddress(String ShopAddress) {
+                this.ShopAddress = ShopAddress;
+            }
+
+            public String getAddtime() {
+                return addtime;
+            }
+
+            public void setAddtime(String addtime) {
+                this.addtime = addtime;
             }
         }
     }

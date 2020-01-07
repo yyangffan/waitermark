@@ -16,7 +16,8 @@
         android:scrollbars="none"
         tools:context=".ui.fragment.JiChuFragment">
 
-        <android.support.constraint.ConstraintLayout
+        <com.superc.waitmarket.views.InConstranLayout
+            android:id="@+id/incon_con"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="@dimen/dp_5"
@@ -310,12 +311,14 @@
                 android:background="@drawable/bg_corner_kuang"
                 android:ellipsize="end"
                 android:hint="请输入收款结算账号"
+                android:imeOptions="actionNext"
                 android:inputType="number"
                 android:lines="1"
                 android:paddingLeft="@dimen/dp_5"
                 android:paddingTop="@dimen/dp_5"
                 android:paddingRight="@dimen/dp_5"
                 android:paddingBottom="@dimen/dp_5"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView64"
@@ -330,11 +333,13 @@
                 android:background="@drawable/bg_corner_kuang"
                 android:ellipsize="end"
                 android:hint="请输入开户人名称"
+                android:imeOptions="actionNext"
                 android:lines="1"
                 android:paddingLeft="@dimen/dp_5"
                 android:paddingTop="@dimen/dp_5"
                 android:paddingRight="@dimen/dp_5"
                 android:paddingBottom="@dimen/dp_5"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/item_lookjies_jiesuannum"
@@ -349,12 +354,14 @@
                 android:background="@drawable/bg_corner_kuang"
                 android:ellipsize="end"
                 android:hint="请输入预留手机号"
+                android:imeOptions="actionNext"
                 android:inputType="number"
                 android:lines="1"
                 android:paddingLeft="@dimen/dp_5"
                 android:paddingTop="@dimen/dp_5"
                 android:paddingRight="@dimen/dp_5"
                 android:paddingBottom="@dimen/dp_5"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/item_lookjies_kaihuren"
@@ -409,11 +416,13 @@
                 android:drawableRight="@drawable/icon_xiala"
                 android:ellipsize="end"
                 android:hint="请选择支行"
+                android:imeOptions="actionNext"
                 android:lines="1"
                 android:paddingLeft="@dimen/dp_5"
                 android:paddingTop="@dimen/dp_5"
                 android:paddingRight="@dimen/dp_5"
                 android:paddingBottom="@dimen/dp_5"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:visibility="invisible"
@@ -930,6 +939,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView71"/>
 
 
-        </android.support.constraint.ConstraintLayout>
+        </com.superc.waitmarket.views.InConstranLayout>
     </ScrollView>
 </com.scwang.smartrefresh.layout.SmartRefreshLayout>

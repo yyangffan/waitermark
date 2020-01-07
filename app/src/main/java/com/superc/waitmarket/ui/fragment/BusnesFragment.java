@@ -118,7 +118,7 @@ public class BusnesFragment extends BaseFragment {
             public void onItemClickListener(int pos) {
                 ShopManageBean.DataBean.ListBean bean = mMapList_content.get(pos);
                 ShareUtil.getInstance(WaitApplication.getInstance()).put("edtdetail_id", BigDecimalUtils.bigUtil(bean.getShopid()));
-                ShareUtil.getInstance(WaitApplication.getInstance()).put("channel", "0");
+                ShareUtil.getInstance(WaitApplication.getInstance()).put("channel", "2");
                 statActivity(MerchantDetailActivity.class);
             }
         });
@@ -189,6 +189,7 @@ public class BusnesFragment extends BaseFragment {
                 ShareUtil.getInstance(getActivity()).put("edtdetail_id", "");
                 ShareUtil.getInstance(getActivity()).put("is_creat", "0");
                 ShareUtil.getInstance(getActivity()).put("can_commit", false);
+                ShareUtil.getInstance(getActivity()).put("status", "0");
                 statActivity(EdtDetailActivity.class);
                 break;
             case R.id.busnes_rela_weihu:
@@ -338,10 +339,10 @@ public class BusnesFragment extends BaseFragment {
     }
 
     private void initSmallPop(List<SaryIndustryBean.DataBean.SecondaryIndustryBean.ListBean> listBeans) {
-        mTv_what.setText("全部美食");
+        mTv_what.setText("全部");
         mMapList_jihuo = new ArrayList<>();
         Map<String, Object> map_first = new HashMap<>();
-        map_first.put("content", "全部美食");
+        map_first.put("content", "全部");
         map_first.put("small_id", "");
         map_first.put("is_check", true);
         mMapList_jihuo.add(map_first);

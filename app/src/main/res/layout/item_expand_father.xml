@@ -15,9 +15,22 @@
         android:background="@color/xml_bg"
         android:paddingLeft="@dimen/dp_16"
         android:paddingTop="@dimen/dp_8"
-        android:paddingBottom="@dimen/dp_8"
-        android:textColor="@color/txt_granine"
+        android:paddingBottom="@dimen/dp_2"
+        android:textColor="#797979"
         tools:text="2019年02月"/>
+
+    <TextView
+        android:id="@+id/item_expandfa_what"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/xml_bg"
+        android:paddingLeft="@dimen/dp_16"
+        android:paddingRight="@dimen/dp_16"
+        android:text="- -"
+        android:paddingBottom="@dimen/dp_8"
+        android:textColor="#797979"
+        android:textSize="12sp"
+        tools:text="共收¥12345（交易流水收益¥12345，商户扩展收益¥12345）"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/item_expandfa_recy"

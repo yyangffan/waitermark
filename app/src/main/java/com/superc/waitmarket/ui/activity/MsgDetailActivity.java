@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -33,7 +34,7 @@ public class MsgDetailActivity extends BaseActivity {
     @BindView(R.id.msg_deetail_time)
     TextView mMsgDeetailTime;
     @BindView(R.id.msg_deetail_content)
-    TextView mMsgDeetailContent;
+    WebView mMsgDeetailContent;
     private String mUser_id;
     private String mId;
 
@@ -80,7 +81,8 @@ public class MsgDetailActivity extends BaseActivity {
                     JSONObject data = result.getJSONObject("data");
                     mMsgDeetailTitle.setText(data.getString("title"));
                     mMsgDeetailTime.setText(data.getString("addtime"));
-                    mMsgDeetailContent.setText(data.getString("content"));
+//                    String content_result=data.getString("content").replace("<img", "<img height=\"auto\"; width=\"100%\"");
+                    mMsgDeetailContent.loadDataWithBaseURL(null, data.getString("content"), "text/html", "utf-8", null);
                 }
                 if (!TextUtils.isEmpty(msg)) {
                     ToastShow(msg);

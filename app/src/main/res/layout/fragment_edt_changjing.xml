@@ -8,7 +8,8 @@
     android:scrollbars="none"
     tools:context=".ui.fragment.ChangjPicFragment">
 
-    <android.support.constraint.ConstraintLayout
+    <com.superc.waitmarket.views.InConstranLayout
+        android:id="@+id/incon_con"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
@@ -154,5 +155,5 @@
             app:layout_constraintStart_toStartOf="@+id/textView60"
             app:layout_constraintTop_toBottomOf="@+id/textView60"/>
 
-    </android.support.constraint.ConstraintLayout>
+    </com.superc.waitmarket.views.InConstranLayout>
 </ScrollView>

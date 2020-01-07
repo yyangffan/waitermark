@@ -13,6 +13,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.base.Constant;
 import com.superc.waitmarket.bean.YingxiaoBean;
+import com.superc.waitmarket.utils.BigDecimalUtils;
 
 import java.util.List;
 
@@ -59,9 +60,9 @@ public class AllMarketDetailAdapter extends RecyclerView.Adapter<AllMarketDetail
         }
         vh.mItemAllmarketTitle.setText(bean.getOne_content());
         vh.mItemAllmarketName.setText(bean.getTwo_content());
-        vh.mItemAllmarketOne.setText(bean.getThree_content());
+        vh.mItemAllmarketOne.setText(BigDecimalUtils.bigUtil(bean.getThree_content()));
         vh.mItemAllmarketTwo.setText("¥"+bean.getFour_content());
-        vh.mItemAllmarketThree.setText(bean.getFive_content());
+        vh.mItemAllmarketThree.setText(BigDecimalUtils.bigUtil(bean.getFive_content()));
 
     }
 

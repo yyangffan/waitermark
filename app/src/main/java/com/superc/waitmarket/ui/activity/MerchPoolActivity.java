@@ -218,7 +218,9 @@ public class MerchPoolActivity extends BaseActivity {
                 if (!con.equals(old)) {
                     mMerchpoolHezuo.setText(con);
                     mHezuo_code = what;
-                    mMerchpoolSmart.autoRefresh();
+                    page = 1;
+                    getData(true);
+//                    mMerchpoolSmart.autoRefresh();
                 }
             }
         });
@@ -245,7 +247,9 @@ public class MerchPoolActivity extends BaseActivity {
                     city_code = what;
                     getDistrict(what);
                     mMerchpoolQuyu.setText("区域");
-                    mMerchpoolSmart.autoRefresh();
+                    page = 1;
+                    getData(true);
+//                    mMerchpoolSmart.autoRefresh();
                 }
             }
         });
@@ -489,6 +493,7 @@ public class MerchPoolActivity extends BaseActivity {
                     boolean code = result.getBoolean("code");
                     String msg = result.getString("message");
                     if (code) {
+                        mMapList_search.clear();
                         SearchBean searchBean = new Gson().fromJson(result.toString(), SearchBean.class);
                         mMapList_search.addAll(searchBean.getData());
                         mMerchSearchAdapter.notifyDataSetChanged();
@@ -536,7 +541,9 @@ public class MerchPoolActivity extends BaseActivity {
                                 city_code = what;
                                 getDistrict(what);
                                 mMerchpoolQuyu.setText("");
-                                mMerchpoolSmart.autoRefresh();
+                                page = 1;
+                                getData(true);
+//                                mMerchpoolSmart.autoRefresh();
                             }
                         }
                     });
@@ -592,7 +599,9 @@ public class MerchPoolActivity extends BaseActivity {
                             if (!con.equals(old)) {
                                 mMerchpoolQuyu.setText(con);
                                 quyu_code = what;
-                                mMerchpoolSmart.autoRefresh();
+                                page = 1;
+                                getData(true);
+//                                mMerchpoolSmart.autoRefresh();
                             }
 
                         }

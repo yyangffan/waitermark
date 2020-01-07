@@ -1,30 +1,30 @@
 package com.superc.waitmarket.test;
 
-import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import com.superc.waitmarket.R;
+import com.superc.waitmarket.utils.dialog.LoadingDialog;
+import com.superc.yyfflibrary.utils.ToastUtil;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class TestActivity extends AppCompatActivity {
+    private static final String TAG = "TestActivity";
 
-    @BindView(R.id.item_magapb_check)
-    ImageView mItemMagapbCheck;
-    @BindView(R.id.constraintLayout11)
-    ConstraintLayout mConstraintLayout;
-    @BindView(R.id.item_magapb_edt)
-    TextView mtv;
-    @BindView(R.id.item_magapb_posi)
-    TextView item_magapb_posi;
-    private boolean is_go = true;
+    @BindView(R.id.editText)
+    EditText mEditText;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,33 +35,43 @@ public class TestActivity extends AppCompatActivity {
     }
 
     private void init() {
-        final ObjectAnimator animator1_con = ObjectAnimator.ofFloat(mConstraintLayout, "translationX", 0f, 80f);
-        final ObjectAnimator animator1 = ObjectAnimator.ofFloat(mtv, "translationX", 0f, 80f);
+    }
+    @OnClick({R.id.textView107,R.id.textView108})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.textView107:
+                boolean phoneNumberValid = isPhoneNumberValid(mEditText.getText().toString());
+                ToastUtil.showToast(this,phoneNumberValid?"验证通过":"验证失败");
+                Log.e(TAG, "onViewClicked: "+phoneNumberValid);
+                LoadingDialog.getInstance(this).show();
+                break;
+            case R.id.textView108:
+                LoadingDialog.getInstance(this).dismiss();
+                break;
+        }
+    }
 
-        final ObjectAnimator animator2_con = ObjectAnimator.ofFloat(mConstraintLayout, "translationX", 80f, 0f);
-        final ObjectAnimator animator2 = ObjectAnimator.ofFloat(mtv, "translationX", 80f, 0f);
 
+    /*
+     * 验证号码 手机号 固话均可
+     *
+     */
+    public static boolean isPhoneNumberValid(String phoneNumber) {
+        boolean isValid = false;
 
-        mConstraintLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (is_go) {
-                    animator1_con.start();
-                    animator1.start();
-//                    mtv.setVisibility(View.GONE);
-//                    animator_pos.start();
-//                    mItemMagapbCheck.setVisibility(View.VISIBLE);
-                } else {
-                    animator2_con.start();
-                    animator2.start();
-//                    mtv.setVisibility(View.VISIBLE);
-//                    animator_back.start();
-//                    mConstraintLayout.startAnimation(anima_back);
-//                    mItemMagapbCheck.setVisibility(View.GONE);
-                }
-                is_go = !is_go;
-            }
-        });
+        String expression = "(^1[3|4|5|6|7|8|9]\\d{9}$)";
+        CharSequence inputStr = phoneNumber;
+
+        Pattern pattern = Pattern.compile(expression);
+
+        Matcher matcher = pattern.matcher(inputStr);
+
+        if (matcher.matches()) {
+            isValid = true;
+        }
+
+        return isValid;
+
     }
 
 }

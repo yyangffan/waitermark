@@ -111,14 +111,14 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         }
         switch (position) {
             case 0:
-                if(mHomeFragment!=null){
-                    mHomeFragment. getData();
+                if (mHomeFragment != null) {
+                    mHomeFragment.getData();
                 }
                 break;
             case 1:
-                if(mBusnesFragment!=null){
-                    mBusnesFragment. getCount();
-                    mBusnesFragment. getOnceTab();
+                if (mBusnesFragment != null) {
+                    mBusnesFragment.getCount();
+                    mBusnesFragment.getOnceTab();
                     mBusnesFragment.getData();
 
                 }
@@ -157,7 +157,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                     JSONObject data = result.getJSONObject("data");
                     String messagecount = BigDecimalUtils.bigUtil(data.getString("messagecount"));
                     if (!TextUtils.isEmpty(messagecount)) {
-                        muser_red.setVisibility(messagecount.equals("- -") ? View.GONE : View.VISIBLE);
+                        muser_red.setVisibility(messagecount.equals("- -") ? View.GONE : (messagecount.equals("0") ? View.GONE : View.VISIBLE));
                         muser_red.setText(messagecount);
                     }
                 }
@@ -178,11 +178,11 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     protected void onRestart() {
         super.onRestart();
         getMsg();
-        if (mUserFragment != null&&mUserFragment.isVisible()) {
+        if (mUserFragment != null && mUserFragment.isVisible()) {
             mUserFragment.getMsg();
             mUserFragment.getData();
         }
-        if(mBusnesFragment!=null&&mBusnesFragment.isVisible()){
+        if (mBusnesFragment != null && mBusnesFragment.isVisible()) {
             mBusnesFragment.getCount();
             mBusnesFragment.getOnceTab();
             mBusnesFragment.getData();

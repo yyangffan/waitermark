@@ -43,6 +43,7 @@
                 android:layout_height="@dimen/dp_1"
                 android:layout_marginTop="10dp"
                 android:background="@color/line_color"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/item_looknew_time"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textView53"
@@ -54,6 +55,7 @@
                 android:layout_height="@dimen/dp_1"
                 android:layout_marginTop="10dp"
                 android:background="@color/line_color"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/item_looknew_time"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textView53"
@@ -192,6 +194,7 @@
                 android:layout_marginTop="10dp"
                 android:text="节假日"
                 android:textColor="@color/txt_sixsev"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/textView67"
                 app:layout_constraintTop_toBottomOf="@+id/textView67"/>
 
@@ -201,6 +204,7 @@
                 android:layout_height="wrap_content"
                 android:text="- -"
                 android:textColor="@color/black"
+                android:visibility="gone"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView68"
                 app:layout_constraintEnd_toEndOf="@+id/textView67"
                 tools:text="不可用"/>
@@ -212,6 +216,7 @@
                 android:layout_marginTop="10dp"
                 android:text="节假日"
                 android:textColor="@color/txt_sixsev"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/textView70"
                 app:layout_constraintTop_toBottomOf="@+id/textView70"/>
 
@@ -221,6 +226,7 @@
                 android:layout_height="wrap_content"
                 android:text="- -"
                 android:textColor="@color/black"
+                android:visibility="gone"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView71"
                 app:layout_constraintEnd_toEndOf="@+id/textView70"
                 tools:text="五一、十一"/>

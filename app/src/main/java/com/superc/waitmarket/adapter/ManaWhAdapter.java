@@ -62,6 +62,9 @@ public class ManaWhAdapter extends RecyclerView.Adapter<ManaWhAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(final ViewHolder vh, final int position) {
+        vh.mPos_wenzi.setVisibility(View.GONE);
+        vh.mTime_wenzi.setVisibility(View.GONE);
+        vh.mItemMagapbReasonwenzi.setVisibility(View.GONE);
         final MainTainBean.DataBean.ListBean bean = mLists.get(position);
         RoundedCorners roundedCorners = new RoundedCorners(8);
         RequestOptions requestOptions = RequestOptions.bitmapTransform(roundedCorners).override(300, 300).error(R.drawable.icon_error).placeholder(R.drawable.icon_error);
@@ -76,19 +79,18 @@ public class ManaWhAdapter extends RecyclerView.Adapter<ManaWhAdapter.ViewHolder
             Glide.with(mContext).load(Constant.IMG_URL + shoplogo).apply(requestOptions).into(vh.mItemMagapbHead);
         }
         vh.mItemMagapbTitle.setText(bean.getShopName());
-        vh.mItemMagapbPosi.setText(bean.getShopAddress());
+        vh.mItemMagapbPosi.setText("地址：" + bean.getShopAddress());
         String addTime = bean.getAddTime();
         if (!TextUtils.isEmpty(addTime)) {
-            vh.mItemMagapbTime.setText(bean.getAddTime().replaceAll("-", "."));
+            vh.mItemMagapbTime.setText("创建时间：" + addTime.replaceAll("-", "."));
         } else {
-            vh.mItemMagapbTime.setText("- -");
+            vh.mItemMagapbTime.setText("创建时间：- -");
         }
-
-        vh.mTextVieitemMagapbReason.setText(bean.getRejectreason());
+        vh.mTextVieitemMagapbReason.setText("驳回原因："+bean.getRejectreason());
         vh.mItemMagapbState.setText(bean.getAuditmessage());
         String rejectreason = bean.getRejectreason();
-        vh.mTextVieitemMagapbReason.setVisibility(TextUtils.isEmpty(rejectreason) ? View.INVISIBLE : View.VISIBLE);
-        vh.mItemMagapbReasonwenzi.setVisibility(TextUtils.isEmpty(rejectreason) ? View.INVISIBLE : View.VISIBLE);
+        vh.mTextVieitemMagapbReason.setVisibility(TextUtils.isEmpty(rejectreason) ? View.GONE : View.VISIBLE);
+//        vh.mItemMagapbReasonwenzi.setVisibility(TextUtils.isEmpty(rejectreason) ? View.INVISIBLE : View.VISIBLE);
 
         vh.mItemMagapbCheck.setVisibility(isshifang() ? View.VISIBLE : View.GONE);
 
@@ -173,6 +175,10 @@ public class ManaWhAdapter extends RecyclerView.Adapter<ManaWhAdapter.ViewHolder
         TextView mTextVieitemMagapbReason;
         @BindView(R.id.item_magapb_state)
         TextView mItemMagapbState;
+        @BindView(R.id.textView48)
+        TextView mPos_wenzi;
+        @BindView(R.id.textView57)
+        TextView mTime_wenzi;
         @BindView(R.id.constraintLayout6)
         ConstraintLayout mConstraintLayout;
 

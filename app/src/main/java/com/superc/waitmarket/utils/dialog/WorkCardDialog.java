@@ -124,7 +124,7 @@ public class WorkCardDialog extends AlertDialog {
         UserBean userBean=new Gson().fromJson(mJSONObject.toString(),UserBean.class);
         UserBean.DataBean data = userBean.getData();
         String shoplogo = data.getHeadimg();
-        RequestOptions requestOptions=new RequestOptions().error(R.drawable.icon_error).placeholder(R.drawable.icon_error);
+        RequestOptions requestOptions=new RequestOptions().error(R.drawable.icon_mourentouxiang).placeholder(R.drawable.icon_mourentouxiang);
         if (!TextUtils.isEmpty(shoplogo)) {
             if (shoplogo.startsWith("http") || shoplogo.startsWith("https")) {
                 Glide.with(mContext).load(shoplogo).apply(requestOptions).into(mCircleImageView);

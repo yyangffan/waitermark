@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.bean.YingxiaoBean;
+import com.superc.waitmarket.utils.BigDecimalUtils;
 
 import java.util.List;
 
@@ -43,9 +44,9 @@ public class AllMarketAdapter extends RecyclerView.Adapter<AllMarketAdapter.View
     public void onBindViewHolder(ViewHolder vh, final int position) {
         YingxiaoBean bean = mLists.get(position);
         vh.mItemAllmarketTitle.setText(bean.getOne_content());
-        vh.mItemAllmarketOne.setText(bean.getTwo_content());
+        vh.mItemAllmarketOne.setText(BigDecimalUtils.bigUtil(bean.getTwo_content()));
         vh.mItemAllmarketTwo.setText("¥" + bean.getThree_content());
-        vh.mItemAllmarketThree.setText(bean.getFour_content());
+        vh.mItemAllmarketThree.setText(BigDecimalUtils.bigUtil(bean.getFour_content()));
         final String id = bean.getId();
         vh.mItemAllmarketMore.setVisibility(TextUtils.isEmpty(id) ? View.GONE : View.VISIBLE);
         vh.mView.setOnClickListener(new View.OnClickListener() {

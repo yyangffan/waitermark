@@ -115,6 +115,7 @@ public class ChangjPicFragment extends BaseFragment {
 
     private  void setData(JSONObject merchant){
         try {
+            mMapList.clear();
             String mPicSmallPath = merchant.getString("mpicPath");
             RoundedCorners roundedCorners = new RoundedCorners(10);
             RequestOptions override = RequestOptions.bitmapTransform(roundedCorners).error(R.drawable.icon_error).placeholder(R.drawable.icon_error).override(300, 300);

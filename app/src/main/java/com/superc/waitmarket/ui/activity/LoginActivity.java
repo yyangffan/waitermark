@@ -179,6 +179,7 @@ public class LoginActivity extends BaseActivity {
                     }
                     ShareUtil.getInstance(LoginActivity.this).put("login", result.toString());
                     ShareUtil.getInstance(LoginActivity.this).put("user_id", BigDecimalUtils.bigUtil(loginBean.getData().getId()));
+                    /*0-网点营销数据  1-中支行营销数据   2-全行营销数据   3-other*/
                     ShareUtil.getInstance(LoginActivity.this).put("type", BigDecimalUtils.bigUtil(loginBean.getData().getType()));
                     ShareUtil.getInstance(LoginActivity.this).put("phone", loginBean.getData().getPhone());
                     ShareUtil.getInstance(LoginActivity.this).put("realname", loginBean.getData().getRealname());

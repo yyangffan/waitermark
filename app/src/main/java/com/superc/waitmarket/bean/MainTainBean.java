@@ -85,7 +85,7 @@ public class MainTainBean {
              * shopAddress : 天浦园
              */
 
-            private int staus;
+            private String staus;
             private String addTime;
             private String shopLogo;
             private String auditmessage;
@@ -103,11 +103,11 @@ public class MainTainBean {
                 this.check = check;
             }
 
-            public int getStaus() {
+            public String getStaus() {
                 return staus;
             }
 
-            public void setStaus(int staus) {
+            public void setStaus(String staus) {
                 this.staus = staus;
             }
 

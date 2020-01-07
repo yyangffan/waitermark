@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.bean.ProfitBean;
+import com.superc.waitmarket.utils.BigDecimalUtils;
 
 import java.util.List;
 
@@ -44,10 +45,11 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder vh, int position) {
         ProfitBean.DataBean bean = mLists.get(position);
         vh.mItemExpandfaTitle.setText(bean.getMonth());
+        vh.mItemExpandfaWhat.setText("共收¥" + BigDecimalUtils.bigUtil(bean.getAllSum()) + "（交易流水收益¥" + BigDecimalUtils.bigUtil(bean.getMarketingAmount()) + "，商户扩展收益¥" + BigDecimalUtils.bigUtil(bean.getExpandAmount()) + "）");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         vh.mItemExpandfaRecy.setLayoutManager(linearLayoutManager);
 //        List<Map<String,Object>> bean.get("data");
-        mWalletChAdapter = new WalletChAdapter(mContext,bean.getDetailList());
+        mWalletChAdapter = new WalletChAdapter(mContext, bean.getDetailList());
         vh.mItemExpandfaRecy.setAdapter(mWalletChAdapter);
 
     }
@@ -64,6 +66,8 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
     static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.item_expandfa_title)
         TextView mItemExpandfaTitle;
+        @BindView(R.id.item_expandfa_what)
+        TextView mItemExpandfaWhat;
         @BindView(R.id.item_expandfa_recy)
         RecyclerView mItemExpandfaRecy;
 
