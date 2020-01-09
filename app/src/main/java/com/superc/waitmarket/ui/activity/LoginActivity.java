@@ -2,6 +2,10 @@ package com.superc.waitmarket.ui.activity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.Settings;
+import android.support.v4.app.NotificationManagerCompat;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -24,6 +28,7 @@ import com.superc.waitmarket.utils.BigDecimalUtils;
 import com.superc.waitmarket.utils.dialog.MiddleDialog;
 import com.superc.waitmarket.utils.jpush.TagAliasOperatorHelper;
 import com.superc.yyfflibrary.base.BaseActivity;
+import com.superc.yyfflibrary.dialog.YfsRemindDialog;
 import com.superc.yyfflibrary.utils.ShareUtil;
 import com.superc.yyfflibrary.utils.titlebar.TitleUtils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -49,6 +54,7 @@ public class LoginActivity extends BaseActivity {
     Button mLoginBt;
     private boolean thfir = false;
     private boolean thsec = false;
+    private YfsRemindDialog mRemindDialog;
 
     @Override
     public int getContentLayoutId() {
@@ -58,6 +64,7 @@ public class LoginActivity extends BaseActivity {
     @Override
     public void init() {
         TitleUtils.setStatusTextColor(true, this);
+        haveNotiPer();
         ButterKnife.bind(this);
         rxWritePermission();
         mLoginBt.setEnabled(false);
@@ -147,6 +154,41 @@ public class LoginActivity extends BaseActivity {
             }
         });
     }
+    /*判断是否打开了通知权限并进行跳转*/
+    private void haveNotiPer() {
+        NotificationManagerCompat notification = NotificationManagerCompat.from(this);
+        boolean isEnabled = notification.areNotificationsEnabled();
+        if (!isEnabled) {
+            mRemindDialog = new YfsRemindDialog.Builder(this).title("提示").content("请在“通知”中打开通知权限").left("取消").left_color(R.color.txt_granine).right("设置").right_color(R.color.main_color).build();
+            mRemindDialog.setOnTextClickListener(new YfsRemindDialog.OnTextClickListener() {
+                @Override
+                public void onRightClickListener() {
+                    super.onRightClickListener();
+                    Intent intent = new Intent();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
+                        intent.putExtra("android.provider.extra.APP_PACKAGE", LoginActivity.this.getPackageName());
+                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {  //5.0
+                        intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
+                        intent.putExtra("app_package", LoginActivity.this.getPackageName());
+                        intent.putExtra("app_uid", LoginActivity.this.getApplicationInfo().uid);
+                        startActivity(intent);
+                    } else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {  //4.4
+                        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        intent.addCategory(Intent.CATEGORY_DEFAULT);
+                        intent.setData(Uri.parse("package:" + LoginActivity.this.getPackageName()));
+                    } else if (Build.VERSION.SDK_INT >= 15) {
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+                        intent.setData(Uri.fromParts("package", LoginActivity.this.getPackageName(), null));
+                    }
+                    startActivity(intent);
+                }
+            });
+            mRemindDialog.show();
+        }
+    }
+
 
     private void toLogin() {
         String mobile = mLoginAccounts.getText().toString();

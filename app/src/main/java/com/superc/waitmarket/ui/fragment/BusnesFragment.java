@@ -128,6 +128,7 @@ public class BusnesFragment extends BaseFragment {
                 getCount();
                 page = 1;
                 getData();
+                getOnceTab();
 
             }
         });
@@ -165,13 +166,20 @@ public class BusnesFragment extends BaseFragment {
                 type = mMapList_tab.get(pos).getType();
                 sm_type = "";
                 mBudnesTabAdapter.notifyDataSetChanged();
-                mSmartRefreshLayout.autoRefresh();
+                togetDataA();
+//                mSmartRefreshLayout.autoRefresh();
             }
         });
 
         initJihDig();
         getOnceTab();
         getCount();
+    }
+
+    private void togetDataA(){
+        getCount();
+        page = 1;
+        getData();
     }
 
     private void initJihDig() {
@@ -215,6 +223,9 @@ public class BusnesFragment extends BaseFragment {
         Map<String, Object> map = new HashMap<>();
         map.put("userId", mUser_id);
         map.put("type", type);//行业type  0已激活商家
+        if(!TextUtils.isEmpty(sm_type)) {
+            map.put("BigShopTypeID", sm_type);
+        }
         map.put("currentPage", page);
         map.put("pageSize", 10);
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).shopManagerIndex(EncryPtionUtil.getInstance(getActivity()).toEncryption(map));
@@ -359,7 +370,11 @@ public class BusnesFragment extends BaseFragment {
             public void onFinishListener(int pos, String what) {
                 Map<String, Object> map = mMapList_jihuo.get(pos);
                 String small_id = (String) map.get("small_id");
-                mTv_what.setText(what);
+                if(what.contains("(")){
+                    mTv_what.setText(what.substring(0,what.indexOf("(")));
+                }else {
+                    mTv_what.setText(what);
+                }
                 for (int i = 0; i < mMapList_jihuo.size(); i++) {
                     if (i == pos) {
                         mMapList_jihuo.get(i).put("is_check", true);
@@ -371,11 +386,13 @@ public class BusnesFragment extends BaseFragment {
                 if (!TextUtils.isEmpty(small_id)) {
                     if (!small_id.equals(sm_type)) {
                         sm_type = small_id;
-                        mSmartRefreshLayout.autoRefresh();
+                        togetDataA();
+//                        mSmartRefreshLayout.autoRefresh();
                     }
                 } else {
                     sm_type = small_id;
-                    mSmartRefreshLayout.autoRefresh();
+                    togetDataA();
+//                    mSmartRefreshLayout.autoRefresh();
                 }
             }
         });

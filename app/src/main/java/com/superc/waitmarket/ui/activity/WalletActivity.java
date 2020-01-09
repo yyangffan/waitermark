@@ -71,6 +71,7 @@ public class WalletActivity extends BaseActivity {
         mWalletExpandrecy.setLayoutManager(linearLayoutManager);
         mWalletAdapter = new WalletAdapter(this, mMapList);
         mWalletExpandrecy.setAdapter(mWalletAdapter);
+        mWalletSmart.setEnableLoadMore(false);
         mWalletSmart.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {

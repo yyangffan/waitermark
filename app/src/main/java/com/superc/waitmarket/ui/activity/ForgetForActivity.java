@@ -102,19 +102,27 @@ public class ForgetForActivity extends BaseActivity {
                 boolean code = result.getBoolean("code");
                 String msg = result.getString("message");
                 if (code) {
-                    Bundle bundle = new Bundle();
+                    final Bundle bundle = new Bundle();
                     JSONObject data = result.getJSONObject("data");
                     String userid = BigDecimalUtils.bigUtil(data.getString("userId"));
                     ShareUtil.getInstance(ForgetForActivity.this).put("user_id", userid);
-                    String mes = data.getString("phone");
-                    Intent intent = new Intent(ForgetForActivity.this, ForforActivity.class);
+                    final String mes = data.getString("phone");
+                    final Intent intent = new Intent(ForgetForActivity.this, ForforActivity.class);
                     bundle.putString("mes", mes);
                     bundle.putString("acd", acd);
                     intent.putExtra("data", bundle);
-                    startActivity(intent);
+
 //                    finish();
-                    if(!TextUtils.isEmpty(msg))
-                    new MiddleDialog.Builder(ForgetForActivity.this).content(msg).build().show();
+                    if(!TextUtils.isEmpty(msg)) {
+                        MiddleDialog build = new MiddleDialog.Builder(ForgetForActivity.this).content(msg).build();
+                        build.setOnMiddleDigFinishListener(new MiddleDialog.OnMiddleDigFinishListener() {
+                            @Override
+                            public void onMiddleDigfinishListener() {
+                                startActivity(intent);
+                            }
+                        });
+                        build.show();
+                    }
                 } else {
                     if (!TextUtils.isEmpty(msg)) {
                         ToastShow(msg);

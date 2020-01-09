@@ -52,6 +52,8 @@
                 android:id="@+id/textView53"
                 android:layout_width="wrap_content"
                 android:layout_height="19dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:text="账户类型"
                 android:textColor="@color/black"
                 app:layout_constraintBaseline_toBaselineOf="@+id/item_lookjies_leixing"

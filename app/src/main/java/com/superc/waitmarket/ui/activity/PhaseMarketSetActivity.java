@@ -745,7 +745,7 @@ public class PhaseMarketSetActivity extends BaseActivity {
         }
         String guize = mPhaseMarketsetGuize.getText().toString();
         if (!TextUtils.isEmpty(guize)) {
-            Pattern p = Pattern.compile("[a-zA-Z|\u4e00-\u9fa5|,.，。：: ]+");
+            Pattern p = Pattern.compile("[a-zA-Z|\u4e00-\u9fa5|,.，。：: 1234567890]+");
             Matcher m = p.matcher(guize);
             if (!m.matches()) {
                 if (!guize.contains("\n")) {

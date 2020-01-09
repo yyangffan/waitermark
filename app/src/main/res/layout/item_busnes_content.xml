@@ -39,6 +39,7 @@
         android:id="@+id/item_content_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
         android:layout_marginBottom="8dp"
         android:text="- -"
         android:textColor="@color/txt_granine"

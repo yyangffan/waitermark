@@ -14,6 +14,9 @@ import com.superc.waitmarket.R;
 import com.superc.waitmarket.base.ApiService;
 import com.superc.waitmarket.httputil.EncryPtionHttp;
 import com.superc.waitmarket.httputil.EncryPtionUtil;
+import com.superc.waitmarket.utils.MJavascriptInterface;
+import com.superc.waitmarket.utils.MyWebViewClient;
+import com.superc.waitmarket.utils.dialog.DialogPicbig;
 import com.superc.yyfflibrary.base.BaseActivity;
 import com.superc.yyfflibrary.utils.ShareUtil;
 import com.superc.yyfflibrary.utils.titlebar.TitleUtils;
@@ -35,8 +38,11 @@ public class MsgDetailActivity extends BaseActivity {
     TextView mMsgDeetailTime;
     @BindView(R.id.msg_deetail_content)
     WebView mMsgDeetailContent;
+//    @BindView(R.id.msg_detail_photo)
+//    PhotoView mPhotoView;
     private String mUser_id;
     private String mId;
+    private MJavascriptInterface mMJavascriptInterface;
 
     @Override
     public int getContentLayoutId() {
@@ -52,12 +58,21 @@ public class MsgDetailActivity extends BaseActivity {
         if (intent != null) {
             mId = intent.getStringExtra("id");
         }
-
+        mMJavascriptInterface = new MJavascriptInterface(this);
+        mMsgDeetailContent.getSettings().setJavaScriptEnabled(true);
+        mMsgDeetailContent.addJavascriptInterface(mMJavascriptInterface, "imagelistener");
+        mMsgDeetailContent.setWebViewClient(new MyWebViewClient());
+        mMJavascriptInterface.setOnPicClickListener(new MJavascriptInterface.OnPicClickListener() {
+            @Override
+            public void onPicClickListener(String url) {
+                new DialogPicbig(MsgDetailActivity.this, url).show();
+            }
+        });
         getData();
     }
 
 
-    @OnClick(R.id.imgv_back)
+    @OnClick({R.id.imgv_back})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.imgv_back:

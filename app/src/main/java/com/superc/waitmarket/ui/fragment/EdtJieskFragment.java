@@ -172,6 +172,8 @@ public class EdtJieskFragment extends BaseFragment {
     ImageView mShanghudelete;
     @BindView(R.id.textView74)
     TextView mtvKaihuRen_danwei;
+    @BindView(R.id.textView53)
+    TextView mtv_foucus;
     @BindView(R.id.incon_con)
     InConstranLayout mIncon;
 
@@ -219,6 +221,7 @@ public class EdtJieskFragment extends BaseFragment {
         mInputDialog = new InputDialog.Builder(EdtJieskFragment.this.getActivity()).title("请输入开户行").left("取消").right("确定").build();
         mJichuLookSmart.setEnableOverScrollDrag(true);
         mJichuLookSmart.setEnablePureScrollMode(true);
+        mtv_foucus.requestFocus();
         mEdtDetailActivity = (EdtDetailActivity) getActivity();
         mInputDialog.setOnTextClickListener(new InputDialog.OnTextClickListener() {
             @Override
@@ -234,7 +237,7 @@ public class EdtJieskFragment extends BaseFragment {
             }
         });
         mStatus = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("status", "");
-        if(mStatus.equals("1")){//1 不可编辑  0可编辑
+        if (mStatus.equals("1")) {//1 不可编辑  0可编辑
             mIncon.setmIsIntercept(true);
         }
     }
@@ -403,7 +406,7 @@ public class EdtJieskFragment extends BaseFragment {
         mEdtdetail_id = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("edtdetail_id", "");
         channel = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("channel", "");
         mStatus = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("status", "");
-        if(mStatus.equals("1")&&mIncon!=null){//1 不可编辑  0可编辑
+        if (mStatus.equals("1") && mIncon != null) {//1 不可编辑  0可编辑
             mIncon.setmIsIntercept(true);
         }
         toGetEdtData();
@@ -1151,7 +1154,7 @@ public class EdtJieskFragment extends BaseFragment {
                     JSONArray data = result.getJSONArray("data");
                     for (int i = 0; i < data.size(); i++) {
                         JSONObject jsonObject = data.getJSONObject(i);
-                        BotListBean botListBean = new BotListBean(jsonObject.getString("bankname"), false,jsonObject.getString("settlementcode"));
+                        BotListBean botListBean = new BotListBean(jsonObject.getString("bankname"), false, jsonObject.getString("settlementcode"));
                         mBotListBeans_zhihang.add(botListBean);
                     }
                     mDialogBotList_zhihang = new DialogBotList.Builder().title("请选择").botListBeanMap(mBotListBeans_zhihang).builder(EdtJieskFragment.this.getActivity());

@@ -6,22 +6,22 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <!--允许程序获取网络状态-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--允许程序访问WiFi网络信息-->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!--允许程序读写手机状态和身份-->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!--允许程序访问CellID或WiFi热点来获取粗略的位置-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 允许程序获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- 允许程序访问WiFi网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!-- 允许程序读写手机状态和身份 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:name=".base.WaitApplication"
         android:allowBackup="true"
         android:icon="@mipmap/logoo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/logoo"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/logoo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -33,15 +33,16 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <!-- Since JCore2.0.0 Required SDK核心功能-->
+        <!-- Since JCore2.0.0 Required SDK核心功能 -->
         <!-- 可配置android:process参数将Service放在其他进程中；android:enabled属性不能是false -->
         <!-- 这个是自定义Service，要继承极光JCommonService，可以在更多手机平台上使得推送通道保持的更稳定 -->
-        <service android:name=".utils.jpush.JpushService"
-                 android:enabled="true"
-                 android:exported="false"
-                 android:process=":pushcore">
+        <service
+            android:name=".utils.jpush.JpushService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":pushcore">
             <intent-filter>
-                <action android:name="cn.jiguang.user.service.action" />
+                <action android:name="cn.jiguang.user.service.action"/>
             </intent-filter>
         </service>
         <!-- User defined.  For test only  用户自定义接收消息器,3.0.7开始支持,目前新tag/alias接口设置结果会在该广播接收器对应的方法中回调 -->
@@ -53,10 +54,15 @@
                 <category android:name="${applicationId}"/>
             </intent-filter>
         </receiver>
+
         <activity android:name=".test.TestActivity">
         </activity>
-        <meta-data android:name="com.amap.api.v2.apikey" android:value="39f324a58dbf1a0e927f12e96fc84e24">
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="39f324a58dbf1a0e927f12e96fc84e24">
         </meta-data>
+
         <activity
             android:name=".ui.activity.MainActivity"
             android:launchMode="singleTask">
@@ -101,12 +107,14 @@
         </activity>
         <activity android:name=".ui.activity.MerchantDetailActivity">
         </activity>
-        <activity android:name=".ui.activity.EdtDetailActivity"
-                  android:windowSoftInputMode="adjustPan|stateHidden">
+        <activity
+            android:name=".ui.activity.EdtDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden">
         </activity>
         <activity android:name=".ui.activity.PhaseMarketListActivity"/>
-        <activity android:name=".ui.activity.PhaseMarketSetActivity"
-                  android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".ui.activity.PhaseMarketSetActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
     </application>
 
 </manifest>

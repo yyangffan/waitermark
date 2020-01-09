@@ -35,15 +35,19 @@
                 android:layout_gravity="center_horizontal"
                 android:paddingTop="@dimen/dp_12"
                 android:paddingBottom="@dimen/dp_12"
+                android:text="请选择已激活商家行业"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:text="请选择已激活商家行业"/>
+                android:textStyle="bold"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/dialog_jihuo_recy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dp_10"/>
+                android:paddingRight="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_10"
+                android:paddingLeft="@dimen/dp_10"/>
+
 
         </LinearLayout>
 
