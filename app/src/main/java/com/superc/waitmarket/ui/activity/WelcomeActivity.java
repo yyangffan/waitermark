@@ -2,7 +2,6 @@ package com.superc.waitmarket.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 
 import com.superc.waitmarket.base.WaitApplication;
@@ -17,7 +16,8 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void init() {
-        new CountDownTimer(1500, 1000) {
+        toGo();
+       /* new CountDownTimer(1500, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -27,7 +27,7 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onFinish() {
                 toGo();
             }
-        }.start();
+        }.start();*/
     }
 
     private void toGo() {

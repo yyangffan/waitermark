@@ -62,6 +62,8 @@ public class EdtDetailActivity extends BaseActivity {
     View mEdtdetailVline;
     @BindView(R.id.edtdetail_bot)
     TextView mEdtdetailBot;
+    @BindView(R.id.edtdetail_commit)
+    TextView mSubmit;
     @BindView(R.id.merchant_detail_tabs)
     HorizontalScrollView mHorizontalScrollView;
     private List<TextView> mTextViews;
@@ -112,6 +114,9 @@ public class EdtDetailActivity extends BaseActivity {
         mStatus = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("status", "");
         if (mStatus.equals("1")) {//1 不可编辑  0可编辑
             new YfsRemindDialog.Builder(this).title("当前状态仅可编辑支付营销活动").left("确认").left_color(R.color.main_color).build().show();
+            mSubmit.setVisibility(View.GONE);
+        }else{
+            mSubmit.setVisibility(View.VISIBLE);
         }
         initWhat();
     }

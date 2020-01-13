@@ -1125,6 +1125,7 @@ public class EdtJieskFragment extends BaseFragment {
                     mItemLookTianjin.setVisibility(View.VISIBLE);
                     mItemLookjiesZhihang.setVisibility(View.INVISIBLE);
                     mItemLookjiesHanghao.setEnabled(false);
+                    mItemLookjiesHanghao.setText("");
                 } else {
                     is_Tianjin = false;
                     mItemLookTianjin.setVisibility(View.INVISIBLE);

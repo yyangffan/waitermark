@@ -32,7 +32,6 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.functions.Consumer;
-import qrcode.ZXingCodeUtils;
 
 public class WorkCardDialog extends AlertDialog {
     private final Window mWindow;
@@ -141,8 +140,8 @@ public class WorkCardDialog extends AlertDialog {
         mtv_lianxi.setText(data.getMobilePhone());
         mtv_youxiang.setText(data.getEmail());
 //        mImage = ZXingCodeUtils.getInstance().createQRCode("https://www.jianshu.com/p/f7a7a8765294", 600, 600, BitmapFactory.decodeResource(mContext.getResources(), R.drawable.icon_head));
-        mImage = ZXingCodeUtils.getInstance().createQRCode("https://www.jianshu.com/p/f7a7a8765294", 600, 600);
-        mImgv_erweim.setImageBitmap(mImage);
+       /* mImage = ZXingCodeUtils.getInstance().createQRCode("https://www.jianshu.com/p/f7a7a8765294", 600, 600);
+        mImgv_erweim.setImageBitmap(mImage);*/
 
     }
 

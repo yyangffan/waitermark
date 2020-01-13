@@ -161,8 +161,9 @@
                 android:layout_width="@dimen/dp_90"
                 android:layout_height="@dimen/dp_90"
                 android:layout_gravity="center_horizontal"
+                android:src="@drawable/a_tu"
                 android:layout_marginTop="@dimen/dp_18"
-                tools:src="@drawable/icon_xiangji"/>
+                tools:src="@drawable/a_tu"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -171,6 +172,7 @@
                 android:layout_marginBottom="@dimen/dp_18"
                 android:paddingTop="@dimen/dp_3"
                 android:text="扫码了解更多"
+                android:visibility="invisible"
                 android:textColor="@color/main_color"/>
 
 
