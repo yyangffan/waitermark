@@ -60,6 +60,16 @@ public class ZizhiFragment extends BaseFragment {
     @BindView(R.id.item_lookjies_imgvyyzz)
     ImageView mImageYingyezhiZ;
     Unbinder unbinder;
+    @BindView(R.id.item_lookzizhi_fanwei)
+    TextView mItemLookzizhiFanwei;
+    @BindView(R.id.item_lookzizhi_changsuo)
+    TextView mItemLookzizhiChangsuo;
+    @BindView(R.id.item_lookzizhi_zijin)
+    TextView mItemLookzizhiZijin;
+    @BindView(R.id.item_lookzizhi_yyzztime)
+    TextView mItemLookzizhiYyzztime;
+    @BindView(R.id.item_lookzizhi_sfztime)
+    TextView mItemLookzizhiSfzTm;
     private String mEdtdetail_id;
     private String channel;
 
@@ -95,9 +105,9 @@ public class ZizhiFragment extends BaseFragment {
                 boolean code = result.getBoolean("code");
                 String msg = result.getString("message");
                 if (code) {
-                    if(result.getJSONObject("data").getJSONObject("merchantDetails")!=null) {
+                    if (result.getJSONObject("data").getJSONObject("merchantDetails") != null) {
                         setData(result.getJSONObject("data").getJSONObject("merchantDetails"));
-                    }else{
+                    } else {
                         ToastShow("数据获取失败");
                     }
                 }
@@ -117,8 +127,6 @@ public class ZizhiFragment extends BaseFragment {
     }
 
     private void setData(JSONObject merchant) {
-
-
         try {
             String managetype = BigDecimalUtils.bigUtil(merchant.getString("managetype"));
             if (managetype.equals("0")) {
@@ -132,6 +140,11 @@ public class ZizhiFragment extends BaseFragment {
             mItemLookzizhiDanwei.setText(merchant.getString("registercompany"));
             mItemLookzizhiFaren.setText(merchant.getString("name"));
             mItemLookzizhiShenfenzh.setText(merchant.getString("cardid"));
+            mItemLookzizhiFanwei.setText(merchant.getString("businessscope"));
+            mItemLookzizhiChangsuo.setText(merchant.getString("placeofbusiness"));
+            mItemLookzizhiZijin.setText(merchant.getString("registeredcapital"));
+            mItemLookzizhiYyzztime.setText(merchant.getString("startdate")+"-"+merchant.getString("enddate"));
+            mItemLookzizhiSfzTm.setText(merchant.getString("starttime")+"-"+merchant.getString("endtime"));
 
             String mZhewngPath = merchant.getString("cardidfrntphoto");//正面
             String mFanPath = merchant.getString("cardidbackphoto");//反面

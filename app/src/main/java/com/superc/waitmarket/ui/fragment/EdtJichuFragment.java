@@ -192,6 +192,7 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
     private boolean is_xuanze = false;
     private String mRealname;
     private String mStatus;
+    private String shangquan_type="0";
 
 
     @Override
@@ -296,6 +297,12 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
         city_code = merchant.getString("CityCode");
         getDistrict(city_code);
         quyu_code = merchant.getString("DistrictCode");
+        String typeName = merchant.getString("TypeName");
+        if(!TextUtils.isEmpty(typeName)||typeName.equals("菜市场")){
+            shangquan_type="1";
+        }else{
+            shangquan_type="0";
+        }
         getBusinessCircle(city_code, quyu_code);
         shangquan_code = merchant.getString("BusinessCircleID");
 
@@ -734,7 +741,17 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
                                 getSecondaryIndustry(what);
                                 mEdtjichuTwohangy.setText("");
                                 one_code = what;
+                                if(name.equals("菜市场")){
+                                    mEdtjichuShangquan.setText("");
+                                }
                             }
+                            if(name.equals("菜市场")){
+                                shangquan_type="1";
+                            }else{
+                                shangquan_type="0";
+                            }
+                            if(!TextUtils.isEmpty(quyu_code))
+                            getBusinessCircle(city_code,quyu_code);
                         }
                     });
                     mDialogBotList_yiji.show();
@@ -828,6 +845,7 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
                                 getDistrict(what);
                                 mEdtjichuQuyu.setText("");
                                 mEdtjichuShangquan.setText("");
+                                quyu_code="";
                                 city_code = what;
                             }
                         }
@@ -902,6 +920,7 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
         Map<String, Object> map = new HashMap<>();
         map.put("CityCode", city_code);
         map.put("DistrictCode", di_code);
+        map.put("type", shangquan_type);
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).getBusinessCircle(EncryPtionUtil.getInstance(getActivity()).toEncryption(map));
         EncryPtionHttp.getInstance(getActivity()).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
             @Override

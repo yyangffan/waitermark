@@ -87,6 +87,14 @@ public class JiChuFragment extends BaseFragment {
     TextView mItemLookjichuState;
     @BindView(R.id.edtjichu_map)
     TextureMapView mMapView;
+    @BindView(R.id.item_lookjichu_tuozhanren)
+    TextView mTvTuozhanren;
+    @BindView(R.id.item_lookjichu_quanyi)
+    TextView mTvQuanyi;
+    @BindView(R.id.item_lookjichu_xiaoekh)
+    TextView mTvXiaoerKeh;
+
+
     private String mEdtdetail_id;
     private String channel;
     private AMap mMap;
@@ -130,13 +138,13 @@ public class JiChuFragment extends BaseFragment {
         EncryPtionHttp.getInstance(getActivity()).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
             @Override
             public void onSuccessResult(JSONObject result) {
-                Log.e(TAG, "onSuccessResult: "+result.toString());
+                Log.e(TAG, "onSuccessResult: " + result.toString());
                 boolean code = result.getBoolean("code");
                 String msg = result.getString("message");
                 if (code) {
-                    if(result.getJSONObject("data").getJSONObject("merchantDetails")!=null) {
+                    if (result.getJSONObject("data").getJSONObject("merchantDetails") != null) {
                         setData(result.getJSONObject("data").getJSONObject("merchantDetails"));
-                    }else{
+                    } else {
                         ToastShow("数据获取失败");
                     }
                 }
@@ -153,7 +161,7 @@ public class JiChuFragment extends BaseFragment {
         });
     }
 
-    private void setData(JSONObject merchant){
+    private void setData(JSONObject merchant) {
 
         try {
             RoundedCorners roundedCorners = new RoundedCorners(10);
@@ -170,7 +178,7 @@ public class JiChuFragment extends BaseFragment {
                 Glide.with(this).load(Constant.IMG_URL + shoplogo).apply(requestOptions).into(mItemLookjichuHead);
             }
 
-            LatLng coordinate = new LatLng(Double.parseDouble(merchant.getString("AndroidLatitude")),Double.parseDouble(merchant.getString("AndroidLongitude")));
+            LatLng coordinate = new LatLng(Double.parseDouble(merchant.getString("AndroidLatitude")), Double.parseDouble(merchant.getString("AndroidLongitude")));
             mMap.addMarker(new MarkerOptions().position(coordinate).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory
                     .decodeResource(getResources(), R.drawable.location))));
             CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(coordinate, 8, 0, 0));
@@ -194,7 +202,26 @@ public class JiChuFragment extends BaseFragment {
             mItemLookjichuYingyphone.setText(merchant.getString("ShopTel"));
             mItemLookjichuLianxiren.setText(merchant.getString("ShopHead"));
             mItemLookjichuLianxiphone.setText(merchant.getString("HeadTel"));
-            StringBuilder stb_tm=new StringBuilder();
+            String devFirstLevelAttribution = merchant.getString("devFirstLevelAttribution");
+            String devSecondLevelAttribution = merchant.getString("devSecondLevelAttribution");
+            String developname = merchant.getString("developname");
+            StringBuilder sb_tuoz=new StringBuilder();
+            sb_tuoz.append(TextUtils.isEmpty(devFirstLevelAttribution)?"":devFirstLevelAttribution+",");
+            sb_tuoz.append(TextUtils.isEmpty(devSecondLevelAttribution)?"":devSecondLevelAttribution+",");
+            sb_tuoz.append(developname);
+            String interestsFirstLevelAttribution = merchant.getString("interestsFirstLevelAttribution");
+            String interestsSecondLevelAttribution = merchant.getString("interestsSecondLevelAttribution");
+            String equityOwner = merchant.getString("equityOwner");
+            StringBuilder sb_quany=new StringBuilder();
+            sb_quany.append(TextUtils.isEmpty(interestsFirstLevelAttribution)?"":interestsFirstLevelAttribution+",");
+            sb_quany.append(TextUtils.isEmpty(interestsSecondLevelAttribution)?"":interestsSecondLevelAttribution+",");
+            sb_quany.append(equityOwner);
+
+            mTvTuozhanren.setText(sb_tuoz.toString());
+            mTvQuanyi.setText(sb_quany.toString());
+            mTvXiaoerKeh.setText(merchant.getString("AddPerson"));
+
+            StringBuilder stb_tm = new StringBuilder();
             JSONArray temActList = merchant.getJSONArray("temActList");
             stb_tm.append(temActList.getJSONObject(0).getString("starttime"));
             stb_tm.append("-");
@@ -217,6 +244,7 @@ public class JiChuFragment extends BaseFragment {
         }
 
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -240,6 +268,7 @@ public class JiChuFragment extends BaseFragment {
         if (mMapView != null)
             mMapView.onSaveInstanceState(outState);
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

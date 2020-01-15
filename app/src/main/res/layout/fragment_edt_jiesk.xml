@@ -20,6 +20,7 @@
             android:id="@+id/incon_con"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
             android:elevation="@dimen/dp_5"
             android:paddingLeft="@dimen/dp_16"
             android:paddingRight="@dimen/dp_16"
@@ -304,28 +305,6 @@
                     />
             </FrameLayout>
 
-            <EditText
-                android:id="@+id/item_lookjies_jiesuannum"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/bg_corner_kuang"
-                android:ellipsize="end"
-                android:hint="请输入收款结算账号"
-                android:imeOptions="actionNext"
-                android:inputType="number"
-                android:lines="1"
-                android:paddingLeft="@dimen/dp_5"
-                android:paddingTop="@dimen/dp_5"
-                android:paddingRight="@dimen/dp_5"
-                android:paddingBottom="@dimen/dp_5"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView64"
-                app:layout_constraintStart_toStartOf="@+id/item_lookjies_ynfaren"
-                app:layout_constraintTop_toBottomOf="@+id/frame_yihang"/>
 
             <EditText
                 android:id="@+id/item_lookjies_kaihuren"
@@ -570,6 +549,38 @@
                 app:layout_constraintTop_toTopOf="@+id/frame_yihang"/>
 
             <TextView
+                android:id="@+id/textView711"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="收款人身份证号"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/item_lookjies_shoukuansfznum"
+                app:layout_constraintStart_toStartOf="@+id/textView68"
+                app:layout_constraintTop_toTopOf="@+id/item_lookjies_shoukuansfznum"/>
+
+            <EditText
+                android:id="@+id/item_lookjies_shoukuansfznum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:digits="@string/digits_edit"
+                android:ellipsize="end"
+                android:hint="请输入收款人身份证号"
+                android:imeOptions="actionNext"
+                android:lines="1"
+                android:padding="@dimen/dp_5"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/textView64"
+                app:layout_constraintStart_toStartOf="@+id/item_lookjies_ynfaren"
+                app:layout_constraintTop_toBottomOf="@+id/frame_yihang"/>
+
+            <TextView
                 android:id="@+id/textView71"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -578,6 +589,29 @@
                 app:layout_constraintBottom_toTopOf="@+id/textView98"
                 app:layout_constraintStart_toStartOf="@+id/textView68"
                 app:layout_constraintTop_toTopOf="@+id/item_lookjies_jiesuannum"/>
+
+            <EditText
+                android:id="@+id/item_lookjies_jiesuannum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corner_kuang"
+                android:ellipsize="end"
+                android:hint="请输入收款结算账号"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:lines="1"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_5"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView64"
+                app:layout_constraintStart_toStartOf="@+id/item_lookjies_ynfaren"
+                app:layout_constraintTop_toBottomOf="@+id/item_lookjies_shoukuansfznum"/>
 
             <TextView
                 android:id="@+id/textView74"

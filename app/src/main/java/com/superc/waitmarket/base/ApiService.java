@@ -112,6 +112,9 @@ public interface ApiService {
     /*待激活列表*/
     @POST("v1/shopManager/activatedList")
     Observable<JSONObject> activatedList(@Body RequestBody map);
+    /*小二委派列表*/
+    @POST("v1/shopManager/listOfPrimaryDelegatedMerchants")
+    Observable<JSONObject> listOfPrimaryDelegatedMerchants(@Body RequestBody map);
     /*商户池释放*/
     @POST("v1/shopManager/merchantPoolSearchfreed")
     Observable<JSONObject> merchantPoolSearchfreed(@Body RequestBody map);

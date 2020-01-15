@@ -176,6 +176,10 @@ public class EdtJieskFragment extends BaseFragment {
     TextView mtv_foucus;
     @BindView(R.id.incon_con)
     InConstranLayout mIncon;
+    @BindView(R.id.textView711)
+    TextView mtvSfzNumWenzi;
+    @BindView(R.id.item_lookjies_shoukuansfznum)
+    EditText mEdtSfzNum;
 
     private String mGPS_path, mKaihuiPath, mYinhang_path, mChengnuo_path, mZhewngPath, mFanPath, mShouChi_path, mShanghu_path;
     private String url_gps, url_kaihu, url_yinhang, url_chengnuo, url_fore, url_back, url_shouchi, url_shanghu;
@@ -344,6 +348,8 @@ public class EdtJieskFragment extends BaseFragment {
         mLinearZijin.setVisibility(View.VISIBLE);
         mLineOne.setVisibility(View.VISIBLE);
         mLineTwo.setVisibility(View.VISIBLE);
+        mtvSfzNumWenzi.setVisibility(View.VISIBLE);
+        mEdtSfzNum.setVisibility(View.VISIBLE);
         is_kaihuPic = false;
 
         String leixing = mItemLookjiesLeixing.getText().toString();
@@ -398,6 +404,13 @@ public class EdtJieskFragment extends BaseFragment {
                 mLinearShouchi.setVisibility(View.GONE);
                 mLinearZijin.setVisibility(View.GONE);
             }
+        }
+        if(shifoufren.equals("否")){
+            mtvSfzNumWenzi.setVisibility(View.VISIBLE);
+            mEdtSfzNum.setVisibility(View.VISIBLE);
+        }else{
+            mtvSfzNumWenzi.setVisibility(View.GONE);
+            mEdtSfzNum.setVisibility(View.GONE);
         }
     }
 
@@ -471,6 +484,7 @@ public class EdtJieskFragment extends BaseFragment {
         mItemLookjiesJiesuannum.setText(merchant.getString("cardnum"));
 
         mItemLookjiesKaihuren.setText(merchant.getString("bankacctname"));
+        mEdtSfzNum.setText(merchant.getString("collcardid"));
         String bankname = merchant.getString("bankname");
         if (bankname.equals("天津银行")) {
             is_Tianjin = true;
@@ -722,6 +736,7 @@ public class EdtJieskFragment extends BaseFragment {
         map.put("collCardIdBack", mFanPath);
         map.put("authLetterAndCardFront", mShouChi_path);
         map.put("authLetter", mShanghu_path);
+        map.put("collcardid", mEdtSfzNum.getText().toString());
         map.put("type", mIs_creat);
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).newSettlementInformation(EncryPtionUtil.getInstance(getActivity()).toEncryption(map));
         EncryPtionHttp.getInstance(getActivity()).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {

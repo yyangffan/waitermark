@@ -26,11 +26,13 @@ import com.superc.waitmarket.R;
 import com.superc.waitmarket.adapter.ManaJhAdapter;
 import com.superc.waitmarket.adapter.ManaShAdapter;
 import com.superc.waitmarket.adapter.ManaWhAdapter;
+import com.superc.waitmarket.adapter.ManaXeAdapter;
 import com.superc.waitmarket.base.ApiService;
 import com.superc.waitmarket.base.WaitApplication;
 import com.superc.waitmarket.bean.JihuoBean;
 import com.superc.waitmarket.bean.MainTainBean;
 import com.superc.waitmarket.bean.ShenheBean;
+import com.superc.waitmarket.bean.WeipaiBean;
 import com.superc.waitmarket.httputil.EncryPtionHttp;
 import com.superc.waitmarket.httputil.EncryPtionUtil;
 import com.superc.waitmarket.utils.BigDecimalUtils;
@@ -78,9 +80,11 @@ public class ManaPbActivity extends BaseActivity {
     private ManaWhAdapter mManaWhAdapter;
     private ManaShAdapter mManaShAdapter;
     private ManaJhAdapter mManaJhAdapter;
+    private ManaXeAdapter mManaXeAdapter;
     private List<MainTainBean.DataBean.ListBean> mMapWhList;
     private List<ShenheBean.DataBean.ListBean> mMapShList;
     private List<JihuoBean.DataBean.ListBean> mMapJhList;
+    private List<WeipaiBean.DataBean.ListBean> mMapXeList;
     private String mWhat, mUser_id, mShifang_id;
     private YfsRemindDialog mYfsRemindDialog;
 
@@ -98,11 +102,13 @@ public class ManaPbActivity extends BaseActivity {
         mMapWhList = new ArrayList<>();
         mMapShList = new ArrayList<>();
         mMapJhList = new ArrayList<>();
+        mMapXeList = new ArrayList<>();
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mManapbRecy.setLayoutManager(manager);
         mManaWhAdapter = new ManaWhAdapter(this, mMapWhList);
         mManaShAdapter = new ManaShAdapter(this, mMapShList);
         mManaJhAdapter = new ManaJhAdapter(this, mMapJhList);
+        mManaXeAdapter = new ManaXeAdapter(this, mMapXeList);
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -120,6 +126,10 @@ public class ManaPbActivity extends BaseActivity {
             case "2":/*待激活*/
                 initJhData();
                 mTitle.setText("待激活");
+                break;
+            case "3":
+                initXiaoer();
+                mTitle.setText("小二委派商户");
                 break;
         }
         mYfsRemindDialog = new YfsRemindDialog.Builder(this).title("是否确认释放该商户").left("取消").right("确认").build();
@@ -283,6 +293,7 @@ public class ManaPbActivity extends BaseActivity {
     }
 
     private void getWhData() {
+        mManapbNum.setText("共有- -家维护中");
         Map<String, Object> map = new HashMap<>();
         map.put("userId", mUser_id);
         map.put("currentPage", page);
@@ -360,6 +371,7 @@ public class ManaPbActivity extends BaseActivity {
     }
 
     private void getShData() {
+        mManapbNum.setText("共有- -家待审核");
         Map<String, Object> map = new HashMap<>();
         map.put("userId", mUser_id);
         map.put("currentPage", page);
@@ -433,6 +445,7 @@ public class ManaPbActivity extends BaseActivity {
     }
 
     private void getJhData() {
+        mManapbNum.setText("共有- -家待激活");
         Map<String, Object> map = new HashMap<>();
         map.put("userId", mUser_id);
         map.put("currentPage", page);
@@ -457,6 +470,79 @@ public class ManaPbActivity extends BaseActivity {
                     if (page == 1) {
                         mMapJhList.clear();
                         mManaJhAdapter.notifyDataSetChanged();
+                    }
+                }
+                if (!TextUtils.isEmpty(msg)) {
+                    ToastShow(msg);
+                }
+            }
+
+            @Override
+            public void onErrorResult(HttpThrowable httpThrowable) {
+                mManapbSmart.finishRefresh();
+                mManapbSmart.finishLoadMore();
+                ToastShow("接口访问异常" + httpThrowable.message);
+                Log.d("qqq", httpThrowable.message);
+            }
+        });
+    }
+
+    /*小二委派商户*/
+    private void initXiaoer(){
+        mManapbRecy.setAdapter(mManaXeAdapter);
+        mManapbSmart.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                page = 1;
+                getXeData();
+            }
+        });
+        mManapbSmart.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                ++page;
+                getXeData();
+            }
+        });
+        mManapbSmart.autoRefresh();
+        mManaXeAdapter.setOnItemClickListener(new ManaXeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClickListener(int pos) {
+                WeipaiBean.DataBean.ListBean map = mMapXeList.get(pos);
+                ShareUtil.getInstance(WaitApplication.getInstance()).put("edtdetail_id", BigDecimalUtils.bigUtil(map.getShopid()));
+                /*商户委派  需要修改channel吗？*/
+                ShareUtil.getInstance(WaitApplication.getInstance()).put("channel", BigDecimalUtils.bigUtil(map.getChannel()));
+                statActivity(MerchantDetailActivity.class);
+            }
+        });
+    }
+
+    private void getXeData() {
+        mManapbNum.setText("共有- -家待激活");
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", mUser_id);
+        map.put("currentPage", page);
+        map.put("pageSize", 10);
+        Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).listOfPrimaryDelegatedMerchants(EncryPtionUtil.getInstance(this).toEncryption(map));
+        EncryPtionHttp.getInstance(this).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
+            @Override
+            public void onSuccessResult(JSONObject result) {
+                mManapbSmart.finishRefresh();
+                mManapbSmart.finishLoadMore();
+                boolean code = result.getBoolean("code");
+                String msg = result.getString("message");
+                if (code) {
+                    WeipaiBean bean = new Gson().fromJson(result.toString(), WeipaiBean.class);
+                    mManapbNum.setText("共有" + BigDecimalUtils.bigUtil(bean.getData().getCount()) + "家待激活");
+                    if (page == 1) {
+                        mMapXeList.clear();
+                    }
+                    mMapXeList.addAll(bean.getData().getList());
+                    mManaXeAdapter.notifyDataSetChanged();
+                } else {
+                    if (page == 1) {
+                        mMapXeList.clear();
+                        mManaXeAdapter.notifyDataSetChanged();
                     }
                 }
                 if (!TextUtils.isEmpty(msg)) {

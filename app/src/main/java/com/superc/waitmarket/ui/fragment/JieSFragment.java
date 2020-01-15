@@ -100,6 +100,10 @@ public class JieSFragment extends BaseFragment {
     TextView mtvkaiHuren_danwei;
     @BindView(R.id.textView88)
     View mLineOne;
+    @BindView(R.id.linear_shenfenzhengn)
+    ConstraintLayout mLinearShenfenzhengn;
+    @BindView(R.id.item_lookjies_shenfenzheng)
+    TextView mTvSfzNum;
 
     Unbinder unbinder;
     private String mEdtdetail_id;
@@ -173,6 +177,8 @@ public class JieSFragment extends BaseFragment {
             mItemLookjiesuPhone.setText(merchant.getString("bankcardphone"));
             mItemLookjiesuZhihang.setText(merchant.getString("branchname"));
             mItemLookjiesuHanghao.setText(merchant.getString("bankCode"));
+            mTvSfzNum.setText(merchant.getString("collcardid"));
+
 
             RoundedCorners roundedCorners = new RoundedCorners(10);
             RequestOptions override = RequestOptions.bitmapTransform(roundedCorners).error(R.drawable.icon_error).placeholder(R.drawable.icon_error).override(300, 300);
@@ -325,6 +331,11 @@ public class JieSFragment extends BaseFragment {
                 mLinearShouchi.setVisibility(View.GONE);
                 mLinearZijin.setVisibility(View.GONE);
             }
+        }
+        if(shifoufren.equals("否")){
+            mLinearShenfenzhengn.setVisibility(View.VISIBLE);
+        }else{
+            mLinearShenfenzhengn.setVisibility(View.GONE);
         }
     }
 

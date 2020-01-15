@@ -103,18 +103,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView66"/>
 
             <View
-                android:id="@+id/textView70"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/dp_1"
-                android:layout_marginTop="10dp"
-                android:background="@color/line_color"
-                app:layout_constraintEnd_toEndOf="@+id/item_lookjiesu_shifou"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textView53"
-                app:layout_constraintTop_toBottomOf="@+id/item_lookjiesu_kaihuhang"/>
-
-
-            <View
                 android:id="@+id/textView64"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_1"
@@ -297,6 +285,68 @@
                 app:layout_constraintBottom_toBottomOf="@+id/item_lookjiesu_kaihuhang"
                 app:layout_constraintStart_toStartOf="@+id/textView53"
                 app:layout_constraintTop_toTopOf="@+id/item_lookjiesu_kaihuhang"/>
+            <View
+                android:id="@+id/textView70"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"
+                app:layout_constraintEnd_toEndOf="@+id/item_lookjiesu_shifou"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintTop_toBottomOf="@+id/item_lookjiesu_kaihuhang"/>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/linear_shenfenzhengn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView70">
+
+                <TextView
+                    android:id="@+id/textView561"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="收款人身份证号"
+                    android:textColor="@color/txt_sixsev"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/item_lookjies_shenfenzheng"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/item_lookjies_shenfenzheng"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:lines="1"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:text="- -"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView561"
+                    tools:text="1234564x"
+                    />
+
+                <View
+                    android:id="@+id/textView656"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/line_color"
+                    app:layout_constraintEnd_toEndOf="@+id/item_lookjies_shenfenzheng"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textView561"
+                    app:layout_constraintTop_toBottomOf="@+id/textView561"/>
+
+            </android.support.constraint.ConstraintLayout>
 
             <TextView
                 android:id="@+id/textView71"
@@ -306,7 +356,7 @@
                 android:text="收款结算账号"
                 android:textColor="@color/txt_sixsev"
                 app:layout_constraintStart_toStartOf="@+id/textView70"
-                app:layout_constraintTop_toBottomOf="@+id/textView70"/>
+                app:layout_constraintTop_toBottomOf="@+id/linear_shenfenzhengn"/>
 
             <TextView
                 android:id="@+id/textView66"

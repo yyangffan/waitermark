@@ -44,15 +44,20 @@ import com.superc.waitmarket.views.InConstranLayout;
 import com.superc.yyfflibrary.base.BaseFragment;
 import com.superc.yyfflibrary.utils.ShareUtil;
 import com.trello.rxlifecycle2.LifecycleTransformer;
+import com.yogee.customdatepicker.datepicker.CustomDatePicker;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.FileNameMap;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -106,6 +111,20 @@ public class EdtZizhiFragment extends BaseFragment {
     LinearLayout mItemLookjiesLineyyzz;
     @BindView(R.id.yingyedelete)
     ImageView mYingyedelete;
+    @BindView(R.id.item_edtzizhi_fanwei)
+    EditText mItemEdtzizhiFanwei;
+    @BindView(R.id.item_edtzizhi_changsuo)
+    EditText mItemEdtzizhiChangsuo;
+    @BindView(R.id.item_edtzizhi_zijin)
+    EditText mItemEdtzizhiZijin;
+    @BindView(R.id.item_edtzizhi_yyzzst)
+    TextView mItemEdtzizhiYyzzst;
+    @BindView(R.id.item_edtzizhi_yyzzed)
+    TextView mItemEdtzizhiYyzzed;
+    @BindView(R.id.item_edtzizhi_sfztimest)
+    TextView mItemEdtzizhiSfztimest;
+    @BindView(R.id.item_edtzizhi_sfztimeed)
+    TextView mItemEdtzizhiSfztimeed;
 
     Unbinder unbinder;
     private String url_fore, url_back, url_yingye, mZhewngPath, mFanPath, mYingyePath;
@@ -117,6 +136,7 @@ public class EdtZizhiFragment extends BaseFragment {
     private String[][] mStrings_zizhi = new String[][]{{"企业", "0"}, {"个体户", "1"}, {"个人", "2"}};
     private String channel;
     private String mStatus;
+    private CustomDatePicker customDatePickerSt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -136,13 +156,13 @@ public class EdtZizhiFragment extends BaseFragment {
         mBotListBeans_leixing = new ArrayList<>();
         mtvFocus.requestFocus();
         mStatus = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("status", "");
-        if(mStatus.equals("1")){//1 不可编辑  0可编辑
+        if (mStatus.equals("1")) {//1 不可编辑  0可编辑
             mIncon.setmIsIntercept(true);
         }
     }
 
     @OnClick({R.id.item_edtzizhi_imgone, R.id.item_edtzizhi_imgonexiangji, R.id.item_edtzizhi_imgtwo, R.id.item_edtzizhi_imgtwoxiangji, R.id.imageView7, R.id.imageView8, R.id.item_edtzizhi_leixing,
-            R.id.item_lookjies_lineyyzz, R.id.item_lookjies_yyzzadd, R.id.item_lookjies_imgvyyzz, R.id.yingyedelete})
+            R.id.item_lookjies_lineyyzz, R.id.item_lookjies_yyzzadd, R.id.item_lookjies_imgvyyzz, R.id.yingyedelete, R.id.item_edtzizhi_yyzzst, R.id.item_edtzizhi_yyzzed, R.id.item_edtzizhi_sfztimest, R.id.item_edtzizhi_sfztimeed})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.item_lookjies_lineyyzz:
@@ -169,6 +189,28 @@ public class EdtZizhiFragment extends BaseFragment {
                 mItemLookjiesImgvyyzz.setVisibility(View.GONE);
                 mYingyedelete.setVisibility(View.GONE);
                 break;
+            case R.id.item_edtzizhi_yyzzst:
+                showDateDialog(mItemEdtzizhiYyzzst, "2000-01-01 00:00", "2035-12-12 00:00");
+                break;
+            case R.id.item_edtzizhi_yyzzed:
+                String zizhi_st = mItemEdtzizhiYyzzst.getText().toString();
+                if (TextUtils.isEmpty(zizhi_st)) {
+                    ToastShow("请先选择开始时间");
+                    return;
+                }
+                showDateDialog(mItemEdtzizhiYyzzed, zizhi_st.replace(".", "-") + " 00:00", "2035-12-12 00:00");
+                break;
+            case R.id.item_edtzizhi_sfztimest:
+                showDateDialog(mItemEdtzizhiSfztimest, "2000-01-01 00:00", "2035-12-12 00:00");
+                break;
+            case R.id.item_edtzizhi_sfztimeed:
+                String sfz_st = mItemEdtzizhiSfztimest.getText().toString();
+                if (TextUtils.isEmpty(sfz_st)) {
+                    ToastShow("请先选择开始时间");
+                    return;
+                }
+                showDateDialog(mItemEdtzizhiSfztimeed, sfz_st.replace(".", "-") + " 00:00", "2035-12-12 00:00");
+                break;
         }
     }
 
@@ -177,7 +219,7 @@ public class EdtZizhiFragment extends BaseFragment {
         mEdtdetail_id = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("edtdetail_id", "");
         channel = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("channel", "");
         mStatus = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("status", "");
-        if(mStatus.equals("1")&&mIncon!=null){//1 不可编辑  0可编辑
+        if (mStatus.equals("1") && mIncon != null) {//1 不可编辑  0可编辑
             mIncon.setmIsIntercept(true);
         }
         toGetEdtData();
@@ -257,6 +299,13 @@ public class EdtZizhiFragment extends BaseFragment {
         mItemEdtzizhiDanwei.setText(merchant.getString("registercompany"));
         mItemEdtzizhiFaren.setText(merchant.getString("name"));
         mItemEdtzizhiShenfenzh.setText(merchant.getString("cardid"));
+        mItemEdtzizhiFanwei.setText(merchant.getString("businessscope"));
+        mItemEdtzizhiChangsuo.setText(merchant.getString("placeofbusiness"));
+        mItemEdtzizhiZijin.setText(merchant.getString("registeredcapital"));
+        mItemEdtzizhiYyzzst.setText(merchant.getString("startdate"));
+        mItemEdtzizhiYyzzed.setText(merchant.getString("enddate"));
+        mItemEdtzizhiSfztimest.setText(merchant.getString("starttime"));
+        mItemEdtzizhiSfztimeed.setText(merchant.getString("endtime"));
         toCHushihuaDig();
 
         mZhewngPath = merchant.getString("cardidfrntphoto");//正面
@@ -318,6 +367,18 @@ public class EdtZizhiFragment extends BaseFragment {
         String danwei = mItemEdtzizhiDanwei.getText().toString();
         String fanren = mItemEdtzizhiFaren.getText().toString();
         String sfznum = mItemEdtzizhiShenfenzh.getText().toString();
+        String yyzz_st = mItemEdtzizhiYyzzst.getText().toString();
+        String yyzz_ed = mItemEdtzizhiYyzzed.getText().toString();
+        String sfz_st = mItemEdtzizhiSfztimest.getText().toString();
+        String sfz_ed = mItemEdtzizhiSfztimeed.getText().toString();
+        if(compare_dateDate(yyzz_st,yyzz_ed)==-1){
+            ToastShow("营业执照开始时间不能大于结束时间");
+            return;
+        }
+        if(compare_dateDate(sfz_st,sfz_ed)==-1){
+            ToastShow("身份证有效期开始时间不能大于结束时间");
+            return;
+        }
        /* if (TextUtils.isEmpty(leixing_id)) {
             ToastShow("请选择经营类型");
             return;
@@ -356,6 +417,13 @@ public class EdtZizhiFragment extends BaseFragment {
         map.put("cardIdFrntPhoto", mZhewngPath);
         map.put("cardIdBackPhoto", mFanPath);
         map.put("licenseimg", mYingyePath);
+        map.put("businessscope", mItemEdtzizhiFanwei.getText().toString());
+        map.put("placeofbusiness", mItemEdtzizhiChangsuo.getText().toString());
+        map.put("registeredcapital", mItemEdtzizhiZijin.getText().toString());
+        map.put("startdate", yyzz_st);
+        map.put("enddate", yyzz_ed);
+        map.put("starttime", sfz_st);
+        map.put("endtime", sfz_ed);
         map.put("type", mIs_creat);
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).newQualificationInformation(EncryPtionUtil.getInstance(getActivity()).toEncryption(map));
         EncryPtionHttp.getInstance(getActivity()).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
@@ -526,6 +594,60 @@ public class EdtZizhiFragment extends BaseFragment {
             }
         }, (LifecycleTransformer) null);
 
+    }
+
+    /**
+     * 日期选择
+     *
+     * @param mtv      需要进行日期设置的TextView
+     * @param begin_tm 日期选择的开始日期
+     * @param ed_tm    日期选择的结束日期
+     */
+    private void showDateDialog(final TextView mtv, String begin_tm, String ed_tm) {
+        String time = mtv.getText().toString();
+        customDatePickerSt = new CustomDatePicker(getActivity(), new CustomDatePicker.Callback() {
+            @Override
+            public void onTimeSelected(long timestamp) {
+                mtv.setText(new SimpleDateFormat("yyyy.MM.dd", Locale.CHINA).format(new Date(timestamp)));
+//                mtv.setText(DateFormatUtils.long2Str(timestamp, false));
+            }
+        }, begin_tm + " 00:00", ed_tm);
+        customDatePickerSt.setCanShowPreciseTime(false); // 不显示时和分
+        customDatePickerSt.setScrollLoop(true); // 允许循环滚动
+        customDatePickerSt.setCanShowAnim(true);//开启滚动动画
+        customDatePickerSt.show(!TextUtils.isEmpty(time) ? time.replace(".", "-") + " 00:00" : new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA).format(new Date()));
+    }
+    /**
+     * @param DATE1
+     * @param DATE2
+     * @return -1:DATE1>DATE2
+     * 1:DATE1< DATE2
+     * 0:DATE1==DATE2
+     */
+    public static int compare_dateDate(String DATE1, String DATE2) {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            if(DATE1.contains(".")){
+                DATE1=DATE1.replace(".","-");
+            }
+            if(DATE2.contains(".")){
+                DATE2=DATE2.replace(".","-");
+            }
+            Date dt1 = df.parse(DATE1);
+            Date dt2 = df.parse(DATE2);
+            if (dt1.getTime() > dt2.getTime()) {
+                System.out.println("dt1 > dt2");
+                return -1;
+            } else if (dt1.getTime() < dt2.getTime()) {
+                System.out.println("dt1 < dt2");
+                return 1;
+            } else {
+                return 0;
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return 0;
     }
 
     private String guessMimeType(String path) {

@@ -176,7 +176,7 @@ public class BusnesFragment extends BaseFragment {
         getCount();
     }
 
-    private void togetDataA(){
+    private void togetDataA() {
         getCount();
         page = 1;
         getData();
@@ -186,7 +186,8 @@ public class BusnesFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.busnes_shanghuchi, R.id.busnes_rela_xinjian, R.id.busnes_rela_weihu, R.id.busnes_rela_shenhe, R.id.busnes_rela_jihuo, R.id.busnes_what})
+    @OnClick({R.id.busnes_shanghuchi, R.id.busnes_rela_xinjian, R.id.busnes_rela_weihu, R.id.busnes_rela_shenhe, R.id.busnes_rela_jihuo, R.id.busnes_what,
+            R.id.busnes_weipai})
     public void onClick(View view) {
         Intent intent = new Intent(this.getActivity(), ManaPbActivity.class);
         switch (view.getId()) {
@@ -215,6 +216,10 @@ public class BusnesFragment extends BaseFragment {
             case R.id.busnes_what:
                 mJihuoDialog.show();
                 break;
+            case R.id.busnes_weipai:
+                intent.putExtra("what", "3");
+                startActivity(intent);
+                break;
         }
     }
 
@@ -223,7 +228,7 @@ public class BusnesFragment extends BaseFragment {
         Map<String, Object> map = new HashMap<>();
         map.put("userId", mUser_id);
         map.put("type", type);//行业type  0已激活商家
-        if(!TextUtils.isEmpty(sm_type)) {
+        if (!TextUtils.isEmpty(sm_type)) {
             map.put("BigShopTypeID", sm_type);
         }
         map.put("currentPage", page);
@@ -370,9 +375,9 @@ public class BusnesFragment extends BaseFragment {
             public void onFinishListener(int pos, String what) {
                 Map<String, Object> map = mMapList_jihuo.get(pos);
                 String small_id = (String) map.get("small_id");
-                if(what.contains("(")){
-                    mTv_what.setText(what.substring(0,what.indexOf("(")));
-                }else {
+                if (what.contains("(")) {
+                    mTv_what.setText(what.substring(0, what.indexOf("(")));
+                } else {
                     mTv_what.setText(what);
                 }
                 for (int i = 0; i < mMapList_jihuo.size(); i++) {
