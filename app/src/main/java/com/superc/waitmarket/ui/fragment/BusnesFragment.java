@@ -127,8 +127,8 @@ public class BusnesFragment extends BaseFragment {
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 getCount();
                 page = 1;
-                getData();
                 getOnceTab();
+                getData();
 
             }
         });

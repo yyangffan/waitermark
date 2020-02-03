@@ -741,9 +741,9 @@ public class EdtJichuFragment extends BaseFragment implements PoiSearch.OnPoiSea
                                 getSecondaryIndustry(what);
                                 mEdtjichuTwohangy.setText("");
                                 one_code = what;
-                                if(name.equals("菜市场")){
+//                                if(name.equals("菜市场")){
                                     mEdtjichuShangquan.setText("");
-                                }
+//                                }
                             }
                             if(name.equals("菜市场")){
                                 shangquan_type="1";

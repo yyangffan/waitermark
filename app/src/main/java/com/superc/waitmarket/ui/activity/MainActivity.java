@@ -78,7 +78,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         mPager = findViewById(R.id.tab_pager);
 //        mPager.setScrollble(false);
         //设置当前可见Item左右可见page数，次范围内不会被销毁
-        mPager.setOffscreenPageLimit(1);
+        mPager.setOffscreenPageLimit(3);
         mPager.setAdapter(mAdapter);
         mTabLayout = (TabContainerView) findViewById(R.id.ll_tab_container);
         mTabLayout.setOnPageChangeListener(this);

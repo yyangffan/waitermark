@@ -166,7 +166,7 @@ public class JieSFragment extends BaseFragment {
             String accounttype = merchant.getString("accounttype");
             mItemLookjiesuLeixing.setText(accounttype);
             String banka = BigDecimalUtils.bigUtil(merchant.getString("opencardtype"));
-            mItemLookjiesBanka.setText(banka.equals("1") ? "商家自办" : "时时开卡");
+            mItemLookjiesBanka.setText(banka.equals("1") ? "商家自办" : "实时开卡");
             mItemLookjiesuJiesuanstate.setText(merchant.getString("settlementtype"));
             String shifoufaren = BigDecimalUtils.bigUtil(merchant.getString("islegalperson"));
             mItemLookjiesuShifou.setText(shifoufaren.equals("1") ? "是" : "否");

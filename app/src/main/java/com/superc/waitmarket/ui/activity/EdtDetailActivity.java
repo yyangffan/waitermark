@@ -130,12 +130,19 @@ public class EdtDetailActivity extends BaseActivity {
                 break;
             case R.id.edtdetail_commit:
                 is_tijiao = true;
-                if(mStatus.equals("1")){//1 不可编辑  0可编辑
-                    toSubmit();
-                    return;
-                }
-                toCommit();
-                /*toSubmit();*/
+                YfsRemindDialog build = new YfsRemindDialog.Builder(this).title("确认提交该商户信息").left("取消").right("确定").build();
+                build.setOnTextClickListener(new YfsRemindDialog.OnTextClickListener() {
+                    @Override
+                    public void onRightClickListener() {
+                        super.onRightClickListener();
+                        if(mStatus.equals("1")){//1 不可编辑  0可编辑
+                            toSubmit();
+                            return;
+                        }
+                        toCommit();
+                    }
+                });
+                build.show();
                 break;
             case R.id.edtdetail_top:
                 is_back = true;

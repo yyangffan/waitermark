@@ -319,7 +319,7 @@
                     android:id="@+id/item_lookjies_shenfenzheng"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="80dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:ellipsize="end"
                     android:gravity="right"

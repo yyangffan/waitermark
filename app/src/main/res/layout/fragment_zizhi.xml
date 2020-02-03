@@ -292,64 +292,76 @@
                 app:layout_constraintStart_toStartOf="@+id/textView62"
                 app:layout_constraintTop_toBottomOf="@+id/textView62"/>
 
-            <TextView
-                android:id="@+id/textView661"
-                android:layout_width="wrap_content"
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/con_xinzeng"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="注册资金(万元)"
-                android:textColor="@color/txt_sixsev"
-                app:layout_constraintStart_toStartOf="@+id/linear_gps"
-                app:layout_constraintTop_toBottomOf="@+id/textView64"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView64">
 
-            <TextView
-                android:id="@+id/item_lookzizhi_zijin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="- -"
-                android:textColor="@color/black"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView661"
-                app:layout_constraintEnd_toEndOf="@+id/textView61"
-                tools:text="444"/>
+                <TextView
+                    android:id="@+id/textView661"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="注册资金(万元)"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:textColor="@color/txt_sixsev"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-            <View
-                android:id="@+id/textView662"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/dp_1"
-                android:layout_marginTop="10dp"
-                android:background="@color/line_color"
-                app:layout_constraintEnd_toEndOf="@+id/item_lookzizhi_danwei"
-                app:layout_constraintStart_toStartOf="@+id/textView62"
-                app:layout_constraintTop_toBottomOf="@+id/item_lookzizhi_zijin"/>
-             <TextView
-                android:id="@+id/textView664"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="营业执照有效期"
-                android:textColor="@color/txt_sixsev"
-                app:layout_constraintStart_toStartOf="@+id/linear_gps"
-                app:layout_constraintTop_toBottomOf="@+id/textView662"/>
+                <TextView
+                    android:id="@+id/item_lookzizhi_zijin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="- -"
+                    android:textColor="@color/black"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView661"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="444"/>
 
-            <TextView
-                android:id="@+id/item_lookzizhi_yyzztime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="- -"
-                android:textColor="@color/black"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView664"
-                app:layout_constraintEnd_toEndOf="@+id/textView61"
-                tools:text="2019.1.1-2.20.12.12"/>
+                <View
+                    android:id="@+id/textView662"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/line_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/item_lookzizhi_zijin"/>
 
-            <View
-                android:id="@+id/textView665"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/dp_1"
-                android:layout_marginTop="10dp"
-                android:background="@color/line_color"
-                app:layout_constraintEnd_toEndOf="@+id/item_lookzizhi_danwei"
-                app:layout_constraintStart_toStartOf="@+id/textView62"
-                app:layout_constraintTop_toBottomOf="@+id/item_lookzizhi_yyzztime"/>
+                <TextView
+                    android:id="@+id/textView664"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="营业执照有效期"
+                    android:textColor="@color/txt_sixsev"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView662"/>
+
+                <TextView
+                    android:id="@+id/item_lookzizhi_yyzztime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="- -"
+                    android:textColor="@color/black"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView664"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="2019.1.1-2.20.12.12"/>
+
+                <View
+                    android:id="@+id/textView665"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/line_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/item_lookzizhi_yyzztime"/>
+
+            </android.support.constraint.ConstraintLayout>
+
 
             <TextView
                 android:id="@+id/textView65"
@@ -359,7 +371,7 @@
                 android:text="法定代表人"
                 android:textColor="@color/txt_sixsev"
                 app:layout_constraintStart_toStartOf="@+id/textView64"
-                app:layout_constraintTop_toBottomOf="@+id/textView665"/>
+                app:layout_constraintTop_toBottomOf="@+id/con_xinzeng"/>
 
             <TextView
                 android:id="@+id/item_lookzizhi_faren"

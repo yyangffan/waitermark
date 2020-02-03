@@ -2,6 +2,7 @@ package com.superc.waitmarket.ui.fragment;
 
 
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -70,6 +71,10 @@ public class ZizhiFragment extends BaseFragment {
     TextView mItemLookzizhiYyzztime;
     @BindView(R.id.item_lookzizhi_sfztime)
     TextView mItemLookzizhiSfzTm;
+    @BindView(R.id.con_xinzeng)
+    ConstraintLayout mConXinzeng;
+
+
     private String mEdtdetail_id;
     private String channel;
 
@@ -135,6 +140,7 @@ public class ZizhiFragment extends BaseFragment {
                 mItemLookLeixing.setText("个体户");
             } else {
                 mItemLookLeixing.setText("个人");
+                mConXinzeng.setVisibility(View.GONE);
             }
             mItemLookzizhiBianhao.setText(merchant.getString("creditcode"));
             mItemLookzizhiDanwei.setText(merchant.getString("registercompany"));

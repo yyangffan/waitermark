@@ -185,7 +185,7 @@ public class EdtJieskFragment extends BaseFragment {
     private String url_gps, url_kaihu, url_yinhang, url_chengnuo, url_fore, url_back, url_shouchi, url_shanghu;
     private EdtDetailActivity mEdtDetailActivity;
     private String[] mStrings_zhanghu = new String[]{"对公", "对私"};
-    private String[][] mStrings_banka = new String[][]{{"商家自办", "1"}, {"时时开卡", "3"}};
+    private String[][] mStrings_banka = new String[][]{{"商家自办", "1"}, {"实时开卡", "3"}};
     private String[] mStrings_jiesuan = new String[]{"统一结算账户", "非统一结算账户"};
     private String[][] mStrings_shiffaren = new String[][]{{"是", "1"}, {"否", "0"}};
     private String[] mStrings_shiftianjin = new String[]{"天津银行", "非天津银行"};
@@ -477,7 +477,7 @@ public class EdtJieskFragment extends BaseFragment {
         String accounttype = merchant.getString("accounttype");
         mItemLookjiesLeixing.setText(accounttype);
         banka = BigDecimalUtils.bigUtil(merchant.getString("opencardtype"));
-        mItemLookjiesBanka.setText(banka.equals("1") ? "商家自办" : "时时开卡");
+        mItemLookjiesBanka.setText(banka.equals("1") ? "商家自办" : "实时开卡");
         mItemLookjiesJiesuanstate.setText(merchant.getString("settlementtype"));
         shifoufaren = BigDecimalUtils.bigUtil(merchant.getString("islegalperson"));
         mItemLookjiesYnfaren.setText(shifoufaren.equals("1") ? "是" : "否");

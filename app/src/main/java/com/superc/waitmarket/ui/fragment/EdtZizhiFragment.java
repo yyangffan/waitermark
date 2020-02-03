@@ -39,6 +39,7 @@ import com.superc.waitmarket.httputil.EncryPtionUtil;
 import com.superc.waitmarket.ui.activity.EdtDetailActivity;
 import com.superc.waitmarket.utils.BigDecimalUtils;
 import com.superc.waitmarket.utils.dialog.DialogBotList;
+import com.superc.waitmarket.utils.dialog.LoadingDialog;
 import com.superc.waitmarket.utils.dialog.MiddleDialog;
 import com.superc.waitmarket.views.InConstranLayout;
 import com.superc.yyfflibrary.base.BaseFragment;
@@ -125,6 +126,12 @@ public class EdtZizhiFragment extends BaseFragment {
     TextView mItemEdtzizhiSfztimest;
     @BindView(R.id.item_edtzizhi_sfztimeed)
     TextView mItemEdtzizhiSfztimeed;
+    @BindView(R.id.textView119)
+    TextView mtvYyzzTmWenz;
+    @BindView(R.id.textView162)
+    TextView mtvZczjWenz;
+    @BindView(R.id.linearLayout4)
+    LinearLayout mLinearYyzzTm;
 
     Unbinder unbinder;
     private String url_fore, url_back, url_yingye, mZhewngPath, mFanPath, mYingyePath;
@@ -137,6 +144,7 @@ public class EdtZizhiFragment extends BaseFragment {
     private String channel;
     private String mStatus;
     private CustomDatePicker customDatePickerSt;
+    private LoadingDialog mLoadingDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -152,6 +160,7 @@ public class EdtZizhiFragment extends BaseFragment {
     public void init() {
         mJichuLookSmart.setEnableOverScrollDrag(true);
         mJichuLookSmart.setEnablePureScrollMode(true);
+        mLoadingDialog = LoadingDialog.getInstance(getActivity());
         mEdtDetailActivity = (EdtDetailActivity) getActivity();
         mBotListBeans_leixing = new ArrayList<>();
         mtvFocus.requestFocus();
@@ -280,6 +289,17 @@ public class EdtZizhiFragment extends BaseFragment {
                 super.onTextClickListenerHis(name, what);
                 leixing_id = what;
                 mtvLeixing.setText(name);
+                if (what.equals("2")) {
+                    mtvYyzzTmWenz.setVisibility(View.GONE);
+                    mtvZczjWenz.setVisibility(View.GONE);
+                    mLinearYyzzTm.setVisibility(View.GONE);
+                    mItemEdtzizhiZijin.setVisibility(View.GONE);
+                } else {
+                    mtvYyzzTmWenz.setVisibility(View.VISIBLE);
+                    mtvZczjWenz.setVisibility(View.VISIBLE);
+                    mLinearYyzzTm.setVisibility(View.VISIBLE);
+                    mItemEdtzizhiZijin.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -288,12 +308,20 @@ public class EdtZizhiFragment extends BaseFragment {
 
     private void setData(JSONObject merchant) {
         String managetype = BigDecimalUtils.bigUtil(merchant.getString("managetype"));
+        mtvYyzzTmWenz.setVisibility(View.VISIBLE);
+        mtvZczjWenz.setVisibility(View.VISIBLE);
+        mLinearYyzzTm.setVisibility(View.VISIBLE);
+        mItemEdtzizhiZijin.setVisibility(View.VISIBLE);
         if (managetype.equals("0")) {
             mtvLeixing.setText("企业");
         } else if (managetype.equals("1")) {
             mtvLeixing.setText("个体户");
         } else {
             mtvLeixing.setText("个人");
+            mtvYyzzTmWenz.setVisibility(View.GONE);
+            mtvZczjWenz.setVisibility(View.GONE);
+            mLinearYyzzTm.setVisibility(View.GONE);
+            mItemEdtzizhiZijin.setVisibility(View.GONE);
         }
         mItemEdtzizhiBianhao.setText(merchant.getString("creditcode"));
         mItemEdtzizhiDanwei.setText(merchant.getString("registercompany"));
@@ -371,11 +399,11 @@ public class EdtZizhiFragment extends BaseFragment {
         String yyzz_ed = mItemEdtzizhiYyzzed.getText().toString();
         String sfz_st = mItemEdtzizhiSfztimest.getText().toString();
         String sfz_ed = mItemEdtzizhiSfztimeed.getText().toString();
-        if(compare_dateDate(yyzz_st,yyzz_ed)==-1){
+        if (compare_dateDate(yyzz_st, yyzz_ed) == -1) {
             ToastShow("营业执照开始时间不能大于结束时间");
             return;
         }
-        if(compare_dateDate(sfz_st,sfz_ed)==-1){
+        if (compare_dateDate(sfz_st, sfz_ed) == -1) {
             ToastShow("身份证有效期开始时间不能大于结束时间");
             return;
         }
@@ -542,12 +570,14 @@ public class EdtZizhiFragment extends BaseFragment {
     private void toCommitYingye() {
         File img = new File(url_yingye);
         String names = img.getName();
+        mLoadingDialog.show();
         RequestBody requestFile = RequestBody.create(MediaType.parse(guessMimeType(img.getPath())), img);
         MultipartBody.Part body = MultipartBody.Part.createFormData("file", names, requestFile);
         Observable<JSONObject> observable = DevRing.httpManager().getService(ApiService.class).uploadLicenseLogo(body);
         DevRing.httpManager().commonRequest(observable, new CommonObserver<JSONObject>() {
             @Override
             public void onResult(JSONObject result) {
+                mLoadingDialog.dismiss();
                 boolean code = result.getBoolean("code");
                 String msg = result.getString("message");
                 if (code) {
@@ -561,6 +591,7 @@ public class EdtZizhiFragment extends BaseFragment {
 
             @Override
             public void onError(HttpThrowable httpThrowable) {
+                mLoadingDialog.dismiss();
             }
         }, (LifecycleTransformer) null);
     }
@@ -617,6 +648,7 @@ public class EdtZizhiFragment extends BaseFragment {
         customDatePickerSt.setCanShowAnim(true);//开启滚动动画
         customDatePickerSt.show(!TextUtils.isEmpty(time) ? time.replace(".", "-") + " 00:00" : new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA).format(new Date()));
     }
+
     /**
      * @param DATE1
      * @param DATE2
@@ -627,11 +659,11 @@ public class EdtZizhiFragment extends BaseFragment {
     public static int compare_dateDate(String DATE1, String DATE2) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            if(DATE1.contains(".")){
-                DATE1=DATE1.replace(".","-");
+            if (DATE1.contains(".")) {
+                DATE1 = DATE1.replace(".", "-");
             }
-            if(DATE2.contains(".")){
-                DATE2=DATE2.replace(".","-");
+            if (DATE2.contains(".")) {
+                DATE2 = DATE2.replace(".", "-");
             }
             Date dt1 = df.parse(DATE1);
             Date dt2 = df.parse(DATE2);
