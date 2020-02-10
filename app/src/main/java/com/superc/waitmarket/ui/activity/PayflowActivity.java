@@ -107,6 +107,7 @@ public class PayflowActivity extends BaseActivity {
             }
         });
         mSmartRefreshLayout.autoRefresh();
+        mSmartRefreshLayout.setEnableLoadMore(false);
     }
 
     @OnClick({R.id.payflow_date, R.id.imgv_back})

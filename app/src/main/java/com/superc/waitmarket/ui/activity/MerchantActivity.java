@@ -88,6 +88,7 @@ public class MerchantActivity extends BaseActivity {
             }
         });
         mMerchantSmart.autoRefresh();
+        mMerchantSmart.setEnableLoadMore(false);
     }
 
     @OnClick({R.id.imgv_back, R.id.merchant_date})

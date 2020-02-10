@@ -39,6 +39,7 @@ import com.superc.waitmarket.ui.activity.EdtDetailActivity;
 import com.superc.waitmarket.ui.activity.ManaPbActivity;
 import com.superc.waitmarket.ui.activity.MerchPoolActivity;
 import com.superc.waitmarket.ui.activity.MerchantDetailActivity;
+import com.superc.waitmarket.ui.activity.SerachCouActivity;
 import com.superc.waitmarket.utils.BigDecimalUtils;
 import com.superc.waitmarket.utils.ScrollSpeedLinearLayoutManger;
 import com.superc.waitmarket.utils.dialog.JihuoDialog;
@@ -186,7 +187,8 @@ public class BusnesFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.busnes_shanghuchi, R.id.busnes_rela_xinjian, R.id.busnes_rela_weihu, R.id.busnes_rela_shenhe, R.id.busnes_rela_jihuo, R.id.busnes_what,
+    @OnClick({R.id.busnes_shanghuchi, R.id.busnes_rela_xinjian, R.id.busnes_rela_weihu, R.id.busnes_rela_shenhe,
+            R.id.busnes_rela_jihuo, R.id.busnes_what,R.id.linearLayoutt,
             R.id.busnes_weipai})
     public void onClick(View view) {
         Intent intent = new Intent(this.getActivity(), ManaPbActivity.class);
@@ -219,6 +221,9 @@ public class BusnesFragment extends BaseFragment {
             case R.id.busnes_weipai:
                 intent.putExtra("what", "3");
                 startActivity(intent);
+                break;
+            case R.id.linearLayoutt:
+                statActivity(SerachCouActivity.class);
                 break;
         }
     }

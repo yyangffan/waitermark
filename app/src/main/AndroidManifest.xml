@@ -115,6 +115,8 @@
         <activity
             android:name=".ui.activity.PhaseMarketSetActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:name=".ui.activity.SerachCouActivity">
+        </activity>
     </application>
 
 </manifest>

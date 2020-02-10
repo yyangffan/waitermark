@@ -107,7 +107,7 @@ public class ExpandActivity extends BaseActivity {
             }
         });
         mExpandSmart.autoRefresh();
-
+        mExpandSmart.setEnableLoadMore(false);
     }
 
     @OnClick({R.id.imgv_back, R.id.payflow_date})
@@ -129,7 +129,7 @@ public class ExpandActivity extends BaseActivity {
         map.put("userId", mUser_id);
         map.put("date", d.replace("月", ""));
         map.put("currentPage", page);
-        map.put("pageSize", 10);
+        map.put("pageSize", 50);
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).bussinessInfo(EncryPtionUtil.getInstance(this).toEncryption(map));
         EncryPtionHttp.getInstance(this).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
             @Override
@@ -189,6 +189,7 @@ public class ExpandActivity extends BaseActivity {
             public void onTimeSelected(long timestamp) {
                 String tv_old = mtv.getText().toString();
                 if (!new SimpleDateFormat("yyyy年MM月", Locale.CHINA).format(new Date(timestamp)).equals(tv_old)) {
+                    mMapList.clear();
                     mExpandSmart.autoRefresh();
                 }
                 mtv.setText(new SimpleDateFormat("yyyy年MM月", Locale.CHINA).format(new Date(timestamp)));

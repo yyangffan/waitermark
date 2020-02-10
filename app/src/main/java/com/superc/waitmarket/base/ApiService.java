@@ -81,6 +81,9 @@ public interface ApiService {
     /*商户管理列表*/
     @POST("v1/shopManager/shopManagerIndex")
     Observable<JSONObject> shopManagerIndex(@Body RequestBody map);
+    /*商户管理列表筛选*/
+    @POST("v1/shopManager/shopManagerIndexsar")
+    Observable<JSONObject> shopManagerIndexsar(@Body RequestBody map);
     /*一级行业*/
     @POST("v1/shopManager/secondaryIndustry")
     Observable<JSONObject> secondaryIndustry(@Body RequestBody map);

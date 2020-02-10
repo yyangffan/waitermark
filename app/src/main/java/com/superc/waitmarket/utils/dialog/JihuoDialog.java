@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.adapter.JiHuoAdapter;
@@ -25,10 +26,13 @@ public class JihuoDialog extends AlertDialog {
     private JihuoDialog mDigRebate;
     private Display mDisplay;
     private ImageView mimgv_close;
+    private TextView mtv_title;
     private RecyclerView mRecyclerView;
     private List<Map<String, Object>> mMapList;
     private JiHuoAdapter mJiHuoAdapter;
     private OnFinishListener mOnFinishListener;
+    private OnChaClickListener mOnChaClickListener;
+    private String title;
 
 
     public JihuoDialog(Context context, List<Map<String, Object>> mMapList) {
@@ -40,6 +44,16 @@ public class JihuoDialog extends AlertDialog {
         this.mMapList = mMapList;
     }
 
+    public JihuoDialog(Context context, List<Map<String, Object>> mMapList, String titlee) {
+        super(context, R.style.WorkDialogTheme);
+        mContext = context;
+        mWindow = getWindow();
+        mDisplay = mWindow.getWindowManager().getDefaultDisplay();
+        mDigRebate = this;
+        this.mMapList = mMapList;
+        title=titlee;
+    }
+
     public void setMapList(List<Map<String, Object>> mapList) {
         mMapList = mapList;
         mJiHuoAdapter.notifyDataSetChanged();
@@ -47,6 +61,10 @@ public class JihuoDialog extends AlertDialog {
 
     public void setOnFinishListener(OnFinishListener onFinishListener) {
         mOnFinishListener = onFinishListener;
+    }
+
+    public void setOnChaClickListener(OnChaClickListener onChaClickListener) {
+        mOnChaClickListener = onChaClickListener;
     }
 
     @Override
@@ -72,10 +90,12 @@ public class JihuoDialog extends AlertDialog {
     private void init() {
         mimgv_close = findViewById(R.id.dialog_jihuo_close);
         mRecyclerView = findViewById(R.id.dialog_jihuo_recy);
+        mtv_title = findViewById(R.id.dialog_jihuo_title);
         mJiHuoAdapter = new JiHuoAdapter(mContext, mMapList);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 3);
         mRecyclerView.setLayoutManager(gridLayoutManager);
         mRecyclerView.setAdapter(mJiHuoAdapter);
+         mtv_title.setText(title);
         mJiHuoAdapter.setOnItemclickListener(new JiHuoAdapter.OnItemClickListener() {
             @Override
             public void onItemclickListener(int pos) {
@@ -90,12 +110,19 @@ public class JihuoDialog extends AlertDialog {
             @Override
             public void onClick(View view) {
                 mDigRebate.dismiss();
+                if (mOnChaClickListener != null) {
+                    mOnChaClickListener.onChaClickListener(0, (String) mMapList.get(0).get("content"));
+                }
             }
         });
     }
 
     public interface OnFinishListener {
         void onFinishListener(int pos, String what);
+    }
+
+    public interface OnChaClickListener {
+        void onChaClickListener(int pos, String what);
     }
 
     @Override
