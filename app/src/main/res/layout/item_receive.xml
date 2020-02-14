@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp_5">
+
+    <ImageView
+        android:id="@+id/item_magapb_check"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/dp_14"
+        android:paddingRight="@dimen/dp_6"
+        android:src="@drawable/icon_weigouxuan"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout6"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:background="@drawable/bg_corner_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/item_magapb_head"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/icon_head"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/item_magapb_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:text="- -"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/item_magapb_posi"
+            app:layout_constraintEnd_toStartOf="@+id/item_magapb_edt"
+            app:layout_constraintStart_toEndOf="@+id/item_magapb_head"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="鱼酷(万达店)"/>
+
+        <TextView
+            android:id="@+id/textView48"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="地址："
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/item_magapb_posi"
+            app:layout_constraintStart_toStartOf="@+id/item_magapb_title"/>
+
+        <TextView
+            android:id="@+id/item_magapb_posi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="- -"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/item_magapb_time"
+            app:layout_constraintEnd_toStartOf="@+id/item_magapb_edt"
+            app:layout_constraintStart_toEndOf="@+id/textView48"
+            app:layout_constraintTop_toBottomOf="@+id/item_magapb_title"
+            tools:text="王串场***"/>
+
+        <TextView
+            android:id="@+id/textView57"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="创建时间："
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintBaseline_toBaselineOf="@+id/item_magapb_time"
+            app:layout_constraintStart_toStartOf="@+id/textView48"/>
+
+        <TextView
+            android:id="@+id/item_magapb_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="- -"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/textVieitem_magapb_reason"
+            app:layout_constraintEnd_toStartOf="@+id/item_magapb_edt"
+            app:layout_constraintStart_toEndOf="@+id/textView57"
+            app:layout_constraintTop_toBottomOf="@+id/item_magapb_posi"
+            tools:text="一级归属·二级归属"/>
+
+        <TextView
+            android:id="@+id/item_magapb_reasonwenzi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="驳回原因："
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/textView57"
+            app:layout_constraintTop_toBottomOf="@+id/item_magapb_time"/>
+
+        <TextView
+            android:id="@+id/textVieitem_magapb_reason"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="- -"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/item_magapb_edt"
+            app:layout_constraintStart_toEndOf="@+id/item_magapb_reasonwenzi"
+            app:layout_constraintTop_toBottomOf="@+id/item_magapb_time"
+            tools:text="工号：1234，姓名：张三"/>
+
+        <TextView
+            android:id="@+id/item_magapb_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_corner_tran"
+            android:ellipsize="end"
+            android:lines="1"
+            android:paddingLeft="@dimen/dp_3"
+            android:paddingTop="@dimen/dp_2"
+            android:paddingRight="@dimen/dp_3"
+            android:paddingBottom="@dimen/dp_2"
+            android:text="- -"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/item_magapb_head"
+            app:layout_constraintEnd_toEndOf="@+id/item_magapb_head"
+            tools:text="入网驳回"/>
+
+        <ImageView
+            android:id="@+id/item_imgv_go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_18"
+            android:paddingTop="@dimen/dp_6"
+            android:paddingBottom="@dimen/dp_6"
+            android:src="@drawable/icon_gengduoshense"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <TextView
+            android:id="@+id/item_magapb_edt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_12"
+            android:background="@drawable/bg_corner_solred"
+            android:paddingLeft="@dimen/dp_12"
+            android:paddingTop="@dimen/dp_3"
+            android:paddingRight="@dimen/dp_12"
+            android:paddingBottom="@dimen/dp_3"
+            android:text="领取"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/item_magapb_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_12"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:paddingLeft="@dimen/dp_12"
+            android:paddingTop="@dimen/dp_3"
+            android:paddingBottom="@dimen/dp_3"
+            android:text="已被领取\n领取人：张三"
+            android:textColor="@color/main_color"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

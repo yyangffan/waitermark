@@ -21,6 +21,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.adapter.ExpandAdapter;
 import com.superc.waitmarket.base.ApiService;
+import com.superc.waitmarket.base.Constant;
 import com.superc.waitmarket.bean.ShanghuDetailBean;
 import com.superc.waitmarket.httputil.EncryPtionHttp;
 import com.superc.waitmarket.httputil.EncryPtionUtil;
@@ -60,6 +61,7 @@ public class ExpandActivity extends BaseActivity {
     private int page = 1;
     private CustomDatePicker customDatePickerSt;
     private String mUser_id = "1";
+    private boolean mYihang;
 
     @Override
     public int getContentLayoutId() {
@@ -73,6 +75,7 @@ public class ExpandActivity extends BaseActivity {
         mTitle.setText("商户数据详情");
         TitleUtils.setStatusTextColor(true, this);
         mUser_id = (String) ShareUtil.getInstance(this).get("user_id", "");
+        mYihang = Constant.isYihang();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mExpandRecy.setLayoutManager(linearLayoutManager);
         mMapList = new ArrayList<>();
@@ -87,7 +90,9 @@ public class ExpandActivity extends BaseActivity {
                 Intent intent = new Intent(ExpandActivity.this, ExpandDeatilActivity.class);
                 bundle.putString("date", date);
                 bundle.putInt("zituo", map.getCount1());
-                bundle.putInt("xiaoer", map.getCount2());
+                if(mYihang) {
+                    bundle.putInt("xiaoer", map.getCount2());
+                }
                 intent.putExtra("data",bundle);
                 startActivity(intent);
             }
@@ -123,6 +128,61 @@ public class ExpandActivity extends BaseActivity {
     }
 
     private void getData() {
+        if(mYihang){
+           getYih();
+        }else{
+            getJili();
+        }
+    }
+
+    private void getJili(){
+        mExpandAdapter.setYh(false);
+        final String date = mExpandDate.getText().toString();
+        String d = date.replaceAll("年", "-");
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", mUser_id);
+        map.put("date", d.replace("月", ""));
+        map.put("currentPage", page);
+        map.put("pageSize", 50);
+        Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).bussinessInfo(EncryPtionUtil.getInstance(this).toEncryption(map));
+        EncryPtionHttp.getInstance(this).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
+            @Override
+            public void onSuccessResult(JSONObject result) {
+                mExpandSmart.finishRefresh();
+                mExpandSmart.finishLoadMore();
+                boolean code = result.getBoolean("code");
+                String msg = result.getString("message");
+                if (code) {
+                    ShanghuDetailBean detailBean = new Gson().fromJson(result.toString(), ShanghuDetailBean.class);
+                    mExpandNote.setText("共" + BigDecimalUtils.bigUtil(detailBean.getData().getCount()) + "家商户");
+                    if (page == 1) {
+                        mMapList.clear();
+                    }
+                    mMapList.addAll(detailBean.getData().getDataList());
+                    mExpandAdapter.notifyDataSetChanged();
+                } else {
+                    if (page == 1) {
+                        mMapList.clear();
+                        mExpandAdapter.notifyDataSetChanged();
+                    }
+                }
+                if (!TextUtils.isEmpty(msg)) {
+                    ToastShow(msg);
+                }
+            }
+
+            @Override
+            public void onErrorResult(HttpThrowable httpThrowable) {
+                mExpandSmart.finishRefresh();
+                mExpandSmart.finishLoadMore();
+                ToastShow("接口访问异常" + httpThrowable.message);
+                Log.d("qqq", httpThrowable.message);
+            }
+        });
+    }
+
+    private void getYih(){
+        mExpandAdapter.setYh(true);
         final String date = mExpandDate.getText().toString();
         String d = date.replaceAll("年", "-");
         Map<String, Object> map = new HashMap<>();
@@ -165,8 +225,6 @@ public class ExpandActivity extends BaseActivity {
                 Log.d("qqq", httpThrowable.message);
             }
         });
-
-
     }
 
 

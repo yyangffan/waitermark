@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp_5">
+
+    <ImageView
+        android:id="@+id/item_magapb_check"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/dp_14"
+        android:paddingRight="@dimen/dp_6"
+        android:src="@drawable/icon_weigouxuan"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout6"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:background="@drawable/bg_corner_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/item_weihpb_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="- -"
+            android:textColor="@color/main_color"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintBaseline_toBaselineOf="@+id/item_magapb_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="已激活"/>
+
+        <ImageView
+            android:id="@+id/item_magapb_head"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/icon_head"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/item_magapb_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="- -"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/item_magapb_posi"
+            app:layout_constraintEnd_toStartOf="@+id/item_weihpb_state"
+            app:layout_constraintStart_toEndOf="@+id/item_magapb_head"
+            app:layout_constraintTop_toTopOf="@+id/item_magapb_head"
+            app:layout_constraintVertical_chainStyle="spread_inside"
+            tools:text="鱼酷(万达店)"/>
+
+        <TextView
+            android:id="@+id/textView48"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="地址："
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintBaseline_toBaselineOf="@+id/item_magapb_posi"
+            app:layout_constraintStart_toStartOf="@+id/item_magapb_title"/>
+
+        <TextView
+            android:id="@+id/item_magapb_posi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:drawablePadding="@dimen/dp_5"
+            android:text="- -"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/item_magapb_time"
+            app:layout_constraintEnd_toStartOf="@+id/item_magapb_edt"
+            app:layout_constraintStart_toEndOf="@+id/textView48"
+            app:layout_constraintTop_toBottomOf="@+id/item_magapb_title"
+            tools:text="美食·火锅"/>
+
+        <TextView
+            android:id="@+id/item_magapb_posiposi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="@dimen/dp_8"
+            android:layout_marginBottom="8dp"
+            android:drawableLeft="@drawable/icon_dizhi"
+            android:drawablePadding="@dimen/dp_5"
+            android:text="- -"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/item_magapb_head"
+            app:layout_constraintTop_toBottomOf="@+id/item_magapb_head"
+            tools:text="地址地址地址地址地址地址地址地址地址地址"/>
+
+
+        <TextView
+            android:id="@+id/textView57"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="领取日期："
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintBaseline_toBaselineOf="@+id/item_magapb_time"
+            app:layout_constraintStart_toStartOf="@+id/textView48"/>
+
+        <TextView
+            android:id="@+id/item_magapb_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="- -"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/item_magapb_state"
+            app:layout_constraintEnd_toStartOf="@+id/item_magapb_edt"
+            app:layout_constraintStart_toEndOf="@+id/textView57"
+            app:layout_constraintTop_toBottomOf="@+id/item_magapb_posi"
+            tools:text="近5日：共交易5笔，合计123456元"/>
+
+        <TextView
+            android:id="@+id/item_magapb_reasonwenzi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="驳回原因："
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/textView57"
+            app:layout_constraintTop_toBottomOf="@+id/item_magapb_time"/>
+
+        <TextView
+            android:id="@+id/textVieitem_magapb_reason"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="- -"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/item_magapb_edt"
+            app:layout_constraintStart_toEndOf="@+id/item_magapb_reasonwenzi"
+            app:layout_constraintTop_toBottomOf="@+id/item_magapb_time"
+            tools:text="基础信息有误"/>
+
+        <TextView
+            android:id="@+id/item_magapb_state"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_corner_tran"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lines="1"
+            android:paddingLeft="@dimen/dp_3"
+            android:paddingTop="@dimen/dp_2"
+            android:paddingRight="@dimen/dp_3"
+            android:paddingBottom="@dimen/dp_2"
+            android:text="- -"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/item_magapb_head"
+            app:layout_constraintEnd_toEndOf="@+id/item_magapb_head"
+            app:layout_constraintStart_toStartOf="@+id/item_magapb_head"
+            tools:text="入网驳回"/>
+
+        <ImageView
+            android:id="@+id/item_imgv_go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_18"
+            android:paddingTop="@dimen/dp_6"
+            android:paddingBottom="@dimen/dp_6"
+            android:src="@drawable/icon_gengduoshense"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <TextView
+            android:id="@+id/item_magapb_edt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_corner_solred"
+            android:paddingLeft="@dimen/dp_12"
+            android:paddingTop="@dimen/dp_3"
+            android:paddingRight="@dimen/dp_12"
+            android:paddingBottom="@dimen/dp_3"
+            android:text="编辑"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/item_imgv_go"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0_5"
+            android:layout_marginLeft="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_8"
+            android:background="@color/line_color"
+            app:layout_constraintTop_toBottomOf="@+id/item_magapb_posiposi"/>
+
+        <LinearLayout
+            android:id="@+id/item_weihu_kaitong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_corner_whitel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line">
+
+            <TextView
+                android:id="@+id/item_weih_look"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/dp_10"
+                android:text="查看信息"
+                android:textColor="@color/main_color"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginBottom="@dimen/dp_6"
+                android:background="@color/xml_bg"/>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textColor="@color/main_color">
+
+                <ImageView
+                    android:id="@+id/item_weihpb_imgkaitong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/dp_3"
+                    android:layout_toLeftOf="@+id/kaitong"
+                    android:src="@drawable/icon_yunxingzhengchang"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/kaitong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="开通信息"
+                    android:textColor="@color/main_color"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginBottom="@dimen/dp_6"
+                android:background="@color/xml_bg"/>
+
+            <TextView
+                android:id="@+id/item_weihu_boh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/dp_10"
+                android:text="经营信息"
+                android:textColor="@color/main_color"/>
+
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

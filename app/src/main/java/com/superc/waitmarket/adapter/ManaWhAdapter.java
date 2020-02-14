@@ -113,20 +113,24 @@ public class ManaWhAdapter extends RecyclerView.Adapter<ManaWhAdapter.ViewHolder
         vh.mItemMagapbCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(isshifang()){
                 bean.setCheck(!bean.isCheck());
                 vh.mItemMagapbCheck.setImageResource(bean.isCheck() ? R.drawable.icon_gouxuan : R.drawable.icon_weigouxuan);
                 if (mOnItemClickListener != null)
                     mOnItemClickListener.onItemClickListener(position);
+            }
             }
         });
 
         vh.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(isshifang()){
                 bean.setCheck(!bean.isCheck());
                 vh.mItemMagapbCheck.setImageResource(bean.isCheck() ? R.drawable.icon_gouxuan : R.drawable.icon_weigouxuan);
                 if (mOnItemClickListener != null)
                     mOnItemClickListener.onItemClickListener(position);
+            }
             }
         });
         vh.mItemMagapbEdt.setOnClickListener(new View.OnClickListener() {

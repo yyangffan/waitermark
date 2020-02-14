@@ -49,11 +49,22 @@
         android:id="@+id/item_patdetail_money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="14dp"
+        android:layout_marginEnd="4dp"
         android:text="- -"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/item_patdetail_position"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/item_patdetail_gengd"
         app:layout_constraintTop_toTopOf="@+id/item_patdetail_title"
         tools:text="¥123"/>
+
+    <ImageView
+        android:id="@+id/item_patdetail_gengd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/icon_gengduoshense"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/item_patdetail_money"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_patdetail_money"/>
 </android.support.constraint.ConstraintLayout>

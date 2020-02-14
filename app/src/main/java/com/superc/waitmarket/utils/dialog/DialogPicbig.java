@@ -56,6 +56,9 @@ public class DialogPicbig extends AlertDialog {
         if(weburl.contains("%0D%0A")){
             weburl=weburl.replaceAll("%0D%0A","");
         }
+        if(weburl.contains("%0A")){
+            weburl=weburl.replaceAll("%0A","");
+        }
         mPhotoView = findViewById(R.id.dialog_photo);
         mPhotoView.setImageBitmap(stringToBitmap(weburl));
         mPhotoView.setOnClickListener(new View.OnClickListener() {

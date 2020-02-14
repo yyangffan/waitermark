@@ -696,6 +696,134 @@
                 </android.support.constraint.ConstraintLayout>
 
                 <TextView
+                    android:id="@+id/textView221"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:drawableLeft="@drawable/icon_shanghuchanshengliuliang"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:text="高能预警提醒"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"/>
+
+                <TextView
+                    android:id="@+id/home_four_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/icon_gengduo"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:text="详情"
+                    android:textColor="@color/txt_granine"
+                    android:textSize="12sp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView221"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"/>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraintLayout7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="@dimen/dp_11"
+                    android:background="@drawable/bg_home_four"
+                    android:elevation="@dimen/dp_2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/home_once_detail"
+                    app:layout_constraintStart_toStartOf="@+id/textView19"
+                    app:layout_constraintTop_toBottomOf="@+id/textView221">
+
+
+                    <TextView
+                        android:id="@+id/home_four_hisnum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
+                        android:layout_marginBottom="4dp"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:maxWidth="@dimen/dp_80"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toTopOf="@+id/textView3312"
+                        app:layout_constraintEnd_toEndOf="@+id/textView3312"
+                        app:layout_constraintStart_toStartOf="@+id/textView3312"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="320"/>
+
+                    <TextView
+                        android:id="@+id/textView3312"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginBottom="22dp"
+                        android:text="全部商户"
+                        android:textColor="@color/home_txt_gray"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/textView3314"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/home_four_monthnum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:maxWidth="@dimen/dp_80"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/home_four_hisnum"
+                        app:layout_constraintEnd_toEndOf="@+id/textView3314"
+                        app:layout_constraintStart_toStartOf="@+id/textView3314"
+                        tools:text="102"/>
+
+                    <TextView
+                        android:id="@+id/textView3314"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="运行正常"
+                        android:textColor="@color/home_txt_gray"
+                        android:textSize="12sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView3312"
+                        app:layout_constraintEnd_toStartOf="@+id/textView3116"
+                        app:layout_constraintStart_toEndOf="@+id/textView3312"/>
+
+                    <TextView
+                        android:id="@+id/home_four_todaynum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:maxWidth="@dimen/dp_54"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/home_four_monthnum"
+                        app:layout_constraintEnd_toEndOf="@+id/textView3116"
+                        app:layout_constraintStart_toStartOf="@+id/textView3116"
+                        tools:text="32"/>
+
+                    <TextView
+                        android:id="@+id/textView3116"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:text="一级预警"
+                        android:textColor="@color/home_txt_gray"
+                        android:textSize="12sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView3314"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView3314"/>
+
+
+                </android.support.constraint.ConstraintLayout>
+
+                <TextView
                     android:id="@+id/textView25"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -703,6 +831,7 @@
                     android:drawableLeft="@drawable/icon_tiantiandai"
                     android:drawablePadding="@dimen/dp_5"
                     android:text="天天贷"
+                    android:visibility="gone"
                     android:textColor="@color/home_txt_no"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -710,10 +839,12 @@
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"/>
 
                 <android.support.constraint.ConstraintLayout
+                    android:id="@+id/home_con_ttd"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="11dp"
                     android:layout_marginBottom="11dp"
+                    android:visibility="gone"
                     android:background="@drawable/bg_corner_white"
                     android:elevation="@dimen/dp_4"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -920,6 +1051,7 @@
                     android:layout_height="wrap_content"
                     android:text="暂未开始·敬请期待"
                     android:textColor="@color/red"
+                    android:visibility="gone"
                     android:textSize="12sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView25"
                     app:layout_constraintEnd_toEndOf="@+id/home_third_detail"/>

@@ -1276,7 +1276,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView147"/>
 
             <TextView
-                android:id="@+id/textView148"
+                android:id="@+id/screen_detail_threename"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="13dp"
@@ -1298,18 +1298,18 @@
                 android:text="90"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dp_14"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView148"
-                app:layout_constraintEnd_toStartOf="@+id/textView150"
+                app:layout_constraintBaseline_toBaselineOf="@+id/screen_detail_threename"
+                app:layout_constraintEnd_toStartOf="@+id/screen_detail_threeyiji"
                 />
 
             <TextView
-                android:id="@+id/textView150"
+                android:id="@+id/screen_detail_threeyiji"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="天有效"
                 android:textColor="@color/black"
                 android:textSize="13sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView148"
+                app:layout_constraintBaseline_toBaselineOf="@+id/screen_detail_threename"
                 app:layout_constraintEnd_toEndOf="@+id/phase_marketset_lookimgv"/>
 
         </android.support.constraint.ConstraintLayout>

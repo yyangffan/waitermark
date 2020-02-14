@@ -1,0 +1,1001 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/xml_bg"
+    tools:context=".ui.manager.activity.ScreenDetailActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/title_constra"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingTop="@dimen/title_padtop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:paddingLeft="@dimen/dp_14"
+            android:paddingRight="@dimen/dp_14"
+            android:src="@drawable/icon_fanhui"
+            app:layout_constraintBottom_toBottomOf="@+id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:padding="@dimen/dp_2"
+            android:text="商户预警提醒详情"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_txtsize"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textView7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <View
+            android:id="@+id/textView7"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/line_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smartlayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingBottom="@dimen/dp_8"
+        app:layout_constraintBottom_toTopOf="@+id/screen_detail_talk"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_constra">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            >
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/dp_12"
+                android:paddingRight="@dimen/dp_12">
+
+                <LinearLayout
+                    android:id="@+id/ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:background="@drawable/bg_corner_white"
+                    android:elevation="@dimen/dp_3"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_13"
+                        android:text="商户预警状态"/>
+
+                    <TextView
+                        android:id="@+id/screen_detail_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/icon_yunxingzhengchang"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:padding="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        tools:text="运行正常"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/screen_result_t"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_14"
+                    android:paddingLeft="@dimen/dp_8"
+                    android:text="商户基础信息"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@+id/ll"/>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/conone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_14"
+                    android:background="@drawable/bg_corner_white"
+                    android:elevation="@dimen/dp_3"
+                    app:layout_constraintTop_toBottomOf="@+id/screen_result_t">
+
+                    <TextView
+                        android:id="@+id/textView115"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="商户名称"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/screen_detail_onename"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp_10"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView115"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="老干妈海鲜"/>
+
+                    <TextView
+                        android:id="@+id/lineone"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/screen_detail_onename"
+                        app:layout_constraintStart_toStartOf="@+id/textView115"
+                        app:layout_constraintTop_toBottomOf="@+id/textView115"/>
+
+                    <TextView
+                        android:id="@+id/textView117"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="上线时间"
+                        app:layout_constraintStart_toStartOf="@+id/lineone"
+                        app:layout_constraintTop_toBottomOf="@+id/lineone"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_onetime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView117"
+                        app:layout_constraintRight_toRightOf="@+id/lineone"
+                        tools:text="2020年01月03日 18:00:25"
+                        />
+
+                    <TextView
+                        android:id="@+id/linetwo"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/lineone"
+                        app:layout_constraintStart_toStartOf="@+id/lineone"
+                        app:layout_constraintTop_toBottomOf="@+id/textView117"/>
+
+                    <TextView
+                        android:id="@+id/textView119"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="一级行业"
+                        app:layout_constraintStart_toStartOf="@+id/lineone"
+                        app:layout_constraintTop_toBottomOf="@+id/linetwo"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_oneyiji"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView119"
+                        app:layout_constraintRight_toRightOf="@+id/lineone"
+                        tools:text="美食"
+                        />
+
+                    <TextView
+                        android:id="@+id/linethree"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/lineone"
+                        app:layout_constraintStart_toStartOf="@+id/lineone"
+                        app:layout_constraintTop_toBottomOf="@+id/textView119"/>
+
+                    <TextView
+                        android:id="@+id/textView121"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="二级行业"
+                        app:layout_constraintStart_toStartOf="@+id/lineone"
+                        app:layout_constraintTop_toBottomOf="@+id/linethree"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_oneerji"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView121"
+                        app:layout_constraintRight_toRightOf="@+id/lineone"
+                        tools:text="烤肉"
+                        />
+
+                    <TextView
+                        android:id="@+id/linefour"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/lineone"
+                        app:layout_constraintStart_toStartOf="@+id/lineone"
+                        app:layout_constraintTop_toBottomOf="@+id/screen_detail_oneerji"/>
+
+                    <TextView
+                        android:id="@+id/textView123"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="城市·区域·商圈"
+                        app:layout_constraintStart_toStartOf="@+id/lineone"
+                        app:layout_constraintTop_toBottomOf="@+id/linefour"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_onecityqu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView123"
+                        app:layout_constraintRight_toRightOf="@+id/lineone"
+                        tools:text="天津·南开·宾水道/体院北"
+                        />
+
+                    <TextView
+                        android:id="@+id/linefive"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/lineone"
+                        app:layout_constraintStart_toStartOf="@+id/lineone"
+                        app:layout_constraintTop_toBottomOf="@+id/textView123"/>
+
+                    <TextView
+                        android:id="@+id/textView125"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="地址"
+                        app:layout_constraintStart_toStartOf="@+id/lineone"
+                        app:layout_constraintTop_toBottomOf="@+id/linefive"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_oneposi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView125"
+                        app:layout_constraintRight_toRightOf="@+id/lineone"
+                        tools:text="宴宾美食城(红旗路)红旗路\n332号"
+                        />
+
+                    <TextView
+                        android:id="@+id/linesix"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/lineone"
+                        app:layout_constraintStart_toStartOf="@+id/lineone"
+                        app:layout_constraintTop_toBottomOf="@+id/screen_detail_oneposi"/>
+
+                    <TextView
+                        android:id="@+id/textView127"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="负责人姓名"
+                        app:layout_constraintStart_toStartOf="@+id/lineone"
+                        app:layout_constraintTop_toBottomOf="@+id/linesix"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_onefuzename"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView127"
+                        app:layout_constraintRight_toRightOf="@+id/lineone"
+                        tools:text="张三"
+                        />
+
+                    <TextView
+                        android:id="@+id/lineseven"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/lineone"
+                        app:layout_constraintStart_toStartOf="@+id/lineone"
+                        app:layout_constraintTop_toBottomOf="@+id/textView127"/>
+
+                    <TextView
+                        android:id="@+id/textView129"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="负责人联系方式"
+                        app:layout_constraintStart_toStartOf="@+id/lineone"
+                        app:layout_constraintTop_toBottomOf="@+id/lineseven"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_onefuzephone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView129"
+                        app:layout_constraintRight_toRightOf="@+id/lineone"
+                        tools:text="15822981406"
+                        />
+
+                </android.support.constraint.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/screen_result_tt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_14"
+                    android:paddingLeft="@dimen/dp_8"
+                    android:text="商户数据信息"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@+id/conone"/>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/contwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_14"
+                    android:background="@drawable/bg_corner_white"
+                    android:elevation="@dimen/dp_3"
+                    app:layout_constraintTop_toBottomOf="@+id/screen_result_tt">
+
+                    <TextView
+                        android:id="@+id/textView131"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="历史交易笔数"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/screen_detail_twohisnum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp_10"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView131"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="1笔"/>
+
+                    <TextView
+                        android:id="@+id/llineone"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/screen_detail_twohisnum"
+                        app:layout_constraintStart_toStartOf="@+id/textView131"
+                        app:layout_constraintTop_toBottomOf="@+id/textView131"/>
+
+                    <TextView
+                        android:id="@+id/textView133"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="历史交易金额"
+                        app:layout_constraintStart_toStartOf="@+id/llineone"
+                        app:layout_constraintTop_toBottomOf="@+id/llineone"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_twohismony"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView133"
+                        app:layout_constraintRight_toRightOf="@+id/llineone"
+                        tools:text="0.01元"
+                        />
+
+                    <TextView
+                        android:id="@+id/llinetwo"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/llineone"
+                        app:layout_constraintStart_toStartOf="@+id/llineone"
+                        app:layout_constraintTop_toBottomOf="@+id/textView133"/>
+
+                    <TextView
+                        android:id="@+id/textView135"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="本月交易笔数"
+                        app:layout_constraintStart_toStartOf="@+id/llineone"
+                        app:layout_constraintTop_toBottomOf="@+id/llinetwo"
+                        />
+
+                    <TextView
+                        android:id="@+id/textVscreen_detail_twomonthnum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView135"
+                        app:layout_constraintRight_toRightOf="@+id/llineone"
+                        tools:text="1笔"
+                        />
+
+                    <TextView
+                        android:id="@+id/llinethree"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/llineone"
+                        app:layout_constraintStart_toStartOf="@+id/llineone"
+                        app:layout_constraintTop_toBottomOf="@+id/textView135"/>
+
+                    <TextView
+                        android:id="@+id/textView137"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="本月交易金额"
+                        app:layout_constraintStart_toStartOf="@+id/llineone"
+                        app:layout_constraintTop_toBottomOf="@+id/llinethree"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_twomonthmony"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView137"
+                        app:layout_constraintRight_toRightOf="@+id/llineone"
+                        tools:text="0.01元"
+                        />
+
+                    <TextView
+                        android:id="@+id/llinefour"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/llineone"
+                        app:layout_constraintStart_toStartOf="@+id/llineone"
+                        app:layout_constraintTop_toBottomOf="@+id/textView137"/>
+
+                    <TextView
+                        android:id="@+id/textView139"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="近7日交易笔数"
+                        app:layout_constraintStart_toStartOf="@+id/llineone"
+                        app:layout_constraintTop_toBottomOf="@+id/llinefour"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_twosevennum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView139"
+                        app:layout_constraintRight_toRightOf="@+id/llineone"
+                        tools:text="1笔"
+                        />
+
+                    <TextView
+                        android:id="@+id/llinefive"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/llineone"
+                        app:layout_constraintStart_toStartOf="@+id/llineone"
+                        app:layout_constraintTop_toBottomOf="@+id/textView139"/>
+
+                    <TextView
+                        android:id="@+id/textView141"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="近7日交易金额"
+                        app:layout_constraintStart_toStartOf="@+id/llineone"
+                        app:layout_constraintTop_toBottomOf="@+id/llinefive"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_twosevenmony"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView141"
+                        app:layout_constraintRight_toRightOf="@+id/llineone"
+                        tools:text="0.01元"
+                        />
+
+                    <TextView
+                        android:id="@+id/llinesix"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/llineone"
+                        app:layout_constraintStart_toStartOf="@+id/llineone"
+                        app:layout_constraintTop_toBottomOf="@+id/textView141"/>
+
+                    <TextView
+                        android:id="@+id/textView143"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="近3日交易笔数"
+                        app:layout_constraintStart_toStartOf="@+id/llineone"
+                        app:layout_constraintTop_toBottomOf="@+id/llinesix"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_twothreenum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView143"
+                        app:layout_constraintRight_toRightOf="@+id/llineone"
+                        tools:text="1笔"
+                        />
+
+                    <TextView
+                        android:id="@+id/llineseven"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/llineone"
+                        app:layout_constraintStart_toStartOf="@+id/llineone"
+                        app:layout_constraintTop_toBottomOf="@+id/textView143"/>
+
+                    <TextView
+                        android:id="@+id/textView145"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="近3日交易金额"
+                        app:layout_constraintStart_toStartOf="@+id/llineone"
+                        app:layout_constraintTop_toBottomOf="@+id/llineseven"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_twothreemony"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView145"
+                        app:layout_constraintRight_toRightOf="@+id/llineone"
+                        tools:text="0.01元"
+                        />
+
+                </android.support.constraint.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/screen_result_ttt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_14"
+                    android:paddingLeft="@dimen/dp_8"
+                    android:text="商户归属信息"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@+id/contwo"/>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/conthree"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_14"
+                    android:background="@drawable/bg_corner_white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="@dimen/dp_6"
+                    android:elevation="@dimen/dp_3"
+                    app:layout_constraintTop_toBottomOf="@+id/screen_result_ttt">
+
+                    <TextView
+                        android:id="@+id/textView147"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="拓展人员"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/screen_detail_threename"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp_10"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView147"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="张三"/>
+
+                    <TextView
+                        android:id="@+id/lllineone"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/screen_detail_threename"
+                        app:layout_constraintStart_toStartOf="@+id/textView147"
+                        app:layout_constraintTop_toBottomOf="@+id/textView147"/>
+
+                    <TextView
+                        android:id="@+id/textView149"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="拓展人员一级归属"
+                        app:layout_constraintStart_toStartOf="@+id/lllineone"
+                        app:layout_constraintTop_toBottomOf="@+id/lllineone"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_threeyiji"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView149"
+                        app:layout_constraintRight_toRightOf="@+id/lllineone"
+                        tools:text="一中支"
+                        />
+
+                    <TextView
+                        android:id="@+id/lllinetwo"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/lllineone"
+                        app:layout_constraintStart_toStartOf="@+id/lllineone"
+                        app:layout_constraintTop_toBottomOf="@+id/textView149"/>
+
+                    <TextView
+                        android:id="@+id/textView151"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="拓展经理二级归属"
+                        app:layout_constraintStart_toStartOf="@+id/lllineone"
+                        app:layout_constraintTop_toBottomOf="@+id/lllinetwo"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_threeerji"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView151"
+                        app:layout_constraintRight_toRightOf="@+id/lllineone"
+                        tools:text="营业部"
+                        />
+
+                    <TextView
+                        android:id="@+id/lllinethree"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/lllineone"
+                        app:layout_constraintStart_toStartOf="@+id/lllineone"
+                        app:layout_constraintTop_toBottomOf="@+id/textView151"/>
+
+                    <TextView
+                        android:id="@+id/textView153"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="商户权益归属人"
+                        app:layout_constraintStart_toStartOf="@+id/lllineone"
+                        app:layout_constraintTop_toBottomOf="@+id/lllinethree"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_threequanyi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView153"
+                        app:layout_constraintRight_toRightOf="@+id/lllineone"
+                        tools:text="张三"
+                        />
+
+                    <TextView
+                        android:id="@+id/lllinefour"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/lllineone"
+                        app:layout_constraintStart_toStartOf="@+id/lllineone"
+                        app:layout_constraintTop_toBottomOf="@+id/textView153"/>
+
+                    <TextView
+                        android:id="@+id/textView155"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="商户权益归属人一级归属"
+                        app:layout_constraintStart_toStartOf="@+id/lllineone"
+                        app:layout_constraintTop_toBottomOf="@+id/lllinefour"
+                        />
+
+                    <TextView
+                        android:id="@+id/textViescreen_detail_threequanyyiji"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView155"
+                        app:layout_constraintRight_toRightOf="@+id/lllineone"
+                        tools:text="三分区"
+                        />
+
+                    <TextView
+                        android:id="@+id/lllinefive"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/lllineone"
+                        app:layout_constraintStart_toStartOf="@+id/lllineone"
+                        app:layout_constraintTop_toBottomOf="@+id/textView155"/>
+
+                    <TextView
+                        android:id="@+id/textView157"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="商户权益归属人二级归属"
+                        app:layout_constraintStart_toStartOf="@+id/lllineone"
+                        app:layout_constraintTop_toBottomOf="@+id/lllinefive"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_threequanyierji"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView157"
+                        app:layout_constraintRight_toRightOf="@+id/lllineone"
+                        tools:text="三分组"
+                        />
+
+                    <TextView
+                        android:id="@+id/lllinesix"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_color"
+                        app:layout_constraintEnd_toEndOf="@+id/lllineone"
+                        app:layout_constraintStart_toStartOf="@+id/lllineone"
+                        app:layout_constraintTop_toBottomOf="@+id/textView157"/>
+
+                    <TextView
+                        android:id="@+id/textView159"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="小二客户经理"
+                        app:layout_constraintStart_toStartOf="@+id/lllineone"
+                        app:layout_constraintTop_toBottomOf="@+id/lllinesix"
+                        />
+
+                    <TextView
+                        android:id="@+id/screen_detail_threexiaoerk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_4"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_13"
+                        android:paddingBottom="@dimen/dp_13"
+                        android:text="- -"
+                        android:textColor="@color/black"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView159"
+                        app:layout_constraintRight_toRightOf="@+id/lllineone"
+                        tools:text="张三"
+                        />
+
+
+                </android.support.constraint.ConstraintLayout>
+
+            </android.support.constraint.ConstraintLayout>
+        </ScrollView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <TextView
+        android:id="@+id/screen_detail_talk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_color"
+        android:gravity="center"
+        android:padding="@dimen/dp_14"
+        android:text="拨打电话"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

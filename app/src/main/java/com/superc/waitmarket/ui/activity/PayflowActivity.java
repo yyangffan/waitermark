@@ -188,6 +188,7 @@ public class PayflowActivity extends BaseActivity {
             public void onTimeSelected(long timestamp) {
                 String tv_old = mtv.getText().toString();
                 if (!new SimpleDateFormat("yyyy年MM月", Locale.CHINA).format(new Date(timestamp)).equals(tv_old)) {
+                    mMapList.clear();
                     mSmartRefreshLayout.autoRefresh();
                 }
                 mtv.setText(new SimpleDateFormat("yyyy年MM月", Locale.CHINA).format(new Date(timestamp)));

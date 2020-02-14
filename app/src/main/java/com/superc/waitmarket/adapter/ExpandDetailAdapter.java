@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +26,7 @@ public class ExpandDetailAdapter extends RecyclerView.Adapter<ExpandDetailAdapte
     private List<ExpandDetailBean.DataBean.DataListBean> mLists;
     private LayoutInflater mInflater;
     private OnItemClickListener mOnItemClickListener;
+    private boolean isYh;
 
     public ExpandDetailAdapter(Context context, List<ExpandDetailBean.DataBean.DataListBean> stringList) {
         mContext = context;
@@ -36,6 +38,14 @@ public class ExpandDetailAdapter extends RecyclerView.Adapter<ExpandDetailAdapte
         this.mOnItemClickListener = listener;
     }
 
+    public boolean isYh() {
+        return isYh;
+    }
+
+    public void setYh(boolean yh) {
+        isYh = yh;
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.item_paydetail, parent, false);
@@ -44,21 +54,27 @@ public class ExpandDetailAdapter extends RecyclerView.Adapter<ExpandDetailAdapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder vh, int position) {
+    public void onBindViewHolder(ViewHolder vh, final int position) {
         ExpandDetailBean.DataBean.DataListBean bean = mLists.get(position);
         vh.mItemPatdetailTitle.setText(bean.getShopname());
         vh.mItemPatdetailPosition.setText(bean.getShopaddress());
-        int type=bean.getType();
-        if (type==1) {//1，自拓展 ；2，小二委派
-            vh.mItemPatdetailWhat.setText("商户拓展");
-            vh.mItemPatdetailWhat.setTextColor(mContext.getResources().getColor(R.color.txt_blue));
+        if (isYh()) {
+            int type = bean.getType();
+            if (type == 1) {//1，自拓展 ；2，小二委派
+                vh.mItemPatdetailWhat.setText("商户拓展");
+                vh.mItemPatdetailWhat.setTextColor(mContext.getResources().getColor(R.color.txt_blue));
+            } else {
+                vh.mItemPatdetailWhat.setText("小二委派");
+                vh.mItemPatdetailWhat.setTextColor(mContext.getResources().getColor(R.color.txt_yell));
+            }
         } else {
-            vh.mItemPatdetailWhat.setText("小二委派");
-            vh.mItemPatdetailWhat.setTextColor(mContext.getResources().getColor(R.color.txt_yell));
+            vh.mItemImgvGengd.setVisibility(View.VISIBLE);
+            vh.mItemPatdetailWhat.setText("领取商户");
+            vh.mItemPatdetailWhat.setTextColor(mContext.getResources().getColor(R.color.main_color));
         }
 
         String shoplogo = bean.getShoplogo();
-        RequestOptions requestOptions=new RequestOptions().error(R.drawable.icon_error).placeholder(R.drawable.icon_error);
+        RequestOptions requestOptions = new RequestOptions().error(R.drawable.icon_error).placeholder(R.drawable.icon_error);
         if (!TextUtils.isEmpty(shoplogo)) {
             if (shoplogo.startsWith("http") || shoplogo.startsWith("https")) {
                 Glide.with(mContext).load(shoplogo).apply(requestOptions).into(vh.mItemPatdetailImgv);
@@ -68,7 +84,16 @@ public class ExpandDetailAdapter extends RecyclerView.Adapter<ExpandDetailAdapte
         } else {
             Glide.with(mContext).load(Constant.IMG_URL + shoplogo).apply(requestOptions).into(vh.mItemPatdetailImgv);
         }
-
+        if (!isYh()) {
+            vh.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mOnItemClickListener != null) {
+                        mOnItemClickListener.onItemClickListener(position);
+                    }
+                }
+            });
+        }
     }
 
     @Override
@@ -89,6 +114,8 @@ public class ExpandDetailAdapter extends RecyclerView.Adapter<ExpandDetailAdapte
         CircleImageView mItemPatdetailImgv;
         @BindView(R.id.item_patdetail_money)
         TextView mItemPatdetailWhat;
+        @BindView(R.id.item_patdetail_gengd)
+        ImageView mItemImgvGengd;
         View mView;
 
         ViewHolder(View view) {

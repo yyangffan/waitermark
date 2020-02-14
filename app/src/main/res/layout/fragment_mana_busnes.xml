@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/xml_bg"
+    tools:context=".ui.fragment.BusnesFragment">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/title_constra"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingTop="@dimen/title_padtop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:padding="@dimen/dp_2"
+            android:text="商户管理"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_txtsize"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textView7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <View
+            android:id="@+id/textView7"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/line_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/user_check_smart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_constra">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/xml_bg">
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/con"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/textView114"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="17dp"
+                        android:text="我的拓展商户"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/busnes_shanghuchi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="14dp"
+                        android:text="商户池"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView114"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <RelativeLayout
+                        android:id="@+id/textView118"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/b_xinjian"
+                        app:layout_constraintEnd_toStartOf="@+id/textView120"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="@+id/textView114"
+                        app:layout_constraintTop_toBottomOf="@+id/textView114">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="新建"
+                            android:textColor="#623f8e"
+                            android:textStyle="bold"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/textView120"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/b_weihuzhong"
+                        app:layout_constraintEnd_toStartOf="@+id/textView122"
+                        app:layout_constraintStart_toEndOf="@+id/textView118"
+                        app:layout_constraintTop_toTopOf="@+id/textView118"
+                        tools:layout_editor_absoluteY="46dp">
+
+                        <TextView
+                            android:id="@+id/tvone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:paddingLeft="@dimen/dp_14"
+                            android:text="维护中"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/manabus_weihu_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/tvone"
+                            android:paddingLeft="@dimen/dp_2"
+                            android:text="(12家)"
+                            android:textSize="10sp"
+                            />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/textView122"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/b_daishenhe"
+                        app:layout_constraintEnd_toEndOf="@+id/busnes_shanghuchi"
+                        app:layout_constraintStart_toEndOf="@+id/textView120"
+                        app:layout_constraintTop_toTopOf="@+id/textView120"
+                        >
+
+                        <TextView
+                            android:id="@+id/tvtwo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:paddingLeft="@dimen/dp_14"
+                            android:text="待审核"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/manabus_shenhe_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/tvtwo"
+                            android:paddingLeft="@dimen/dp_2"
+                            android:text="(12家)"
+                            android:textSize="10sp"
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/textView126"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="17dp"
+                        android:background="@drawable/b_daikeitong"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/textView128"
+                        app:layout_constraintStart_toStartOf="@+id/textView118"
+                        app:layout_constraintTop_toBottomOf="@+id/textView118">
+
+                        <TextView
+                            android:id="@+id/tvthree"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:paddingLeft="@dimen/dp_14"
+                            android:text="待开通"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/manabus_kaitong_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/tvthree"
+                            android:paddingLeft="@dimen/dp_2"
+                            android:text="(12家)"
+                            android:textSize="10sp"
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/textView128"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/b_yishangxian"
+                        app:layout_constraintEnd_toEndOf="@+id/textView122"
+                        app:layout_constraintStart_toEndOf="@+id/textView126"
+                        app:layout_constraintTop_toTopOf="@+id/textView126">
+
+                        <TextView
+                            android:id="@+id/tvfour"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:paddingLeft="@dimen/dp_14"
+                            android:text="已上线"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/manabus_shangxian_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/tvfour"
+                            android:paddingLeft="@dimen/dp_2"
+                            android:text="(12家)"
+                            android:textSize="10sp"
+                            />
+                    </RelativeLayout>
+
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/con">
+
+                    <TextView
+                        android:id="@+id/textView117"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="17dp"
+                        android:text="我的维护商户"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <RelativeLayout
+                        android:id="@+id/textView130"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/b_weihuzhong"
+                        app:layout_constraintEnd_toStartOf="@+id/textView132"
+                        app:layout_constraintStart_toStartOf="@+id/textView117"
+                        app:layout_constraintTop_toBottomOf="@+id/textView117">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="+领取"
+                            android:textColor="#794f03"
+                            android:textStyle="bold"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/textView132"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="14dp"
+                        android:background="@drawable/b_daikeitong"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView130"
+                        app:layout_constraintTop_toTopOf="@+id/textView130">
+
+                        <TextView
+                            android:id="@+id/tvtsix"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:paddingLeft="@dimen/dp_14"
+                            android:text="待开通"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/manabus_kaitong_botnum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/tvtsix"
+                            android:paddingLeft="@dimen/dp_2"
+                            android:text="(12家)"
+                            android:textSize="10sp"
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/textView134"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/b_daishenhe"
+                        app:layout_constraintEnd_toStartOf="@+id/textView136"
+                        app:layout_constraintStart_toStartOf="@+id/textView130"
+                        app:layout_constraintTop_toBottomOf="@+id/textView130">
+
+                        <TextView
+                            android:id="@+id/tvseven"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:paddingLeft="@dimen/dp_14"
+                            android:text="待审核"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/manabus_shenhe_num_bot"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/tvseven"
+                            android:paddingLeft="@dimen/dp_2"
+                            android:text="(12家)"
+                            android:textSize="10sp"
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/textView136"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/b_yishangxian"
+                        app:layout_constraintEnd_toEndOf="@+id/textView132"
+                        app:layout_constraintStart_toEndOf="@+id/textView134"
+                        app:layout_constraintTop_toTopOf="@+id/textView134">
+
+                        <TextView
+                            android:id="@+id/tveight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:paddingLeft="@dimen/dp_14"
+                            android:text="已上线"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/manabus_shangxian_num_bot"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/tveight"
+                            android:paddingLeft="@dimen/dp_2"
+                            android:text="(12家)"
+                            android:textSize="10sp"
+                            />
+                    </RelativeLayout>
+
+
+                </android.support.constraint.ConstraintLayout>
+
+            </android.support.constraint.ConstraintLayout>
+        </ScrollView>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</android.support.constraint.ConstraintLayout>

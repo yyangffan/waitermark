@@ -3,6 +3,7 @@ package com.superc.waitmarket.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,12 +18,14 @@ import com.ljy.devring.http.support.throwable.HttpThrowable;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.base.ApiService;
+import com.superc.waitmarket.base.Constant;
 import com.superc.waitmarket.base.WaitApplication;
 import com.superc.waitmarket.httputil.EncryPtionHttp;
 import com.superc.waitmarket.httputil.EncryPtionUtil;
 import com.superc.waitmarket.ui.activity.ExpandActivity;
 import com.superc.waitmarket.ui.activity.MerchantActivity;
 import com.superc.waitmarket.ui.activity.PayflowActivity;
+import com.superc.waitmarket.ui.manager.activity.HighEneyActivity;
 import com.superc.waitmarket.utils.BigDecimalUtils;
 import com.superc.yyfflibrary.base.BaseFragment;
 import com.superc.yyfflibrary.utils.ShareUtil;
@@ -86,6 +89,26 @@ public class HomeFragment extends BaseFragment {
     TextView mHomeThirdTodaywhatshangsheng;
     @BindView(R.id.smartlayout)
     SmartRefreshLayout mSmartRefreshLayout;
+    @BindView(R.id.textView25)
+    TextView mTTdDai;
+    @BindView(R.id.textView40)
+    TextView mTTdZanWeiKs;
+    @BindView(R.id.home_con_ttd)
+    ConstraintLayout mTTdCon;
+    @BindView(R.id.textView21)
+    TextView mGnTv;
+    @BindView(R.id.home_four_detail)
+    TextView mGnTvDetail;
+    @BindView(R.id.constraintLayout7)
+    ConstraintLayout mGnCon;
+    @BindView(R.id.home_four_hisnum)
+    TextView mTvAllShh;
+    @BindView(R.id.home_four_monthnum)
+    TextView mTvNormarl;
+    @BindView(R.id.home_four_todaynum)
+    TextView mTvYj;
+
+
     Unbinder unbinder;
     private String mUser_id = "";
 
@@ -98,7 +121,7 @@ public class HomeFragment extends BaseFragment {
         return view;
     }
 
-    @OnClick({R.id.home_once_detail, R.id.home_twice_detail, R.id.home_third_detail})
+    @OnClick({R.id.home_once_detail, R.id.home_twice_detail, R.id.home_third_detail, R.id.home_four_detail})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.home_once_detail:
@@ -109,6 +132,9 @@ public class HomeFragment extends BaseFragment {
                 break;
             case R.id.home_third_detail:
                 startActivity(new Intent(this.getActivity(), MerchantActivity.class));
+                break;
+            case R.id.home_four_detail:
+                startActivity(new Intent(this.getActivity(), HighEneyActivity.class));
                 break;
         }
     }
@@ -126,6 +152,35 @@ public class HomeFragment extends BaseFragment {
         if (TextUtils.isEmpty(mUser_id)) {
             mUser_id = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("user_id", "");
         }
+        if (Constant.isYihang()) {
+            mTTdDai.setVisibility(View.VISIBLE);
+            mTTdZanWeiKs.setVisibility(View.VISIBLE);
+            mTTdCon.setVisibility(View.VISIBLE);
+            mGnTv.setVisibility(View.GONE);
+            mGnTvDetail.setVisibility(View.GONE);
+            mGnCon.setVisibility(View.GONE);
+            getYih();
+        } else {
+            mTTdDai.setVisibility(View.GONE);
+            mTTdZanWeiKs.setVisibility(View.GONE);
+            mTTdCon.setVisibility(View.GONE);
+            mGnTv.setVisibility(View.VISIBLE);
+            mGnTvDetail.setVisibility(View.VISIBLE);
+            mGnCon.setVisibility(View.VISIBLE);
+            getJl();
+        }
+    }
+
+    /*访问新接口并进行数据填充*/
+    private void getJl() {
+        mTvAllShh.setText("123");
+        mTvNormarl.setText("111");
+        mTvYj.setText("12");
+        getYih();
+
+    }
+
+    private void getYih() {
         Map<String, Object> map = new HashMap<>();
         map.put("userId", mUser_id);
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).resultManagerIndex(EncryPtionUtil.getInstance(getActivity()).toEncryption(map));
@@ -150,6 +205,7 @@ public class HomeFragment extends BaseFragment {
                 Log.d("qqq", httpThrowable.message);
             }
         });
+
     }
 
     private void setData(JSONObject jsonObject) {

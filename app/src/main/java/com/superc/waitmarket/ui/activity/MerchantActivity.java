@@ -170,6 +170,7 @@ public class MerchantActivity extends BaseActivity {
             public void onTimeSelected(long timestamp) {
                 String tv_old = mtv.getText().toString();
                 if (!new SimpleDateFormat("yyyy年MM月", Locale.CHINA).format(new Date(timestamp)).equals(tv_old)) {
+                    mMapList.clear();
                     mMerchantSmart.autoRefresh();
                 }
                 mtv.setText(new SimpleDateFormat("yyyy年MM月", Locale.CHINA).format(new Date(timestamp)));

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -21,6 +22,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.adapter.ExpandDetailAdapter;
 import com.superc.waitmarket.base.ApiService;
+import com.superc.waitmarket.base.Constant;
 import com.superc.waitmarket.bean.ExpandDetailBean;
 import com.superc.waitmarket.httputil.EncryPtionHttp;
 import com.superc.waitmarket.httputil.EncryPtionUtil;
@@ -63,6 +65,10 @@ public class ExpandDeatilActivity extends BaseActivity {
     TextView mTwo;
     @BindView(R.id.three)
     TextView mThree;
+    @BindView(R.id.linearLayout1)
+    LinearLayout mTopLinear;
+    @BindView(R.id.payflow_detail_num_jingl)
+    TextView mPayJinglNum;
     private String mDate;
     private int page = 1;
     private List<ExpandDetailBean.DataBean.DataListBean> mMapList;
@@ -70,6 +76,7 @@ public class ExpandDeatilActivity extends BaseActivity {
     private String mUser_id = "1";
     private int xiaoer;
     private int zituo;
+    private boolean mYihang;
 
     @Override
     public int getContentLayoutId() {
@@ -81,16 +88,22 @@ public class ExpandDeatilActivity extends BaseActivity {
         ButterKnife.bind(this);
         TitleUtils.setStatusTextColor(true, this);
         mUser_id = (String) ShareUtil.getInstance(this).get("user_id", "");
-        mTwo.setText("家，小二委派");
-        mThree.setText("家");
+        mYihang = Constant.isYihang();
         Intent intent = getIntent();
         if (intent != null) {
             Bundle data = intent.getBundleExtra("data");
             mDate = data.getString("date");
-            zituo = data.getInt("zituo");
-            xiaoer = data.getInt("xiaoer");
-            mExpandDetailOne.setText(TextUtils.isEmpty(zituo + "") ? "- -" : zituo + "");
-            mExpandDetailTwo.setText(TextUtils.isEmpty(xiaoer + "") ? "- -" : xiaoer + "");
+            if (mYihang) {
+                mTwo.setText("家，小二委派");
+                mThree.setText("家");
+                zituo = data.getInt("zituo");
+                xiaoer = data.getInt("xiaoer");
+                mExpandDetailOne.setText(TextUtils.isEmpty(zituo + "") ? "- -" : zituo + "");
+                mExpandDetailTwo.setText(TextUtils.isEmpty(xiaoer + "") ? "- -" : xiaoer + "");
+            } else {
+                mTopLinear.setVisibility(View.INVISIBLE);
+                mPayJinglNum.setVisibility(View.VISIBLE);
+            }
             mTitle.setText(mDate);
         }
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -114,7 +127,15 @@ public class ExpandDeatilActivity extends BaseActivity {
             }
         });
         mExpandDetailSmart.autoRefresh();
-
+        mExpandDetailAdapter.setOnItemClickListener(new ExpandDetailAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClickListener(int pos) {
+//                ShopManageBean.DataBean.ListBean bean = mMapList_content.get(pos);
+//                ShareUtil.getInstance(WaitApplication.getInstance()).put("edtdetail_id", BigDecimalUtils.bigUtil(bean.getShopid()));
+//                ShareUtil.getInstance(WaitApplication.getInstance()).put("channel", "2");
+                statActivity(MerchantDetailActivity.class);
+            }
+        });
     }
 
     @OnClick(R.id.imgv_back)
@@ -128,10 +149,59 @@ public class ExpandDeatilActivity extends BaseActivity {
     }
 
     private void getData() {
-        if (page == 1) {
-            mMapList.clear();
+        if(mYihang){
+            getYh();
+        }else{
+            getJingl();
         }
+    }
 
+    private void getJingl(){
+        mExpandDetailAdapter.setYh(false);
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", mUser_id);
+        map.put("date", mDate);
+        map.put("currentPage", page);
+        map.put("pageSize", 10);
+        Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).selectBusinessCountByDay(EncryPtionUtil.getInstance(this).toEncryption(map));
+        EncryPtionHttp.getInstance(this).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
+            @Override
+            public void onSuccessResult(JSONObject result) {
+                mExpandDetailSmart.finishRefresh();
+                mExpandDetailSmart.finishLoadMore();
+                boolean code = result.getBoolean("code");
+                String msg = result.getString("message");
+                if (code) {
+                    ExpandDetailBean detailBean = new Gson().fromJson(result.toString(), ExpandDetailBean.class);
+                    mPayJinglNum.setText("共"+321+"家商户");
+                    if (page == 1) {
+                        mMapList.clear();
+                    }
+                    mMapList.addAll(detailBean.getData().getDataList());
+                    mExpandDetailAdapter.notifyDataSetChanged();
+                } else {
+                    if (page == 1) {
+                        mMapList.clear();
+                        mExpandDetailAdapter.notifyDataSetChanged();
+                    }
+                }
+                if (!TextUtils.isEmpty(msg)) {
+                    ToastShow(msg);
+                }
+            }
+
+            @Override
+            public void onErrorResult(HttpThrowable httpThrowable) {
+                mExpandDetailSmart.finishRefresh();
+                mExpandDetailSmart.finishLoadMore();
+                ToastShow("接口访问异常" + httpThrowable.message);
+                Log.d("qqq", httpThrowable.message);
+            }
+        });
+    }
+
+    private void getYh(){
+        mExpandDetailAdapter.setYh(true);
         Map<String, Object> map = new HashMap<>();
         map.put("userId", mUser_id);
         map.put("date", mDate);
@@ -172,8 +242,6 @@ public class ExpandDeatilActivity extends BaseActivity {
                 Log.d("qqq", httpThrowable.message);
             }
         });
-
-
     }
 
 }

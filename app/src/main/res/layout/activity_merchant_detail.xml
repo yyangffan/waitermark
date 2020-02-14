@@ -77,14 +77,28 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/merchant_detail_viewpage"
         android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp_10"
         android:paddingLeft="@dimen/dp_10"
         android:paddingRight="@dimen/dp_10"
         android:paddingBottom="@dimen/dp_10"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/dp_10"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/merchant_detail_talk"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/merchant_detail_tabs"/>
+
+    <TextView
+        android:id="@+id/merchant_detail_talk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:background="@color/main_color"
+        android:gravity="center"
+        android:padding="@dimen/dp_10"
+        android:text="拨打电话"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

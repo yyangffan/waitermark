@@ -138,7 +138,6 @@ public class SerachCouActivity extends BaseActivity {
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 page = 1;
                 togetNoSearch();
-                ;
 
             }
         });
@@ -147,7 +146,6 @@ public class SerachCouActivity extends BaseActivity {
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 ++page;
                 togetNoSearch();
-                ;
             }
         });
         mMerchpoolSmart.autoRefresh();
@@ -331,7 +329,6 @@ public class SerachCouActivity extends BaseActivity {
                                 mMerchpoolQuyu.setText("");
                                 page = 1;
                                 togetNoSearch();
-                                ;
 //                                mMerchpoolSmart.autoRefresh();
                             }
                         }
@@ -390,7 +387,6 @@ public class SerachCouActivity extends BaseActivity {
                                 quyu_code = what;
                                 page = 1;
                                 togetNoSearch();
-                                ;
 //                                mMerchpoolSmart.autoRefresh();
                             }
 

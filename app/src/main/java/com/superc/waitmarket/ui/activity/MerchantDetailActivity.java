@@ -1,19 +1,24 @@
 package com.superc.waitmarket.ui.activity;
 
+import android.app.AlertDialog;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.TextView;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.adapter.ViewPaperAdapter;
+import com.superc.waitmarket.base.Constant;
 import com.superc.waitmarket.ui.fragment.ChangjPicFragment;
 import com.superc.waitmarket.ui.fragment.JiChuFragment;
 import com.superc.waitmarket.ui.fragment.JieSFragment;
 import com.superc.waitmarket.ui.fragment.NewFragment;
 import com.superc.waitmarket.ui.fragment.OldFragment;
 import com.superc.waitmarket.ui.fragment.ZizhiFragment;
+import com.superc.waitmarket.ui.manager.fragment.ShoukCodeFragment;
+import com.superc.waitmarket.utils.dialog.PhaseBottomTelDialog;
 import com.superc.yyfflibrary.base.BaseActivity;
 import com.superc.yyfflibrary.utils.titlebar.TitleUtils;
 
@@ -28,9 +33,12 @@ public class MerchantDetailActivity extends BaseActivity implements OnTabSelectL
 
     @BindView(R.id.merchant_detail_tabs)
     SlidingTabLayout mMerchantDetailTabs;
+    @BindView(R.id.merchant_detail_talk)
+    TextView mTVPhone;
     @BindView(R.id.merchant_detail_viewpage)
     ViewPager mMerchantDetailViewpage;
     private String[] mStrings = new String[]{"基础信息", "场景照片", "资质信息", "结算信息", "支付营销老客", "支付营销新客"};
+    private String[] mStrings_jili = new String[]{"基础信息", "场景照片", "资质信息", "结算信息", "支付营销老客", "支付营销新客","收款码"};
     private ViewPaperAdapter mViewPaperAdapter;
     private List<Fragment> mFragmentList;
     private JiChuFragment mJiChuFragment;
@@ -39,6 +47,10 @@ public class MerchantDetailActivity extends BaseActivity implements OnTabSelectL
     private JieSFragment mJieSFragment;
     private OldFragment mOldFragment;
     private NewFragment mNewFragment;
+    private ShoukCodeFragment mShoukCodeFragment;
+    private boolean mYihang;
+    private PhaseBottomTelDialog mPhaseBottomTelDialog;
+    private AlertDialog mMarketingManagerTel;
 
     @Override
     public int getContentLayoutId() {
@@ -49,6 +61,12 @@ public class MerchantDetailActivity extends BaseActivity implements OnTabSelectL
     public void init() {
         ButterKnife.bind(this);
         TitleUtils.setStatusTextColor(true, this);
+        mPhaseBottomTelDialog = new PhaseBottomTelDialog(this);
+        mMarketingManagerTel = mPhaseBottomTelDialog.initDig("kefu");
+        mYihang = Constant.isYihang();
+        if (!mYihang) {
+            mTVPhone.setVisibility(View.VISIBLE);
+        }
         mFragmentList = new ArrayList<>();
         mJiChuFragment = new JiChuFragment();
         mChangjPicFragment = new ChangjPicFragment();
@@ -62,18 +80,25 @@ public class MerchantDetailActivity extends BaseActivity implements OnTabSelectL
         mFragmentList.add(mJieSFragment);
         mFragmentList.add(mOldFragment);
         mFragmentList.add(mNewFragment);
-        mViewPaperAdapter = new ViewPaperAdapter(getSupportFragmentManager(), mFragmentList, mStrings);
+        if (!mYihang) {
+            mShoukCodeFragment = new ShoukCodeFragment();
+            mFragmentList.add(mShoukCodeFragment);
+        }
+        mViewPaperAdapter = new ViewPaperAdapter(getSupportFragmentManager(), mFragmentList, mYihang?mStrings:mStrings_jili);
         mMerchantDetailViewpage.setAdapter(mViewPaperAdapter);
-        mMerchantDetailTabs.setViewPager(mMerchantDetailViewpage, mStrings);
+        mMerchantDetailTabs.setViewPager(mMerchantDetailViewpage, mYihang?mStrings:mStrings_jili);
         mMerchantDetailTabs.setOnTabSelectListener(this);
 
     }
 
-    @OnClick({R.id.imgv_back})
+    @OnClick({R.id.imgv_back, R.id.merchant_detail_talk})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.imgv_back:
                 finish();
+                break;
+            case R.id.merchant_detail_talk:
+                mMarketingManagerTel.show();
                 break;
         }
     }

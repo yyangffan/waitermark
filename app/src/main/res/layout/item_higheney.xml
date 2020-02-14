@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/dp_12"
+    android:layout_marginRight="@dimen/dp_12"
+    android:layout_marginBottom="@dimen/dp_5"
+    android:background="@drawable/bg_corner_white">
+
+    <ImageView
+        android:id="@+id/item_higheney_imgv"
+        android:layout_width="@dimen/dp_62"
+        android:layout_height="@dimen/dp_62"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars"/>
+
+    <TextView
+        android:id="@+id/item_higheney_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="- -"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/item_higheney_content"
+        app:layout_constraintEnd_toStartOf="@+id/item_merchpool_receive"
+        app:layout_constraintStart_toEndOf="@+id/item_higheney_imgv"
+        app:layout_constraintTop_toTopOf="@+id/item_higheney_imgv"
+        tools:text="鱼酷(万达店)"/>
+
+    <TextView
+        android:id="@+id/item_higheney_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:drawablePadding="@dimen/dp_3"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="- -"
+        android:textColor="@color/txt_granine"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/item_higheney_imgv"
+        app:layout_constraintEnd_toStartOf="@+id/item_merchpool_receive"
+        app:layout_constraintStart_toStartOf="@+id/item_higheney_name"
+        app:layout_constraintTop_toBottomOf="@+id/item_higheney_name"
+        tools:text="近5日：共交易5笔，合计123456元"/>
+
+    <TextView
+        android:id="@+id/item_higheney_what"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:drawableRight="@drawable/icon_gengduoshense"
+        android:drawablePadding="@dimen/dp_5"
+        android:text="一级预警"
+        android:textColor="@color/main_color"
+        app:layout_constraintBaseline_toBaselineOf="@+id/item_higheney_name"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

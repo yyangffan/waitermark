@@ -13,6 +13,7 @@ import com.ljy.devring.DevRing;
 import com.ljy.devring.http.support.throwable.HttpThrowable;
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.base.ApiService;
+import com.superc.waitmarket.base.Constant;
 import com.superc.waitmarket.base.WaitApplication;
 import com.superc.waitmarket.bean.AppMessage;
 import com.superc.waitmarket.httputil.EncryPtionHttp;
@@ -21,6 +22,7 @@ import com.superc.waitmarket.ui.fragment.BusnesFragment;
 import com.superc.waitmarket.ui.fragment.HomeFragment;
 import com.superc.waitmarket.ui.fragment.ManageFragment;
 import com.superc.waitmarket.ui.fragment.UserFragment;
+import com.superc.waitmarket.ui.manager.fragment.ManaBusnesFragment;
 import com.superc.waitmarket.utils.BigDecimalUtils;
 import com.superc.yyfflibrary.base.BaseActivity;
 import com.superc.yyfflibrary.utils.ShareUtil;
@@ -48,6 +50,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     private Fragment[] fragments = null;
     private HomeFragment mHomeFragment;
     private BusnesFragment mBusnesFragment;
+    private ManaBusnesFragment mManaBusnesFragment;
     private ManageFragment mManageFragment;
     private UserFragment mUserFragment;
     private ViewPager mPager;
@@ -55,6 +58,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     private TextView muser_red;
     private String mMsg_count = "- -";
     private String mUser_id;
+    private boolean mYihang;
 
     @Override
     public int getContentLayoutId() {
@@ -71,9 +75,15 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         EventBus.getDefault().register(this);
         mHomeFragment = new HomeFragment();
         mBusnesFragment = new BusnesFragment();
+        mManaBusnesFragment = new ManaBusnesFragment();
         mManageFragment = new ManageFragment();
         mUserFragment = new UserFragment();
-        fragments = new Fragment[]{mHomeFragment, mBusnesFragment, mManageFragment, mUserFragment};
+        mYihang = Constant.isYihang();
+        if (mYihang) {
+            fragments = new Fragment[]{mHomeFragment, mBusnesFragment, mManageFragment, mUserFragment};
+        } else {
+            fragments = new Fragment[]{mHomeFragment, mManaBusnesFragment, mManageFragment, mUserFragment};
+        }
         TabFragmentAdapter mAdapter = new TabFragmentAdapter(getSupportFragmentManager(), fragments);
         mPager = findViewById(R.id.tab_pager);
 //        mPager.setScrollble(false);
@@ -116,11 +126,16 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 }
                 break;
             case 1:
-                if (mBusnesFragment != null) {
-                    mBusnesFragment.getCount();
-                    mBusnesFragment.getOnceTab();
-                    mBusnesFragment.getData();
-
+                if (mYihang) {
+                    if (mBusnesFragment != null) {
+                        mBusnesFragment.getCount();
+                        mBusnesFragment.getOnceTab();
+                        mBusnesFragment.getData();
+                    }
+                } else {
+                    if (mManaBusnesFragment != null && mManaBusnesFragment.isVisible()) {
+                        mManaBusnesFragment.getData();
+                    }
                 }
                 break;
             case 2:
@@ -182,10 +197,16 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
             mUserFragment.getMsg();
             mUserFragment.getData();
         }
-        if (mBusnesFragment != null && mBusnesFragment.isVisible()) {
-            mBusnesFragment.getCount();
-            mBusnesFragment.getOnceTab();
-            mBusnesFragment.getData();
+        if (mYihang) {
+            if (mBusnesFragment != null && mBusnesFragment.isVisible()) {
+                mBusnesFragment.getCount();
+                mBusnesFragment.getOnceTab();
+                mBusnesFragment.getData();
+            }
+        } else {
+            if (mManaBusnesFragment != null && mManaBusnesFragment.isVisible()) {
+                mManaBusnesFragment.getData();
+            }
         }
     }
 

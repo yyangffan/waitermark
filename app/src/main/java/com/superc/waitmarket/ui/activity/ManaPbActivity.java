@@ -153,6 +153,8 @@ public class ManaPbActivity extends BaseActivity {
                 initPop();
                 break;
             case R.id.manapb_cancel:
+                mManapbShifangbot.setBackgroundColor(this.getResources().getColor(R.color.line_color));
+                mManapbShifangbot.setEnabled(false);
                 mManapbImgv.setVisibility(View.VISIBLE);
                 mManapbShifang.setVisibility(View.GONE);
                 mManapbLinear.setVisibility(View.GONE);

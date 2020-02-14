@@ -228,6 +228,9 @@ public class LoginActivity extends BaseActivity {
                     ShareUtil.getInstance(LoginActivity.this).put("is_login", true);
                     String bankname = loginBean.getData().getBankname();
                     ShareUtil.getInstance(LoginActivity.this).put("only", bankname.equals("趣街")?"qujie":"yinhang");
+                    // TODO: 2020/2/11 放开是否是银行的判断
+                    /*ShareUtil.getInstance(LoginActivity.this).put("isYh", bankname.equals("趣街")?false:true);*/
+                    ShareUtil.getInstance(LoginActivity.this).put("isYh", false);
                     toSetTags(bankname.equals("趣街")?"qujie":"yinhang");
                     toSetAlias(BigDecimalUtils.bigUtil(loginBean.getData().getId()));
                     String msg_count = BigDecimalUtils.bigUtil(loginBean.getData().getMessagecount());

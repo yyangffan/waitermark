@@ -117,6 +117,28 @@
             android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity android:name=".ui.activity.SerachCouActivity">
         </activity>
+        <activity android:name=".ui.manager.activity.HighEneyActivity">
+        </activity>
+        <activity android:name=".ui.manager.activity.ScreenActivity">
+        </activity>
+        <activity android:name=".ui.manager.activity.ScreenResultActivity">
+        </activity>
+        <activity android:name=".ui.manager.activity.ScreenDetailActivity">
+        </activity>
+        <activity android:name=".ui.manager.activity.ReceiveActivity">
+        </activity>
+        <activity android:name=".ui.manager.activity.WeihPbActivity">
+        </activity>
+        <activity android:name=".ui.manager.activity.WhpbShaixActivity">
+        </activity>
+        <activity android:name=".ui.manager.activity.WhpbSxResultActivity">
+        </activity>
+        <activity android:name=".ui.manager.activity.OpeningActivity">
+        </activity>
+        <activity android:name=".ui.manager.activity.OpenEndActivity">
+        </activity>
+        <activity android:name=".ui.activity.TransDetailActivity">
+        </activity>
     </application>
 
 </manifest>
