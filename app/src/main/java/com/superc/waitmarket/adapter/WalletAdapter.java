@@ -23,16 +23,19 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
     private LayoutInflater mInflater;
     private OnItemClickListener mOnItemClickListener;
     private WalletChAdapter mWalletChAdapter;
+    private boolean mYinhang;
 
-    public WalletAdapter(Context context, List<ProfitBean.DataBean> stringList) {
+    public WalletAdapter(Context context, List<ProfitBean.DataBean> stringList,boolean yinhang) {
         mContext = context;
         mLists = stringList;
+        mYinhang=yinhang;
         mInflater = LayoutInflater.from(mContext);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.mOnItemClickListener = listener;
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -44,13 +47,28 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder vh, int position) {
         ProfitBean.DataBean bean = mLists.get(position);
-        vh.mItemExpandfaTitle.setText(bean.getMonth());
-        vh.mItemExpandfaWhat.setText("共收¥" + BigDecimalUtils.bigUtil(bean.getAllSum()) + "（交易流水收益¥" + BigDecimalUtils.bigUtil(bean.getMarketingAmount()) + "，商户扩展收益¥" + BigDecimalUtils.bigUtil(bean.getExpandAmount()) + "）");
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
-        vh.mItemExpandfaRecy.setLayoutManager(linearLayoutManager);
-//        List<Map<String,Object>> bean.get("data");
-        mWalletChAdapter = new WalletChAdapter(mContext, bean.getDetailList());
-        vh.mItemExpandfaRecy.setAdapter(mWalletChAdapter);
+        if(mYinhang) {
+            vh.mItemExpandfaTitle.setText(bean.getMonth());
+            vh.mItemExpandfaWhat.setText("共收¥" + BigDecimalUtils.bigUtil(bean.getAllSum()) + "（交易流水收益¥" + BigDecimalUtils.bigUtil(bean.getMarketingAmount()) + "，商户扩展收益¥" + BigDecimalUtils.bigUtil(bean.getExpandAmount()) + "）");
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
+            vh.mItemExpandfaRecy.setLayoutManager(linearLayoutManager);
+            mWalletChAdapter = new WalletChAdapter(mContext, bean.getDetailList(),mYinhang);
+            vh.mItemExpandfaRecy.setAdapter(mWalletChAdapter);
+        }else{
+            vh.mItemExpandfaTitle.setText(bean.getMonth());
+            vh.mItemExpandfaWhat.setText("共收¥" + BigDecimalUtils.bigUtil(bean.getAllSum()) + "（交易流水收益¥" + BigDecimalUtils.bigUtil(bean.getMarketingAmount()) + "，商户维护收益¥" + BigDecimalUtils.bigUtil(bean.getExpandAmount()) + "）");
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
+            vh.mItemExpandfaRecy.setLayoutManager(linearLayoutManager);
+            mWalletChAdapter = new WalletChAdapter(mContext, bean.getDetailList(),mYinhang);
+            vh.mItemExpandfaRecy.setAdapter(mWalletChAdapter);
+            mWalletChAdapter.setOnItemClickListener(new WalletChAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClickListener(int pos) {
+                    if(mOnItemClickListener!=null)
+                        mOnItemClickListener.onItemClickListener(pos);
+                }
+            });
+        }
 
     }
 

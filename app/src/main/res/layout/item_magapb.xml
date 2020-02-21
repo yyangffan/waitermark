@@ -40,7 +40,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:src="@drawable/icon_head"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/linear_one"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -121,7 +121,7 @@
             android:layout_marginBottom="8dp"
             android:text="- -"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/linear_one"
             app:layout_constraintEnd_toStartOf="@+id/item_magapb_edt"
             app:layout_constraintStart_toEndOf="@+id/item_magapb_reasonwenzi"
             app:layout_constraintTop_toBottomOf="@+id/item_magapb_time"
@@ -174,5 +174,52 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/item_imgv_go"
             app:layout_constraintTop_toTopOf="parent"/>
+
+        <LinearLayout
+            android:id="@+id/linear_one"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/item_magapb_commit"
+            app:layout_constraintStart_toStartOf="@+id/item_magapb_head">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="小二驳回原因："
+                android:textSize="10sp"/>
+
+            <TextView
+                android:id="@+id/item_reason_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="- -"
+                android:textSize="10sp"
+                tools:text="默默欧墨默默欧墨默默欧墨默默欧墨默默默默欧墨"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/item_magapb_commit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_corner_main"
+            android:paddingLeft="@dimen/dp_4"
+            android:paddingTop="@dimen/dp_2"
+            android:paddingRight="@dimen/dp_4"
+            android:paddingBottom="@dimen/dp_2"
+            android:text="重新提交"
+            android:textColor="@color/main_color"
+            android:textSize="10sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/linear_one"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linear_one"/>
+
+
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

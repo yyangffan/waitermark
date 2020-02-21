@@ -1,4 +1,4 @@
-package com.superc.waitmarket.ui.activity;
+package com.superc.waitmarket.ui.manager.activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ljy.devring.DevRing;
 import com.ljy.devring.http.support.throwable.HttpThrowable;
@@ -18,12 +17,13 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.superc.waitmarket.R;
-import com.superc.waitmarket.adapter.AllMarketAdapter;
+import com.superc.waitmarket.adapter.FenquAdapter;
 import com.superc.waitmarket.base.ApiService;
-import com.superc.waitmarket.bean.YingxiaoBean;
+import com.superc.waitmarket.bean.BotListBean;
 import com.superc.waitmarket.httputil.EncryPtionHttp;
 import com.superc.waitmarket.httputil.EncryPtionUtil;
 import com.superc.waitmarket.utils.BigDecimalUtils;
+import com.superc.waitmarket.utils.dialog.DialogBotList;
 import com.superc.yyfflibrary.base.BaseActivity;
 import com.superc.yyfflibrary.utils.ShareUtil;
 import com.superc.yyfflibrary.utils.titlebar.TitleUtils;
@@ -38,12 +38,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Observable;
 
-public class AllMarketActivity extends BaseActivity {
-
+public class PartGroupActivity extends BaseActivity {
+    @BindView(R.id.title)
+    TextView mTitle;
+    @BindView(R.id.yingxiao_titlll)
+    TextView mMingx;
     @BindView(R.id.allmarket_top)
     TextView mAllmarketTop;
-    @BindView(R.id.title)
-    TextView mTiTle;
     @BindView(R.id.allmarket_hisnum)
     TextView mAllmarketHisnum;
     @BindView(R.id.allmarket_monthnum)
@@ -62,55 +63,45 @@ public class AllMarketActivity extends BaseActivity {
     TextView mAllmarketTodaywhat;
     @BindView(R.id.allmarket_todaywhatshangsheng)
     TextView mAllmarketTodaywhatshangsheng;
-    @BindView(R.id.yingxiao_titlll)
-    TextView mAllmarketTodaywhattitlll;
+    @BindView(R.id.allmarket_group)
+    TextView mAllMarketGroup;
     private int page = 1;
-    private List<YingxiaoBean> mMapList;
-    private AllMarketAdapter mAllMarketAdapter;
-    private String mType;
     private String mUser_id;
-
+    private List<String> mStrings;
+    private FenquAdapter mFenquAdapter;
+    private String mId;
+    private DialogBotList mDialogBotList_group;
+    private List<BotListBean> mBotListBeans_group;
+    private String[] mStringps=new String[]{"全部小组","一组","二组","三组","四组","五组","六组","七组"};
 
     @Override
     public int getContentLayoutId() {
-        return R.layout.activity_all_market;
+        return R.layout.activity_part_group;
     }
 
     @Override
     public void init() {
         TitleUtils.setStatusTextColor(true, this);
         ButterKnife.bind(this);
-        mType = (String) ShareUtil.getInstance(this).get("type", "");
+        mBotListBeans_group = new ArrayList<>();
         mUser_id = (String) ShareUtil.getInstance(this).get("user_id", "");
-        switch (mType) {
-            case "0":
-                mTiTle.setText("网点营销数据");
-                mAllmarketTodaywhattitlll.setText("网点营销明细");
-                break;
-            case "1":
-                mTiTle.setText("中支行营销数据");
-                mAllmarketTodaywhattitlll.setText("中支行营销明细");
-                break;
-            case "2":
-                mTiTle.setText("全行营销数据");
-                mAllmarketTodaywhattitlll.setText("全行营销明细");
-                break;
+        Intent intent = getIntent();
+        if (intent != null) {
+            mId = intent.getStringExtra("id");
+            if (mId.equals("空")) {
+                mTitle.setText("小组营销数据");
+                mMingx.setText("小组营销明细");
+            } else {
+                mTitle.setText("分区营销数据");
+                mMingx.setText("分区营销明细");
+                mAllMarketGroup.setVisibility(View.VISIBLE);
+            }
         }
-        mMapList = new ArrayList<>();
+        mStrings = new ArrayList<>();
+        mFenquAdapter = new FenquAdapter(this, mStrings);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mAllmarketRecy.setLayoutManager(linearLayoutManager);
-        mAllMarketAdapter = new AllMarketAdapter(this, mMapList);
-        mAllmarketRecy.setAdapter(mAllMarketAdapter);
-        mAllMarketAdapter.setOnItemClickListener(new AllMarketAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClickListener(int pos) {
-                YingxiaoBean map = mMapList.get(pos);
-                Intent intent = new Intent(AllMarketActivity.this, AllMarketdetailActivity.class);
-                intent.putExtra("id", map.getId());
-                startActivity(intent);
-
-            }
-        });
+        mAllmarketRecy.setAdapter(mFenquAdapter);
         mAllmarketSmart.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
@@ -126,82 +117,31 @@ public class AllMarketActivity extends BaseActivity {
             }
         });
         mAllmarketSmart.autoRefresh();
+        initGroup();
     }
 
-    @OnClick({R.id.imgv_back})
+    @OnClick({R.id.imgv_back, R.id.allmarket_group})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.imgv_back:
                 finish();
                 break;
+            case R.id.allmarket_group:
+                mDialogBotList_group.show();
+                break;
         }
     }
 
     private void getData() {
-        switch (mType) {
-            case "0":
-                getWangDian();
-                break;
-            case "1":
-                getZhongzhi();
-                break;
-            case "2":
-                getQuanhang();
-                break;
+        if (mId.equals("空")) {
+            getXiaozu();
+        } else {
+            getFenqu();
         }
     }
 
-    /*网点*/
-    private void getWangDian() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("userId", mUser_id);
-        map.put("currentPage", page);
-        map.put("pageSize", 10);
-        Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).smallBranchBankData(EncryPtionUtil.getInstance(this).toEncryption(map));
-        EncryPtionHttp.getInstance(this).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
-            @Override
-            public void onSuccessResult(JSONObject result) {
-                mAllmarketSmart.finishRefresh();
-                mAllmarketSmart.finishLoadMore();
-                boolean code = result.getBoolean("code");
-                String msg = result.getString("message");
-                if (code) {
-                    JSONObject data = result.getJSONObject("data");
-                    JSONArray detaillist = data.getJSONArray("detaillist");
-                    setTopData(data);
-                    if (page == 1) {
-                        mMapList.clear();
-                    }
-                    for (int i = 0; i < detaillist.size(); i++) {
-                        JSONObject jsonObject = detaillist.getJSONObject(i);
-                        YingxiaoBean yxbean = new YingxiaoBean.Builder().one_content(jsonObject.getString("RealName")).
-                                two_content(jsonObject.getString("acount")).three_content(jsonObject.getString("payamount")).four_content(jsonObject.getString("ccount")).build();
-                        mMapList.add(yxbean);
-                    }
-                    mAllMarketAdapter.notifyDataSetChanged();
-                } else {
-                    if (page == 1) {
-                        mMapList.clear();
-                        mAllMarketAdapter.notifyDataSetChanged();
-                    }
-                }
-                if (!TextUtils.isEmpty(msg)) {
-                    ToastShow(msg);
-                }
-            }
-
-            @Override
-            public void onErrorResult(HttpThrowable httpThrowable) {
-                mAllmarketSmart.finishRefresh();
-                mAllmarketSmart.finishLoadMore();
-                ToastShow("接口访问异常" + httpThrowable.message);
-                Log.d("qqq", httpThrowable.message);
-            }
-        });
-    }
-
-    /*中支*/
-    private void getZhongzhi() {
+    /*获取分区数据*/
+    private void getFenqu() {
         Map<String, Object> map = new HashMap<>();
         map.put("userId", mUser_id);
         map.put("currentPage", page);
@@ -216,22 +156,19 @@ public class AllMarketActivity extends BaseActivity {
                 String msg = result.getString("message");
                 if (code) {
                     JSONObject data = result.getJSONObject("data");
-                    JSONArray detaillist = data.getJSONArray("detaillist");
                     setTopData(data);
+                    mAllmarketTop.setText("共3455个小组，24322234名员工");
                     if (page == 1) {
-                        mMapList.clear();
+                        mStrings.clear();
                     }
-                    for (int i = 0; i < detaillist.size(); i++) {
-                        JSONObject jsonObject = detaillist.getJSONObject(i);
-                        YingxiaoBean yxbean = new YingxiaoBean.Builder().one_content(jsonObject.getString("RealName")).
-                                two_content(jsonObject.getString("acount")).three_content(jsonObject.getString("payamount")).four_content(jsonObject.getString("ccount")).build();
-                        mMapList.add(yxbean);
+                    for (int i = 0; i < 10; i++) {
+                        mStrings.add("");
                     }
-                    mAllMarketAdapter.notifyDataSetChanged();
+                    mFenquAdapter.notifyDataSetChanged();
                 } else {
                     if (page == 1) {
-                        mMapList.clear();
-                        mAllMarketAdapter.notifyDataSetChanged();
+                        mStrings.clear();
+                        mFenquAdapter.notifyDataSetChanged();
                     }
                 }
                 if (!TextUtils.isEmpty(msg)) {
@@ -247,14 +184,16 @@ public class AllMarketActivity extends BaseActivity {
                 Log.d("qqq", httpThrowable.message);
             }
         });
+
     }
 
-    /*全行*/
-    private void getQuanhang() {
+    /*获取小组数据*/
+    private void getXiaozu() {
         Map<String, Object> map = new HashMap<>();
+        map.put("userId", mUser_id);
         map.put("currentPage", page);
         map.put("pageSize", 10);
-        Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).bankData(EncryPtionUtil.getInstance(this).toEncryption(map));
+        Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).branchBankData(EncryPtionUtil.getInstance(this).toEncryption(map));
         EncryPtionHttp.getInstance(this).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
             @Override
             public void onSuccessResult(JSONObject result) {
@@ -264,22 +203,19 @@ public class AllMarketActivity extends BaseActivity {
                 String msg = result.getString("message");
                 if (code) {
                     JSONObject data = result.getJSONObject("data");
-                    JSONArray detaillist = data.getJSONArray("detaillist");
                     setTopData(data);
+                    mAllmarketTop.setText("共有" + BigDecimalUtils.bigUtil(data.getString("expandpeoplenum")) + "名员工");
                     if (page == 1) {
-                        mMapList.clear();
+                        mStrings.clear();
                     }
-                    for (int i = 0; i < detaillist.size(); i++) {
-                        JSONObject jsonObject = detaillist.getJSONObject(i);
-                        YingxiaoBean yxbean = new YingxiaoBean.Builder().one_content(jsonObject.getString("NAME")).
-                                two_content(jsonObject.getString("acount")).three_content(jsonObject.getString("payamount")).four_content(jsonObject.getString("ccount")).id(BigDecimalUtils.bigUtil(jsonObject.getString("branchid"))).build();
-                        mMapList.add(yxbean);
+                    for (int i = 0; i < 10; i++) {
+                        mStrings.add("");
                     }
-                    mAllMarketAdapter.notifyDataSetChanged();
+                    mFenquAdapter.notifyDataSetChanged();
                 } else {
                     if (page == 1) {
-                        mMapList.clear();
-                        mAllMarketAdapter.notifyDataSetChanged();
+                        mStrings.clear();
+                        mFenquAdapter.notifyDataSetChanged();
                     }
                 }
                 if (!TextUtils.isEmpty(msg)) {
@@ -297,16 +233,8 @@ public class AllMarketActivity extends BaseActivity {
         });
     }
 
+
     private void setTopData(JSONObject data) {
-        switch (mType) {
-            case "0":
-            case "1":
-                mAllmarketTop.setText("共有" + BigDecimalUtils.bigUtil(data.getString("expandpeoplenum")) + "名员工");
-                break;
-            case "2":
-                mAllmarketTop.setText("共有" + BigDecimalUtils.bigUtil(data.getString("expandpeoplenum")) + "家支行");
-                break;
-        }
         mAllmarketHisnum.setText(BigDecimalUtils.bigUtil(data.getString("expandnum")));
         mAllmarketTodaynum.setText(BigDecimalUtils.bigUtil(data.getString("flow")));
         mAllmarketMonthnum.setText(BigDecimalUtils.bigUtil(data.getString("money")));
@@ -323,6 +251,26 @@ public class AllMarketActivity extends BaseActivity {
         mAllmarketTodaywhatshangsheng.setText(data.getString("flowpercentage"));
         mAllmarketTodaywhat.setVisibility(flowpercentagetype.equals("1") ? View.GONE : View.VISIBLE);
         mAllmarketTodaywhatshangsheng.setVisibility(flowpercentagetype.equals("1") ? View.VISIBLE : View.GONE);
+    }
+    
+    private void initGroup(){
+        String group = mAllMarketGroup.getText().toString();
+        mBotListBeans_group.clear();
+        for (int i = 0; i <mStringps.length; i++) {
+            BotListBean botListBean = new BotListBean(mStringps[i], mStringps[i].equals(group) ? true : false, i+"");
+            mBotListBeans_group.add(botListBean);
+        }
+        mDialogBotList_group = new DialogBotList.Builder().title("请选择").botListBeanMap(mBotListBeans_group).builder(this);
+        mDialogBotList_group.setOnTextClickListener(new DialogBotList.OnTextClickListener() {
+            @Override
+            public void onTextClickListenerHis(String name, String what) {
+                super.onTextClickListenerHis(name, what);
+                String groupp = mAllMarketGroup.getText().toString();
+                if (!groupp.equals(name)) {
+                    mAllMarketGroup.setText(name);
+                }
+            }
+        });
     }
 
 }

@@ -64,7 +64,7 @@ public class DialogBotList extends AlertDialog {
         DisplayMetrics metrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(metrics);
         if (mBotListBeanMap.size()>7) {
-            window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, 1000);
+            window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, 800);
         } else {
             window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         }

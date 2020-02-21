@@ -85,6 +85,8 @@ public class HighEneyActivity extends BaseActivity {
     LinearLayout mLinea;
     @BindView(R.id.merchpool_linear)
     LinearLayout merchpool_linear;
+    @BindView(R.id.higheney_cancel)
+    TextView mTvCancel;
 
 
     private String mUser_id;
@@ -97,8 +99,11 @@ public class HighEneyActivity extends BaseActivity {
     private JihuoDialog mJihuoDialog_once, mJihuoDialog_twice;
     private List<Map<String, Object>> mJhDig_mapOnce, mJhDig_mapTwice;
     private PopMerchWindow mPopMerchWindow_quyu;
+    private PopMerchWindow mPopMerchWindow_shangquan;
     private List<BotListBean> mBotListBeans_quyu;
-    private String quyu_code;
+    private List<BotListBean> mBotListBeans_shagnquan;
+    private String city_code = "022", quyu_code, shangquan_code;
+    private String shangquan_type;
 
 
     @Override
@@ -110,7 +115,7 @@ public class HighEneyActivity extends BaseActivity {
     public void init() {
         TitleUtils.setStatusTextColor(true, this);
         ButterKnife.bind(this);
-        mHigheneyYij.requestFocus();
+        mTvCancel.requestFocus();
         mUser_id = (String) ShareUtil.getInstance(this).get("user_id", "");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mMerchpoolRecy.setLayoutManager(linearLayoutManager);
@@ -118,6 +123,7 @@ public class HighEneyActivity extends BaseActivity {
         mJhDig_mapOnce = new ArrayList<>();
         mJhDig_mapTwice = new ArrayList<>();
         mBotListBeans_quyu = new ArrayList<>();
+        mBotListBeans_shagnquan = new ArrayList<>();
         mHighEneyAdapter = new HighEneyAdapter(this, mStrings);
         mMerchpoolRecy.setAdapter(mHighEneyAdapter);
         mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -162,6 +168,7 @@ public class HighEneyActivity extends BaseActivity {
             case R.id.higheney_search:
                 SoftInputUtils.hideSoftInput(this);
                 mSmartRefreshLayout.autoRefresh();
+                mTvCancel.requestFocus();
                 break;
             case R.id.higheney_cancel:
                 String search = mHigheneyEdt.getText().toString();
@@ -187,6 +194,14 @@ public class HighEneyActivity extends BaseActivity {
                 }
                 break;
             case R.id.merchpool_three:
+                if (TextUtils.isEmpty(quyu_code)) {
+                    ToastShow("请先选择区域");
+                } else if (mPopMerchWindow_shangquan != null) {
+                    mPopMerchWindow_shangquan.showAsDropDown(mLinea);
+                    merchpool_linear.setVisibility(View.VISIBLE);
+                    mMerchpoolImgthree.setImageResource(R.drawable.icon_shangla);
+                    mMerchpoolQuyu.setTextColor(getResources().getColor(R.color.red));
+                }
                 break;
             case R.id.merchpool_four:
                 statActivity(ScreenActivity.class);
@@ -407,9 +422,10 @@ public class HighEneyActivity extends BaseActivity {
         }
     }
 
+    /*获取区域数据*/
     private void getQuyu() {
         Map<String, Object> map = new HashMap<>();
-        map.put("cityCode", "022");
+        map.put("cityCode", city_code);
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).merchantPoolStatusBar(EncryPtionUtil.getInstance(this).toEncryption(map));
         EncryPtionHttp.getInstance(this).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
             @Override
@@ -437,8 +453,17 @@ public class HighEneyActivity extends BaseActivity {
                             if (!con.equals(old)) {
                                 mMerchpoolPosi.setText(con);
                                 quyu_code = what;
+                                shangquan_code = "";
+                                mMerchpoolQuyu.setText("商圈");
                                 page = 1;
                                 getData();
+                                if (what.equals("菜市场")) {
+                                    shangquan_type = "1";
+                                } else {
+                                    shangquan_type = "0";
+                                }
+                                if (!TextUtils.isEmpty(quyu_code))
+                                    getBusinessCircle(city_code, quyu_code);
 //                                mMerchpoolSmart.autoRefresh();
                             }
 
@@ -453,6 +478,67 @@ public class HighEneyActivity extends BaseActivity {
                             mMerchpoolPosi.setTextColor(getResources().getColor(R.color.merchool_txt));
                         }
                     });
+                }
+                if (!TextUtils.isEmpty(msg)) {
+                    ToastShow(msg);
+                }
+            }
+
+            @Override
+            public void onErrorResult(HttpThrowable httpThrowable) {
+                ToastShow("接口访问异常" + httpThrowable.message);
+                Log.d("qqq", httpThrowable.message);
+            }
+        });
+    }
+
+    /*获取商圈*/
+    private void getBusinessCircle(String city_code, String di_code) {
+        final String shangquan = mMerchpoolQuyu.getText().toString();
+        Map<String, Object> map = new HashMap<>();
+        map.put("CityCode", city_code);
+        map.put("DistrictCode", di_code);
+        map.put("type", shangquan_type);
+        Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).getBusinessCircle(EncryPtionUtil.getInstance(this).toEncryption(map));
+        EncryPtionHttp.getInstance(this).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
+            @Override
+            public void onSuccessResult(JSONObject result) {
+                Log.d("qqq", result.toJSONString());
+                boolean code = result.getBoolean("code");
+                String msg = result.getString("message");
+                if (code) {
+                    mBotListBeans_shagnquan.clear();
+                    JSONArray data = result.getJSONArray("data");
+                    for (int i = 0; i < data.size(); i++) {
+                        JSONObject jsonObject = data.getJSONObject(i);
+                        String businessCircleName = jsonObject.getString("BusinessCircleName");
+                        BotListBean botListBean = new BotListBean(businessCircleName, businessCircleName.equals(shangquan) ? true : false, jsonObject.getString("ID"));
+                        mBotListBeans_shagnquan.add(botListBean);
+                    }
+                    mPopMerchWindow_shangquan = new PopMerchWindow(HighEneyActivity.this, mBotListBeans_shagnquan);
+                    mPopMerchWindow_shangquan.setOnPopClickListener(new PopMerchWindow.OnPopClickListener() {
+                        @Override
+                        public void onPopClickListener(String con, String what) {
+                            String old = mMerchpoolQuyu.getText().toString();
+                            if (!con.equals(old)) {
+                                mMerchpoolQuyu.setText(con);
+                                shangquan_code = what;
+                                page = 1;
+                                getData();
+                            }
+
+                        }
+                    });
+
+                    mPopMerchWindow_shangquan.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                        @Override
+                        public void onDismiss() {
+                            merchpool_linear.setVisibility(View.GONE);
+                            mMerchpoolImgthree.setImageResource(R.drawable.icon_xiala);
+                            mMerchpoolQuyu.setTextColor(getResources().getColor(R.color.merchool_txt));
+                        }
+                    });
+
                 }
                 if (!TextUtils.isEmpty(msg)) {
                     ToastShow(msg);

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -27,6 +28,7 @@ public class ManaJhAdapter extends RecyclerView.Adapter<ManaJhAdapter.ViewHolder
     private List<JihuoBean.DataBean.ListBean> mLists;
     private LayoutInflater mInflater;
     private OnItemClickListener mOnItemClickListener;
+    private OnCommitClickListener mOnCommitClickListener;
 
     public ManaJhAdapter(Context context, List<JihuoBean.DataBean.ListBean> stringList) {
         mContext = context;
@@ -38,6 +40,9 @@ public class ManaJhAdapter extends RecyclerView.Adapter<ManaJhAdapter.ViewHolder
         this.mOnItemClickListener = listener;
     }
 
+    public void setOnCommitClickListener(OnCommitClickListener onCommitClickListener) {
+        mOnCommitClickListener = onCommitClickListener;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -68,10 +73,10 @@ public class ManaJhAdapter extends RecyclerView.Adapter<ManaJhAdapter.ViewHolder
         }
 
         vh.mItemMagapbTitle.setText(bean.getShopName());
-        vh.mItemMagapbPosi.setText("地址："+bean.getShopAddress());
+        vh.mItemMagapbPosi.setText("地址：" + bean.getShopAddress());
         String addTime = bean.getAddtime();
         if (!TextUtils.isEmpty(addTime)) {
-            vh.mItemMagapbTime.setText("创建时间："+addTime.replaceAll("-", "."));
+            vh.mItemMagapbTime.setText("创建时间：" + addTime.replaceAll("-", "."));
         } else {
             vh.mItemMagapbTime.setText("创建时间：- -");
         }
@@ -84,7 +89,6 @@ public class ManaJhAdapter extends RecyclerView.Adapter<ManaJhAdapter.ViewHolder
             vh.mTextVieitemMagapbReason.setText("待领取");
         } else {
             vh.mTextVieitemMagapbReason.setText("已领取（" + bean.getAddPerson() + "）");
-
         }
 
         vh.mView.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +98,18 @@ public class ManaJhAdapter extends RecyclerView.Adapter<ManaJhAdapter.ViewHolder
                     mOnItemClickListener.onItemClickListener(position);
             }
         });
+        if (true){
+            vh.mLinearOne.setVisibility(View.VISIBLE);
+            vh.mTvCommit.setVisibility(View.VISIBLE);
+            vh.mTvOne.setText("重新提交原因原因原因原因原因");
+            vh.mTvCommit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(mOnCommitClickListener!=null)
+                        mOnCommitClickListener.onCommitClickListener(position);
+                }
+            });
+        }
 
     }
 
@@ -104,6 +120,10 @@ public class ManaJhAdapter extends RecyclerView.Adapter<ManaJhAdapter.ViewHolder
 
     public interface OnItemClickListener {
         void onItemClickListener(int pos);
+    }
+
+    public interface OnCommitClickListener{
+        void onCommitClickListener(int pos);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -133,6 +153,12 @@ public class ManaJhAdapter extends RecyclerView.Adapter<ManaJhAdapter.ViewHolder
         TextView mPos_wenzi;
         @BindView(R.id.textView57)
         TextView mTime_wenzi;
+        @BindView(R.id.linear_one)
+        LinearLayout mLinearOne;
+        @BindView(R.id.item_reason_one)
+        TextView mTvOne;
+        @BindView(R.id.item_magapb_commit)
+        TextView mTvCommit;
         View mView;
 
         ViewHolder(View view) {

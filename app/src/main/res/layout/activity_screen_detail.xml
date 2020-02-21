@@ -579,7 +579,7 @@
                         android:paddingLeft="@dimen/dp_5"
                         android:paddingTop="@dimen/dp_13"
                         android:paddingBottom="@dimen/dp_13"
-                        android:text="近7日交易笔数"
+                        android:text="近5日交易笔数"
                         app:layout_constraintStart_toStartOf="@+id/llineone"
                         app:layout_constraintTop_toBottomOf="@+id/llinefour"
                         />
@@ -615,7 +615,7 @@
                         android:paddingLeft="@dimen/dp_5"
                         android:paddingTop="@dimen/dp_13"
                         android:paddingBottom="@dimen/dp_13"
-                        android:text="近7日交易金额"
+                        android:text="近5日交易金额"
                         app:layout_constraintStart_toStartOf="@+id/llineone"
                         app:layout_constraintTop_toBottomOf="@+id/llinefive"
                         />

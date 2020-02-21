@@ -255,12 +255,12 @@ public class OpeningActivity extends BaseActivity {
 
     private void selectPic(int reque_code) {
         PictureSelectionModel pictureSelectionModel = PictureSelector.create(this).openGallery(PictureMimeType.ofImage());
-        if (reque_code != 110) {
-            int size = 0;
+        if (reque_code == PictureConfig.CHOOSE_REQUEST) {
+            /*int size = 0;
             if (selectList != null) {
                 size = selectList.size();
             }
-            pictureSelectionModel.maxSelectNum(10 - size);
+            pictureSelectionModel.maxSelectNum(10 - size);*/
         }
 
         // 进入相册 以下是例子：用不到的api可以不写
@@ -268,7 +268,7 @@ public class OpeningActivity extends BaseActivity {
 //                .minSelectNum(1)// 最小选择数量 int
                 .imageSpanCount(4)// 每行显示个数 int
                 .previewImage(false)// 是否可预览图片 true or false
-                .selectionMode(reque_code == 110 ? PictureConfig.SINGLE : PictureConfig.MULTIPLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
+                .selectionMode(reque_code == PictureConfig.CHOOSE_REQUEST ?  PictureConfig.MULTIPLE:PictureConfig.SINGLE )// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
                 .isCamera(true)// 是否显示拍照按钮 true or false
                 .enableCrop(false)// 是否裁剪 true or false
                 .compress(true)// 是否压缩 true or false

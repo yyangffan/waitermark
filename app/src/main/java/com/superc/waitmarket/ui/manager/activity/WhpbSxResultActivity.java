@@ -22,6 +22,8 @@ import com.superc.waitmarket.adapter.DkaitAdapter;
 import com.superc.waitmarket.adapter.DshenheAdapter;
 import com.superc.waitmarket.adapter.ReceiveAdapter;
 import com.superc.waitmarket.adapter.YshangxAdapter;
+import com.superc.waitmarket.ui.activity.MerchantDetailActivity;
+import com.superc.waitmarket.utils.dialog.MerBohuiDialog;
 import com.superc.waitmarket.utils.dialog.MiddleDialog;
 import com.superc.waitmarket.utils.dialog.PhaseRemindDialog;
 import com.superc.waitmarket.utils.pop.PopShifhWindow;
@@ -66,7 +68,7 @@ public class WhpbSxResultActivity extends BaseActivity {
     @BindView(R.id.screen_result_nodata)
     ImageView mImageNNoData;
 
-    private String mName, mTuozh, mShenfNum, mShangq, mQuyu, mCity, mErji, mYiji, mXiaoer, mQuany, mYyzzb, mYihCode, mSt_time, mEd_time, mUser_id, receive_code;
+    private String mName, mTuozh, mShenfNum, mShangq, mQuyu, mCity, mErji, mYiji, mXiaoer, mQuany, mYyzzb, mYihCode, mSt_time, mEd_time, mUser_id, receive_code,mLiq,mKait;
     private int page = 1;
     private String mType, mShifang_id;
     private List<String> mList_lingq;
@@ -129,6 +131,8 @@ public class WhpbSxResultActivity extends BaseActivity {
                 mShangq = extras.getString("shangq", "");
                 mSt_time = extras.getString("st_time", "");
                 mEd_time = extras.getString("ed_time", "");
+                mLiq = extras.getString("liq", "");
+                mKait = extras.getString("kait", "");
                 mType = extras.getString("type");
             }
         }
@@ -223,23 +227,37 @@ public class WhpbSxResultActivity extends BaseActivity {
         mDkaitAdapter.setOnButtonClickListener(new DkaitAdapter.OnButtonClickListener() {
             @Override
             public void onLookClickListener(int position) {
-                ToastShow("开通-查看第" + position + "条");
+//                ShopManageBean.DataBean.ListBean bean = mMapList_content.get(pos);
+//                ShareUtil.getInstance(WaitApplication.getInstance()).put("edtdetail_id", BigDecimalUtils.bigUtil(bean.getShopid()));
+//                ShareUtil.getInstance(WaitApplication.getInstance()).put("channel", "2");
+                statActivity(MerchantDetailActivity.class);
             }
 
             @Override
             public void onKaiTongClickListener(int position) {
-                ToastShow("开通-开通第" + position + "条");
+                Intent intent = new Intent(WhpbSxResultActivity.this, OpeningActivity.class);
+                startActivity(intent);
             }
 
             @Override
-            public void onBohuiClickListener(int position) {
-                ToastShow("开通-驳回第" + position + "条");
-                if (position == 3) {
-                    new MiddleDialog.Builder(WhpbSxResultActivity.this).img_id(R.drawable.icon_chenggong).title("商户驳回成功").build().show();
-                    mScreenResultSmart.autoRefresh();
-                } else {
-                    ToastShow("驳回失败");
-                }
+            public void onBohuiClickListener(final int position) {
+                MerBohuiDialog build = new MerBohuiDialog.Builder(WhpbSxResultActivity.this).build();
+                build.show();
+                build.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+                build.setOnTextClickListener(new MerBohuiDialog.OnTextClickListener() {
+                    @Override
+                    public void onRightClickListener(String content) {
+                        super.onRightClickListener(content);
+                        if (position == 3) {
+                            new MiddleDialog.Builder(WhpbSxResultActivity.this).img_id(R.drawable.icon_chenggong).title("商户驳回成功" + content).build().show();
+                            mScreenResultSmart.autoRefresh();
+                        } else {
+                            ToastShow("驳回失败");
+                        }
+                    }
+                });
+
+
             }
 
             @Override
@@ -254,12 +272,17 @@ public class WhpbSxResultActivity extends BaseActivity {
         mDshenheAdapter.setOnButtonClickListener(new DshenheAdapter.OnButtonClickListener() {
             @Override
             public void onLookClickListener(int position) {
-                ToastShow("审核-查看第" + position + "条");
+//                ShopManageBean.DataBean.ListBean bean = mMapList_content.get(pos);
+//                ShareUtil.getInstance(WaitApplication.getInstance()).put("edtdetail_id", BigDecimalUtils.bigUtil(bean.getShopid()));
+//                ShareUtil.getInstance(WaitApplication.getInstance()).put("channel", "2");
+                statActivity(MerchantDetailActivity.class);
             }
 
             @Override
             public void onKaiTongClickListener(int position) {
-                ToastShow("审核-开通信息第" + position + "条");
+                Intent intent = new Intent(WhpbSxResultActivity.this, OpenEndActivity.class);
+//                intent.putExtra("")
+                startActivity(intent);
             }
 
             @Override
@@ -276,23 +299,24 @@ public class WhpbSxResultActivity extends BaseActivity {
         mYshangxAdapter.setOnButtonClickListener(new YshangxAdapter.OnButtonClickListener() {
             @Override
             public void onLookClickListener(int position) {
-                ToastShow("已上线-查看第" + position + "条");
+                //                ShopManageBean.DataBean.ListBean bean = mMapList_content.get(pos);
+//                ShareUtil.getInstance(WaitApplication.getInstance()).put("edtdetail_id", BigDecimalUtils.bigUtil(bean.getShopid()));
+//                ShareUtil.getInstance(WaitApplication.getInstance()).put("channel", "2");
+                statActivity(MerchantDetailActivity.class);
             }
 
             @Override
             public void onKaiTongClickListener(int position) {
-                ToastShow("已上线-开通信息第" + position + "条");
+                Intent intent = new Intent(WhpbSxResultActivity.this, OpenEndActivity.class);
+//                intent.putExtra("")
+                startActivity(intent);
             }
 
             @Override
             public void onBohuiClickListener(int position) {
-                ToastShow("已上线-经营信息第" + position + "条");
-                if (position == 3) {
-                    new MiddleDialog.Builder(WhpbSxResultActivity.this).img_id(R.drawable.icon_chenggong).title("商户驳回成功").build().show();
-                    mScreenResultSmart.autoRefresh();
-                } else {
-                    ToastShow("驳回失败");
-                }
+                Intent intent = new Intent(WhpbSxResultActivity.this, ShMerdetailActivity.class);
+//                intent.putExtra("")
+                startActivity(intent);
             }
         });
     }
@@ -313,6 +337,8 @@ public class WhpbSxResultActivity extends BaseActivity {
         map.put("shangq", mShangq);
         map.put("st_time", mSt_time);
         map.put("ed_time", mEd_time);
+        map.put("mLiq", mLiq);
+        map.put("mKait", mKait);
         mTvNum.setText("共223家符合要求商户");*/
 
         switch (mType) {

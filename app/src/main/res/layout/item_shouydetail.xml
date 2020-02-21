@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp_1"
+    android:background="@color/white"
+    android:paddingBottom="@dimen/dp_10">
+
+    <TextView
+        android:id="@+id/item_patdetail_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="10dp"
+        android:text="- -"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/item_patdetail_imgv"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="正新鸡排·小串·烧烤"/>
+
+    <TextView
+        android:id="@+id/item_patdetail_position"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:text="- -"
+        android:textColor="@color/txt_granine"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/item_patdetail_money"
+        app:layout_constraintStart_toStartOf="@+id/item_patdetail_title"
+        app:layout_constraintTop_toBottomOf="@+id/item_patdetail_title"
+        tools:text="天津市河东区万达广场A-1"/>
+<TextView
+        android:id="@+id/item_patdetail_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:text="- -"
+        android:textColor="@color/txt_granine"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/item_patdetail_money"
+        app:layout_constraintStart_toStartOf="@+id/item_patdetail_title"
+        app:layout_constraintTop_toBottomOf="@+id/item_patdetail_position"
+        tools:text="上线时间：2019.12.12"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/item_patdetail_imgv"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginStart="14dp"
+        app:layout_constraintBottom_toBottomOf="@+id/item_patdetail_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_patdetail_title"
+        />
+
+    <TextView
+        android:id="@+id/item_patdetail_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_14"
+        android:text="- -"
+        android:textColor="@color/main_color"
+        app:layout_constraintBottom_toBottomOf="@+id/item_patdetail_time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_patdetail_title"
+        tools:text="¥123"/>
+
+</android.support.constraint.ConstraintLayout>

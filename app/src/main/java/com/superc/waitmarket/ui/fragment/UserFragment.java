@@ -41,6 +41,8 @@ import com.superc.waitmarket.ui.activity.AllMarketdetailActivity;
 import com.superc.waitmarket.ui.activity.MsgActivity;
 import com.superc.waitmarket.ui.activity.SafeCenterActivity;
 import com.superc.waitmarket.ui.activity.WalletActivity;
+import com.superc.waitmarket.ui.manager.activity.PartGroupActivity;
+import com.superc.waitmarket.ui.manager.activity.WholeDepartActivity;
 import com.superc.waitmarket.utils.BigDecimalUtils;
 import com.superc.waitmarket.utils.dialog.MiddleDialog;
 import com.superc.waitmarket.utils.dialog.WorkCardDialog;
@@ -96,6 +98,12 @@ public class UserFragment extends BaseFragment {
     TextView mUserTwoMsg;
     @BindView(R.id.user_three)
     TextView mUserYingXiao;
+    @BindView(R.id.textView15)
+    TextView guiOne;
+    @BindView(R.id.textView17)
+    TextView fenqu;
+    @BindView(R.id.textView23)
+    TextView xiaozu;
     @BindView(R.id.user_smart)
     SmartRefreshLayout mSmartRefreshLayout;
 
@@ -105,8 +113,9 @@ public class UserFragment extends BaseFragment {
     private String mUser_id;
     private String mHead_url;
     private WorkCardDialog mWorkCardDialog;
-    private String mType;
+    private String mType, mJlType;
     private String num = "- -";
+    private boolean mYihang;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -121,23 +130,46 @@ public class UserFragment extends BaseFragment {
         mUser_id = (String) ShareUtil.getInstance(this.getActivity()).get("user_id", "");
         mHead_url = (String) ShareUtil.getInstance(getActivity()).get("head_url", "");
         mType = (String) ShareUtil.getInstance(getActivity()).get("type", "");
+        mJlType = (String) ShareUtil.getInstance(getActivity()).get("jltype", "");
+        mYihang = Constant.isYihang();
         mSmartRefreshLayout.setEnableOverScrollDrag(true);
         mSmartRefreshLayout.setEnablePureScrollMode(true);
         RequestOptions requestOptions = new RequestOptions().error(R.drawable.icon_mourentouxiang).placeholder(R.drawable.icon_mourentouxiang);
         Glide.with(this).load(mHead_url).apply(requestOptions).into(mUserHead);
-        switch (mType) {
-            case "0":
-                mUserYingXiao.setText("网点营销数据");
-                break;
-            case "1":
-                mUserYingXiao.setText("中支行营销数据");
-                break;
-            case "2":
-                mUserYingXiao.setText("全行营销数据");
-                break;
-            case "3":
-                mUserYingXiao.setVisibility(View.GONE);
-                break;
+        if (mYihang) {
+            switch (mType) {
+                case "0":
+                    mUserYingXiao.setText("网点营销数据");
+                    break;
+                case "1":
+                    mUserYingXiao.setText("中支行营销数据");
+                    break;
+                case "2":
+                    mUserYingXiao.setText("全行营销数据");
+                    break;
+                case "3":
+                    mUserYingXiao.setVisibility(View.GONE);
+                    break;
+            }
+        } else {
+            mUserZhengjian.setVisibility(View.GONE);
+            mUserGuiyuan.setText("工号：");
+            fenqu.setText("分区：");
+            xiaozu.setText("小组：");
+            switch (mJlType) {
+                case "0":
+                    mUserYingXiao.setText("小组营销数据");
+                    break;
+                case "1":
+                    mUserYingXiao.setText("分区营销数据");
+                    break;
+                case "2":
+                    mUserYingXiao.setText("全司营销数据");
+                    break;
+                case "3":
+                    mUserYingXiao.setVisibility(View.GONE);
+                    break;
+            }
         }
         getData();
         getMsg();
@@ -167,12 +199,22 @@ public class UserFragment extends BaseFragment {
                 statActivity(MsgActivity.class);
                 break;
             case R.id.user_three:
+                if (mYihang) {
                 if (mType.equals("1")) {
                     Intent intent = new Intent(this.getActivity(), AllMarketdetailActivity.class);
                     intent.putExtra("id", "空");
                     startActivity(intent);
                 } else {
                     statActivity(AllMarketActivity.class);
+                }
+                }else{
+                    if(mJlType.equals("2")){
+                        statActivity(WholeDepartActivity.class);
+                    }else{
+                        Intent intent=new Intent(getActivity(),PartGroupActivity.class);
+                        intent.putExtra("id","空");
+                        startActivity(intent);
+                    }
                 }
                 break;
             case R.id.user_four:
@@ -197,9 +239,9 @@ public class UserFragment extends BaseFragment {
                     JSONObject data = result.getJSONObject("data");
                     num = BigDecimalUtils.bigUtil(data.getString("amount"));
                     mUserOneMoney.setText("¥" + num);
-                    mUserTwoMsg.setVisibility(TextUtils.isEmpty(BigDecimalUtils.bigUtil(data.getString("messagecount")))?View.GONE:(BigDecimalUtils.bigUtil(data.getString("messagecount")).equals("0")?View.GONE:View.VISIBLE));
+                    mUserTwoMsg.setVisibility(TextUtils.isEmpty(BigDecimalUtils.bigUtil(data.getString("messagecount"))) ? View.GONE : (BigDecimalUtils.bigUtil(data.getString("messagecount")).equals("0") ? View.GONE : View.VISIBLE));
                     mUserTwoMsg.setText(BigDecimalUtils.bigUtil(data.getString("messagecount")));
-                }else{
+                } else {
                     mUserTwoMsg.setVisibility(View.GONE);
                 }
                 if (!TextUtils.isEmpty(msg)) {

@@ -38,7 +38,6 @@ public class ScreenResultActivity extends BaseActivity {
     TextView mTvNum;
     private String mName;
     private String mTuozh;
-    private String mTime;
     private String mShangq;
     private String mQuyu;
     private String mCity;
@@ -50,6 +49,8 @@ public class ScreenResultActivity extends BaseActivity {
     private List<String> mStrings;
     private HighEneyAdapter mHighEneyAdapter;
     private String mUser_id;
+    private String mSt_time;
+    private String mEd_time;
 
     @Override
     public int getContentLayoutId() {
@@ -79,7 +80,8 @@ public class ScreenResultActivity extends BaseActivity {
                 mCity = extras.getString("city", "");
                 mQuyu = extras.getString("quyu", "");
                 mShangq = extras.getString("shangq", "");
-                mTime = extras.getString("time", "");
+                mSt_time = extras.getString("st_time", "");
+                mEd_time = extras.getString("ed_time", "");
             }
         }
         mScreenResultSmart.setOnRefreshListener(new OnRefreshListener() {
@@ -127,7 +129,8 @@ public class ScreenResultActivity extends BaseActivity {
         map.put("city", mCity);
         map.put("quyu", mQuyu);
         map.put("shangq", mShangq);
-        map.put("time", mTime);
+        map.put("st_time", mSt_time);
+        map.put("ed_time", mEd_time);
         mTvNum.setText("共223家符合要求商户");
         if (page == 1) {
             mStrings.clear();

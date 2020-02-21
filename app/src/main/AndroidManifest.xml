@@ -139,6 +139,14 @@
         </activity>
         <activity android:name=".ui.activity.TransDetailActivity">
         </activity>
+        <activity android:name=".ui.manager.activity.ShMerdetailActivity">
+        </activity>
+        <activity android:name=".ui.manager.activity.WaltDetailActivity">
+        </activity>
+        <activity android:name=".ui.manager.activity.WholeDepartActivity">
+        </activity>
+        <activity android:name=".ui.manager.activity.PartGroupActivity">
+        </activity>
     </application>
 
 </manifest>

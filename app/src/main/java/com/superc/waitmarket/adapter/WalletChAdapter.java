@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.superc.waitmarket.R;
@@ -21,10 +22,12 @@ public class WalletChAdapter extends RecyclerView.Adapter<WalletChAdapter.ViewHo
     private List<ProfitBean.DataBean.DetailListBean> mLists;
     private LayoutInflater mInflater;
     private OnItemClickListener mOnItemClickListener;
+    private boolean mYinhang;
 
-    public WalletChAdapter(Context context, List<ProfitBean.DataBean.DetailListBean> stringList) {
+    public WalletChAdapter(Context context, List<ProfitBean.DataBean.DetailListBean> stringList,boolean yihang) {
         mContext = context;
         mLists = stringList;
+        mYinhang=yihang;
         mInflater = LayoutInflater.from(mContext);
     }
 
@@ -40,14 +43,37 @@ public class WalletChAdapter extends RecyclerView.Adapter<WalletChAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder vh, int position) {
+    public void onBindViewHolder(ViewHolder vh, final int position) {
         ProfitBean.DataBean.DetailListBean bean = mLists.get(position);
-        int type = bean.getType();
-        vh.mItemChildTitle.setText(type==1?"商户拓展收益":"交易流水收益");
-        vh.mItemChildYue.setText("账户余额：" + BigDecimalUtils.bigUtil(bean.getBalance() + ""));
-        vh.mItemChildMoney.setText("+"+BigDecimalUtils.bigUtil(bean.getAmount()));
-        vh.mItemChildTime.setText(bean.getAddtime());
-
+        if (mYinhang) {
+            int type = bean.getType();
+            vh.mItemChildTitle.setText(type == 1 ? "商户拓展收益" : "交易流水收益");
+            vh.mItemChildYue.setText("账户余额：" + BigDecimalUtils.bigUtil(bean.getBalance() + ""));
+            vh.mItemChildMoney.setText("+" + BigDecimalUtils.bigUtil(bean.getAmount()));
+            vh.mItemChildTime.setText(bean.getAddtime());
+            vh.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(mOnItemClickListener!=null)
+                        mOnItemClickListener.onItemClickListener(position);
+                }
+            });
+        } else {
+            int type = bean.getType();
+            vh.mItemChildTitle.setText(type == 1 ? "商户拓展收益" : "交易流水收益");
+//            vh.mItemChildYue.setText("账户余额：" + BigDecimalUtils.bigUtil(bean.getBalance() + ""));
+            vh.mItemChildMoney.setText("+" + BigDecimalUtils.bigUtil(bean.getAmount()));
+            vh.mItemChildTime.setText(bean.getAddtime());
+            vh.mItemChildYue.setVisibility(View.INVISIBLE);
+            vh.mImage_more.setVisibility(View.VISIBLE);
+            vh.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(mOnItemClickListener!=null)
+                        mOnItemClickListener.onItemClickListener(position);
+                }
+            });
+        }
 
     }
 
@@ -69,9 +95,13 @@ public class WalletChAdapter extends RecyclerView.Adapter<WalletChAdapter.ViewHo
         TextView mItemChildMoney;
         @BindView(R.id.item_child_time)
         TextView mItemChildTime;
+        @BindView(R.id.imageView10)
+        ImageView mImage_more;
+        View mView;
 
         ViewHolder(View view) {
             super(view);
+            mView=view;
             ButterKnife.bind(this, view);
         }
     }

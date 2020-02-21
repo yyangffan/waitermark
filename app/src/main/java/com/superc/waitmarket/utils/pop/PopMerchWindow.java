@@ -44,7 +44,7 @@ public class PopMerchWindow extends PopupWindow {
         setAnimationStyle(R.style.Pop_inOut_anim);
         setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         if (mMapList.size()>7) {
-            setHeight(1000);
+            setHeight(600);
         } else {
             setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         }

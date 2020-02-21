@@ -107,6 +107,8 @@ public class HomeFragment extends BaseFragment {
     TextView mTvNormarl;
     @BindView(R.id.home_four_todaynum)
     TextView mTvYj;
+    @BindView(R.id.textView221)
+    TextView mtvYujing;
 
 
     Unbinder unbinder;
@@ -156,7 +158,7 @@ public class HomeFragment extends BaseFragment {
             mTTdDai.setVisibility(View.VISIBLE);
             mTTdZanWeiKs.setVisibility(View.VISIBLE);
             mTTdCon.setVisibility(View.VISIBLE);
-            mGnTv.setVisibility(View.GONE);
+            mtvYujing.setVisibility(View.GONE);
             mGnTvDetail.setVisibility(View.GONE);
             mGnCon.setVisibility(View.GONE);
             getYih();
@@ -164,7 +166,7 @@ public class HomeFragment extends BaseFragment {
             mTTdDai.setVisibility(View.GONE);
             mTTdZanWeiKs.setVisibility(View.GONE);
             mTTdCon.setVisibility(View.GONE);
-            mGnTv.setVisibility(View.VISIBLE);
+            mtvYujing.setVisibility(View.VISIBLE);
             mGnTvDetail.setVisibility(View.VISIBLE);
             mGnCon.setVisibility(View.VISIBLE);
             getJl();

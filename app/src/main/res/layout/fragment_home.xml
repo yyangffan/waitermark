@@ -139,12 +139,14 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/textView14"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
-                        app:layout_constraintStart_toStartOf="parent"/>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/home_once_hisnum"/>
 
                     <TextView
                         android:id="@+id/home_once_monthnum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_3"
                         android:ellipsize="end"
                         android:lines="1"
                         android:maxWidth="@dimen/dp_80"
@@ -172,6 +174,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
+                        android:padding="@dimen/dp_3"
                         android:lines="1"
                         android:maxWidth="@dimen/dp_54"
                         android:text="- -"
@@ -223,6 +226,7 @@
                         android:textSize="9sp"
                         android:textStyle="bold"
                         android:visibility="gone"
+                        android:gravity="bottom"
                         app:layout_constraintBottom_toBottomOf="@+id/home_once_monthnum"
                         app:layout_constraintStart_toEndOf="@+id/home_once_monthnum"
                         app:layout_constraintTop_toTopOf="@+id/home_once_monthnum"
@@ -237,6 +241,7 @@
                         android:paddingTop="@dimen/dp_2"
                         android:paddingRight="@dimen/dp_5"
                         android:text="- -"
+                        android:gravity="bottom"
                         android:textColor="@color/home_txt_green"
                         android:textSize="9sp"
                         android:textStyle="bold"
@@ -347,7 +352,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/textView214"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
-                        app:layout_constraintStart_toStartOf="parent"/>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/home_twice_hisnum"/>
 
                     <TextView
                         android:id="@+id/home_twice_monthnum"
@@ -356,6 +362,7 @@
                         android:ellipsize="end"
                         android:lines="1"
                         android:maxWidth="@dimen/dp_80"
+                        android:padding="@dimen/dp_3"
                         android:text="- -"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -382,6 +389,7 @@
                         android:ellipsize="end"
                         android:lines="1"
                         android:maxWidth="@dimen/dp_54"
+                        android:padding="@dimen/dp_3"
                         android:text="- -"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -441,6 +449,7 @@
                         android:drawableTop="@drawable/icon_xiajiang"
                         android:paddingTop="@dimen/dp_4"
                         android:text="- -"
+                        android:gravity="bottom"
                         android:textColor="@color/home_txt_green"
                         android:textSize="9sp"
                         android:textStyle="bold"
@@ -461,6 +470,7 @@
                         android:text="- -"
                         android:textColor="@color/home_txt_green"
                         android:textSize="9sp"
+                        android:gravity="bottom"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/home_twice_todaynum"
                         app:layout_constraintStart_toEndOf="@+id/home_twice_todaynum"
@@ -569,7 +579,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/textView314"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
-                        app:layout_constraintStart_toStartOf="parent"/>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/home_third_hisnum"/>
 
                     <TextView
                         android:id="@+id/home_third_monthnum"
@@ -577,6 +588,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:lines="1"
+                        android:padding="@dimen/dp_3"
                         android:maxWidth="@dimen/dp_80"
                         android:text="- -"
                         android:textColor="@color/black"
@@ -607,6 +619,7 @@
                         android:text="- -"
                         android:textColor="@color/black"
                         android:textSize="18sp"
+                        android:padding="@dimen/dp_3"
                         app:layout_constraintBaseline_toBaselineOf="@+id/home_third_monthnum"
                         app:layout_constraintEnd_toEndOf="@+id/textView316"
                         app:layout_constraintStart_toStartOf="@+id/textView316"
@@ -652,6 +665,7 @@
                         android:textSize="9sp"
                         android:textStyle="bold"
                         android:visibility="gone"
+                        android:gravity="bottom"
                         app:layout_constraintBottom_toBottomOf="@+id/home_third_monthnum"
                         app:layout_constraintStart_toEndOf="@+id/home_third_monthnum"
                         app:layout_constraintTop_toTopOf="@+id/home_third_monthnum"
@@ -666,6 +680,7 @@
                         android:paddingTop="@dimen/dp_2"
                         android:paddingRight="@dimen/dp_5"
                         android:text="- -"
+                        android:gravity="bottom"
                         android:textColor="@color/home_txt_green"
                         android:textSize="9sp"
                         android:textStyle="bold"
@@ -700,7 +715,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:drawableLeft="@drawable/icon_shanghuchanshengliuliang"
+                    android:drawableLeft="@drawable/icon_yujing"
                     android:drawablePadding="@dimen/dp_5"
                     android:text="高能预警提醒"
                     android:textColor="@color/black"

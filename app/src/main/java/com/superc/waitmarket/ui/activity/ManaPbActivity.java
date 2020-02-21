@@ -28,6 +28,7 @@ import com.superc.waitmarket.adapter.ManaShAdapter;
 import com.superc.waitmarket.adapter.ManaWhAdapter;
 import com.superc.waitmarket.adapter.ManaXeAdapter;
 import com.superc.waitmarket.base.ApiService;
+import com.superc.waitmarket.base.Constant;
 import com.superc.waitmarket.base.WaitApplication;
 import com.superc.waitmarket.bean.JihuoBean;
 import com.superc.waitmarket.bean.MainTainBean;
@@ -36,6 +37,7 @@ import com.superc.waitmarket.bean.WeipaiBean;
 import com.superc.waitmarket.httputil.EncryPtionHttp;
 import com.superc.waitmarket.httputil.EncryPtionUtil;
 import com.superc.waitmarket.utils.BigDecimalUtils;
+import com.superc.waitmarket.utils.dialog.MerBohuiDialog;
 import com.superc.waitmarket.utils.dialog.MiddleDialog;
 import com.superc.waitmarket.utils.pop.PopShifhWindow;
 import com.superc.yyfflibrary.base.BaseActivity;
@@ -87,6 +89,7 @@ public class ManaPbActivity extends BaseActivity {
     private List<WeipaiBean.DataBean.ListBean> mMapXeList;
     private String mWhat, mUser_id, mShifang_id;
     private YfsRemindDialog mYfsRemindDialog;
+    private boolean mYihang;
 
     @Override
     public int getContentLayoutId() {
@@ -99,6 +102,7 @@ public class ManaPbActivity extends BaseActivity {
         TitleUtils.setStatusTextColor(true, this);
         mManapbShifangbot.setEnabled(false);
         mUser_id = (String) ShareUtil.getInstance(this).get("user_id", "");
+        mYihang = Constant.isYihang();
         mMapWhList = new ArrayList<>();
         mMapShList = new ArrayList<>();
         mMapJhList = new ArrayList<>();
@@ -125,7 +129,7 @@ public class ManaPbActivity extends BaseActivity {
                 break;
             case "2":/*待激活*/
                 initJhData();
-                mTitle.setText("待激活");
+                mTitle.setText(mYihang ? "待激活" : "待开通");
                 break;
             case "3":
                 initXiaoer();
@@ -216,7 +220,7 @@ public class ManaPbActivity extends BaseActivity {
             public void onItemClickListener(int pos) {
                 boolean isshifang = mManaWhAdapter.isshifang();
                 if (isshifang) {
-                    mMapWhList=mManaWhAdapter.getLists();
+                    mMapWhList = mManaWhAdapter.getLists();
 //                    MainTainBean.DataBean.ListBean map = mMapWhList.get(pos);
 //                    boolean check = map.isCheck();
 //                    check = !check;
@@ -444,10 +448,27 @@ public class ManaPbActivity extends BaseActivity {
                 statActivity(MerchantDetailActivity.class);
             }
         });
+        mManaJhAdapter.setOnCommitClickListener(new ManaJhAdapter.OnCommitClickListener() {
+            @Override
+            public void onCommitClickListener(int pos) {
+                MerBohuiDialog build = new MerBohuiDialog.Builder(ManaPbActivity.this).build();
+                build.show();
+                build.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+                build.setOnTextClickListener(new MerBohuiDialog.OnTextClickListener() {
+                    @Override
+                    public void onRightClickListener(String content) {
+                        super.onRightClickListener(content);
+                        new MiddleDialog.Builder(ManaPbActivity.this).img_id(R.drawable.icon_chenggong).title("提交成功" + content).build().show();
+                        mManapbSmart.autoRefresh();
+                    }
+                });
+
+            }
+        });
     }
 
     private void getJhData() {
-        mManapbNum.setText("共有- -家待激活");
+        mManapbNum.setText("共有- -家" + (mYihang ? "待激活" : "待开通"));
         Map<String, Object> map = new HashMap<>();
         map.put("userId", mUser_id);
         map.put("currentPage", page);
@@ -462,7 +483,7 @@ public class ManaPbActivity extends BaseActivity {
                 String msg = result.getString("message");
                 if (code) {
                     JihuoBean bean = new Gson().fromJson(result.toString(), JihuoBean.class);
-                    mManapbNum.setText("共有" + BigDecimalUtils.bigUtil(bean.getData().getCount()) + "家待激活");
+                    mManapbNum.setText("共有" + BigDecimalUtils.bigUtil(bean.getData().getCount()) + "家" + (mYihang ? "待激活" : "待开通"));
                     if (page == 1) {
                         mMapJhList.clear();
                     }
@@ -490,7 +511,7 @@ public class ManaPbActivity extends BaseActivity {
     }
 
     /*小二委派商户*/
-    private void initXiaoer(){
+    private void initXiaoer() {
         mManapbRecy.setAdapter(mManaXeAdapter);
         mManapbSmart.setOnRefreshListener(new OnRefreshListener() {
             @Override

@@ -1,10 +1,12 @@
 package com.superc.waitmarket.ui.manager.activity;
 
+import android.app.AlertDialog;
 import android.view.View;
 import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.superc.waitmarket.R;
+import com.superc.waitmarket.utils.dialog.PhaseBottomTelDialog;
 import com.superc.yyfflibrary.base.BaseActivity;
 import com.superc.yyfflibrary.utils.titlebar.TitleUtils;
 
@@ -67,6 +69,8 @@ public class ScreenDetailActivity extends BaseActivity {
     TextView mScreenDetailThreexiaoerk;
     @BindView(R.id.smartlayout)
     SmartRefreshLayout mSmartRefreshLayout;
+    private PhaseBottomTelDialog mPhaseBottomTelDialog;
+    private AlertDialog mMarketingManagerTel;
 
     @Override
     public int getContentLayoutId() {
@@ -79,6 +83,8 @@ public class ScreenDetailActivity extends BaseActivity {
         ButterKnife.bind(this);
         mSmartRefreshLayout.setEnableOverScrollDrag(true);
         mSmartRefreshLayout.setEnablePureScrollMode(true);
+        mPhaseBottomTelDialog = new PhaseBottomTelDialog(this);
+        mMarketingManagerTel = mPhaseBottomTelDialog.initDig("kefu");
 
         getData();
     }
@@ -91,7 +97,7 @@ public class ScreenDetailActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.screen_detail_talk:
-                ToastShow("拨打电话");
+                mMarketingManagerTel.show();
                 break;
         }
     }

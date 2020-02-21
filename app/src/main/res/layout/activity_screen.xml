@@ -444,39 +444,71 @@
                     app:layout_constraintTop_toBottomOf="@+id/screen_quyu"/>
 
                 <TextView
+                    android:id="@+id/ljsd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
                     android:text="上线起止日期"
                     android:textColor="@color/black"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/screen_time"
+                    app:layout_constraintTop_toTopOf="@+id/screen_qizhi_ll"
+                    app:layout_constraintBottom_toBottomOf="@+id/screen_qizhi_ll"
                     app:layout_constraintStart_toStartOf="parent"/>
 
-                <TextView
-                    android:id="@+id/screen_time"
+                <LinearLayout
+                    android:id="@+id/screen_qizhi_ll"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="80dp"
                     android:layout_marginTop="13dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="13dp"
-                    android:background="@drawable/bg_corner_kuang"
-                    android:drawableRight="@drawable/icon_xiala"
-                    android:ellipsize="end"
-                    android:hint="请选择上线起止日期"
-                    android:imeOptions="actionNext"
-                    android:lines="1"
-                    android:paddingLeft="@dimen/dp_5"
-                    android:paddingTop="@dimen/dp_10"
-                    android:paddingRight="@dimen/dp_5"
-                    android:paddingBottom="@dimen/dp_10"
-                    android:singleLine="true"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="@dimen/dp_6"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView111"
-                    app:layout_constraintTop_toBottomOf="@+id/screen_shangquan"/>
+                    app:layout_constraintTop_toBottomOf="@+id/screen_shangquan">
+
+                    <TextView
+                        android:id="@+id/screen_starttm"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_corner_kuang"
+                        android:drawableRight="@drawable/icon_xiala"
+                        android:hint="开始时间"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingRight="@dimen/dp_5"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:layout_width="@dimen/dp_8"
+                        android:layout_height="@dimen/dp_1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp_3"
+                        android:layout_marginRight="@dimen/dp_3"
+                        android:background="@color/line_color"/>
+
+                    <TextView
+                        android:id="@+id/screen_endtm"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_corner_kuang"
+                        android:drawableRight="@drawable/icon_xiala"
+                        android:hint="结束时间"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingRight="@dimen/dp_5"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+
             </android.support.constraint.ConstraintLayout>
         </ScrollView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>

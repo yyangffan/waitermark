@@ -40,7 +40,7 @@
         android:text="- -"
         android:textColor="@color/red"
         app:layout_constraintBaseline_toBaselineOf="@+id/item_child_title"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView10"
         tools:text="+9.00"/>
 
     <TextView
@@ -52,6 +52,17 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/item_child_yue"
         app:layout_constraintEnd_toEndOf="@+id/item_child_money"
         tools:text="今天 12:00:30"/>
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/icon_gengduoshense"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/item_child_time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_child_money"/>
 
     <View
         android:id="@+id/textView51"

@@ -25,6 +25,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.adapter.BudnesContentAdapter;
 import com.superc.waitmarket.base.ApiService;
+import com.superc.waitmarket.base.Constant;
 import com.superc.waitmarket.base.WaitApplication;
 import com.superc.waitmarket.bean.BotListBean;
 import com.superc.waitmarket.bean.SaryIndustryBean;
@@ -53,6 +54,8 @@ import io.reactivex.Observable;
 public class SerachCouActivity extends BaseActivity {
 
 
+    @BindView(R.id.title)
+    TextView mTitle;
     @BindView(R.id.merchpool_edt)
     EditText mMerchpoolEdt;
     @BindView(R.id.merchpool_hezuo)
@@ -97,6 +100,7 @@ public class SerachCouActivity extends BaseActivity {
     private String hangye_str = "行业";
     private BudnesContentAdapter mBudnesContentAdapter;
     private List<ShopManageBean.DataBean.ListBean> mMapList_content;
+    private boolean mYihang;
 
     @Override
     public int getContentLayoutId() {
@@ -109,6 +113,10 @@ public class SerachCouActivity extends BaseActivity {
         TitleUtils.setStatusTextColor(true, this);
         mUser_id = (String) ShareUtil.getInstance(this).get("user_id", "");
         mRealname = (String) ShareUtil.getInstance(this).get("realname", "");
+        mYihang = Constant.isYihang();
+        if(!mYihang) {
+            mTitle.setText("已上线");
+        }
         mMerchpoolCancel.requestFocus();
         mBotListBeans_city = new ArrayList<>();
         mBotListBeans_quyu = new ArrayList<>();
@@ -242,16 +250,16 @@ public class SerachCouActivity extends BaseActivity {
             mTvSearchNum.setVisibility(View.VISIBLE);
         }
         map.put("userId", mUser_id);
-        if(!TextUtils.isEmpty(search_content)){
-            map.put("shopName",search_content);
+        if (!TextUtils.isEmpty(search_content)) {
+            map.put("shopName", search_content);
         }
-        if(!TextUtils.isEmpty(city_code)) {
+        if (!TextUtils.isEmpty(city_code)) {
             map.put("city", city_code);
         }
         if (!TextUtils.isEmpty(quyu_code)) {
             map.put("region", quyu_code);
         }
-        if(!TextUtils.isEmpty(bg_type)) {
+        if (!TextUtils.isEmpty(bg_type)) {
             map.put("type", bg_type);//行业type  0已激活商家
         }
         if (!TextUtils.isEmpty(sm_type)) {
@@ -507,7 +515,7 @@ public class SerachCouActivity extends BaseActivity {
                             }
                         }
                     }
-                    mJihuoDialog_once = new JihuoDialog(SerachCouActivity.this, mJhDig_mapOnce,"请选择一级行业");
+                    mJihuoDialog_once = new JihuoDialog(SerachCouActivity.this, mJhDig_mapOnce, "请选择一级行业");
                     mJihuoDialog_once.setOnFinishListener(new JihuoDialog.OnFinishListener() {
                         @Override
                         public void onFinishListener(int pos, String what) {
@@ -581,23 +589,24 @@ public class SerachCouActivity extends BaseActivity {
             map.put("is_check", false);
             mJhDig_mapTwice.add(map);
         }
-        mJihuoDialog_twice = new JihuoDialog(this, mJhDig_mapTwice,"请选择二级行业");
+        mJihuoDialog_twice = new JihuoDialog(this, mJhDig_mapTwice, "请选择二级行业");
         mJihuoDialog_twice.show();
         mJihuoDialog_twice.setOnFinishListener(new JihuoDialog.OnFinishListener() {
             @Override
             public void onFinishListener(int pos, String what) {
-                toPanD(pos,what);
+                toPanD(pos, what);
             }
         });
         mJihuoDialog_twice.setOnChaClickListener(new JihuoDialog.OnChaClickListener() {
             @Override
             public void onChaClickListener(int pos, String what) {
-                toPanD(pos,what);
+                toPanD(pos, what);
             }
         });
 
     }
-    private void toPanD(int pos, String what){
+
+    private void toPanD(int pos, String what) {
         mImg_one.setImageResource(R.drawable.icon_xiala);
         mMerchpoolHezuo.setTextColor(getResources().getColor(R.color.merchool_txt));
         Map<String, Object> map = mJhDig_mapTwice.get(pos);

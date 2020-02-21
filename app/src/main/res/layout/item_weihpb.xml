@@ -330,7 +330,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/dp_3"
                     android:layout_toLeftOf="@+id/kaitong"
-                    android:src="@drawable/icon_yunxingzhengchang"
+                    android:src="@drawable/icon_tanhao"
                     android:visibility="gone"/>
 
                 <TextView

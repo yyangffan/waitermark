@@ -156,13 +156,20 @@ public class ReceiveActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.higheney_search:
-                KeyboardUtil.hideKeyboard(mLinea);
-                mUserCheckSmart.autoRefresh();
+                String content = mHigheneyEdt.getText().toString();
+                if (TextUtils.isEmpty(content)) {
+                    ToastShow("请输入搜索内容");
+                } else {
+                    KeyboardUtil.hideKeyboard(mLinea);
+                    mUserCheckSmart.autoRefresh();
+                    mTvCancel.requestFocus();
+                }
                 break;
             case R.id.higheney_cancel:
                 String sear_con = mHigheneyEdt.getText().toString();
                 if (!TextUtils.isEmpty(sear_con)) {
                     mHigheneyEdt.setText("");
+                    KeyboardUtil.hideKeyboard(mLinea);
                     mUserCheckSmart.autoRefresh();
                 }
                 break;
@@ -190,8 +197,8 @@ public class ReceiveActivity extends BaseActivity {
                 }
                 break;
             case R.id.merchpool_four:
-                Intent intent=new Intent(this,WhpbShaixActivity.class);
-                intent.putExtra("type","3");
+                Intent intent = new Intent(this, WhpbShaixActivity.class);
+                intent.putExtra("type", "3");
                 startActivity(intent);
                 break;
         }

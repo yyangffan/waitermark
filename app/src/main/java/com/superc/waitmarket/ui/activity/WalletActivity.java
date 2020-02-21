@@ -20,9 +20,11 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.adapter.WalletAdapter;
 import com.superc.waitmarket.base.ApiService;
+import com.superc.waitmarket.base.Constant;
 import com.superc.waitmarket.bean.ProfitBean;
 import com.superc.waitmarket.httputil.EncryPtionHttp;
 import com.superc.waitmarket.httputil.EncryPtionUtil;
+import com.superc.waitmarket.ui.manager.activity.WaltDetailActivity;
 import com.superc.yyfflibrary.base.BaseActivity;
 import com.superc.yyfflibrary.utils.ShareUtil;
 import com.superc.yyfflibrary.utils.titlebar.TitleUtils;
@@ -49,6 +51,7 @@ public class WalletActivity extends BaseActivity {
     private WalletAdapter mWalletAdapter;
     private List<ProfitBean.DataBean> mMapList;
     private String mUser_id;
+    private boolean mYihang;
 
 
     @Override
@@ -60,7 +63,8 @@ public class WalletActivity extends BaseActivity {
     public void init() {
         TitleUtils.setStatusTextColor(true, this);
         ButterKnife.bind(this);
-        Intent intent = getIntent();
+        mYihang = Constant.isYihang();
+        final Intent intent = getIntent();
         if (intent != null) {
             String num = intent.getStringExtra("num");
             mWalletMoney.setText(TextUtils.isEmpty(num) ? "- -" : num);
@@ -69,7 +73,7 @@ public class WalletActivity extends BaseActivity {
         mMapList = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mWalletExpandrecy.setLayoutManager(linearLayoutManager);
-        mWalletAdapter = new WalletAdapter(this, mMapList);
+        mWalletAdapter = new WalletAdapter(this, mMapList,mYihang);
         mWalletExpandrecy.setAdapter(mWalletAdapter);
         mWalletSmart.setEnableLoadMore(false);
         mWalletSmart.setOnRefreshListener(new OnRefreshListener() {
@@ -87,6 +91,14 @@ public class WalletActivity extends BaseActivity {
             }
         });
         mWalletSmart.autoRefresh();
+        mWalletAdapter.setOnItemClickListener(new WalletAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClickListener(int pos) {
+                Intent inte=new Intent(WalletActivity.this,WaltDetailActivity.class);
+//                inte.putExtra("id",);
+                startActivity(inte);
+            }
+        });
 
     }
 
@@ -101,6 +113,14 @@ public class WalletActivity extends BaseActivity {
     }
 
     private void getData() {
+        if(mYihang){
+            getYihData();
+        }else{
+            getJiliData();
+        }
+    }
+
+    private void getJiliData(){
         Map<String, Object> map = new HashMap<>();
         map.put("userId", mUser_id);
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).profitInfo(EncryPtionUtil.getInstance(this).toEncryption(map));
@@ -137,6 +157,47 @@ public class WalletActivity extends BaseActivity {
                 Log.d("qqq", httpThrowable.message);
             }
         });
+
+    }
+
+    private void getYihData(){
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", mUser_id);
+        Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).profitInfo(EncryPtionUtil.getInstance(this).toEncryption(map));
+        EncryPtionHttp.getInstance(this).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
+            @Override
+            public void onSuccessResult(JSONObject result) {
+                mWalletSmart.finishRefresh();
+                mWalletSmart.finishLoadMore();
+                boolean code = result.getBoolean("code");
+                String msg = result.getString("message");
+                if (code) {
+                    ProfitBean profitBean = new Gson().fromJson(result.toString(), ProfitBean.class);
+                    if (page == 1) {
+                        mMapList.clear();
+                    }
+                    mMapList.addAll(profitBean.getData());
+                    mWalletAdapter.notifyDataSetChanged();
+                } else {
+                    if (page == 1) {
+                        mMapList.clear();
+                        mWalletAdapter.notifyDataSetChanged();
+                    }
+                }
+                if (!TextUtils.isEmpty(msg)) {
+                    ToastShow(msg);
+                }
+            }
+
+            @Override
+            public void onErrorResult(HttpThrowable httpThrowable) {
+                mWalletSmart.finishRefresh();
+                mWalletSmart.finishLoadMore();
+                ToastShow("接口访问异常" + httpThrowable.message);
+                Log.d("qqq", httpThrowable.message);
+            }
+        });
+
 
     }
 
