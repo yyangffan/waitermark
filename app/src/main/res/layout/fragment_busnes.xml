@@ -59,6 +59,7 @@
         android:id="@+id/user_check_smart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,158 +105,213 @@
                         />
 
                     <LinearLayout
-                        android:id="@+id/linearLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_10"
-                        android:orientation="horizontal"
-                        android:paddingBottom="@dimen/dp_10"
+                        android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView50">
 
-                        <RelativeLayout
-                            android:id="@+id/busnes_rela_xinjian"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/dp_10"
-                            android:layout_marginTop="@dimen/dp_5"
-                            android:layout_marginRight="@dimen/dp_5"
-                            android:layout_marginBottom="@dimen/dp_5"
-                            android:layout_weight="1"
-                            android:background="@drawable/a_xinjian"
-                            android:orientation="vertical">
+                        <LinearLayout
+                            android:id="@+id/linearLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView50">
 
-                            <TextView
-                                android:layout_width="wrap_content"
+                            <RelativeLayout
+                                android:id="@+id/busnes_rela_xinjian"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:layout_marginTop="@dimen/dp_5"
+                                android:layout_marginRight="@dimen/dp_5"
+                                android:layout_marginBottom="@dimen/dp_5"
+                                android:layout_weight="1"
+                                android:background="@drawable/a_xinjian"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginTop="@dimen/dp_18"
+                                    android:layout_marginBottom="@dimen/dp_18"
+                                    android:text="新建"
+                                    android:textColor="#255b08"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"/>
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/busnes_rela_weihu"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/dp_5"
+                                android:layout_marginTop="@dimen/dp_5"
+                                android:layout_marginRight="@dimen/dp_5"
+                                android:layout_marginBottom="@dimen/dp_5"
+                                android:layout_weight="1"
+                                android:background="@drawable/a_weihuzhong"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginTop="@dimen/dp_18"
+                                    android:text="维护中"
+                                    android:textColor="#794f03"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:id="@+id/busnes_txt_weihunum"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tv1"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginBottom="@dimen/dp_4"
+                                    android:ellipsize="end"
+                                    android:lines="1"
+                                    android:text="（- -家）"
+                                    android:textColor="#794f03"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold"/>
+
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/busnes_rela_shenhe"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/dp_5"
+                                android:layout_marginTop="@dimen/dp_5"
+                                android:layout_marginRight="@dimen/dp_5"
+                                android:layout_marginBottom="@dimen/dp_5"
+                                android:layout_weight="1"
+                                android:background="@drawable/a_daishenhe"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginTop="@dimen/dp_18"
+                                    android:text="待审核"
+                                    android:textColor="#04578f"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:id="@+id/busnes_shenhenum"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tv2"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginBottom="@dimen/dp_4"
+                                    android:ellipsize="end"
+                                    android:lines="1"
+                                    android:text="（- -家）"
+                                    android:textColor="#04578f"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold"/>
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/busnes_rela_jihuo"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/dp_5"
+                                android:layout_marginTop="@dimen/dp_5"
+                                android:layout_marginRight="@dimen/dp_5"
+                                android:layout_marginBottom="@dimen/dp_5"
+                                android:layout_weight="1"
+                                android:background="@drawable/a_daijihuo"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginTop="@dimen/dp_18"
+                                    android:text="待激活"
+                                    android:textColor="#730303"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:id="@+id/busnes_jihuonum"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tv3"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginBottom="@dimen/dp_4"
+                                    android:ellipsize="end"
+                                    android:lines="1"
+                                    android:text="（- -家）"
+                                    android:textColor="#730303"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold"/>
+
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:paddingLeft="@dimen/dp_10"
+                            android:paddingTop="@dimen/dp_10"
+                            android:paddingRight="@dimen/dp_10"
+                            android:paddingBottom="@dimen/dp_10">
+
+                            <LinearLayout
+                                android:id="@+id/linearLayoutt"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:layout_marginTop="@dimen/dp_18"
-                                android:layout_marginBottom="@dimen/dp_18"
-                                android:text="新建"
-                                android:textColor="#255b08"
-                                android:textSize="14sp"
-                                android:textStyle="bold"/>
+                                android:background="@drawable/bg_circle_xml"
+                                android:orientation="horizontal"
+                                android:padding="8dp"
+                                >
 
-                        </RelativeLayout>
+                                <TextView
+                                    android:id="@+id/merchpool_edt"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:drawableLeft="@drawable/icon_sousuo"
+                                    android:drawablePadding="5dp"
+                                    android:ellipsize="end"
+                                    android:hint="请输入搜索商家名称…"
+                                    android:lines="1"
+                                    android:paddingLeft="5dp"
+                                    android:textSize="14sp"/>
 
-                        <RelativeLayout
-                            android:id="@+id/busnes_rela_weihu"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/dp_5"
-                            android:layout_marginTop="@dimen/dp_5"
-                            android:layout_marginRight="@dimen/dp_5"
-                            android:layout_marginBottom="@dimen/dp_5"
-                            android:layout_weight="1"
-                            android:background="@drawable/a_weihuzhong"
-                            android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/merchpool_search"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/bg_circle_red"
+                                    android:paddingLeft="8dp"
+                                    android:paddingTop="3dp"
+                                    android:paddingRight="8dp"
+                                    android:paddingBottom="3dp"
+                                    android:text="搜索"
+                                    android:textColor="@android:color/white"/>
 
-                            <TextView
-                                android:id="@+id/tv1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:layout_marginTop="@dimen/dp_18"
-                                android:text="维护中"
-                                android:textColor="#794f03"
-                                android:textSize="14sp"
-                                android:textStyle="bold"/>
-
-                            <TextView
-                                android:id="@+id/busnes_txt_weihunum"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/tv1"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginBottom="@dimen/dp_4"
-                                android:ellipsize="end"
-                                android:lines="1"
-                                android:text="（- -家）"
-                                android:textColor="#794f03"
-                                android:textSize="10sp"
-                                android:textStyle="bold"/>
-
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:id="@+id/busnes_rela_shenhe"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/dp_5"
-                            android:layout_marginTop="@dimen/dp_5"
-                            android:layout_marginRight="@dimen/dp_5"
-                            android:layout_marginBottom="@dimen/dp_5"
-                            android:layout_weight="1"
-                            android:background="@drawable/a_daishenhe"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tv2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:layout_marginTop="@dimen/dp_18"
-                                android:text="待审核"
-                                android:textColor="#04578f"
-                                android:textSize="14sp"
-                                android:textStyle="bold"/>
-
-                            <TextView
-                                android:id="@+id/busnes_shenhenum"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/tv2"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginBottom="@dimen/dp_4"
-                                android:ellipsize="end"
-                                android:lines="1"
-                                android:text="（- -家）"
-                                android:textColor="#04578f"
-                                android:textSize="10sp"
-                                android:textStyle="bold"/>
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:id="@+id/busnes_rela_jihuo"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/dp_5"
-                            android:layout_marginTop="@dimen/dp_5"
-                            android:layout_marginRight="@dimen/dp_5"
-                            android:layout_marginBottom="@dimen/dp_5"
-                            android:layout_weight="1"
-                            android:background="@drawable/a_daijihuo"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tv3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:layout_marginTop="@dimen/dp_18"
-                                android:text="待激活"
-                                android:textColor="#730303"
-                                android:textSize="14sp"
-                                android:textStyle="bold"/>
-
-                            <TextView
-                                android:id="@+id/busnes_jihuonum"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/tv3"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginBottom="@dimen/dp_4"
-                                android:ellipsize="end"
-                                android:lines="1"
-                                android:text="（- -家）"
-                                android:textColor="#730303"
-                                android:textSize="10sp"
-                                android:textStyle="bold"/>
-
-                        </RelativeLayout>
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
 
                     <TextView
@@ -285,63 +341,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/con">
 
-                <LinearLayout
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/busnes_recy_tab"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/dp_10"
-                        android:paddingRight="@dimen/dp_10"
-                        android:paddingBottom="@dimen/dp_10"
-                        android:background="@color/white">
-
-                        <LinearLayout
-                            android:id="@+id/linearLayoutt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bg_circle_xml"
-                            android:orientation="horizontal"
-                            android:padding="8dp"
-                            >
-
-                            <TextView
-                                android:id="@+id/merchpool_edt"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:drawableLeft="@drawable/icon_sousuo"
-                                android:drawablePadding="5dp"
-                                android:ellipsize="end"
-                                android:hint="请输入搜索商家名称…"
-                                android:lines="1"
-                                android:paddingLeft="5dp"
-                                android:textSize="14sp"/>
-
-                            <TextView
-                                android:id="@+id/merchpool_search"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/bg_circle_red"
-                                android:paddingLeft="8dp"
-                                android:paddingTop="3dp"
-                                android:paddingRight="8dp"
-                                android:paddingBottom="3dp"
-                                android:text="搜索"
-                                android:textColor="@android:color/white"/>
-
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/busnes_recy_tab"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
+                    />
 
                 <TextView
                     android:id="@+id/busnes_what"

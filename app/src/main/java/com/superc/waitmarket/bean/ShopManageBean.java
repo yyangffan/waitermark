@@ -126,7 +126,7 @@ public class ShopManageBean {
             private int num;
             private int count;
             private String shopid;
-            private double payamount;
+            private String payamount;
 
             public String getShopLogo() {
                 return ShopLogo;
@@ -176,11 +176,11 @@ public class ShopManageBean {
                 this.shopid = shopid;
             }
 
-            public double getPayamount() {
+            public String getPayamount() {
                 return payamount;
             }
 
-            public void setPayamount(double payamount) {
+            public void setPayamount(String payamount) {
                 this.payamount = payamount;
             }
         }

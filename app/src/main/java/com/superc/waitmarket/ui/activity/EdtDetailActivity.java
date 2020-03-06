@@ -17,13 +17,11 @@ import com.ljy.devring.http.support.throwable.HttpThrowable;
 import com.superc.waitmarket.R;
 import com.superc.waitmarket.adapter.ViewPaperAdapter;
 import com.superc.waitmarket.base.ApiService;
-import com.superc.waitmarket.base.WaitApplication;
 import com.superc.waitmarket.httputil.EncryPtionHttp;
 import com.superc.waitmarket.httputil.EncryPtionUtil;
 import com.superc.waitmarket.ui.fragment.EdtChangjingFragment;
 import com.superc.waitmarket.ui.fragment.EdtJichuFragment;
 import com.superc.waitmarket.ui.fragment.EdtJieskFragment;
-import com.superc.waitmarket.ui.fragment.EdtZhifFragment;
 import com.superc.waitmarket.ui.fragment.EdtZizhiFragment;
 import com.superc.waitmarket.utils.dialog.MiddleDialog;
 import com.superc.waitmarket.views.CustomScrollViewPager;
@@ -68,14 +66,15 @@ public class EdtDetailActivity extends BaseActivity {
     HorizontalScrollView mHorizontalScrollView;
     private List<TextView> mTextViews;
     private int what = 0;
-    private String[] mStrings = new String[]{"基础信息", "场景照片", "资质信息", "结算信息", "支付营销老客"};
+    /*private String[] mStrings = new String[]{"基础信息", "场景照片", "资质信息", "结算信息", "支付营销老客"};*/
+    private String[] mStrings = new String[]{"基础信息", "场景照片", "资质信息", "结算信息"};
     private ViewPaperAdapter mViewPaperAdapter;
     private List<Fragment> mFragmentList;
     private EdtJichuFragment mJiChuFragment;
     private EdtChangjingFragment mChangjPicFragment;
     private EdtZizhiFragment mZizhiFragment;
     private EdtJieskFragment mJieSFragment;
-    private EdtZhifFragment mEdtZhifFragment;
+//    private EdtZhifFragment mEdtZhifFragment;
     private int mWidth;
     private int mScreenWidth;
     private boolean is_back = false;
@@ -98,12 +97,12 @@ public class EdtDetailActivity extends BaseActivity {
         mChangjPicFragment = new EdtChangjingFragment();
         mZizhiFragment = new EdtZizhiFragment();
         mJieSFragment = new EdtJieskFragment();
-        mEdtZhifFragment = new EdtZhifFragment();
+//        mEdtZhifFragment = new EdtZhifFragment();
         mFragmentList.add(mJiChuFragment);
         mFragmentList.add(mChangjPicFragment);
         mFragmentList.add(mZizhiFragment);
         mFragmentList.add(mJieSFragment);
-        mFragmentList.add(mEdtZhifFragment);
+//        mFragmentList.add(mEdtZhifFragment);
         mViewPaperAdapter = new ViewPaperAdapter(getSupportFragmentManager(), mFragmentList, mStrings);
         mEdtdetailVp.setAdapter(mViewPaperAdapter);
         mTextViews.add(mEdtdetailOne);
@@ -111,13 +110,13 @@ public class EdtDetailActivity extends BaseActivity {
         mTextViews.add(mEdtdetailThree);
         mTextViews.add(mEdtdetailFour);
         mTextViews.add(mEdtdetailFive);
-        mStatus = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("status", "");
+       /* mStatus = (String) ShareUtil.getInstance(WaitApplication.getInstance()).get("status", "");
         if (mStatus.equals("1")) {//1 不可编辑  0可编辑
             new YfsRemindDialog.Builder(this).title("当前状态仅可编辑支付营销活动").left("确认").left_color(R.color.main_color).build().show();
             mSubmit.setVisibility(View.GONE);
         }else{
             mSubmit.setVisibility(View.VISIBLE);
-        }
+        }*/
         initWhat();
     }
 
@@ -135,10 +134,10 @@ public class EdtDetailActivity extends BaseActivity {
                     @Override
                     public void onRightClickListener() {
                         super.onRightClickListener();
-                        if(mStatus.equals("1")){//1 不可编辑  0可编辑
-                            toSubmit();
-                            return;
-                        }
+//                        if(mStatus.equals("1")){//1 不可编辑  0可编辑
+//                            toSubmit();
+//                            return;
+//                        }
                         toCommit();
                     }
                 });
@@ -149,10 +148,10 @@ public class EdtDetailActivity extends BaseActivity {
                 is_tijiao = false;
 //                initWhat();
                 ShareUtil.getInstance(this).put("is_creat", "1");
-                if(mStatus.equals("1")){//1 不可编辑  0可编辑
-                    toScroll();
-                    return;
-                }
+//                if(mStatus.equals("1")){//1 不可编辑  0可编辑
+//                    toScroll();
+//                    return;
+//                }
                 if (what == 0) {
                     mJiChuFragment.getJichu();
                 }
@@ -161,10 +160,10 @@ public class EdtDetailActivity extends BaseActivity {
             case R.id.edtdetail_bot:
                 is_tijiao = false;
                 is_back = false;
-                if(mStatus.equals("1")){//1 不可编辑  0可编辑
-                    toScroll();
-                    return;
-                }
+//                if(mStatus.equals("1")){//1 不可编辑  0可编辑
+//                    toScroll();
+//                    return;
+//                }
                 toCommit();
                 break;
         }
@@ -227,17 +226,25 @@ public class EdtDetailActivity extends BaseActivity {
                     mZizhiFragment.toCommit();
                 break;
             case 3:
-                if (mJieSFragment != null)
-                    mJieSFragment.toCommit();
-                break;
-            case 4:
-                if (mEdtZhifFragment != null) {
+                /*if (mJieSFragment != null)
+                    mJieSFragment.toCommit();*/
+                if (mJieSFragment != null){
                     if (is_back) {
-                        mEdtZhifFragment.toCommit();
+                        mJieSFragment.toCommit();
                     }else{
                         toSubmit();
                     }
                 }
+
+                break;
+            case 4:
+//                if (mEdtZhifFragment != null) {
+//                    if (is_back) {
+//                        mEdtZhifFragment.toCommit();
+//                    }else{
+//                        toSubmit();
+//                    }
+//                }
                 break;
         }
     }
@@ -253,16 +260,16 @@ public class EdtDetailActivity extends BaseActivity {
         } else {
             ++what;
         }
-        if (what >= 4)
-            what = 4;
+        if (what >= 3)
+            what = 3;
         initWhat();
         if (what >= 2) {
             mHorizontalScrollView.smoothScrollTo(mWidth / 2, 0);
         } else {
             mHorizontalScrollView.smoothScrollTo(0, 0);
         }
-        if (what == 4 && mEdtZhifFragment != null) {
-            mEdtZhifFragment.toJudge();
+        if (what == 3 && mJieSFragment != null) {
+            mJieSFragment.toJudge();
         }
     }
 
@@ -271,7 +278,7 @@ public class EdtDetailActivity extends BaseActivity {
             mEdtdetailTop.setVisibility(View.GONE);
             mEdtdetailVline.setVisibility(View.GONE);
             mEdtdetailBot.setVisibility(View.VISIBLE);
-        } else if (what == 4) {
+        } else if (what == 3) {
             mEdtdetailTop.setVisibility(View.VISIBLE);
             mEdtdetailBot.setVisibility(View.GONE);
             mEdtdetailVline.setVisibility(View.GONE);
@@ -317,9 +324,9 @@ public class EdtDetailActivity extends BaseActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        if (what == 4 && mEdtZhifFragment != null) {
+       /* if (what == 4 && mEdtZhifFragment != null) {
             mEdtZhifFragment.toJudge();
-        }
+        }*/
     }
 
     /*获取屏幕参数*/

@@ -227,13 +227,15 @@ public class LoginActivity extends BaseActivity {
                     ShareUtil.getInstance(LoginActivity.this).put("realname", loginBean.getData().getRealname());
                     ShareUtil.getInstance(LoginActivity.this).put("is_login", true);
                     String bankname = loginBean.getData().getBankname();
-                    ShareUtil.getInstance(LoginActivity.this).put("only", bankname.equals("趣街")?"qujie":"yinhang");
+                    if(!TextUtils.isEmpty(bankname)) {
+                        ShareUtil.getInstance(LoginActivity.this).put("only", bankname.equals("趣街") ? "qujie" : "yinhang");
+                        toSetTags(bankname.equals("趣街")?"qujie":"yinhang");
+                    }
                     // TODO: 2020/2/11 放开是否是银行的判断
                     /*ShareUtil.getInstance(LoginActivity.this).put("isYh", bankname.equals("趣街")?false:true);*/
                     ShareUtil.getInstance(LoginActivity.this).put("isYh", true);
                     /*0- 小组营销数据  1-分区营销数据   2-全司营销数据   3-other*/
                     ShareUtil.getInstance(LoginActivity.this).put("jltype","2");
-                    toSetTags(bankname.equals("趣街")?"qujie":"yinhang");
                     toSetAlias(BigDecimalUtils.bigUtil(loginBean.getData().getId()));
                     String msg_count = BigDecimalUtils.bigUtil(loginBean.getData().getMessagecount());
                     Intent intent=new Intent(LoginActivity.this,MainActivity.class);

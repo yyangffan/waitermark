@@ -143,7 +143,7 @@ public class AllMarketdetailActivity extends BaseActivity {
                     }
                     for (int i = 0; i < detaillist.size(); i++) {
                         JSONObject jsonObject = detaillist.getJSONObject(i);
-                        YingxiaoBean yxbean = new YingxiaoBean.Builder().img_url(jsonObject.getString("headimg")).one_content(jsonObject.getString("RealName")).two_content(jsonObject.getString("smallbankname")).
+                        YingxiaoBean yxbean = new YingxiaoBean.Builder().img_url(jsonObject.getString("headimg")).one_content(jsonObject.getString("RealName")+"  柜员号"+jsonObject.getString("account")).two_content(jsonObject.getString("smallbankname")).
                                 three_content(jsonObject.getString("acount")).four_content(jsonObject.getString("payamount")).five_content(jsonObject.getString("ccount")).build();
                         mMapList.add(yxbean);
                     }
@@ -191,7 +191,7 @@ public class AllMarketdetailActivity extends BaseActivity {
                     }
                     for (int i = 0; i < detaillist.size(); i++) {
                         JSONObject jsonObject = detaillist.getJSONObject(i);
-                        YingxiaoBean yxbean = new YingxiaoBean.Builder().one_content(jsonObject.getString("RealName")).two_content(jsonObject.getString("smallbankname")).
+                        YingxiaoBean yxbean = new YingxiaoBean.Builder().one_content(jsonObject.getString("RealName")+"  柜员号"+jsonObject.getString("account")).two_content(jsonObject.getString("smallbankname")).
                                 three_content(jsonObject.getString("acount")).four_content(jsonObject.getString("payamount")).five_content(jsonObject.getString("ccount")).build();
                         mMapList.add(yxbean);
                     }

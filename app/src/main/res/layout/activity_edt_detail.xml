@@ -68,7 +68,7 @@
 
     <HorizontalScrollView
         android:id="@+id/merchant_detail_tabs"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:padding="@dimen/dp_3"
@@ -108,7 +108,7 @@
                 android:id="@+id/edtdetail_four"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" 结算信息   » "
+                android:text=" 结算信息    "
                 android:textColor="@color/txt_granine"/>
 
             <TextView
@@ -116,7 +116,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" 支付营销活动   "
-                android:textColor="@color/txt_granine"/>
+                android:textColor="@color/txt_granine"
+                android:visibility="gone"/>
 
         </LinearLayout>
 

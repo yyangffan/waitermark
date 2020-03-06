@@ -1,6 +1,7 @@
 package com.superc.waitmarket.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -8,7 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.superc.waitmarket.R;
+import com.superc.waitmarket.base.Constant;
 import com.superc.waitmarket.bean.YingxiaoBean;
 import com.superc.waitmarket.utils.BigDecimalUtils;
 
@@ -16,6 +20,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AllMarketAdapter extends RecyclerView.Adapter<AllMarketAdapter.ViewHolder> {
     private Context mContext;
@@ -43,9 +48,26 @@ public class AllMarketAdapter extends RecyclerView.Adapter<AllMarketAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder vh, final int position) {
         YingxiaoBean bean = mLists.get(position);
+        boolean is_wangd = bean.isIs_wangd();
+        if (is_wangd) {
+            vh.mItemAllmarketTitle.setTextSize(13);
+            vh.mItemAllmarketTitle.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+            vh.mImageView.setVisibility(View.VISIBLE);
+            String img_url = bean.getImg_url();
+            RequestOptions requestOptions = new RequestOptions().error(R.drawable.icon_error).placeholder(R.drawable.icon_error);
+            if (!TextUtils.isEmpty(img_url)) {
+                if (img_url.startsWith("http") || img_url.startsWith("https")) {
+                    Glide.with(mContext).load(img_url).apply(requestOptions).into(vh.mImageView);
+                } else {
+                    Glide.with(mContext).load(Constant.IMG_URL + img_url).apply(requestOptions).into(vh.mImageView);
+                }
+            } else {
+                Glide.with(mContext).load(Constant.IMG_URL + img_url).apply(requestOptions).into(vh.mImageView);
+            }
+        }
         vh.mItemAllmarketTitle.setText(bean.getOne_content());
         vh.mItemAllmarketOne.setText(BigDecimalUtils.bigUtil(bean.getTwo_content()));
-        vh.mItemAllmarketTwo.setText("¥" + bean.getThree_content());
+        vh.mItemAllmarketTwo.setText("¥" + BigDecimalUtils.bigUtil(bean.getThree_content()));
         vh.mItemAllmarketThree.setText(BigDecimalUtils.bigUtil(bean.getFour_content()));
         final String id = bean.getId();
         vh.mItemAllmarketMore.setVisibility(TextUtils.isEmpty(id) ? View.GONE : View.VISIBLE);
@@ -79,6 +101,8 @@ public class AllMarketAdapter extends RecyclerView.Adapter<AllMarketAdapter.View
         TextView mItemAllmarketThree;
         @BindView(R.id.item_allmarket_name)
         TextView mItemAllmarketMore;
+        @BindView(R.id.imageView)
+        CircleImageView mImageView;
 
         View mView;
 

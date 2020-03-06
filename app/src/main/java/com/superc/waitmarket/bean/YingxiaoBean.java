@@ -9,16 +9,26 @@ public class YingxiaoBean {
     private String img_url;
     private String type;
     private String id;
+    private boolean is_wangd;
 
     public YingxiaoBean(Builder builder) {
         one_content = builder.one_content;
         two_content = builder.two_content;
         three_content = builder.three_content;
         four_content = builder.four_content;
-        five_content=builder.five_content;
-        img_url=builder.img_url;
+        five_content = builder.five_content;
+        img_url = builder.img_url;
         type = builder.type;
         id = builder.id;
+        is_wangd=builder.is_wangd;
+    }
+
+    public boolean isIs_wangd() {
+        return is_wangd;
+    }
+
+    public void setIs_wangd(boolean is_wangd) {
+        this.is_wangd = is_wangd;
     }
 
     public String getFive_content() {
@@ -94,6 +104,7 @@ public class YingxiaoBean {
         private String img_url;
         private String type;
         private String id;
+        private boolean is_wangd;
 
         public Builder one_content(String one_content) {
             this.one_content = one_content;
@@ -114,6 +125,12 @@ public class YingxiaoBean {
 
         public Builder four_content(String four_content) {
             this.four_content = four_content;
+            return this;
+
+        }
+
+        public Builder is_wangd(boolean is_wangd) {
+            this.is_wangd = is_wangd;
             return this;
 
         }

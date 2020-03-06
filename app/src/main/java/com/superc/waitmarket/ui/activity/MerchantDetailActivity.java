@@ -14,8 +14,6 @@ import com.superc.waitmarket.base.Constant;
 import com.superc.waitmarket.ui.fragment.ChangjPicFragment;
 import com.superc.waitmarket.ui.fragment.JiChuFragment;
 import com.superc.waitmarket.ui.fragment.JieSFragment;
-import com.superc.waitmarket.ui.fragment.NewFragment;
-import com.superc.waitmarket.ui.fragment.OldFragment;
 import com.superc.waitmarket.ui.fragment.ZizhiFragment;
 import com.superc.waitmarket.ui.manager.fragment.ShoukCodeFragment;
 import com.superc.waitmarket.utils.dialog.PhaseBottomTelDialog;
@@ -37,16 +35,18 @@ public class MerchantDetailActivity extends BaseActivity implements OnTabSelectL
     TextView mTVPhone;
     @BindView(R.id.merchant_detail_viewpage)
     ViewPager mMerchantDetailViewpage;
-    private String[] mStrings = new String[]{"基础信息", "场景照片", "资质信息", "结算信息", "支付营销老客", "支付营销新客"};
-    private String[] mStrings_jili = new String[]{"基础信息", "场景照片", "资质信息", "结算信息", "支付营销老客", "支付营销新客","收款码"};
+    /*private String[] mStrings = new String[]{"基础信息", "场景照片", "资质信息", "结算信息", "支付营销老客", "支付营销新客"};
+    private String[] mStrings_jili = new String[]{"基础信息", "场景照片", "资质信息", "结算信息", "支付营销老客", "支付营销新客","收款码"};*/
+    private String[] mStrings = new String[]{"基础信息", "场景照片", "资质信息", "结算信息"};
+    private String[] mStrings_jili = new String[]{"基础信息", "场景照片", "资质信息", "结算信息","收款码"};
     private ViewPaperAdapter mViewPaperAdapter;
     private List<Fragment> mFragmentList;
     private JiChuFragment mJiChuFragment;
     private ChangjPicFragment mChangjPicFragment;
     private ZizhiFragment mZizhiFragment;
     private JieSFragment mJieSFragment;
-    private OldFragment mOldFragment;
-    private NewFragment mNewFragment;
+//    private OldFragment mOldFragment;
+//    private NewFragment mNewFragment;
     private ShoukCodeFragment mShoukCodeFragment;
     private boolean mYihang;
     private PhaseBottomTelDialog mPhaseBottomTelDialog;
@@ -72,14 +72,14 @@ public class MerchantDetailActivity extends BaseActivity implements OnTabSelectL
         mChangjPicFragment = new ChangjPicFragment();
         mZizhiFragment = new ZizhiFragment();
         mJieSFragment = new JieSFragment();
-        mOldFragment = new OldFragment();
-        mNewFragment = new NewFragment();
+       /* mOldFragment = new OldFragment();
+        mNewFragment = new NewFragment();*/
         mFragmentList.add(mJiChuFragment);
         mFragmentList.add(mChangjPicFragment);
         mFragmentList.add(mZizhiFragment);
         mFragmentList.add(mJieSFragment);
-        mFragmentList.add(mOldFragment);
-        mFragmentList.add(mNewFragment);
+       /* mFragmentList.add(mOldFragment);
+        mFragmentList.add(mNewFragment);*/
         if (!mYihang) {
             mShoukCodeFragment = new ShoukCodeFragment();
             mFragmentList.add(mShoukCodeFragment);
@@ -122,14 +122,14 @@ public class MerchantDetailActivity extends BaseActivity implements OnTabSelectL
                 if (mJieSFragment != null)
                     mJieSFragment.getData();
                 break;
-            case 4:
+           /* case 4:
                 if (mNewFragment != null)
                     mNewFragment.getData();
                 break;
             case 5:
                 if (mOldFragment != null)
                     mOldFragment.getData();
-                break;
+                break;*/
         }
     }
 

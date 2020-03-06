@@ -65,7 +65,7 @@ public class BudnesContentAdapter extends RecyclerView.Adapter<BudnesContentAdap
         }
         vh.mItemContentName.setText(bean.getShopName());
         vh.mItemContentTime.setText("上线时间"+getTimeStr(bean.getChecksuccesstime(),"yyyy.MM.dd"));
-        vh.mItemContentThemoth.setText("¥"+BigDecimalUtils.bigUtil(bean.getPayamount()+""));
+        vh.mItemContentThemoth.setText("¥"+BigDecimalUtils.bigUtil(bean.getPayamount()));
         vh.mItemContentLiulinag.setText(BigDecimalUtils.bigUtil(bean.getCount()+""));
         vh.mView.setOnClickListener(new View.OnClickListener() {
             @Override

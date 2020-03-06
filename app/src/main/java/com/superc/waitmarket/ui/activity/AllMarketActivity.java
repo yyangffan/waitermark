@@ -174,7 +174,7 @@ public class AllMarketActivity extends BaseActivity {
                     }
                     for (int i = 0; i < detaillist.size(); i++) {
                         JSONObject jsonObject = detaillist.getJSONObject(i);
-                        YingxiaoBean yxbean = new YingxiaoBean.Builder().one_content(jsonObject.getString("RealName")).
+                        YingxiaoBean yxbean = new YingxiaoBean.Builder().is_wangd(true).img_url(jsonObject.getString("headimg")).one_content(jsonObject.getString("RealName")+"  柜员号"+jsonObject.getString("account")).
                                 two_content(jsonObject.getString("acount")).three_content(jsonObject.getString("payamount")).four_content(jsonObject.getString("ccount")).build();
                         mMapList.add(yxbean);
                     }
@@ -223,7 +223,7 @@ public class AllMarketActivity extends BaseActivity {
                     }
                     for (int i = 0; i < detaillist.size(); i++) {
                         JSONObject jsonObject = detaillist.getJSONObject(i);
-                        YingxiaoBean yxbean = new YingxiaoBean.Builder().one_content(jsonObject.getString("RealName")).
+                        YingxiaoBean yxbean = new YingxiaoBean.Builder().is_wangd(false).one_content(jsonObject.getString("RealName")+"  柜员号"+jsonObject.getString("account")).
                                 two_content(jsonObject.getString("acount")).three_content(jsonObject.getString("payamount")).four_content(jsonObject.getString("ccount")).build();
                         mMapList.add(yxbean);
                     }
@@ -271,7 +271,7 @@ public class AllMarketActivity extends BaseActivity {
                     }
                     for (int i = 0; i < detaillist.size(); i++) {
                         JSONObject jsonObject = detaillist.getJSONObject(i);
-                        YingxiaoBean yxbean = new YingxiaoBean.Builder().one_content(jsonObject.getString("NAME")).
+                        YingxiaoBean yxbean = new YingxiaoBean.Builder().is_wangd(false).one_content(jsonObject.getString("NAME")).
                                 two_content(jsonObject.getString("acount")).three_content(jsonObject.getString("payamount")).four_content(jsonObject.getString("ccount")).id(BigDecimalUtils.bigUtil(jsonObject.getString("branchid"))).build();
                         mMapList.add(yxbean);
                     }

@@ -9,7 +9,6 @@ import java.text.NumberFormat;
 public class BigDecimalUtils {
 
     /**
-     *
      * @param v1
      * @param v2
      * @return
@@ -24,6 +23,7 @@ public class BigDecimalUtils {
 
     /**
      * 小数点后为零则显示整数否则保留两位小数
+     *
      * @param d
      * @return
      */
@@ -36,19 +36,21 @@ public class BigDecimalUtils {
         return String.valueOf(num);
     }
 
-    public static double formatDouble(String dou){
+    public static double formatDouble(String dou) {
         return new BigDecimal(Double.parseDouble(dou)).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 
-    public static String withoutZero(Double d){
+    public static String withoutZero(Double d) {
         NumberFormat nf = NumberFormat.getInstance();
         return nf.format(d);
     }
 
-    public static String bigUtil(String str){
-        if(TextUtils.isEmpty(str)){
+    public static String bigUtil(String str) {
+        if (TextUtils.isEmpty(str)) {
             return "- -";
-        }else{
+        } else if (str.contains("万")) {
+            return str;
+        } else {
             return BigDecimalUtils.formatDouble(Double.parseDouble(str));
         }
     }
