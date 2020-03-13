@@ -98,7 +98,7 @@ public class ManaJhAdapter extends RecyclerView.Adapter<ManaJhAdapter.ViewHolder
                     mOnItemClickListener.onItemClickListener(position);
             }
         });
-        if (true){
+        if (false){
             vh.mLinearOne.setVisibility(View.VISIBLE);
             vh.mTvCommit.setVisibility(View.VISIBLE);
             vh.mTvOne.setText("重新提交原因原因原因原因原因");
