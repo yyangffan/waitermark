@@ -380,7 +380,7 @@
                 android:background="@drawable/bg_corner_kuang"
                 android:ellipsize="end"
                 android:hint="请输入法人身份证号"
-                android:inputType="number"
+                android:digits="@string/digits_edit"
                 android:lines="1"
                 android:padding="@dimen/dp_5"
                 android:textColor="@color/black"

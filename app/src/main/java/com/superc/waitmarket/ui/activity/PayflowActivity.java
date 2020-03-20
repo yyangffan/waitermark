@@ -1,6 +1,5 @@
 package com.superc.waitmarket.ui.activity;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -85,11 +84,11 @@ public class PayflowActivity extends BaseActivity {
         mPayFlowAdapter.setOnItemClickListener(new PayFlowAdapter.OnItemClickListener() {
             @Override
             public void onItemClickListener(int pos) {
-                PayflowBean.DataBean.DataListBean map = mMapList.get(pos);
+               /* PayflowBean.DataBean.DataListBean map = mMapList.get(pos);
                 String date = map.getDate();
                 Intent intent = new Intent(PayflowActivity.this, PayflowDetailActivity.class);
                 intent.putExtra("date", date);
-                startActivity(intent);
+                startActivity(intent);*/
             }
         });
         mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -129,7 +128,7 @@ public class PayflowActivity extends BaseActivity {
         map.put("userId", mUser_id);
         map.put("date", d.replace("月", ""));
         map.put("currentPage", page);
-        map.put("pageSize", 10);
+        map.put("pageSize", 50);
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).businessRecordInfo(EncryPtionUtil.getInstance(this).toEncryption(map));
         EncryPtionHttp.getInstance(this).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {
             @Override

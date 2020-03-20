@@ -124,7 +124,7 @@ public class ShopManageBean {
             private String ShopName;
             private long checksuccesstime;
             private int num;
-            private int count;
+            private String count;
             private String shopid;
             private String payamount;
 
@@ -160,11 +160,11 @@ public class ShopManageBean {
                 this.num = num;
             }
 
-            public int getCount() {
+            public String getCount() {
                 return count;
             }
 
-            public void setCount(int count) {
+            public void setCount(String count) {
                 this.count = count;
             }
 

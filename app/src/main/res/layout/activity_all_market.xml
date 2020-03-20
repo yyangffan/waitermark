@@ -168,7 +168,7 @@
                         android:paddingTop="@dimen/dp_3"
                         android:paddingBottom="@dimen/dp_3"
                         android:lines="1"
-                        android:maxWidth="@dimen/dp_54"
+                        android:maxWidth="@dimen/dp_84"
                         android:text="- -"
                         android:textColor="@color/black"
                         android:textSize="16sp"

@@ -3,20 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/dp_1"
-    android:layout_height="wrap_content">
+    android:background="@color/white">
 
 
     <TextView
         android:id="@+id/item_payflow_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
         android:layout_marginStart="14dp"
         android:layout_marginTop="14dp"
         android:text="- -"
+        android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -54,6 +54,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="8dp"
         android:src="@drawable/icon_gengduoshense"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/item_payflow_end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/item_payflow_money"/>
