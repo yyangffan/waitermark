@@ -149,8 +149,8 @@ public class ZizhiFragment extends BaseFragment {
             mItemLookzizhiFanwei.setText(merchant.getString("businessscope"));
             mItemLookzizhiChangsuo.setText(merchant.getString("placeofbusiness"));
             mItemLookzizhiZijin.setText(merchant.getString("registeredcapital"));
-            mItemLookzizhiYyzztime.setText(merchant.getString("startdate")+"-"+merchant.getString("enddate"));
-            mItemLookzizhiSfzTm.setText(merchant.getString("starttime")+"-"+merchant.getString("endtime"));
+            mItemLookzizhiYyzztime.setText(merchant.getString("startdate")+"-"+(TextUtils.isEmpty(merchant.getString("enddate"))?"长期":merchant.getString("enddate")));
+            mItemLookzizhiSfzTm.setText(merchant.getString("starttime")+"-"+(TextUtils.isEmpty(merchant.getString("endtime"))?"长期":merchant.getString("endtime")));
 
             String mZhewngPath = merchant.getString("cardidfrntphoto");//正面
             String mFanPath = merchant.getString("cardidbackphoto");//反面

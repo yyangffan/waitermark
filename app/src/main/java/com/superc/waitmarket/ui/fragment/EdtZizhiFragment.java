@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -132,6 +133,16 @@ public class EdtZizhiFragment extends BaseFragment {
     TextView mtvZczjWenz;
     @BindView(R.id.linearLayout4)
     LinearLayout mLinearYyzzTm;
+    @BindView(R.id.phase_broad_rb)
+    RadioButton mBtYyzzz;
+    @BindView(R.id.line_yyzzchangq)
+    TextView mYyzzChangqi;
+    @BindView(R.id.phase_broad_shenfen)
+    RadioButton mBtShenfenz;
+    @BindView(R.id.line_shenfenzchangq)
+    TextView mShenfenzChanqi;
+    @BindView(R.id.textView110)
+    TextView mSfzTv;
 
     Unbinder unbinder;
     private String url_fore, url_back, url_yingye, mZhewngPath, mFanPath, mYingyePath;
@@ -145,6 +156,7 @@ public class EdtZizhiFragment extends BaseFragment {
     private String mStatus;
     private CustomDatePicker customDatePickerSt;
     private LoadingDialog mLoadingDialog;
+    private boolean yyzz_ischeck = false, shenfenz_ischeck = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -171,7 +183,8 @@ public class EdtZizhiFragment extends BaseFragment {
     }
 
     @OnClick({R.id.item_edtzizhi_imgone, R.id.item_edtzizhi_imgonexiangji, R.id.item_edtzizhi_imgtwo, R.id.item_edtzizhi_imgtwoxiangji, R.id.imageView7, R.id.imageView8, R.id.item_edtzizhi_leixing,
-            R.id.item_lookjies_lineyyzz, R.id.item_lookjies_yyzzadd, R.id.item_lookjies_imgvyyzz, R.id.yingyedelete, R.id.item_edtzizhi_yyzzst, R.id.item_edtzizhi_yyzzed, R.id.item_edtzizhi_sfztimest, R.id.item_edtzizhi_sfztimeed})
+            R.id.item_lookjies_lineyyzz, R.id.item_lookjies_yyzzadd, R.id.item_lookjies_imgvyyzz, R.id.yingyedelete, R.id.item_edtzizhi_yyzzst, R.id.item_edtzizhi_yyzzed, R.id.item_edtzizhi_sfztimest,
+            R.id.item_edtzizhi_sfztimeed, R.id.phase_broad_rb, R.id.phase_broad_shenfen})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.item_lookjies_lineyyzz:
@@ -220,6 +233,34 @@ public class EdtZizhiFragment extends BaseFragment {
                 }
                 showDateDialog(mItemEdtzizhiSfztimeed, sfz_st.replace(".", "-") + " 00:00", "2035-12-12 00:00");
                 break;
+            case R.id.phase_broad_rb:
+                yyzz_ischeck = !yyzz_ischeck;
+                mBtYyzzz.setChecked(yyzz_ischeck);
+                if (yyzz_ischeck) {
+                    mYyzzChangqi.setVisibility(View.GONE);
+                    mItemEdtzizhiYyzzed.setVisibility(View.GONE);
+                    mtvYyzzTmWenz.setText("营业执照开始时间");
+                } else {
+                    mYyzzChangqi.setVisibility(View.VISIBLE);
+                    mItemEdtzizhiYyzzed.setVisibility(View.VISIBLE);
+                    mtvYyzzTmWenz.setText("营业执照有效期");
+                }
+                break;
+            case R.id.phase_broad_shenfen:
+                shenfenz_ischeck = !shenfenz_ischeck;
+                mBtShenfenz.setChecked(shenfenz_ischeck);
+                if (shenfenz_ischeck) {
+                    mShenfenzChanqi.setVisibility(View.GONE);
+                    mItemEdtzizhiSfztimeed.setVisibility(View.GONE);
+                    mSfzTv.setText("身份证开始时间");
+                } else {
+                    mShenfenzChanqi.setVisibility(View.VISIBLE);
+                    mItemEdtzizhiSfztimeed.setVisibility(View.VISIBLE);
+                    mSfzTv.setText("身份证有效期");
+                }
+
+                break;
+
         }
     }
 
@@ -331,9 +372,37 @@ public class EdtZizhiFragment extends BaseFragment {
         mItemEdtzizhiChangsuo.setText(merchant.getString("placeofbusiness"));
         mItemEdtzizhiZijin.setText(merchant.getString("registeredcapital"));
         mItemEdtzizhiYyzzst.setText(merchant.getString("startdate"));
-        mItemEdtzizhiYyzzed.setText(merchant.getString("enddate"));
+        String yyenddate = merchant.getString("enddate");
+        if (TextUtils.isEmpty(yyenddate)) {
+            yyzz_ischeck = true;
+            mBtYyzzz.setChecked(true);
+            mYyzzChangqi.setVisibility(View.GONE);
+            mItemEdtzizhiYyzzed.setVisibility(View.GONE);
+            mtvYyzzTmWenz.setText("营业执照开始时间");
+        } else {
+            yyzz_ischeck = false;
+            mBtYyzzz.setChecked(false);
+            mYyzzChangqi.setVisibility(View.VISIBLE);
+            mItemEdtzizhiYyzzed.setVisibility(View.VISIBLE);
+            mItemEdtzizhiYyzzed.setText(yyenddate);
+            mtvYyzzTmWenz.setText("营业执照有效期");
+        }
         mItemEdtzizhiSfztimest.setText(merchant.getString("starttime"));
-        mItemEdtzizhiSfztimeed.setText(merchant.getString("endtime"));
+        String endtime = merchant.getString("endtime");
+        if (TextUtils.isEmpty(endtime)) {
+            shenfenz_ischeck = true;
+            mBtShenfenz.setChecked(true);
+            mShenfenzChanqi.setVisibility(View.GONE);
+            mItemEdtzizhiSfztimeed.setVisibility(View.GONE);
+            mSfzTv.setText("身份证开始时间");
+        } else {
+            shenfenz_ischeck = false;
+            mBtShenfenz.setChecked(false);
+            mShenfenzChanqi.setVisibility(View.VISIBLE);
+            mItemEdtzizhiSfztimeed.setVisibility(View.VISIBLE);
+            mItemEdtzizhiSfztimeed.setText(endtime);
+            mSfzTv.setText("身份证有效期");
+        }
         toCHushihuaDig();
 
         mZhewngPath = merchant.getString("cardidfrntphoto");//正面
@@ -399,11 +468,11 @@ public class EdtZizhiFragment extends BaseFragment {
         String yyzz_ed = mItemEdtzizhiYyzzed.getText().toString();
         String sfz_st = mItemEdtzizhiSfztimest.getText().toString();
         String sfz_ed = mItemEdtzizhiSfztimeed.getText().toString();
-        if (compare_dateDate(yyzz_st, yyzz_ed) == -1) {
+        if (compare_dateDate(yyzz_st, yyzz_ed) == -1 && !yyzz_ischeck) {
             ToastShow("营业执照开始时间不能大于结束时间");
             return;
         }
-        if (compare_dateDate(sfz_st, sfz_ed) == -1) {
+        if (compare_dateDate(sfz_st, sfz_ed) == -1 && !shenfenz_ischeck) {
             ToastShow("身份证有效期开始时间不能大于结束时间");
             return;
         }
@@ -449,9 +518,17 @@ public class EdtZizhiFragment extends BaseFragment {
         map.put("placeofbusiness", mItemEdtzizhiChangsuo.getText().toString());
         map.put("registeredcapital", mItemEdtzizhiZijin.getText().toString());
         map.put("startdate", yyzz_st);
-        map.put("enddate", yyzz_ed);
+        if (!yyzz_ischeck) {
+            map.put("enddate", yyzz_ed);
+        } else {
+            map.put("enddate", "");
+        }
         map.put("starttime", sfz_st);
-        map.put("endtime", sfz_ed);
+        if (!shenfenz_ischeck) {
+            map.put("endtime", sfz_ed);
+        } else {
+            map.put("endtime", "");
+        }
         map.put("type", mIs_creat);
         Observable<JSONObject> jsonObjectObservable = DevRing.httpManager().getService(ApiService.class).newQualificationInformation(EncryPtionUtil.getInstance(getActivity()).toEncryption(map));
         EncryPtionHttp.getInstance(getActivity()).getHttpResult(jsonObjectObservable, new EncryPtionHttp.OnHttpResult() {

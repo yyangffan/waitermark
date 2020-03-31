@@ -197,6 +197,30 @@
                 app:layout_constraintTop_toBottomOf="@+id/item_edtzizhi_danwei"/>
 
             <TextView
+                android:id="@+id/textViewsgfs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:text="营业执照是否长期有效"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/phase_broad_rb"
+                app:layout_constraintStart_toStartOf="@+id/textView68"
+                app:layout_constraintTop_toTopOf="@+id/phase_broad_rb"
+                />
+
+            <RadioButton
+                android:id="@+id/phase_broad_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/white"
+                android:button="@drawable/phase_broad"
+                android:checked="false"
+                app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_zijin"
+                app:layout_constraintTop_toBottomOf="@+id/item_edtzizhi_zijin"/>
+
+            <TextView
                 android:id="@+id/textView119"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -219,7 +243,7 @@
                 android:paddingBottom="@dimen/dp_3"
                 app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_zijin"
                 app:layout_constraintStart_toStartOf="@+id/item_edtzizhi_zijin"
-                app:layout_constraintTop_toBottomOf="@+id/item_edtzizhi_zijin">
+                app:layout_constraintTop_toBottomOf="@+id/textViewsgfs">
 
                 <TextView
                     android:id="@+id/item_edtzizhi_yyzzst"
@@ -236,6 +260,7 @@
                     android:textSize="12sp"/>
 
                 <TextView
+                    android:id="@+id/line_yyzzchangq"
                     android:layout_width="@dimen/dp_14"
                     android:layout_height="@dimen/dp_1"
                     android:layout_marginLeft="@dimen/dp_5"
@@ -378,9 +403,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_corner_kuang"
+                android:digits="@string/digits_edit"
                 android:ellipsize="end"
                 android:hint="请输入法人身份证号"
-                android:digits="@string/digits_edit"
                 android:lines="1"
                 android:padding="@dimen/dp_5"
                 android:textColor="@color/black"
@@ -499,6 +524,30 @@
                 />
 
             <TextView
+                android:id="@+id/xinzzeng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:text="身份证是否长期有效"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/phase_broad_shenfen"
+                app:layout_constraintStart_toStartOf="@+id/textView68"
+                app:layout_constraintTop_toTopOf="@+id/phase_broad_shenfen"
+                />
+
+            <RadioButton
+                android:id="@+id/phase_broad_shenfen"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/white"
+                android:button="@drawable/phase_broad"
+                android:checked="false"
+                app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_zijin"
+                app:layout_constraintTop_toBottomOf="@+id/textView87"/>
+
+            <TextView
                 android:id="@+id/textView110"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -521,7 +570,7 @@
                 android:paddingBottom="@dimen/dp_3"
                 app:layout_constraintEnd_toEndOf="@+id/item_edtzizhi_shenfenzh"
                 app:layout_constraintStart_toStartOf="@+id/item_edtzizhi_shenfenzh"
-                app:layout_constraintTop_toBottomOf="@+id/textView87">
+                app:layout_constraintTop_toBottomOf="@+id/phase_broad_shenfen">
 
                 <TextView
                     android:id="@+id/item_edtzizhi_sfztimest"
@@ -538,6 +587,7 @@
                     android:textSize="12sp"/>
 
                 <TextView
+                    android:id="@+id/line_shenfenzchangq"
                     android:layout_width="@dimen/dp_14"
                     android:layout_height="@dimen/dp_1"
                     android:layout_marginLeft="@dimen/dp_5"
